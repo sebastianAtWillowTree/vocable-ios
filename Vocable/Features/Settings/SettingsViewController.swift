@@ -30,6 +30,7 @@ final class SettingsViewController: VocableCollectionViewController, MFMailCompo
         case pidTuner
         case versionNum
         case listeningMode
+        case voiceConfiguration
 
         var title: String {
             switch self {
@@ -51,6 +52,8 @@ final class SettingsViewController: VocableCollectionViewController, MFMailCompo
                 return String(localized: "settings.cell.tune_cursor.title")
             case .listeningMode:
                 return String(localized: "settings.cell.listening_mode.title")
+            case .voiceConfiguration:
+                return String(localized: "settings.cell.voice_configuration.title")
             case .versionNum:
                 return ""
             }
@@ -72,6 +75,8 @@ final class SettingsViewController: VocableCollectionViewController, MFMailCompo
                 return .settings.contactDevelopersCell
             case .listeningMode:
                 return .settings.listeningModeCell
+            case .voiceConfiguration:
+                return .settings.voiceSettingsCell
             default:
                 return ""
             }
@@ -103,6 +108,10 @@ final class SettingsViewController: VocableCollectionViewController, MFMailCompo
             cell.setup(title: item.title, image: UIImage(systemName: "arrow.up.right"))
             cell.accessibilityID = item.accessibiltyId
             return cell
+        case .voiceConfiguration:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SettingsCollectionViewCell.reuseIdentifier, for: indexPath) as! SettingsCollectionViewCell
+            cell.setup(title: item.title, image: UIImage(systemName: "chevron.right"))
+            return cell
         case .versionNum:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SettingsFooterCollectionViewCell.reuseIdentifier, for: indexPath) as! SettingsFooterCollectionViewCell
             cell.setup(versionLabel: SettingsViewController.versionAndBuildNumber)
@@ -111,6 +120,7 @@ final class SettingsViewController: VocableCollectionViewController, MFMailCompo
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SettingsCollectionViewCell.reuseIdentifier, for: indexPath) as! SettingsCollectionViewCell
             cell.setup(title: item.title, image: UIImage())
             return cell
+            
         }
     }
 
@@ -172,12 +182,13 @@ final class SettingsViewController: VocableCollectionViewController, MFMailCompo
     private func updateDataSource() {
         var snapshot = NSDiffableDataSourceSnapshot<Section, SettingsItem>()
         snapshot.appendSections([.internalSettings])
-        snapshot.appendItems([.categories,
+        snapshot.appendItems([.voiceConfiguration,
+                              .categories,
                               .timingSensitivity,
                               .keyboardLayout,
-                              .resetAppSettings,
                               .listeningMode,
-                              .selectionMode].filter(\.isFeatureEnabled))
+                              .selectionMode,
+                              .resetAppSettings].filter(\.isFeatureEnabled))
         snapshot.appendSections([.externalURL])
         snapshot.appendItems([.privacyPolicy,
                               .contactDevs].filter(\.isFeatureEnabled))
@@ -277,9 +288,11 @@ final class SettingsViewController: VocableCollectionViewController, MFMailCompo
         case .listeningMode:
             let viewController = ListeningModeViewController()
             show(viewController, sender: nil)
+        case .voiceConfiguration:
+            let viewController = VoiceSettingsViewController()
+            show(viewController, sender: nil)
         case .contactDevs:
             presentEmailAlert()
-
         case .pidTuner:
             presentPidTuner()
         case .resetAppSettings:

@@ -120,6 +120,7 @@ class GazeableButton: UIButton {
         setFillColor(.defaultCellBackgroundColor, for: .normal)
         setFillColor(.cellSelectionColor, for: .selected)
         setFillColor(.cellSelectionColor, for: [.selected, .highlighted])
+        setTitleColor(.defaultTextColor, for: .normal)
         setTitleColor(.collectionViewBackgroundColor, for: .selected)
         setTitleColor(.collectionViewBackgroundColor, for: [.selected, .highlighted])
         setTitleColor(.white.withAlphaComponent(0.5), for: .disabled)

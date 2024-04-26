@@ -9,6 +9,7 @@
 import Foundation
 import Combine
 import ARKit
+import AVFoundation
 
 extension UserDefaultsKey {
 
@@ -19,6 +20,7 @@ extension UserDefaultsKey {
     static let dwellDuration: UserDefaultsKey = "dwellDuration"
     static let isHeadTrackingEnabled: UserDefaultsKey = "isHeadTrackingEnabled"
     static let isCompactQWERTYKeyboardEnabled: UserDefaultsKey = "isCompactQWERTYKeyboardEnabled"
+    static let selectedVoiceIdentifier: UserDefaultsKey = "selectedVoiceIdentifier"
 }
 
 struct AppConfig {
@@ -52,4 +54,7 @@ struct AppConfig {
 
     @PublishedDefault(.isCompactQWERTYKeyboardEnabled)
     static var isCompactQWERTYKeyboardEnabled: Bool = false
+    
+    @PublishedDefault(.selectedVoiceIdentifier)
+    static var selectedVoiceIdentifier: String? = nil
 }

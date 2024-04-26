@@ -12,10 +12,16 @@ final class VocableListCellPrimaryButton: GazeableButton {
 
     private var trailingAccessoryViewLayoutGuide = UILayoutGuide()
     private(set) var trailingAccessoryView: UIView?
-
+    
+    private var leadingAccessoryViewLayoutGuide = UILayoutGuide()
+    private(set) var leadingAccessoryView: UIView?
+    
+    private let defaultInsets = NSDirectionalEdgeInsets(top: 0, leading: 12, bottom: 0, trailing: 12)
+    
     override var isEnabled: Bool {
         didSet {
             trailingAccessoryView?.alpha = isEnabled ? 1 : 0.5
+            leadingAccessoryView?.alpha = isEnabled ? 1 : 0.5
         }
     }
 
@@ -40,13 +46,20 @@ final class VocableListCellPrimaryButton: GazeableButton {
             trailingAccessoryViewLayoutGuide.topAnchor.constraint(equalTo: topAnchor),
             trailingAccessoryViewLayoutGuide.bottomAnchor.constraint(equalTo: bottomAnchor),
             trailingAccessoryViewLayoutGuide.trailingAnchor.constraint(equalTo: trailingAnchor),
-            // 8 to match the minimum default content inset (until an independent UIControl subclass is authored)
-            trailingAccessoryViewLayoutGuide.widthAnchor.constraint(equalToConstant: 8).withPriority(.defaultLow)
+            trailingAccessoryViewLayoutGuide.widthAnchor.constraint(equalToConstant: defaultInsets.trailing).withPriority(.defaultLow)
+        ])
+        
+        addLayoutGuide(leadingAccessoryViewLayoutGuide)
+        NSLayoutConstraint.activate([
+            leadingAccessoryViewLayoutGuide.topAnchor.constraint(equalTo: topAnchor),
+            leadingAccessoryViewLayoutGuide.bottomAnchor.constraint(equalTo: bottomAnchor),
+            leadingAccessoryViewLayoutGuide.leadingAnchor.constraint(equalTo: leadingAnchor),
+            leadingAccessoryViewLayoutGuide.widthAnchor.constraint(equalToConstant: defaultInsets.leading).withPriority(.defaultLow)
         ])
     }
 
     func setTrailingAccessory(_ accessory: VocableListCellAccessory?) {
-        let trailingInsets: NSDirectionalEdgeInsets = .init(top: 0, leading: 16, bottom: 0, trailing: 16)
+        let trailingInsets: NSDirectionalEdgeInsets = defaultInsets
         switch accessory?.content {
         case .image(let image):
             if let trailingImageView = trailingAccessoryView as? UIImageView {
@@ -93,13 +106,67 @@ final class VocableListCellPrimaryButton: GazeableButton {
             view.leadingAnchor.constraint(equalTo: trailingAccessoryViewLayoutGuide.leadingAnchor, constant: insets.leading)
         ])
     }
+    
+    func setLeadingAccessory(_ accessory: VocableListCellAccessory?) {
+        let leadingInsets: NSDirectionalEdgeInsets = defaultInsets
+        switch accessory?.content {
+        case .image(let image):
+            if let leadingImageView = leadingAccessoryView as? UIImageView {
+                leadingImageView.image = image
+            } else {
+                setLeadingAccessoryView(UIImageView(image: image), insets: leadingInsets)
+            }
+        case .toggle(let isOn):
+            if let leadingToggle = leadingAccessoryView as? UISwitch {
+                leadingToggle.setOn(isOn, animated: true)
+            } else {
+                let toggle = UISwitch()
+                toggle.setOn(isOn, animated: true)
+                toggle.isUserInteractionEnabled = false
+                setLeadingAccessoryView(toggle, insets: leadingInsets)
+            }
+        case .none:
+            setLeadingAccessoryView(nil, insets: .zero)
+        }
+    }
+
+    private func setLeadingAccessoryView(_ view: UIView?, insets: NSDirectionalEdgeInsets) {
+        
+        defer {
+            leadingAccessoryView = view
+        }
+
+        if view === leadingAccessoryView {
+            return
+        }
+
+        leadingAccessoryView?.removeFromSuperview()
+
+        guard let view = view else {
+            return
+        }
+
+        view.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(view)
+
+        NSLayoutConstraint.activate([
+            view.leadingAnchor.constraint(equalTo: leadingAccessoryViewLayoutGuide.leadingAnchor, constant: insets.leading),
+            view.centerYAnchor.constraint(equalTo: leadingAccessoryViewLayoutGuide.centerYAnchor),
+            view.trailingAnchor.constraint(equalTo: leadingAccessoryViewLayoutGuide.trailingAnchor, constant: -insets.trailing)
+        ])
+    }
 
     override func layoutSubviews() {
 
-        let layoutGuideWidth = trailingAccessoryViewLayoutGuide.layoutFrame.width
+        var trailingInset = trailingAccessoryViewLayoutGuide.layoutFrame.width
+        var leadingInset = leadingAccessoryViewLayoutGuide.layoutFrame.width
 
-        if self.contentEdgeInsets.right != layoutGuideWidth {
-            self.contentEdgeInsets.right = layoutGuideWidth
+        if self.contentEdgeInsets.left != leadingInset {
+            self.contentEdgeInsets.left = leadingInset
+        }
+
+        if self.contentEdgeInsets.right != trailingInset {
+            self.contentEdgeInsets.right = trailingInset
         }
 
         super.layoutSubviews()

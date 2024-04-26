@@ -22,7 +22,22 @@ extension AVSpeechSynthesizer {
     
     func speak(_ string: String, language: String) {
         let utterance = AVSpeechUtterance(string: string)
-        utterance.voice = AVSpeechSynthesisVoice(language: language)
+        if let selectedVoiceID = AppConfig.selectedVoiceIdentifier,
+            let voice = AVSpeechSynthesisVoice(identifier: selectedVoiceID)
+        {
+            let languageLocale = NSLocale(localeIdentifier: language)
+            let voiceLocale = NSLocale(localeIdentifier: voice.language)
+            
+            // Check to be sure the user-provided voice can speak this language
+            if languageLocale.languageCode == voiceLocale.languageCode {
+                utterance.voice = voice
+            }
+        }
+        
+        // fall back to previous behavior
+        if utterance.voice == nil {
+            utterance.voice = AVSpeechSynthesisVoice(language: language)
+        }
         
         if isSpeaking {
             stopSpeaking(at: .immediate)

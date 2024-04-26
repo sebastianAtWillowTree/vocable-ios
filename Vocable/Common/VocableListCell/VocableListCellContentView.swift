@@ -145,7 +145,8 @@ final class VocableListCellContentView: UIView, UIContentView {
 
     private func updatePrimaryLabelButton(with configuration: VocableListContentConfiguration?) {
         primaryLabelButton.contentHorizontalAlignment = configuration?.primaryContentHorizontalAlignment ?? .center
-        primaryLabelButton.setTrailingAccessory(configuration?.accessory)
+        primaryLabelButton.setLeadingAccessory(configuration?.leadingAccessory)
+        primaryLabelButton.setTrailingAccessory(configuration?.trailingAccessory)
         primaryLabelButton.setAttributedTitle(configuration?.attributedTitle, for: .normal)
         primaryLabelButton.accessibilityLabel = configuration?.accessibilityLabel
         primaryLabelButton.accessibilityIdentifier = configuration?.accessibilityIdentifier

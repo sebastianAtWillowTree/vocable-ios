@@ -48,4 +48,26 @@ struct VocableListCellAccessory: Equatable {
     static func toggle(isOn: Bool, isEnabled: Bool = true) -> VocableListCellAccessory {
         return VocableListCellAccessory(content: .toggle(isOn: isOn), isEnabled: isEnabled)
     }
+    
+    static var checkmark: VocableListCellAccessory {
+        .checkmark(isEnabled: true)
+    }
+    
+    static func checkmark(isEnabled: Bool) -> VocableListCellAccessory {
+        let image = UIImage(
+            systemName: "checkmark",
+            withConfiguration: trailingDefaultSymbolConfiguration
+        )!
+        return VocableListCellAccessory(content: .image(image), isEnabled: isEnabled)
+    }
+    
+    static var playAudio: VocableListCellAccessory {
+        let image = UIImage(systemName: "play.circle", withConfiguration: trailingDefaultSymbolConfiguration)!
+        return VocableListCellAccessory(content: .image(image), isEnabled: true)
+    }
+    
+    static var stopAudio: VocableListCellAccessory {
+        let image = UIImage(systemName: "stop.circle", withConfiguration: trailingDefaultSymbolConfiguration)!
+        return VocableListCellAccessory(content: .image(image), isEnabled: true)
+    }
 }

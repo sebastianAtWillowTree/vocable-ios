@@ -47,6 +47,14 @@ protocol EmptyStateRepresentable {
     var yOffset: CGFloat? { get }
 }
 
+// Default implementations of optional properties
+extension EmptyStateRepresentable {
+    var description: String? { nil }
+    var buttonTitle: String? { nil }
+    var image: UIImage? { nil }
+    var yOffset: CGFloat? { nil }
+}
+
 enum EmptyStateType: EmptyStateRepresentable {
 
     case recents

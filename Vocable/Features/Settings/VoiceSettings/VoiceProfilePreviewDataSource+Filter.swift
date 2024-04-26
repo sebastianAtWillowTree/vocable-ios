@@ -50,4 +50,14 @@ extension VoiceProfilePreviewDataSource.Filter {
             }
         }
     }
+
+    static var personalVoices: Self {
+        Self { (voice: AVSpeechSynthesisVoice, isSelected: Bool) in
+            if #available(iOS 17.0, *) {
+                return voice.voiceTraits.contains(.isPersonalVoice)
+            } else {
+                return false
+            }
+        }
+    }
 }

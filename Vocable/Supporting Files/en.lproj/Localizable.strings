@@ -88,11 +88,43 @@ fails to return any viable voice profiles that the user could select from.*/
 /* Footer title that accompanies the button that will present the voice picker. This is meant to inform the user that additional voices can be downloaded from the system settings app. The parameter variable is substituted with the device model e.g. "iPad" or "iPhone". */
 "voice_settings.voice_picker_footer.title" = "Additional voices and voice quality enhancements may be available for download in %1$@ Settings.";
 
-/* In the voice configuration screen within the app's settings, this format is used to construct the phrase read aloud when the user selects a button to preview a voice profile. Each voice profile has a human-friendly name provided by the operating system, so the phrase is currently structured as if the voice profile is introducing itself. */
-"voice_preview.sample_audio.introducion_format" = "Hello, my name is %1$@";
+/* In the voice configuration screen within the app's settings, this format is used to construct the phrase read aloud when the user selects a button to preview a voice profile. Each voice profile has a name provided by the operating system, so the phrase is currently structured as if the voice profile is introducing itself. */
+"voice_preview.sample_audio.introducion_format" = "Hello, this is %1$@";
 
-/* Voice Configuration - Voice Picker - Voices */
+/* Button in the Voice Settings screen that will navigate the user to the voice picker/Change Voice screen */
 "voice_settings.cell.change_voice.title" = "Change Voice";
+
+/* Button in the Voice Settings screen that will navigate the user to the Personal Voice screen */
+"voice_settings.cell.personal_voice.title" = "Personal Voices";
+
+// MARK: Personal Voices detail screen
+
+/* Title of the Personal Voices screen */
+"personal_voices.title" = "Personal Voices";
+
+/* Title of the Personal Voices screen empty state when a user must grant access to the app. */
+"personal_voices.empty_state.denied.title" = "Personal Voice Access";
+
+/* Title of the Personal Voices screen empty state when a user has denied access to the app. */
+"personal_voices.empty_state.not_authorized.title" = "Personal Voice Access";
+
+/* Title of the Personal Voices screen empty state when there are no voices available on the device. */
+"personal_voices.empty_state.no_content.title" = "No Personal Voices";
+
+/* Empty state description for when Personal Voice access has been denied by the user. It informs the user how to re-enable access by navigating to system settings. The placeholder is the device model (e.g. "iPhone" or "iPad") */
+"personal_voices.empty_state.denied.description" = "Vocable needs permission to access Personal Voices on this device.\n\nYou can enable access in %1$@ Settings.";
+
+/* Empty state description for when Personal Voice access has not yet been prompted to the user. Below this text will be a button that will prompt the user for access. */
+"personal_voices.empty_state.not_authorized.description" = "Allow Vocable to access Personal Voices stored on this device.";
+
+/* Empty state description for when there are not personal voices to display. This is typically because the user has not created any yet. The placeholder is the device model (e.g. "iPhone" or "iPad"). */
+"personal_voices.empty_state.no_content.description" = "You can create a new Personal Voice in %1$@ Settings. Once created, you can set your Personal Voice as Vocable's voice.";
+
+/* Action button for the personal voices screen allowing the user to open the system settings app to resolve an error. */
+"personal_voices.empty_state.denied.button.title" = "Open Settings";
+
+/* Action button for the personal voices screen that will display a system prompt allowing access to their Personal Voice profiles stored on their device. */
+"personal_voices.empty_state.not_authorized.button.title" = "Grant Access";
 
 // MARK: Settings Screen Options strings
 

@@ -2,7 +2,7 @@ version: 2.1
 jobs:
   build-and-test:
     macos:
-      xcode: 14.3.1
+      xcode: 15.2.0
     resource_class: macos.m1.medium.gen1
     environment:
       FL_OUTPUT_DIR: output
@@ -22,7 +22,7 @@ jobs:
 
   adhoc:
     macos:
-      xcode: 14.3.1
+      xcode: 15.2.0
     resource_class: macos.m1.medium.gen1
     environment:
       FL_OUTPUT_DIR: output
@@ -40,7 +40,7 @@ jobs:
 
   buildanddeploytotestflight:
     macos:
-      xcode: 14.3.1
+      xcode: 15.2.0
     resource_class: macos.m1.medium.gen1
     environment:
       FL_OUTPUT_DIR: output
@@ -57,7 +57,7 @@ jobs:
           path: output
   export-localizations-for-crowdin:
     macos:
-      xcode: 14.3.1
+      xcode: 15.2.0
     resource_class: macos.m1.medium.gen1
     steps:
       - checkout
@@ -80,7 +80,7 @@ jobs:
 
   update-localizations-test-deploy:
     macos:
-      xcode: 14.3.1
+      xcode: 15.2.0
     resource_class: macos.m1.medium.gen1
     steps:
       - checkout

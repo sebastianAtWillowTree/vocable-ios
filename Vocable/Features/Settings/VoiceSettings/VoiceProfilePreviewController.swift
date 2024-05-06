@@ -16,6 +16,7 @@ final class VoiceProfilePreviewController {
     enum PresentationContext {
         case selectedProfilePreview
         case voiceSelection
+        case personalVoice
     }
     
     let context: PresentationContext
@@ -34,6 +35,8 @@ final class VoiceProfilePreviewController {
             self.dataSource = .init(filter: .selectedVoice)
         case .voiceSelection:
             self.dataSource = .init(filter: .systemVoices)
+        case .personalVoice:
+            self.dataSource = .init(filter: .personalVoices)
         }
         
         synthesizer.delegate = self

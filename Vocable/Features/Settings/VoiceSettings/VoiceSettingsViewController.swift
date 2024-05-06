@@ -14,11 +14,13 @@ final class VoiceSettingsViewController: VocableCollectionViewController {
 
     private enum Section: Hashable {
         case voicePreview
+        case personalVoice
     }
     
     private enum Item: Hashable {
         case selectedProfile(VoiceProfileItem)
         case voicePicker
+        case personalVoice
     }
     
     private enum SupplementaryKind: String {
@@ -66,6 +68,13 @@ final class VoiceSettingsViewController: VocableCollectionViewController {
         snapshot.appendSections([.voicePreview])
         snapshot.appendItems(items.map{.selectedProfile($0)})
         snapshot.appendItems([.voicePicker])
+        if #available(iOS 17.0, *) {
+            // Don't show the row if the device doesn't support the feature
+            if AVSpeechSynthesizer.personalVoiceAuthorizationStatus != .unsupported {
+                snapshot.appendSections([.personalVoice])
+                snapshot.appendItems([.personalVoice])
+            }
+        }
         dataSource.apply(snapshot, animatingDifferences: false)
     }
 
@@ -94,6 +103,15 @@ final class VoiceSettingsViewController: VocableCollectionViewController {
                     trailingAccessory: .disclosureIndicator()
                 ) { [weak self] in
                     self?.show(VoicePickerViewController(), sender: nil)
+                }
+            case .personalVoice:
+                if #available(iOS 17.0, *) {
+                    cell.contentConfiguration = VocableListContentConfiguration(
+                        title: String(localized: "voice_settings.cell.personal_voice.title"),
+                        trailingAccessory: .disclosureIndicator()
+                    ) { [weak self] in
+                        self?.show(PersonalVoiceViewController(), sender: nil)
+                    }
                 }
             }
         }
@@ -165,13 +183,11 @@ final class VoiceSettingsViewController: VocableCollectionViewController {
         section.contentInsets.top = 16
         section.contentInsets.bottom = 32
         
-        let footerSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1.0),
-            heightDimension: sizeClass.contains(any: .compact) ? .estimated(50) : .estimated(100)
-        )
-        
-        switch sectionItem {
-        case .voicePreview:
+        if case .voicePreview = sectionItem {
+            let footerSize = NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(1.0),
+                heightDimension: sizeClass.contains(any: .compact) ? .estimated(50) : .estimated(100)
+            )
             let footer = NSCollectionLayoutBoundarySupplementaryItem(
                 layoutSize: footerSize,
                 elementKind: SupplementaryKind.voicePickerFooter.rawValue,
@@ -200,7 +216,7 @@ final class VoiceSettingsViewController: VocableCollectionViewController {
     
     func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
         let item = dataSource.itemIdentifier(for: indexPath)
-        if case .voicePicker = item {
+        if [.voicePicker, .personalVoice].contains(item) {
             return true
         }
         return false
@@ -208,7 +224,7 @@ final class VoiceSettingsViewController: VocableCollectionViewController {
 
     func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
         let item = dataSource.itemIdentifier(for: indexPath)
-        if case .voicePicker = item {
+        if [.voicePicker, .personalVoice].contains(item) {
             return true
         }
         return false

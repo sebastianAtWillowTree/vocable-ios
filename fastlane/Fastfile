@@ -12,7 +12,7 @@ platform :ios do
     lint
     scan(
       scheme: "Development",
-      devices: ["iPhone 11"]
+      devices: ["iPhone 15"]
     )
     # in the meantime, build the app for PRs
     match(type: "development", readonly: true)

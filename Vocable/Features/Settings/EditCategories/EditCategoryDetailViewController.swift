@@ -307,11 +307,11 @@ final class EditCategoryDetailViewController: VocableCollectionViewController {
 
         guard let cell = collectionView.cellForItem(at: indexPath),
               var config = cell.contentConfiguration as? VocableListContentConfiguration,
-              case .toggle(let isOn) = config.accessory?.content else {
+              case .toggle(let isOn) = config.trailingAccessory?.content else {
             return
         }
 
-        config.accessory = .toggle(isOn: !isOn)
+        config.trailingAccessory = .toggle(isOn: !isOn)
         cell.contentConfiguration = config
     }
 

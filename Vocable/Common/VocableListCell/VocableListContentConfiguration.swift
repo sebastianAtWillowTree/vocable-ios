@@ -42,7 +42,8 @@ struct VocableListContentConfiguration: UIContentConfiguration, Equatable {
     var actions: [VocableListCellAction]
     var attributedTitle: NSAttributedString
     var isPrimaryActionEnabled: Bool
-    var accessory: VocableListCellAccessory?
+    var leadingAccessory: VocableListCellAccessory?
+    var trailingAccessory: VocableListCellAccessory?
     var primaryAction: (() -> Void)?
     var actionsConfiguration: ActionsConfiguration
     var accessibilityIdentifier: String?
@@ -62,18 +63,44 @@ struct VocableListContentConfiguration: UIContentConfiguration, Equatable {
         accessibilityLabel: String? = nil,
         primaryAction: @escaping () -> Void
     ) {
+        self.init(
+            title: title,
+            actions: actions,
+            actionsConfiguration: actionsConfiguration,
+            leadingAccessory: nil,
+            trailingAccessory: accessory,
+            isPrimaryActionEnabled: isPrimaryActionEnabled,
+            accessibilityIdentifier: accessibilityIdentifier,
+            accessibilityLabel: accessibilityLabel,
+            primaryAction: primaryAction
+        )
+    }
+    
+    init(
+        title: String,
+        actions: [VocableListCellAction] = [],
+        actionsConfiguration: ActionsConfiguration = .default,
+        leadingAccessory: VocableListCellAccessory? = nil,
+        trailingAccessory: VocableListCellAccessory? = nil,
+        isPrimaryActionEnabled: Bool = true,
+        accessibilityIdentifier: String? = nil,
+        accessibilityLabel: String? = nil,
+        primaryAction: @escaping () -> Void
+    ) {
         let attributes: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: 22, weight: .bold)]
-
         let attributedText = NSAttributedString(string: title, attributes: attributes)
 
-        self.init(attributedText: attributedText,
-                  actions: actions,
-                  actionsConfiguration: actionsConfiguration,
-                  accessory: accessory,
-                  isPrimaryActionEnabled: isPrimaryActionEnabled,
-                  accessibilityIdentifier: accessibilityIdentifier,
-                  accessibilityLabel: accessibilityLabel,
-                  primaryAction: primaryAction)
+        self.init(
+            attributedText: attributedText,
+            actions: actions,
+            actionsConfiguration: actionsConfiguration,
+            leadingAccessory: leadingAccessory,
+            trailingAccessory: trailingAccessory,
+            isPrimaryActionEnabled: isPrimaryActionEnabled,
+            accessibilityIdentifier: accessibilityIdentifier,
+            accessibilityLabel: accessibilityLabel,
+            primaryAction: primaryAction
+        )
     }
 
     init(
@@ -86,11 +113,36 @@ struct VocableListContentConfiguration: UIContentConfiguration, Equatable {
         accessibilityLabel: String? = nil,
         primaryAction: @escaping () -> Void
     ) {
+        self.init(
+            attributedText: attributedText,
+            actions: actions,
+            actionsConfiguration: actionsConfiguration,
+            leadingAccessory: nil,
+            trailingAccessory: accessory,
+            isPrimaryActionEnabled: isPrimaryActionEnabled,
+            accessibilityIdentifier: accessibilityIdentifier,
+            accessibilityLabel: accessibilityLabel,
+            primaryAction: primaryAction
+        )
+    }
+    
+    init(
+        attributedText: NSAttributedString,
+        actions: [VocableListCellAction] = [],
+        actionsConfiguration: ActionsConfiguration = .default,
+        leadingAccessory: VocableListCellAccessory? = nil,
+        trailingAccessory: VocableListCellAccessory? = nil,
+        isPrimaryActionEnabled: Bool = true,
+        accessibilityIdentifier: String? = nil,
+        accessibilityLabel: String? = nil,
+        primaryAction: @escaping () -> Void
+    ) {
         self.attributedTitle = attributedText
         self.isPrimaryActionEnabled = isPrimaryActionEnabled
         self.primaryAction = primaryAction
         self.actions = actions
-        self.accessory = accessory
+        self.leadingAccessory = leadingAccessory
+        self.trailingAccessory = trailingAccessory
         self.actionsConfiguration = actionsConfiguration
         self.accessibilityLabel = accessibilityLabel
         self.accessibilityIdentifier = accessibilityIdentifier
@@ -110,6 +162,16 @@ struct VocableListContentConfiguration: UIContentConfiguration, Equatable {
 
     func updated(for state: UIConfigurationState) -> VocableListContentConfiguration {
         var updatedSelf = self
+        
+        if let state = state as? UICellConfigurationState {
+            updatedSelf.primaryBackgroundColor = state.isSelected ? .cellSelectionColor : .defaultCellBackgroundColor
+            let color = state.isSelected ? UIColor.selectedTextColor : UIColor.defaultTextColor
+            
+            let updatedAttributedTitle = NSMutableAttributedString(attributedString: updatedSelf.attributedTitle)
+            updatedAttributedTitle.addAttributes([.foregroundColor: color], range: NSRange.entireRange(of: updatedAttributedTitle.string))
+            updatedSelf.attributedTitle = updatedAttributedTitle
+        }
+        
         traitCollectionChangeHandler?(state.traitCollection, &updatedSelf)
         return updatedSelf
     }
@@ -118,6 +180,7 @@ struct VocableListContentConfiguration: UIContentConfiguration, Equatable {
         lhs.actions.elementsEqual(rhs.actions) &&
         lhs.attributedTitle.isEqual(to: rhs.attributedTitle) &&
         lhs.isPrimaryActionEnabled == rhs.isPrimaryActionEnabled &&
-        lhs.accessory == rhs.accessory
+        lhs.trailingAccessory == rhs.trailingAccessory &&
+        lhs.leadingAccessory == rhs.leadingAccessory
     }
 }

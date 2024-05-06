@@ -66,9 +66,33 @@
 /* Button confirming that the user would like to navigate away from the head tracking-navigable portion of the app */
 "settings.alert.surrender_gaze_confirmation.button.confirm.title" = "Confirm";
 
-/* edit user's favorite phrases category settings menu item */
+/* Edit user's favorite phrases category settings menu item */
 "settings.cell.edit_user_favorites.title_format" = "Edit %@";
 
+
+// MARK: Settings -> Voice Settings
+
+/* Voice Configuration title */
+"voice_settings.title" = "Voice";
+
+/* Voice Picker title */
+"voice_picker.title" = "Change Voice";
+
+/* Voice picker empty state title.*/
+"voice_picker.empty_state.title" = "No Voices";
+
+/* Voice picker empty state body. Shown when the user attempts to change their voice settings and the operating system
+fails to return any viable voice profiles that the user could select from.*/
+"voice_picker.empty_state.description" = "No voices are installed that match your language and region settings.";
+
+/* Footer title that accompanies the button that will present the voice picker. This is meant to inform the user that additional voices can be downloaded from the system settings app. The parameter variable is substituted with the device model e.g. "iPad" or "iPhone". */
+"voice_settings.voice_picker_footer.title" = "Additional voices and voice quality enhancements may be available for download in %1$@ Settings.";
+
+/* In the voice configuration screen within the app's settings, this format is used to construct the phrase read aloud when the user selects a button to preview a voice profile. Each voice profile has a human-friendly name provided by the operating system, so the phrase is currently structured as if the voice profile is introducing itself. */
+"voice_preview.sample_audio.introducion_format" = "Hello, my name is %1$@";
+
+/* Voice Configuration - Voice Picker - Voices */
+"voice_settings.cell.change_voice.title" = "Change Voice";
 
 // MARK: Settings Screen Options strings
 
@@ -89,6 +113,8 @@
 
 /* Listening Mode root settings menu item. Navigates the user to the Listening Mode settings screen where they can configure their preferences for listening mode. */
 "settings.cell.listening_mode.title" = "Listening Mode";
+
+"settings.cell.voice_configuration.title" = "Voice";
 
 /* edit cursor selection mode settings menu item */
 "settings.cell.selection_mode.title" = "Selection Mode";

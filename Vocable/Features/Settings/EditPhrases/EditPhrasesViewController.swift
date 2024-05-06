@@ -61,7 +61,6 @@ final class EditPhrasesViewController: PagingCarouselViewController, NSFetchedRe
 
     private func setupCollectionView() {
         collectionView.backgroundColor = .collectionViewBackgroundColor
-        collectionView.register(UINib(nibName: "EditPhrasesCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: EditPhrasesCollectionViewCell.reuseIdentifier)
     }
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {

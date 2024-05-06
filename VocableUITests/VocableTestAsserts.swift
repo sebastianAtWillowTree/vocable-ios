@@ -38,24 +38,37 @@ struct ReorderArrows: OptionSet {
 /// This assertion function confirms the expected state of the pagination label and its controls.
 ///
 /// By default this function expects the state of the left pagination arrow and the right pagination arrow to be isEnabled == true.
-func VTAssertPaginationEquals(_ expectedCurrentPageNumber: Int,
-                              of expectedTotalPageCount: Int,
-                              enabledArrows: PaginationArrows = .both,
-                              file: StaticString = #file,
-                              line: UInt = #line)
-{
+func VTAssertPaginationEquals(
+    _ expectedCurrentPageNumber: Int,
+    of expectedTotalPageCount: Int,
+    enabledArrows: PaginationArrows = .both,
+    file: StaticString = #file,
+    line: UInt = #line
+) {
     XCTAssertEqual(BaseScreen.currentPageNumber, expectedCurrentPageNumber, file: file, line: line)
     XCTAssertEqual(BaseScreen.totalPageCount, expectedTotalPageCount, file: file, line: line)
+    VTAssertPaginationArrowsEqual(enabledArrows, file: file, line: line)
+}
+
+/// This assertion function confirms that pagination arrows are visible and are enabled to match the given state.
+///
+/// By default this function expects the state of the left pagination arrow and the right pagination arrow to be isEnabled == true.
+func VTAssertPaginationArrowsEqual(
+    _ enabledArrows: PaginationArrows = .both,
+    file: StaticString = #file,
+    line: UInt = #line
+) {
     XCTAssertEqual(BaseScreen.paginationLeftButton.isEnabled, enabledArrows.contains(.left), file: file, line: line)
     XCTAssertEqual(BaseScreen.paginationRightButton.isEnabled, enabledArrows.contains(.right), file: file, line: line)
 }
 
 /// This assertion function confirms the expected state of the reorder arrows.
-func VTAssertReorderArrowsEqual(_ enabledArrows: ReorderArrows,
-                                for categoryName: String,
-                                file: StaticString = #file,
-                                line: UInt = #line)
-{
+func VTAssertReorderArrowsEqual(
+    _ enabledArrows: ReorderArrows,
+    for categoryName: String,
+    file: StaticString = #file,
+    line: UInt = #line
+) {
     let categoryCell = SettingsScreen.locateCategoryCell(categoryName)
     XCTAssertEqual(categoryCell.buttons[.settings.editCategories.moveUpButton].isEnabled, enabledArrows.contains(.up), file: file, line: line)
     XCTAssertEqual(categoryCell.buttons[.settings.editCategories.moveDownButton].isEnabled, enabledArrows.contains(.down), file: file, line: line)

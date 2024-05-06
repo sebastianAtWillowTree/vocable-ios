@@ -86,6 +86,36 @@ struct VocableListCellAction: Equatable {
                               action: action)
     }
 
+    static func startAudio(
+        isEnabled: Bool = true,
+        accessibilityIdentifier: String = AccessibilityID.settings.voiceSettings.playButton.id,
+        accessibilityLabel: String = "play sample",
+        action: Action?
+    ) -> VocableListCellAction {
+        VocableListCellAction(
+            systemImage: "play.circle",
+            isEnabled: isEnabled,
+            accessibilityIdentifier: accessibilityIdentifier,
+            accessibilityLabel: accessibilityLabel,
+            action: action
+        )
+    }
+
+    static func stopAudio(
+        isEnabled: Bool = true,
+        accessibilityIdentifier: String = AccessibilityID.settings.voiceSettings.audioPlaying.id,
+        accessibilityLabel: String = "audio is playing",
+        action: Action?
+    ) -> VocableListCellAction {
+        VocableListCellAction(
+            systemImage: "stop.circle",
+            isEnabled: isEnabled,
+            accessibilityIdentifier: accessibilityIdentifier,
+            accessibilityLabel: accessibilityLabel,
+            action: action
+        )
+    }
+
     static func == (lhs: VocableListCellAction, rhs: VocableListCellAction) -> Bool {
         lhs.isEnabled == rhs.isEnabled &&
         lhs.accessibilityIdentifier == rhs.accessibilityIdentifier &&

@@ -2343,7 +2343,7 @@
 			repositoryURL = "https://github.com/apple/swift-algorithms.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
+				minimumVersion = 1.2.0;
 			};
 		};
 		6B05020227F3489C000CFE5A /* XCRemoteSwiftPackageReference "swift-collections" */ = {
@@ -2351,7 +2351,7 @@
 			repositoryURL = "https://github.com/apple/swift-collections.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
+				minimumVersion = 1.1.0;
 			};
 		};
 		6B8D3B712821C09200DDB9B7 /* XCRemoteSwiftPackageReference "mixpanel-swift" */ = {

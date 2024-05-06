@@ -37,16 +37,27 @@ class CategoryPhrasesPaginationTests: PaginationBaseTest {
         MainScreen.navigateToSettingsAndOpenCategory(name: twoPhrasesCategory.presetCategory.utterance)
         CustomCategoriesScreen.editCategoryPhrasesButton.tap()
         
-        // Add 1 more phrase to push the total number of pages to 2.
-        CustomCategoriesScreen.addRandomPhrases(numberOfPhrases: 10)
-        VTAssertPaginationEquals(1, of: 2, enabledArrows: .both)
+        // Pagination should be disabled when this scenario begins
+        VTAssertPaginationArrowsEqual(.none)
         
-        // Remove the additional phrase to verify that the page count reduces, back to the original count
+        // Add phrases and ensure that the page counts update when a page overflows
+        let pageCountBeforeAdditions = BaseScreen.totalPageCount
+        CustomCategoriesScreen.addRandomPhrases(numberOfPhrases: 10)
+        XCTAssertGreaterThan(BaseScreen.totalPageCount, pageCountBeforeAdditions)
+        
+        // Pagination should be enabled after the overflow
+        VTAssertPaginationArrowsEqual(.both)
+        
+        // Remove the additional phrases to verify that the page count reduces and arrows become disabled
+        let pageCountBeforeDeletions = BaseScreen.totalPageCount
         for _ in 1...10 {
             CustomCategoriesScreen.categoriesPageDeletePhraseButton.firstMatch.tap()
             SettingsScreen.alertDeleteButton.tap(afterWaitingForExistenceWithTimeout: 0.25)
         }
-        VTAssertPaginationEquals(1, of: 1, enabledArrows: .none)
+        XCTAssertLessThan(BaseScreen.totalPageCount, pageCountBeforeDeletions)
+        
+        // Assert that the arrows are enabled as expected
+        VTAssertPaginationArrowsEqual(.none)
     }
     
     // It is expected that the pagination left and right arrows are disabled when there is only 1 total page

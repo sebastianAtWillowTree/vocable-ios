@@ -406,7 +406,7 @@ final class CarouselGridLayout: UICollectionViewLayout {
         return targetScrollOffsetForItem(at: indexPath)
     }
 
-    private func updatePagingProgress() {
+    func updatePagingProgress() {
         guard pagesPerSection > 0 else {
             progress = .zero
             return

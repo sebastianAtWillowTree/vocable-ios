@@ -15,7 +15,7 @@ class PresetsOverrideTestCase: XCTestCase {
 
         let app = XCUIApplication()
         app.configure {
-            Arguments(.resetAppDataOnLaunch, .enableListeningMode)
+            Arguments(.resetAppDataOnLaunch, .enableListeningMode, .disableAnimations)
             Environment(.overridePresets) {
                 Presets {
                     Category("Custom Basic Needs") {

@@ -37,11 +37,6 @@
       <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="15.2" build-num="15C500b"/>
     </header>
     <body>
-      <trans-unit id="Sign In" xml:space="preserve">
-        <source>Sign In</source>
-        <target>Sign In</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
       <trans-unit id="categories_list_editor.header.title" xml:space="preserve">
         <source>Categories</source>
         <target>Categories</target>

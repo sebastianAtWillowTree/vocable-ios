@@ -37,16 +37,6 @@
       <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="15.2" build-num="15C500b"/>
     </header>
     <body>
-      <trans-unit id="Edit Phrases" xml:space="preserve">
-        <source>Edit Phrases</source>
-        <target>Edit Phrases</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
-      <trans-unit id="Rename Category" xml:space="preserve">
-        <source>Rename Category</source>
-        <target>Rename Category</target>
-        <note>No comment provided by engineer.</note>
-      </trans-unit>
       <trans-unit id="Sign In" xml:space="preserve">
         <source>Sign In</source>
         <target>Sign In</target>

@@ -64,7 +64,7 @@ struct EditCategoryDetail: View {
                     // TODO: Handle this action
                 } label: {
                     HStack {
-                        Text("Rename Category")
+                        Text("category_editor.detail.button.rename_category.title")
                         Spacer()
                         Image(systemName: "chevron.forward")
                     }
@@ -77,14 +77,14 @@ struct EditCategoryDetail: View {
                         // No-op because this is handled with the button action
                     }
 
-                    Toggle("Show Category", isOn: binding)
+                    Toggle("category_editor.detail.button.show_category.title", isOn: binding)
                 }
 
                 GazeButton {
                     // TODO: Handle this action
                 } label: {
                     HStack {
-                        Text("Edit Phrases")
+                        Text("category_editor.detail.button.edit_phrases.title")
                         Spacer()
                         Image(systemName: "chevron.forward")
                     }
@@ -95,7 +95,7 @@ struct EditCategoryDetail: View {
                         showingDeleteAlert = true
                     }
                 } label: {
-                    Label("Remove Category", systemImage: "trash")
+                    Label("category_editor.detail.button.remove_category.title", systemImage: "trash")
                         .frame(maxWidth: .infinity)
                 }
             }

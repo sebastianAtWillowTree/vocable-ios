@@ -81,7 +81,7 @@ class CustomCategoryAppRestartTests: XCTestCase {
         
         // Create second custom category and verify that it exists
         CustomCategoriesScreen.createCustomCategory(categoryName: secondCustomCategory)
-        SettingsScreen.navBarBackButton.waitForExistence(timeout: 1)
+        let _ = SettingsScreen.navBarBackButton.waitForExistence(timeout: 1)
         XCTAssertTrue(SettingsScreen.doesCategoryExist(secondCustomCategory))
         
         // Verify that first custom category's up and down buttons are enabled
@@ -93,7 +93,7 @@ class CustomCategoryAppRestartTests: XCTestCase {
         // Reorder custom categories, move first custom category to the end of the list
         let firstCategory = SettingsScreen.locateCategoryCell(firstCustomCategory)
         firstCategory.buttons[.settings.editCategories.moveDownButton].tap()
-        SettingsScreen.navBarBackButton.waitForExistence(timeout: 1)
+        let _ = SettingsScreen.navBarBackButton.waitForExistence(timeout: 1)
         
         // Verify that first custom category's (last in the list), up button is enabled and down button is disabled
         VTAssertReorderArrowsEqual(.upEnabledOnly, for: firstCustomCategory)

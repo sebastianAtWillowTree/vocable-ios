@@ -128,7 +128,7 @@ class PresetCategoryAppRestartTests: XCTestCase {
         // Reorder categories, move first preset category to the second of the list
         let firstCategory = SettingsScreen.locateCategoryCell(category)
         firstCategory.buttons[.settings.editCategories.moveDownButton].tap()
-        SettingsScreen.navBarBackButton.waitForExistence(timeout: 1)
+        let _ = SettingsScreen.navBarBackButton.waitForExistence(timeout: 1)
         
         // Verify that first preset category's (now second in the list) up and down buttons are enabled
         VTAssertReorderArrowsEqual(.both, for: category)

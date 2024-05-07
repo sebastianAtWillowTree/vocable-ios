@@ -11,14 +11,25 @@ import XCTest
 class KeyboardScreen: BaseScreen {
     private static let app = XCUIApplication()
     
+    static let keyboardCollectionView = XCUIApplication().collectionViews[.shared.keyboard.collectionView]
     static let keyboardTextView = XCUIApplication().textViews[.shared.keyboard.outputTextView]
     static let favoriteButton = XCUIApplication().buttons[.shared.keyboard.favoriteButton]
     static let checkmarkAddButton = XCUIApplication().buttons[.shared.keyboard.saveButton]
     static let createDuplicateButton = XCUIApplication().buttons[.shared.alert.createDuplicateButton]
     
-    static func typeText(_ textToType: String) {
+    static func typeText(
+        _ textToType: String,
+        file: StaticString = #file,
+        line: UInt = #line
+    ) {
+        // Ensure the keyboard is visible on screen before tapping any cells
+        if !keyboardCollectionView.waitForExistence(timeout: 0.5) {
+            XCTFail("Failed to locate keyboard", file: file, line: line)
+            return
+        }
+        
         for char in textToType {
-            app.collectionViews.staticTexts[String(char).uppercased()].tap(afterWaitingForExistenceWithTimeout: 0.5)
+            keyboardCollectionView.cells[.shared.keyboard.key("\(char)")].tap()
         }
     }
     

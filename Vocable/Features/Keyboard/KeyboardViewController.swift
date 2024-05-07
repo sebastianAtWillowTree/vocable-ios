@@ -88,6 +88,7 @@ class KeyboardViewController: UICollectionViewController {
         collectionView.allowsMultipleSelection = true
         
         collectionView.register(PresetPageControlReusableView.self, forSupplementaryViewOfKind: "footerPageIndicator", withReuseIdentifier: "PresetPageControlView")
+        collectionView.accessibilityID = .shared.keyboard.collectionView
     }
     
     private func configureDataSource() {
@@ -101,6 +102,7 @@ class KeyboardViewController: UICollectionViewController {
             case .key(let char):
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: KeyboardKeyCollectionViewCell.reuseIdentifier, for: indexPath) as! KeyboardKeyCollectionViewCell
                 cell.setup(title: char)
+                cell.accessibilityID = .shared.keyboard.key(char)
                 return cell
             case .keyboardFunctionButton(let functionType):
                 if functionType == .speak {

@@ -19,7 +19,7 @@ import SwiftUI
 /// example, by showing text, an icon, or both:
 ///
 ///     GazeButton(action: signIn) {
-///         Text("Sign In")
+///         Text(verbatim: "Sign In")
 ///     }
 ///
 /// For the common case of text-only labels, you can use the convenience

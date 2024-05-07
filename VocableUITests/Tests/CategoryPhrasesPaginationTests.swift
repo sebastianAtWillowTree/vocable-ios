@@ -35,7 +35,7 @@ class CategoryPhrasesPaginationTests: PaginationBaseTest {
     func testPagesAdjustToNewPhrases() {
         // Verify that the user is on the first page.
         MainScreen.navigateToSettingsAndOpenCategory(name: twoPhrasesCategory.presetCategory.utterance)
-        CustomCategoriesScreen.editCategoryPhrasesButton.tap()
+        CustomCategoriesScreen.editCategoryPhrasesButton.tap(afterWaitingForExistenceWithTimeout: 0.25)
         
         // Pagination should be disabled when this scenario begins
         VTAssertPaginationArrowsEqual(.none)

@@ -33,7 +33,7 @@ class UIHeadGazeViewController: UIViewController, ARSessionDelegate, ARSCNViewDe
  
     private(set) var sceneview: ARSCNView?
     private lazy var receivingWindow: HeadGazeWindow? = {
-        for window in UIApplication.shared.windows {
+        for window in UIApplication.shared.connectedSceneWindows {
             if let result = window as? HeadGazeWindow {
                 return result
             }

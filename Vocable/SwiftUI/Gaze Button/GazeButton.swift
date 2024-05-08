@@ -30,9 +30,9 @@ import SwiftUI
 ///
 /// ### Assigning a Role
 ///
-/// You can optionally initialize a button with a ``ButtonRole`` that
+/// You can optionally initialize a button with a `ButtonRole` that
 /// characterizes the button's purpose. For example, you can create a
-/// ``ButtonRole/destructive`` button for a deletion action:
+/// destructive button for a deletion action:
 ///
 ///      GazeButton("Delete", role: .destructive, action: delete)
 ///

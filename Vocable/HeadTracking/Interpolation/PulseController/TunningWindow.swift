@@ -138,7 +138,7 @@ class TuningContainerViewController: UIViewController {
 
         if children.isEmpty {
             TunningWindow.shared.isHidden = true
-            for window in UIApplication.shared.windows {
+            for window in UIApplication.shared.connectedSceneWindows {
                 if let window = window as? HeadGazeWindow {
                     window.cursorView?.isDebugCursorHidden = true
                 }

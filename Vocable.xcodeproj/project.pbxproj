@@ -35,7 +35,6 @@
 		4E095237284E67770079381D /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E095236284E67770079381D /* View+.swift */; };
 		4E18DBF027FF49420043A019 /* DefaultGazeButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E18DBEF27FF49420043A019 /* DefaultGazeButtonStyle.swift */; };
 		4E18DBF227FF49FA0043A019 /* GazeButtonStyleConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E18DBF127FF49FA0043A019 /* GazeButtonStyleConfiguration.swift */; };
-		4E18DBF427FF4AAA0043A019 /* ButtonRole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E18DBF327FF4AAA0043A019 /* ButtonRole.swift */; };
 		4E18DBF627FF4EED0043A019 /* ButtonState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E18DBF527FF4EED0043A019 /* ButtonState.swift */; };
 		4E296C7C2832E00600B6062B /* GazeableAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E296C7B2832E00600B6062B /* GazeableAlert.swift */; };
 		4E296C7E2832E77600B6062B /* GazeBlocking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E296C7D2832E77600B6062B /* GazeBlocking.swift */; };
@@ -195,7 +194,6 @@
 		6BE02F7A2816F984002CCCED /* LaunchArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E49E5F2812FD760088A344 /* LaunchArguments.swift */; };
 		6BE02F7C28172A7B002CCCED /* ResultBuilders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE02F7B28172A7B002CCCED /* ResultBuilders.swift */; };
 		6BE02F7D28172A7B002CCCED /* ResultBuilders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE02F7B28172A7B002CCCED /* ResultBuilders.swift */; };
-		6BE02F7F28188CEB002CCCED /* String+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE02F7E28188CEB002CCCED /* String+Localization.swift */; };
 		6BE23D562444DCBE0032CAE4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6BE23D542444DCBE0032CAE4 /* Localizable.strings */; };
 		6BE2628B25BB376700281BB5 /* AudioPermissionPromptController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE2628A25BB376700281BB5 /* AudioPermissionPromptController.swift */; };
 		6BE7E9842459D328007B01F2 /* PagingCarouselViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE7E9832459D328007B01F2 /* PagingCarouselViewController.swift */; };
@@ -353,7 +351,6 @@
 		4E095236284E67770079381D /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
 		4E18DBEF27FF49420043A019 /* DefaultGazeButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultGazeButtonStyle.swift; sourceTree = "<group>"; };
 		4E18DBF127FF49FA0043A019 /* GazeButtonStyleConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GazeButtonStyleConfiguration.swift; sourceTree = "<group>"; };
-		4E18DBF327FF4AAA0043A019 /* ButtonRole.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonRole.swift; sourceTree = "<group>"; };
 		4E18DBF527FF4EED0043A019 /* ButtonState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonState.swift; sourceTree = "<group>"; };
 		4E296C7B2832E00600B6062B /* GazeableAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GazeableAlert.swift; sourceTree = "<group>"; };
 		4E296C7D2832E77600B6062B /* GazeBlocking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GazeBlocking.swift; sourceTree = "<group>"; };
@@ -477,7 +474,6 @@
 		6BE02F6C2816EF88002CCCED /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		6BE02F722816F504002CCCED /* XCUIApplication+LaunchConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCUIApplication+LaunchConfiguration.swift"; sourceTree = "<group>"; };
 		6BE02F7B28172A7B002CCCED /* ResultBuilders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultBuilders.swift; sourceTree = "<group>"; };
-		6BE02F7E28188CEB002CCCED /* String+Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Localization.swift"; sourceTree = "<group>"; };
 		6BE23D552444DCBE0032CAE4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6BE23D5724450FDA0032CAE4 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6BE2628A25BB376700281BB5 /* AudioPermissionPromptController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPermissionPromptController.swift; sourceTree = "<group>"; };
@@ -817,7 +813,6 @@
 		4EB38278283FF82400320E10 /* Gaze Button */ = {
 			isa = PBXGroup;
 			children = (
-				4E18DBF327FF4AAA0043A019 /* ButtonRole.swift */,
 				4E18DBF527FF4EED0043A019 /* ButtonState.swift */,
 				4E18DBEF27FF49420043A019 /* DefaultGazeButtonStyle.swift */,
 				4EA3D1CB27F772E400FE6457 /* GazeButton.swift */,
@@ -1262,7 +1257,6 @@
 				4E014DA927EA53BC00561FC8 /* NSRange+.swift */,
 				4E8A303B27EBB95C000177B1 /* BidirectionalCollection+.swift */,
 				A93E46F6280614670081D544 /* NSDiffableDataSourceSnapshot+Map.swift */,
-				6BE02F7E28188CEB002CCCED /* String+Localization.swift */,
 				A916F33D28490B2E00557CA2 /* UIApplication+Helpers.swift */,
 			);
 			path = Extensions;
@@ -1365,7 +1359,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1130;
-				LastUpgradeCheck = 1230;
+				LastUpgradeCheck = 1530;
 				ORGANIZATIONNAME = WillowTree;
 				TargetAttributes = {
 					130C00B320D2AD2A007C3163 = {
@@ -1523,7 +1517,6 @@
 				4E56054827FB8C7300719C23 /* EditCategoryDetail.swift in Sources */,
 				6B3FBBE825FBC72600B7D2CD /* ListeningResponseContentViewController.swift in Sources */,
 				6B8D3C08282C230B00DDB9B7 /* AccessibilityID+Root.swift in Sources */,
-				6BE02F7F28188CEB002CCCED /* String+Localization.swift in Sources */,
 				4EB6A59427FBF84B00F2BFB3 /* VocableGazeButtonStyle.swift in Sources */,
 				6B5C490F2460627B00A4433C /* NumericCategoryContentViewController.swift in Sources */,
 				6B9DFA6023E889DB0037673E /* Extensions.swift in Sources */,
@@ -1660,7 +1653,6 @@
 				B838200F23F4B011005A79CD /* VocableCollectionViewCell.swift in Sources */,
 				6B2E78A0258BE6A400A3DC82 /* AudioEngineController.swift in Sources */,
 				B8EB51D12409860A00F425A6 /* GazeableAlertViewController.swift in Sources */,
-				4E18DBF427FF4AAA0043A019 /* ButtonRole.swift in Sources */,
 				A99AF23323FDA8B600BE1184 /* SuggestionCollectionViewCell.swift in Sources */,
 				6BFB18C224002C7B002C3515 /* Phrases.xcdatamodeld in Sources */,
 				6B5C490B245B73F700A4433C /* CategoriesCarouselViewController.swift in Sources */,
@@ -1918,7 +1910,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "";
@@ -1978,7 +1970,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "";
 				SDKROOT = iphoneos;
@@ -2006,7 +1998,7 @@
 				);
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "Vocable/Supporting Files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2041,7 +2033,7 @@
 				);
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "Vocable/Supporting Files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2068,7 +2060,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y32EQUAEWX;
 				INFOPLIST_FILE = VocableUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2089,7 +2081,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y32EQUAEWX;
 				INFOPLIST_FILE = VocableUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2110,7 +2102,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y32EQUAEWX;
 				INFOPLIST_FILE = VocableUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2132,7 +2124,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 753J68XC6W;
 				INFOPLIST_FILE = VocableTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2154,7 +2146,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 753J68XC6W;
 				INFOPLIST_FILE = VocableTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2217,7 +2209,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "";
 				SDKROOT = iphoneos;
@@ -2245,7 +2237,7 @@
 				);
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "Vocable/Supporting Files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2273,7 +2265,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 753J68XC6W;
 				INFOPLIST_FILE = VocableTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

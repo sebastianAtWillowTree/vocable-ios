@@ -127,17 +127,11 @@ final class ListeningModeViewController: VocableCollectionViewController {
             collectionView.backgroundView = nil
         }
 
-        if #available(iOS 15.0, *) {
-            let reconfigurableItems = [.smartAssistEnabled, .hotWordEnabled, .listeningModeEnabled].filter(snapshot.itemIdentifiers.contains)
-            snapshot.reconfigureItems(reconfigurableItems)
-        }
 
-        dataSource.apply(snapshot, animatingDifferences: animated) { [weak self] in
-            // Workaround for diffable datasource not auto-reconfiguring on iOS 14
-            if #unavailable(iOS 15) {
-                self?.updateVisibleCellConfigurations()
-            }
-        }
+        let reconfigurableItems = [.smartAssistEnabled, .hotWordEnabled, .listeningModeEnabled].filter(snapshot.itemIdentifiers.contains)
+        snapshot.reconfigureItems(reconfigurableItems)
+
+        dataSource.apply(snapshot, animatingDifferences: animated)
     }
 
     private func setupCollectionView() {

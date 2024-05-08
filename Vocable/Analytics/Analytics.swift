@@ -53,9 +53,9 @@ class Analytics {
         // Debug builds will always point to staging unless we
         // specify otherwise via environment variable
         return tokens.staging
-        #endif
-
+        #else
         return tokens.production
+        #endif
     }()
 
     static let shared = Analytics()

@@ -150,32 +150,16 @@ final class EditCategoriesViewController: PagingCarouselViewController, NSFetche
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChangeContentWith snapshot: NSDiffableDataSourceSnapshotReference) {
         let snapshot = snapshot as NSDiffableDataSourceSnapshot<String, NSManagedObjectID>
         let shouldAnimate = view.window != nil
-        self.diffableDataSource.apply(snapshot, animatingDifferences: shouldAnimate, completion: { [weak self] in
-            guard let self = self else { return }
-
-            // Workaround for diffable datasource not auto-reconfiguring on iOS 14
-            if #unavailable(iOS 15) {
-                self.updateVisibleCellConfigurations()
-            }
-
-            guard let window = self.view.window as? HeadGazeWindow, let target = window.activeGazeTarget else {
+        self.diffableDataSource.apply(snapshot, animatingDifferences: shouldAnimate) { [weak self] in
+            guard
+                let self,
+                let window = self.view.window as? HeadGazeWindow,
+                let target = window.activeGazeTarget
+            else {
                 return
             }
             if let _ = self.collectionView.indexPath(containing: target) {
                 window.cancelActiveGazeTarget()
-            }
-        })
-    }
-
-    @available(iOS, obsoleted: 15, message: "Use snapshot-based reconfiguring instead")
-    private func updateVisibleCellConfigurations() {
-        for indexPath in self.collectionView.indexPathsForVisibleItems {
-            if let cell = self.collectionView.cellForItem(at: indexPath) as? VocableListCell {
-                guard let categoryID = self.diffableDataSource.itemIdentifier(for: indexPath) else {
-                    continue
-                }
-                let category = self.fetchResultsController.managedObjectContext.object(with: categoryID) as! Category
-                self.updateContentConfiguration(for: cell, at: indexPath, category: category)
             }
         }
     }

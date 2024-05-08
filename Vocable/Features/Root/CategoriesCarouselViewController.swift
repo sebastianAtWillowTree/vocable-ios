@@ -200,10 +200,6 @@ import Combine
 
             guard let self = self else { return }
 
-            if #unavailable(iOS 15) {
-                self.reconfigureVisibleCells()
-            }
-
             guard let previous = previousItem else {
                 // No item was previous selected
                 self.updateSelectedIndexPathsInProxyDataSource()
@@ -226,17 +222,6 @@ import Combine
             self.collectionView(self.collectionView, didSelectItemAt: newPath)
             self.collectionView.scrollToNearestSelectedIndexPathOrCurrentPageBoundary(animated: false)
         })
-    }
-    
-    @available(iOS, obsoleted: 15, message: "Use snapshot-based reconfiguring instead")
-    private func reconfigureVisibleCells() {
-        // This is effectively the same iOS 14 fix we have for
-        // screens that have been updated for VocableListCell
-        let visibleIndexPaths = self.collectionView.indexPathsForVisibleItems
-        self.dataSourceProxy.performActions(on: visibleIndexPaths) { elements in
-            guard let cell = self.collectionView.cellForItem(at: elements.virtualIndexPath) else { return }
-            self.configureCell(cell, for: elements.itemIdentifier, at: elements.virtualIndexPath)
-        }
     }
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {

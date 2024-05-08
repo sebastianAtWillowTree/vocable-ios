@@ -30,6 +30,20 @@ private struct Formatter {
     }
 }
 
+private struct VLLoggingEntryWrapper: Hashable, Identifiable {
+    let index: Int
+    let item: VLLogEntry
+    
+    init(_ tuple: (Int, VLLogEntry)) {
+        self.index = tuple.0
+        self.item = tuple.1
+    }
+    
+    var id: VLLogEntry {
+        item
+    }
+}
+
 private struct ListenModeContextDetail: View {
 
     let context: VLLoggingContext
@@ -38,12 +52,19 @@ private struct ListenModeContextDetail: View {
         GeometryReader { geo in
             ScrollView(.vertical) {
                 VStack(alignment: .leading, spacing: 32) {
-                    ForEach(context.entries.indices) { index in
+                    let indexedEntries = context.entries
+                        .indexed()
+                        .map(VLLoggingEntryWrapper.init)
+                    ForEach(indexedEntries) { entry in
+                        let index = entry.index
                         VStack(alignment: .leading) {
-                            Text(verbatim: "\(index + 1). \(context.entries[index].title)").bold().padding(.leading)
+                            Text(verbatim: "\(index + 1). \(context.entries[index].title)")
+                                .bold()
+                                .padding(.leading)
                             ScrollView(.horizontal, showsIndicators: false) {
                                 context.entries[index].body.padding([.leading, .trailing])
-                            }.frame(width: geo.frame(in: .global).width)
+                            }
+                            .frame(width: geo.frame(in: .global).width)
                         }
                     }
                 }
@@ -58,7 +79,7 @@ private struct ListenModeContextDetail: View {
     private func handleShareButton() {
         let data = context.description
         let activityVC = UIActivityViewController(activityItems: [data], applicationActivities: nil)
-        UIApplication.shared.windows.first?.rootViewController?.presentedViewController?.present(activityVC, animated: true, completion: nil)
+        UIApplication.shared.connectedSceneWindows.first?.rootViewController?.presentedViewController?.present(activityVC, animated: true, completion: nil)
     }
 }
 
@@ -84,12 +105,18 @@ struct ListenModeDebugView: View {
 
     @ObservedObject private var config = ListenModeFeatureConfiguration.shared
 
+    private var featureFlagToggle: some View {
+        Toggle(isOn: $config.isFeatureFlagEnabled) {
+            Text(verbatim: "Enable Listen Mode")
+        }
+    }
+    
     @ViewBuilder
     private var listView: some View {
         VStack {
             if storage.contexts.isEmpty {
                 VStack(spacing: 24) {
-                    Toggle("Enable Listen Mode", isOn: $config.isFeatureFlagEnabled)
+                    featureFlagToggle
                     Spacer()
                     Text(verbatim: "No Entries").font(.title).bold()
                     Text(verbatim: "The most recent listening sessions will be recorded here for easy debugging").font(.subheadline)
@@ -98,7 +125,7 @@ struct ListenModeDebugView: View {
             } else {
                 List {
                     Section {
-                        Toggle("Enable Listen Mode", isOn: $config.isFeatureFlagEnabled)
+                        featureFlagToggle
                     }
                     Section {
                         ForEach(storage.contexts, id: \.self) {
@@ -141,7 +168,7 @@ struct ListenModeDebugView: View {
     var body: some View {
         NavigationView {
             listView
-            .navigationBarTitle("Sessions")
+                .navigationTitle(Text(verbatim: "Sessions"))
             toolbar
         }.navigationViewStyle(StackNavigationViewStyle())
     }

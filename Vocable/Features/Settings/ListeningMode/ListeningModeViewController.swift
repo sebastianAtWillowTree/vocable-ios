@@ -119,9 +119,10 @@ final class ListeningModeViewController: VocableCollectionViewController {
             if AppConfig.listeningMode.listeningModeEnabledPreference, ListenModeFeatureConfiguration.deviceSupportsListeningMode {
                 snapshot.appendSections([.hotword])
                 snapshot.appendItems([.hotWordEnabled])
-                
-                snapshot.appendSections([.smartAssist])
-                snapshot.appendItems([.smartAssistEnabled])
+                if AppConfig.listeningMode.smartAssistAvailable {
+                    snapshot.appendSections([.smartAssist])
+                    snapshot.appendItems([.smartAssistEnabled])
+                }
             }
             collectionView.backgroundView = nil
         }

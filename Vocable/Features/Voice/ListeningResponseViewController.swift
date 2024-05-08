@@ -226,8 +226,10 @@ final class ListeningResponseViewController: VocableViewController {
                 case .finalTranscription(let transcription):
                     self.delegate?.didUpdateSpeechResponse(transcription)
                     
-                    guard AppConfig.listeningMode.smartAssistEnabledPreference,
-                          apiClient.isAvailable != false else {
+                    guard AppConfig.listeningMode.smartAssistAvailable,
+                          AppConfig.listeningMode.smartAssistEnabledPreference,
+                          apiClient.isAvailable != false
+                    else {
                         self.classifier.classify(transcription)
                         return
                     }

@@ -403,7 +403,7 @@ final class ListeningResponseViewController: VocableViewController {
 
         [entranceAnimator, exitAnimator].compacted().forEach { [weak self] animator in
             animator.preflightActions()
-            transitionAnimators.insert(animator.propertyAnimator)
+            self?.transitionAnimators.insert(animator.propertyAnimator)
             animator.propertyAnimator.addCompletion { _ in
                 self?.transitionAnimators.remove(animator.propertyAnimator)
             }

@@ -49,7 +49,7 @@ final class SettingsViewController: VocableCollectionViewController, MFMailCompo
             case .contactDevs:
                 return String(localized: "settings.cell.contact_developers.title")
             case .pidTuner:
-                return String(localized: "settings.cell.tune_cursor.title")
+                return "Tune Cursor" // Debug-only, not localized
             case .listeningMode:
                 return String(localized: "settings.cell.listening_mode.title")
             case .voiceConfiguration:

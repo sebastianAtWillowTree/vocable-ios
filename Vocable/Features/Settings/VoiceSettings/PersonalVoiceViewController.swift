@@ -176,7 +176,7 @@ enum PersonalVoiceEmptyState: EmptyStateRepresentable {
         return switch self {
         case .denied: String(localized: "personal_voices.empty_state.denied.button.title")
         case .notAuthorized: String(localized: "personal_voices.empty_state.not_authorized.button.title")
-        case .noContent: String(localized: "personal_voices.empty_state.no_content.button.title")
+        case .noContent: nil
         }
     }
 }

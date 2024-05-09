@@ -151,10 +151,11 @@ public struct TextPresets {
     }
     
     static func localizedPreset(_ locale: String, _ key: String, comment: String? = nil) -> String {
+        let key = String.LocalizationValue(key)
         guard let path = Bundle.main.path(forResource: locale, ofType: "lproj"), let bundle = Bundle(path: path) else {
-            return NSLocalizedString(key, tableName: "Presets", comment: "")
+            return String(localized: key, table: "Presets")
         }
-        return NSLocalizedString(key, tableName: "Presets", bundle: bundle, comment: "")
+        return String(localized: key, table: "Presets", bundle: bundle)
     }
 
     private static func dataFromBundle() -> Data? {

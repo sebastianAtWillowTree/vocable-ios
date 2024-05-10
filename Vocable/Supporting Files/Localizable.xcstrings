@@ -1234,14 +1234,14 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "您还没有保存任何短语。"
+            "state" : "translated",
+            "value" : "尚未保存任何短语。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "您還沒有保存任何短語。"
+            "state" : "translated",
+            "value" : "尚未儲存任何短語。"
           }
         }
       }
@@ -1483,14 +1483,14 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "关闭头跟踪将仅使应用触摸模式。您想要继续吗？"
+            "state" : "translated",
+            "value" : "关闭头部追踪将使 Vocable 只能进行触摸操作。 你想继续吗？"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "關閉頭部跟踪將使應用程序僅處於觸摸模式。你想繼續嗎？"
+            "state" : "translated",
+            "value" : "關閉頭部追蹤將使 Vocable 只能進行觸控操作。 你想繼續嗎？"
           }
         }
       }
@@ -2064,14 +2064,14 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Vocable 需要使用麦克风来启用聆听模式。请在系统设置应用程序中启用麦克风访问。\n\n您还可以禁用聆听模式以在 Vocable 的设置中隐藏此类别。"
+            "state" : "translated",
+            "value" : "Vocable 需要使用麦克风来启用聆听模式。 请在%1$@ 设置中允许麦克风访问。\n\n您还可以禁用聆听模式来隐藏此类别。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Vocable 需要使用麥克風來啟用聆聽模式。請在系統設置應用程序中啟用麥克風訪問。\n\n您還可以禁用聆聽模式以在 Vocable 的設置中隱藏此類別。"
+            "state" : "translated",
+            "value" : "Vocable 需要使用麥克風來啟用聆聽模式。 請在%1$@ 設定中允許麥克風存取。\n\n您也可以停用聆聽模式來隱藏此類別。"
           }
         }
       }
@@ -2562,14 +2562,14 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Vocable 需要语音识别才能启用聆听模式。请在系统设置应用程序中启用语音识别。\n\n您还可以禁用聆听模式以在 Vocable 的设置中隐藏此类别。"
+            "state" : "translated",
+            "value" : "Vocable 需要语音识别才能启用聆听模式。 请在 %1$@ 设置中启用语音识别。\n\n您还可以禁用聆听模式来隐藏此类别。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Vocable 需要語音識別才能啟用聆聽模式。請在系統設置應用程序中啟用語音識別。\n\n您還可以禁用聆聽模式以在 Vocable 的設置中隱藏此類別。"
+            "state" : "translated",
+            "value" : "Vocable 需要語音辨識才能啟用聆聽模式。 請在 %1$@ 設定中啟用語音辨識。\n\n您也可以停用聆聽模式來隱藏此類別。"
           }
         }
       }
@@ -3310,13 +3310,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "请检查您的互联网连接并稍后再试。"
+            "value" : "请检查您的互联网连接并稍后重试。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "請檢查您的網路連接並稍後再試。"
+            "value" : "請檢查您的網路連線並稍後重試。"
           }
         }
       }
@@ -3898,6 +3898,18 @@
             "state" : "translated",
             "value" : "Vocable cần có quyền truy cập Giọng nói cá nhân trên thiết bị này.\n\nBạn có thể kích hoạt quyền truy cập trong Cài đặt %1$@."
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vocable 需要获得访问此设备上的个人语音的权限。\n\n您可以在%1$@ 设置中启用访问。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vocable 需要獲得存取此裝置上的個人語音的權限。\n\n您可以在%1$@ 設定中啟用存取。"
+          }
         }
       }
     },
@@ -3968,6 +3980,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Truy cập bằng giọng nói cá nhân"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "个人语音访问"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "個人語音訪問"
           }
         }
       }
@@ -4040,6 +4064,18 @@
             "state" : "translated",
             "value" : "Bạn có thể tạo Giọng nói cá nhân mới trong Cài đặt %1$@. Sau khi tạo, bạn có thể đặt Giọng nói cá nhân làm Giọng nói có thể phát âm của mình."
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "您可以在%1$@ 设置中创建新的个人语音。 创建后，您可以将您的个人语音设置为 Vocable 的语音。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "您可以在%1$@ 設定中建立新的個人語音。 建立後，您可以將您的個人語音設定為 Vocable 的語音。"
+          }
         }
       }
     },
@@ -4110,6 +4146,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Không có tiếng nói cá nhân"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "没有个人声音"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "沒有個人聲音"
           }
         }
       }
@@ -4193,6 +4241,18 @@
             "state" : "translated",
             "value" : "Cho phép Vocable truy cập Giọng nói cá nhân được lưu trữ trên thiết bị này."
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "允许 Vocable 访问此设备上存储的个人语音。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "允許 Vocable 存取此裝置上儲存的個人語音。"
+          }
         }
       }
     },
@@ -4264,6 +4324,18 @@
             "state" : "translated",
             "value" : "Truy cập bằng giọng nói cá nhân"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "个人语音访问"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "個人語音訪問"
+          }
         }
       }
     },
@@ -4334,6 +4406,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tiếng nói cá nhân"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "个人语音"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "個人聲音"
           }
         }
       }
@@ -6730,6 +6814,18 @@
             "state" : "translated",
             "value" : "Bố trí bàn phím"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "键盘布局"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "鍵盤佈局"
+          }
         }
       }
     },
@@ -6966,6 +7062,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "QWERTY nhỏ gọn"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "简洁的QWERTY"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "緊湊型全鍵盤"
           }
         }
       }
@@ -7287,6 +7395,18 @@
             "state" : "translated",
             "value" : "Tiếng nói"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "声音"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "嗓音"
+          }
         }
       }
     },
@@ -7441,6 +7561,18 @@
             "state" : "translated",
             "value" : "Bố trí bàn phím"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "键盘布局"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "鍵盤佈局"
+          }
         }
       }
     },
@@ -7511,6 +7643,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sử dụng bố cục bàn phím QWERTY ở mọi hướng. Các phím có thể nhỏ hơn, khiến việc gõ phím trở nên khó khăn hơn."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在所有方向使用 QWERTY 键盘布局。键盘可能较小，更难打字。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在所有方向上使用 QWERTY 鍵盤佈局。 按鍵可能更小，使打字更加困難。"
           }
         }
       }
@@ -7752,14 +7896,14 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "启用此快捷方式后，任何人都可以说“嘿，Vocable”以提示应用导航到聆听模式屏幕。"
+            "state" : "translated",
+            "value" : "自动导航到侦听模式类别，当有人听到有人说\"嘿，词汇\""
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "啟用此快捷方式後，任何人都可以說“嘿，Vocable”以提示應用導航到聆聽模式屏幕。"
+            "state" : "translated",
+            "value" : "當 Vocable 聽到有人說「嘿，Vocable」時自動導航到聆聽模式類別"
           }
         }
       }
@@ -7835,14 +7979,14 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "启用聆听模式后，任何人都可以大声提问，Vocable 将提供一系列回答。 Vocable 支持非此即彼的问题以及可以用“是”、“否”或数字来回答的问题。"
+            "state" : "translated",
+            "value" : "这是一个对话类别，听取某人提问，然后提供一系列答复。 目前支持可用回答、否或数字回答的问题和问题。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "啟用聆聽模式後，任何人都可以大聲提問，Vocable 將提供一系列回答。 Vocable 支持非此即彼的問題以及可以用“是”、“否”或數字來回答的問題。"
+            "state" : "translated",
+            "value" : "這是一個對話類別，聆聽某人提出問題，然後提供一系列答案。 目前支援非此即彼的問題以及可以用是、否或數字回答的問題。"
           }
         }
       }
@@ -7998,6 +8142,18 @@
             "state" : "translated",
             "value" : "Hỗ trợ thông minh sử dụng AI để đưa ra đề xuất chất lượng cao hơn cho Chế độ nghe. Cần có kết nối Internet nhưng không có lịch sử hội thoại nào được lưu trữ, giống như ở Chế độ Nghe thông thường."
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "智能助手使用 AI 提供更高质量的侦听模式建议。 需要互联网连接，但是不会像常规侦听模式一样存储任何对话历史。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "智慧輔助使用人工智慧為聆聽模式提供更高品質的建議。 需要網路連接，但不會儲存任何對話歷史記錄，就像常規聆聽模式一樣。"
+          }
         }
       }
     },
@@ -8068,6 +8224,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Trợ lý thông minh"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "智能助手"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "智慧輔助"
           }
         }
       }
@@ -9302,6 +9470,18 @@
             "state" : "translated",
             "value" : "Không có giọng nói nào phù hợp với cài đặt ngôn ngữ và khu vực của bạn được cài đặt."
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "没有安装与您的语言和区域设置匹配的声音。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "未安裝與您的語言和區域設定相符的語音。"
+          }
         }
       }
     },
@@ -9372,6 +9552,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Không có tiếng nói"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "没有声音"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "沒有聲音"
           }
         }
       }
@@ -9444,6 +9636,18 @@
             "state" : "translated",
             "value" : "Thay đổi giọng nói"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "更改声音"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "改變聲音"
+          }
         }
       }
     },
@@ -9514,6 +9718,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Xin chào, đây là %1$@"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "您好，这是 %1$@"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "您好，我是%1$@"
           }
         }
       }
@@ -9586,6 +9802,18 @@
             "state" : "translated",
             "value" : "Thay đổi giọng nói"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "更改声音"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "改變聲音"
+          }
         }
       }
     },
@@ -9656,6 +9884,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tiếng nói cá nhân"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "个人语音"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "個人聲音"
           }
         }
       }
@@ -9728,6 +9968,18 @@
             "state" : "translated",
             "value" : "Tiếng nói"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "声音"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "嗓音"
+          }
         }
       }
     },
@@ -9798,6 +10050,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Các giọng nói bổ sung và cải tiến chất lượng giọng nói có thể có sẵn để tải xuống trong Cài đặt %1$@."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ 设置中可以下载更多声音和语音质量增强功能。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "其他語音和語音品質增強功能可在%1$@ 設定中下載。"
           }
         }
       }

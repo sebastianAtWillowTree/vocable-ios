@@ -63,11 +63,15 @@ enum ListeningEmptyState: EmptyStateRepresentable, Equatable {
         case .microphonePermissionUndetermined:
             return String(localized: "listening_mode.empty_state.microphone_permission_undetermined.message")
         case .microphonePermissionDenied:
-            return String(localized: "listening_mode.empty_state.microphone_permission_denied.message")
+            let model = UIDevice.current.localizedModel
+            let format = String(localized: "listening_mode.empty_state.microphone_permission_denied.message")
+            return String(format: format, model)
         case .speechPermissionUndetermined:
             return String(localized: "listening_mode.empty_state.speech_permission_undetermined.message")
         case .speechPermissionDenied:
-            return String(localized: "listening_mode.empty_state.speech_permission_denied.message")
+            let model = UIDevice.current.localizedModel
+            let format = String(localized: "listening_mode.empty_state.speech_permission_denied.message")
+            return String(format: format, model)
         case .listeningResponse:
             return String(localized: "listening_mode.empty_state.actively_listening.message")
         case .listenModeFreeResponse:

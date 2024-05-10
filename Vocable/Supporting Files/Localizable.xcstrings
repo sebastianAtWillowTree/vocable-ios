@@ -1168,79 +1168,79 @@
       "localizations" : {
         "ar" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "ليس لديك أي عبارات محفوظة حتى الآن."
           }
         },
         "da" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Du har ingen sætninger gemt endnu."
           }
         },
         "de" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Sie haben noch keinen Satz hinzugefügt."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "You don't have any phrases saved yet."
+            "value" : "No phrases have been saved yet."
           }
         },
         "es" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Aún no tienes ninguna frase guardada."
           }
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Vous n'avez pas encore enregistré de phrases."
           }
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "आपके पास अभी तक कोई वाक्यांश सहेजा नहीं गया है।"
           }
         },
         "it" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Non hai ancora nessuna frase salvata."
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "아직 저장된 문구가 없습니다."
           }
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "У вас пока нет сохраненных фраз."
           }
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Bạn chưa lưu bất kỳ cụm từ nào."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "您还没有保存任何短语。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "您還沒有保存任何短語。"
           }
         }
@@ -1417,79 +1417,79 @@
       "localizations" : {
         "ar" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "سيؤدي إيقاف تشغيل تتبع الرأس إلى جعل التطبيق يعمل باللمس فقط. هل ترغب في الاستمرار؟"
           }
         },
         "da" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Deaktivering af hovedsporing vil kun gøre appen til berøringstilstand. Vil du fortsætte?"
           }
         },
         "de" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Wenn Sie die Steuerung per Kopfbewegung ausschalten, ist die App nur per Touch steuerbar. Möchten Sie fortfahren?"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Turning off head tracking will make the app touch mode only. Would you like to continue?"
+            "value" : "Turning off head tracking will make Vocable touch-only. Would you like to continue?"
           }
         },
         "es" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Desactivar el seguimiento de la cabeza hará que la aplicación solo toque el modo. ¿Te gustaria continuar?"
           }
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "La désactivation du suivi de la tête rendra l'application en mode tactile uniquement. Voulez-vous continuer?"
           }
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "हेड ट्रैकिंग को बंद करने से ऐप टच मोड ही बन जाएगा। आप जारी रखना चाहेंगे?"
           }
         },
         "it" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "La disattivazione del rilevamento della testa renderà solo la modalità touch dell'app. Vuoi continuare?"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "헤드 트래킹을 끄면 앱 터치 모드만 됩니다. 계속하시겠습니까?"
           }
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Отключение отслеживания головы сделает приложение только сенсорным. Желаете ли вы продолжить?"
           }
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Tắt theo dõi phần đầu sẽ chỉ làm cho ứng dụng ở chế độ cảm ứng. Bạn có muốn tiếp tục không?"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "关闭头跟踪将仅使应用触摸模式。您想要继续吗？"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "關閉頭部跟踪將使應用程序僅處於觸摸模式。你想繼續嗎？"
           }
         }
@@ -1998,79 +1998,79 @@
       "localizations" : {
         "ar" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "يحتاج Vocable إلى استخدام الميكروفون لتمكين وضع الاستماع. يرجى تمكين الوصول إلى الميكروفون في تطبيق إعدادات النظام.\n\nيمكنك أيضًا تعطيل وضع الاستماع لإخفاء هذه الفئة في إعدادات Vocable."
           }
         },
         "da" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Vocable skal bruge mikrofonen for at aktivere Lytningstilstand. Aktivér venligst mikrofonadgang i systemindstillinger-app'en.\n\nDu kan også deaktivere Lytningstilstand for at skjule denne kategori i Vocable's indstillinger."
           }
         },
         "de" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Vocable muss das Mikrofon verwenden, um den Hörmodus zu aktivieren. Bitte aktivieren Sie den Mikrofonzugriff in der Systemeinstellungs-App.\n\nSie können den Hörmodus auch deaktivieren, um diese Kategorie in den Vokabeleinstellungen auszublenden."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vocable needs to use the microphone to enable Listening Mode. Please enable microphone access in the system Settings app.\n\nYou can also disable Listening Mode to hide this category in Vocable's settings."
+            "value" : "Vocable needs to use the microphone to enable Listening Mode. Please allow microphone access in %1$@ Settings.\n\nYou can also disable Listening Mode to hide this category."
           }
         },
         "es" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Vocable necesita usar el micrófono para habilitar el modo de escucha. Habilite el acceso al micrófono en la aplicación Configuración del sistema.\n\nTambién puede desactivar el modo de escucha para ocultar esta categoría en la configuración de Vocable."
           }
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Vocable doit utiliser le microphone pour activer le mode d'écoute. Veuillez activer l'accès au microphone dans l'application Paramètres du système.\n\nVous pouvez également désactiver le mode d'écoute pour masquer cette catégorie dans les paramètres de Vocable."
           }
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Vocable को लिसनिंग मोड को सक्षम करने के लिए माइक्रोफ़ोन का उपयोग करने की आवश्यकता होती है। कृपया सिस्टम सेटिंग्स ऐप में माइक्रोफ़ोन एक्सेस सक्षम करें।\n\nइस श्रेणी को Vocable की सेटिंग में छिपाने के लिए आप लिसनिंग मोड को डिसेबल भी कर सकते हैं।"
           }
         },
         "it" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Vocable deve utilizzare il microfono per abilitare la modalità di ascolto. Si prega di abilitare l'accesso al microfono nell'app Impostazioni di sistema.\n\nPuoi anche disabilitare la modalità di ascolto per nascondere questa categoria nelle impostazioni di Vocable."
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Vocable은 듣기 모드를 활성화하기 위해 마이크를 사용해야 합니다. 시스템 설정 앱에서 마이크 액세스를 활성화하십시오.\n\nVocable 설정에서 이 카테고리를 숨기기 위해 듣기 모드를 비활성화할 수도 있습니다."
           }
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Vocable должен использовать микрофон, чтобы включить режим прослушивания. Включите доступ к микрофону в системном приложении «Настройки».\n\nВы также можете отключить режим прослушивания, чтобы скрыть эту категорию в настройках Vocable."
           }
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Vocable cần sử dụng micrô để bật Chế độ nghe. Vui lòng bật quyền truy cập micrô trong ứng dụng Cài đặt hệ thống.\n\nBạn cũng có thể tắt Chế độ nghe để ẩn danh mục này trong cài đặt của Vocable."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Vocable 需要使用麦克风来启用聆听模式。请在系统设置应用程序中启用麦克风访问。\n\n您还可以禁用聆听模式以在 Vocable 的设置中隐藏此类别。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Vocable 需要使用麥克風來啟用聆聽模式。請在系統設置應用程序中啟用麥克風訪問。\n\n您還可以禁用聆聽模式以在 Vocable 的設置中隱藏此類別。"
           }
         }
@@ -2496,79 +2496,79 @@
       "localizations" : {
         "ar" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "يحتاج Vocable إلى التعرف على الكلام لتمكين وضع الاستماع. يرجى تمكين التعرف على الكلام في تطبيق إعدادات النظام.\n\nيمكنك أيضًا تعطيل وضع الاستماع لإخفاء هذه الفئة في إعدادات Vocable."
           }
         },
         "da" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Vocable har brug for talegenkendelse for at aktivere Lytningstilstand. Aktiver venligst talegenkendelse i systemets indstillinger app.\n\nDu kan også deaktivere Lyttetilstand for at skjule denne kategori i Vocable's indstillinger."
           }
         },
         "de" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Vokabel benötigt Spracherkennung, um den Hörmodus zu aktivieren. Bitte aktivieren Sie die Spracherkennung in der Systemeinstellungs-App.\n\nSie können den Hörmodus auch deaktivieren, um diese Kategorie in den Vokabeleinstellungen auszublenden."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vocable needs speech recognition to enable Listening Mode. Please enable speech recognition in the system Settings app.\n\nYou can also disable Listening Mode to hide this category in Vocable's settings."
+            "value" : "Vocable needs speech recognition to enable Listening Mode. Please enable speech recognition in %1$@ Settings.\n\nYou can also disable Listening Mode to hide this category."
           }
         },
         "es" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Vocable necesita reconocimiento de voz para habilitar el modo de escucha. Habilite el reconocimiento de voz en la aplicación Configuración del sistema.\n\nTambién puede desactivar el modo de escucha para ocultar esta categoría en la configuración de Vocable."
           }
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Vocable a besoin de la reconnaissance vocale pour activer le mode d'écoute. Veuillez activer la reconnaissance vocale dans l'application Paramètres du système.\n\nVous pouvez également désactiver le mode d'écoute pour masquer cette catégorie dans les paramètres de Vocable."
           }
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Vocable को लिसनिंग मोड को सक्षम करने के लिए वाक् पहचान की आवश्यकता होती है। कृपया सिस्टम सेटिंग्स ऐप में वाक् पहचान सक्षम करें।\n\nइस श्रेणी को Vocable की सेटिंग में छिपाने के लिए आप लिसनिंग मोड को डिसेबल भी कर सकते हैं।"
           }
         },
         "it" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Vocable ha bisogno del riconoscimento vocale per abilitare la modalità di ascolto. Abilita il riconoscimento vocale nell'app Impostazioni di sistema.\n\nPuoi anche disabilitare la modalità di ascolto per nascondere questa categoria nelle impostazioni di Vocable."
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Vocable은 듣기 모드를 활성화하기 위해 음성 인식이 필요합니다. 시스템 설정 앱에서 음성 인식을 활성화하십시오.\n\nVocable 설정에서 이 카테고리를 숨기기 위해 듣기 모드를 비활성화할 수도 있습니다."
           }
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Vocable требуется распознавание речи, чтобы включить режим прослушивания. Включите распознавание речи в системном приложении «Настройки».\n\nВы также можете отключить режим прослушивания, чтобы скрыть эту категорию в настройках Vocable."
           }
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Vocable cần nhận dạng giọng nói để bật Chế độ nghe. Vui lòng bật nhận dạng giọng nói trong ứng dụng Cài đặt hệ thống.\n\nBạn cũng có thể tắt Chế độ nghe để ẩn danh mục này trong cài đặt của Vocable."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Vocable 需要语音识别才能启用聆听模式。请在系统设置应用程序中启用语音识别。\n\n您还可以禁用聆听模式以在 Vocable 的设置中隐藏此类别。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Vocable 需要語音識別才能啟用聆聽模式。請在系統設置應用程序中啟用語音識別。\n\n您還可以禁用聆聽模式以在 Vocable 的設置中隱藏此類別。"
           }
         }
@@ -6790,7 +6790,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Enabling this will show a QWERTY keyboard layout for portrait mode on %@. This keyboard layout may cause issues with head tracking due to small key size."
+            "value" : "Use QWERTY keyboard layout in all orientations. Keys may be smaller, making typing more difficult."
           }
         }
       }
@@ -6966,79 +6966,79 @@
       "localizations" : {
         "ar" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "عند تمكين هذا الاختصار ، يمكن لأي شخص أن يقول \"مرحبًا ، Vocable\" مطالبة التطبيق بالانتقال إلى شاشة وضع الاستماع."
           }
         },
         "da" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Når denne genvej er aktiveret, kan alle sige \"Hey, Vocable\" at bede app til at navigere til skærmen lyttetilstand."
           }
         },
         "de" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Wenn diese Verknüpfung aktiviert ist, kann jeder \"Hey, Vocable\" sagen, um die App zum Hörmodus zu bewegen."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "When this shortcut is enabled, anyone can say \"Hey, Vocable\" to prompt the app to navigate to the listening mode screen."
+            "value" : "Automatically navigate to the Listening Mode category when Vocable hears someone say \"Hey, Vocable\""
           }
         },
         "es" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Cuando este acceso directo está activado, cualquiera puede decir \"Hey, Vocable\" para pedir a la aplicación que navegue a la pantalla del modo escuchar."
           }
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Lorsque ce raccourci est activé, n'importe qui peut dire \"Hey, Vocable\" pour inviter l'application à accéder à l'écran du mode d'écoute."
           }
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "जब यह शॉर्टकट सक्षम होता है, तो कोई भी ऐप को सुनने के मोड स्क्रीन पर नेविगेट करने के लिए संकेत देने के लिए \"Hey Vocable\" कह सकता है।"
           }
         },
         "it" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Quando questa scorciatoia è abilitata, chiunque può dire \"Hey, Vocable\" per chiedere all'app di passare alla schermata della modalità di ascolto."
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "이 바로 가기가 활성화되면 누구나 \"Hey, Vocable\"이라고 말하여 앱이 청취 모드 화면으로 이동하도록 요청할 수 있습니다."
           }
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Когда этот ярлык включен, любой может сказать «Привет, Vocable», чтобы приложение перешло к экрану режима прослушивания."
           }
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Khi phím tắt này được bật, bất kỳ ai cũng có thể nói \"Hey, Vocable\" để nhắc ứng dụng điều hướng đến màn hình chế độ nghe."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "启用此快捷方式后，任何人都可以说“嘿，Vocable”以提示应用导航到聆听模式屏幕。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "啟用此快捷方式後，任何人都可以說“嘿，Vocable”以提示應用導航到聆聽模式屏幕。"
           }
         }
@@ -7049,79 +7049,79 @@
       "localizations" : {
         "ar" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "عند تمكين وضع الاستماع ، يمكن لأي شخص طرح سؤال بصوت عالٍ وسيقدم Vocable مجموعة مختارة من الردود. يدعم Vocable الأسئلة والأسئلة التي يمكن الإجابة عليها بنعم أو لا أو برقم."
           }
         },
         "da" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Når lyttetilstand er aktiveret, kan alle stille et spørgsmål højt og Vocable vil tilbyde et udvalg af svar. Vocable understøtter enten/eller spørgsmål og spørgsmål, der kan besvares med ja, nej eller et nummer."
           }
         },
         "de" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Wenn der Hörmodus aktiviert ist, kann jeder laut eine Frage stellen und Vocable bietet eine Auswahl an Antworten. Vocable unterstützt entweder Fragen oder Fragen, die mit Ja oder Nein oder einer Zahl beantwortet werden können."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "When listening mode is enabled, anyone can ask a question out loud and Vocable will offer a selection of responses. Vocable supports either/or questions and questions that can be answered with yes, no, or a number."
+            "value" : "This is a conversational category that listens for someone to ask questions, then offers a selection of responses. Either/or questions and questions that can be answered with yes, no, or a number are currently supported."
           }
         },
         "es" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Cuando el modo de escucha está activado, cualquiera puede hacer una pregunta en voz alta y Vocable ofrecerá una selección de respuestas. Vocable soporta preguntas y preguntas que pueden ser respondidas con sí, no, o un número."
           }
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Lorsque le mode d'écoute est activé, n'importe qui peut poser une question à haute voix et Vocable proposera une sélection de réponses. Vocable prend en charge les questions et les questions auxquelles on peut répondre par oui, non ou un nombre."
           }
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "जब लिसनिंग मोड सक्षम होता है, तो कोई भी जोर से सवाल पूछ सकता है और Vocable प्रतिक्रियाओं का चयन पेश करेगा। Vocable या तो/या प्रश्नों और प्रश्नों का समर्थन करता है जिनका उत्तर हां, नहीं, या एक संख्या के साथ दिया जा सकता है।"
           }
         },
         "it" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Quando la modalità di ascolto è abilitata, chiunque può porre una domanda ad alta voce e Vocable offrirà una selezione di risposte. Supporti vocali / o domande e domande a cui è possibile rispondere con sì, no o un numero."
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "듣기 모드가 활성화되면 누구든지 큰 소리로 질문할 수 있으며 Vocable은 선택한 응답을 제공합니다. Vocable은 예, 아니오 또는 숫자로 대답할 수 있는 질문 및 질문 중 하나를 지원합니다."
           }
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Когда режим прослушивания включен, любой может задать вопрос вслух, и Vocable предложит выбор ответов. Vocable поддерживает либо/или вопросы и вопросы, на которые можно ответить да, нет или число."
           }
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Khi chế độ nghe được bật, bất kỳ ai cũng có thể đặt câu hỏi thành tiếng và Vocable sẽ đưa ra lựa chọn câu trả lời. Vocable hỗ trợ hoặc / hoặc các câu hỏi và câu hỏi có thể được trả lời bằng có, không hoặc một số."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "启用聆听模式后，任何人都可以大声提问，Vocable 将提供一系列回答。 Vocable 支持非此即彼的问题以及可以用“是”、“否”或数字来回答的问题。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "啟用聆聽模式後，任何人都可以大聲提問，Vocable 將提供一系列回答。 Vocable 支持非此即彼的問題以及可以用“是”、“否”或數字來回答的問題。"
           }
         }
@@ -7216,7 +7216,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Smart Assist uses AI to provide higher quality suggestions for Listening Mode. An Internet connection is required, but no conversation history is ever stored, just like regular Listening Mode."
+            "value" : "Smart Assist uses AI to provide higher-quality suggestions for Listening Mode. An Internet connection is required, but no conversation history is ever stored, just like in regular Listening Mode."
           }
         }
       }
@@ -8400,7 +8400,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No voices are installed that match your language and region settings."
+            "value" : "No voices that match your language and region settings are installed."
           }
         }
       }

@@ -111,9 +111,7 @@ final class KeyboardLayoutViewController: VocableCollectionViewController {
             let section = self.dataSource.snapshot().sectionIdentifiers[indexPath.section]
             switch section {
             case .compactQWERTY:
-                let iPhoneName = "iPhone"
-                let localizedString = String(localized: "settings.keyboard_layout.qwerty_layout.explanation_footer")
-                text = String(format: localizedString, iPhoneName)
+                text = String(localized: "settings.keyboard_layout.qwerty_layout.explanation_footer")
             }
 
             let fontSize: CGFloat = self.sizeClass.contains(any: .compact) ? 18 : 26

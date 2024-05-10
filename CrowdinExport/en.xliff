@@ -108,8 +108,8 @@
         <note>Category empty state button.  This button appears with the empty state to allow the user to add a phrase</note>
       </trans-unit>
       <trans-unit id="empty_state.header.title" xml:space="preserve">
-        <source>No phrases have been saved yet.</source>
-        <target state="translated">No phrases have been saved yet.</target>
+        <source>You don't have any phrases saved yet.</source>
+        <target state="translated">You don't have any phrases saved yet.</target>
         <note>Category empty state.  This empty state appears when there are no phrases in the category in both the main screen and settings screen.</note>
       </trans-unit>
       <trans-unit id="gaze_settings.alert.disable_head_tracking_confirmation.button.cancel.title" xml:space="preserve">
@@ -123,8 +123,8 @@
         <note>Confirm alert action title</note>
       </trans-unit>
       <trans-unit id="gaze_settings.alert.disable_head_tracking_confirmation.title" xml:space="preserve">
-        <source>Turning off head tracking will make Vocable touch-only. Would you like to continue?</source>
-        <target state="translated">Turning off head tracking will make Vocable touch-only. Would you like to continue?</target>
+        <source>Turning off head tracking will make the app touch mode only. Would you like to continue?</source>
+        <target state="translated">Turning off head tracking will make the app touch mode only. Would you like to continue?</target>
         <note>Disable head tracking confirmation alert title</note>
       </trans-unit>
       <trans-unit id="gaze_tracking.error.excessive_head_distance.title" xml:space="preserve">
@@ -158,12 +158,12 @@
         <note>Listen mode empty state action that will allow the user to open the Settings app in order to grant microphone permissions.</note>
       </trans-unit>
       <trans-unit id="listening_mode.empty_state.microphone_permission_denied.message" xml:space="preserve">
-        <source>Vocable needs to use the microphone to enable Listening Mode. Please allow microphone access in %1$@ Settings.
+        <source>Vocable needs to use the microphone to enable Listening Mode. Please enable microphone access in the system Settings app.
 
-You can also disable Listening Mode to hide this category.</source>
-        <target state="translated">Vocable needs to use the microphone to enable Listening Mode. Please allow microphone access in %1$@ Settings.
+You can also disable Listening Mode to hide this category in Vocable's settings.</source>
+        <target state="translated">Vocable needs to use the microphone to enable Listening Mode. Please enable microphone access in the system Settings app.
 
-You can also disable Listening Mode to hide this category.</target>
+You can also disable Listening Mode to hide this category in Vocable's settings.</target>
         <note>Listening mode empty state message for when microphone permissions are required, but the user has denied them</note>
       </trans-unit>
       <trans-unit id="listening_mode.empty_state.microphone_permission_denied.title" xml:space="preserve">
@@ -192,12 +192,12 @@ You can also disable Listening Mode to hide this category.</target>
         <note>Listening mode empty state action that will allow the user to open the Settings app in order to grant speech recognition permissions.</note>
       </trans-unit>
       <trans-unit id="listening_mode.empty_state.speech_permission_denied.message" xml:space="preserve">
-        <source>Vocable needs speech recognition to enable Listening Mode. Please enable speech recognition in %1$@ Settings.
+        <source>Vocable needs speech recognition to enable Listening Mode. Please enable speech recognition in the system Settings app.
 
-You can also disable Listening Mode to hide this category.</source>
-        <target state="translated">Vocable needs speech recognition to enable Listening Mode. Please enable speech recognition in %1$@ Settings.
+You can also disable Listening Mode to hide this category in Vocable's settings.</source>
+        <target state="translated">Vocable needs speech recognition to enable Listening Mode. Please enable speech recognition in the system Settings app.
 
-You can also disable Listening Mode to hide this category.</target>
+You can also disable Listening Mode to hide this category in Vocable's settings.</target>
         <note>Listening mode empty state message for when speech recognition permissions are required, but the user has denied them</note>
       </trans-unit>
       <trans-unit id="listening_mode.empty_state.speech_permission_denied.title" xml:space="preserve">
@@ -519,8 +519,8 @@ You can enable access in %1$@ Settings.</target>
         <note>Keyboard Layout setting header title</note>
       </trans-unit>
       <trans-unit id="settings.keyboard_layout.qwerty_layout.explanation_footer" xml:space="preserve">
-        <source>Use QWERTY keyboard layout in all orientations. Keys may be smaller, making typing more difficult.</source>
-        <target state="translated">Use QWERTY keyboard layout in all orientations. Keys may be smaller, making typing more difficult.</target>
+        <source>Enabling this will show a QWERTY keyboard layout for portrait mode on %@. This keyboard layout may cause issues with head tracking due to small key size.</source>
+        <target state="translated">Enabling this will show a QWERTY keyboard layout for portrait mode on %@. This keyboard layout may cause issues with head tracking due to small key size.</target>
         <note>Option within Keyboard Layout. This option is to enable or disable QWERTY keyboard on portrait iPhone.</note>
       </trans-unit>
       <trans-unit id="settings.listening_mode.device_unsupported_explanation_footer" xml:space="preserve">
@@ -538,13 +538,13 @@ Listening Mode is currently only available in English and requires %5$@ to be en
         <note>Title of Listening Mode preferences cell that toggles "Hey Vocable" shortcut feature on or off when selected</note>
       </trans-unit>
       <trans-unit id="settings.listening_mode.hotword_explanation_footer" xml:space="preserve">
-        <source>Automatically navigate to the Listening Mode category when Vocable hears someone say "Hey, Vocable"</source>
-        <target state="translated">Automatically navigate to the Listening Mode category when Vocable hears someone say "Hey, Vocable"</target>
+        <source>When this shortcut is enabled, anyone can say "Hey, Vocable" to prompt the app to navigate to the listening mode screen.</source>
+        <target state="translated">When this shortcut is enabled, anyone can say "Hey, Vocable" to prompt the app to navigate to the listening mode screen.</target>
         <note>Footer text displayed in the Listening Mode preferences screen. This text describes the "Hey Vocable" feature, how it is activated, and how it automatically navigates the user to the Listening Mode screen.</note>
       </trans-unit>
       <trans-unit id="settings.listening_mode.listening_mode_explanation_footer" xml:space="preserve">
-        <source>This is a conversational category that listens for someone to ask questions, then offers a selection of responses. Either/or questions and questions that can be answered with yes, no, or a number are currently supported.</source>
-        <target state="translated">This is a conversational category that listens for someone to ask questions, then offers a selection of responses. Either/or questions and questions that can be answered with yes, no, or a number are currently supported.</target>
+        <source>When listening mode is enabled, anyone can ask a question out loud and Vocable will offer a selection of responses. Vocable supports either/or questions and questions that can be answered with yes, no, or a number.</source>
+        <target state="translated">When listening mode is enabled, anyone can ask a question out loud and Vocable will offer a selection of responses. Vocable supports either/or questions and questions that can be answered with yes, no, or a number.</target>
         <note>Footer text displayed in the Listening Mode preferences screen. This text describes the overall Listening Mode feature as well as the kinds of responses it can generate for the user.</note>
       </trans-unit>
       <trans-unit id="settings.listening_mode.listening_mode_toggle_cell.title" xml:space="preserve">
@@ -553,8 +553,8 @@ Listening Mode is currently only available in English and requires %5$@ to be en
         <note>Title of Listening Mode preferences cell that toggles Listening Mode on or off when selected</note>
       </trans-unit>
       <trans-unit id="settings.listening_mode.smart_assist_explanation_footer" xml:space="preserve">
-        <source>Smart Assist uses AI to provide higher-quality suggestions for Listening Mode. An Internet connection is required, but no conversation history is ever stored, just like in regular Listening Mode.</source>
-        <target state="translated">Smart Assist uses AI to provide higher-quality suggestions for Listening Mode. An Internet connection is required, but no conversation history is ever stored, just like in regular Listening Mode.</target>
+        <source>Smart Assist uses AI to provide higher quality suggestions for Listening Mode. An Internet connection is required, but no conversation history is ever stored, just like regular Listening Mode.</source>
+        <target state="translated">Smart Assist uses AI to provide higher quality suggestions for Listening Mode. An Internet connection is required, but no conversation history is ever stored, just like regular Listening Mode.</target>
         <note>Footer text displayed in the Listening Mode preferences screen. This text describes the Smart Assist feature and how it works.</note>
       </trans-unit>
       <trans-unit id="settings.listening_mode.smart_assist_toggle_cell.title" xml:space="preserve">
@@ -639,8 +639,8 @@ Head tracking is supported on all devices with a %4$@ camera, and on most device
         <note>Timing and sensitivity Header title.  This text appears in the Settings flow when navigating into the Timing and Sensitivity setting</note>
       </trans-unit>
       <trans-unit id="voice_picker.empty_state.description" xml:space="preserve">
-        <source>No voices that match your language and region settings are installed.</source>
-        <target state="translated">No voices that match your language and region settings are installed.</target>
+        <source>No voices are installed that match your language and region settings.</source>
+        <target state="translated">No voices are installed that match your language and region settings.</target>
         <note>Voice picker empty state body. Shown when the user attempts to change their voice settings and the operating system
 fails to return any viable voice profiles that the user could select from.</note>
       </trans-unit>

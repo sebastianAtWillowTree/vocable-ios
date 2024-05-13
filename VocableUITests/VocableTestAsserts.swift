@@ -69,7 +69,10 @@ func VTAssertReorderArrowsEqual(
     file: StaticString = #file,
     line: UInt = #line
 ) {
-    let categoryCell = SettingsScreen.locateCategoryCell(categoryName)
-    XCTAssertEqual(categoryCell.buttons[.settings.editCategories.moveUpButton].isEnabled, enabledArrows.contains(.up), file: file, line: line)
-    XCTAssertEqual(categoryCell.buttons[.settings.editCategories.moveDownButton].isEnabled, enabledArrows.contains(.down), file: file, line: line)
+    guard let query = try? SettingsScreen.locateCategoryCell(categoryName, file: file, line: line) else {
+        XCTFail("Failed to locate category cell: \"\(categoryName)\"", file: file, line: line)
+        return
+    }
+    XCTAssertEqual(query.buttons[.settings.editCategories.moveUpButton].isEnabled, enabledArrows.contains(.up), file: file, line: line)
+    XCTAssertEqual(query.buttons[.settings.editCategories.moveDownButton].isEnabled, enabledArrows.contains(.down), file: file, line: line)
 }

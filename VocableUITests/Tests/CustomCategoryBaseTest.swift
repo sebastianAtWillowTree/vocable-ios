@@ -13,10 +13,9 @@ class CustomCategoryBaseTest: BaseTest {
     private(set) var customCategoryName: String = "Test"
     private(set) var nameSuffix: String = "add"
     
-    override func setUp() {
-        super.setUp()
-        
-        SettingsScreen.navigateToSettingsCategoryScreen()
-        CustomCategoriesScreen.createCustomCategory(categoryName: customCategoryName)
+    override func setUpWithError() throws {
+        try super.setUpWithError()
+        try SettingsScreen.navigateToSettingsCategoryScreen()
+        try CustomCategoriesScreen.createCustomCategory(categoryName: customCategoryName)
     }
 }

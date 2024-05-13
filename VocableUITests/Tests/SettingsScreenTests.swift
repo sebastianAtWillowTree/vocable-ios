@@ -11,29 +11,29 @@ import XCTest
 
 class SettingsScreenTests: BaseTest {
 
-    func testHideShowToggle() {
+    func testHideShowToggle() throws {
         let category = "Environment"
 
-        SettingsScreen.navigateToSettingsCategoryScreen()
-        XCTAssertTrue(SettingsScreen.locateCategoryCell(category).element.exists)
+        try SettingsScreen.navigateToSettingsCategoryScreen()
+        try SettingsScreen.locateCategoryCell(category).assertExistence()
 
         // Verify that when the category is hidden, up and down buttons are disabled.
-        SettingsScreen.openCategorySettings(category: category)
-        SettingsScreen.showCategoryButton.tap()
-        SettingsScreen.navBarBackButton.tap()
+        try SettingsScreen.openCategorySettings(category: category)
+        try SettingsScreen.showCategoryButton.tapWhenExists()
+        try SettingsScreen.navBarBackButton.tapWhenExists()
         
         VTAssertReorderArrowsEqual(.none, for: category)
 
         // Verify that when the category is shown, up and down buttons are enabled.
-        SettingsScreen.openCategorySettings(category: category)
-        SettingsScreen.showCategoryButton.tap()
-        SettingsScreen.navBarBackButton.tap()
+        try SettingsScreen.openCategorySettings(category: category)
+        try SettingsScreen.showCategoryButton.tapWhenExists()
+        try SettingsScreen.navBarBackButton.tapWhenExists()
         
         VTAssertReorderArrowsEqual(.both, for: category)
     }
 
-    func testReorder() {
-        SettingsScreen.navigateToSettingsCategoryScreen()
+    func testReorder() throws {
+        try SettingsScreen.navigateToSettingsCategoryScreen()
         
         // Define the query that gives us the first category listed
         let currentFirstCategory = XCUIApplication().cells.allElementsBoundByIndex[0]
@@ -51,7 +51,7 @@ class SettingsScreenTests: BaseTest {
         XCTAssertTrue(currentSecondCategory.buttons[.settings.editCategories.moveDownButton].isEnabled)
         
         // Move the first category down one
-        currentFirstCategory.buttons[.settings.editCategories.moveDownButton].tap()
+        try currentFirstCategory.buttons[.settings.editCategories.moveDownButton].tapWhenExists()
         
         // Using the query for the first category (i.e. top most cell in list) confirm the category name matches expectations
         XCTAssertEqual(currentFirstCategory.label, originalSecondCategoryName)
@@ -60,7 +60,7 @@ class SettingsScreenTests: BaseTest {
         XCTAssertEqual(currentSecondCategory.label, originalFirstCategoryName)
         
         // Move the second category back up
-        currentSecondCategory.buttons[.settings.editCategories.moveUpButton].tap()
+        try currentSecondCategory.buttons[.settings.editCategories.moveUpButton].tapWhenExists()
         
         // Using the query for the first category (i.e. top most cell in list) confirm the category name matches expectations
         XCTAssertEqual(currentFirstCategory.label, originalFirstCategoryName)

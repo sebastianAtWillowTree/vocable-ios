@@ -11,25 +11,25 @@ import XCTest
 class PresetCategoryTests: BaseTest {
     let nameSuffix = "test"
     
-    func testRenameCategory() {
+    func testRenameCategory() throws {
         let categoryName = "General"
         let renamedCategory = categoryName + nameSuffix
         let categoryIdentifier = (CategoryIdentifier.general).identifier
         
         //Rename the preset category
-        SettingsScreen.navigateToSettingsCategoryScreen()
-        SettingsScreen.openCategorySettings(category: categoryName)
-        SettingsScreen.renameCategoryButton.tap()
-        KeyboardScreen.typeText(nameSuffix)
-        KeyboardScreen.checkmarkAddButton.tap()
+        try SettingsScreen.navigateToSettingsCategoryScreen()
+        try SettingsScreen.openCategorySettings(category: categoryName)
+        try SettingsScreen.renameCategoryButton.tapWhenExists()
+        try KeyboardScreen.typeText(nameSuffix)
+        try KeyboardScreen.checkmarkAddButton.tapWhenExists()
         XCTAssertEqual(SettingsScreen.title.label, renamedCategory)
         
         // Confirm that the category is renamed from categories list
-        SettingsScreen.navBarBackButton.tap()
-        XCTAssertTrue(SettingsScreen.doesCategoryExist(renamedCategory))
+        try SettingsScreen.navBarBackButton.tapWhenExists()
+        XCTAssertTrue(try SettingsScreen.doesCategoryExist(renamedCategory))
         
         // Confirm that the category is renamed from main screen
-        CustomCategoriesScreen.returnToMainScreenFromCategoriesList()
+        try CustomCategoriesScreen.returnToMainScreenFromCategoriesList()
         MainScreen.locateAndSelectDestinationCategory(.general)
         let isSelectedPredicate = NSPredicate(format: "isSelected == true")
         let query = XCUIApplication().cells.containing(isSelectedPredicate)
@@ -37,34 +37,34 @@ class PresetCategoryTests: BaseTest {
         XCTAssertEqual(MainScreen.selectedCategoryCell.identifier, categoryIdentifier)
     }
     
-    func testRemoveCategory() {
+    func testRemoveCategory() throws {
         let categoryName = "Environment"
         
         //Remove the preset category
-        SettingsScreen.navigateToSettingsCategoryScreen()
-        SettingsScreen.openCategorySettings(category: categoryName)
-        SettingsScreen.removeCategoryButton.tap()
-        SettingsScreen.alertRemoveButton.tap(afterWaitingForExistenceWithTimeout: 0.25)
+        try SettingsScreen.navigateToSettingsCategoryScreen()
+        try SettingsScreen.openCategorySettings(category: categoryName)
+        try SettingsScreen.removeCategoryButton.tapWhenExists()
+        try SettingsScreen.alertRemoveButton.tapWhenExists()
         
         // Confirm that the category is removed from categories list
-        _ = SettingsScreen.addCategoryButton.waitForExistence(timeout: 0.5)
-        XCTAssertFalse(SettingsScreen.doesCategoryExist(categoryName))
+        try SettingsScreen.addCategoryButton.assertExistence(timeout: 0.5)
+        XCTAssertFalse(try SettingsScreen.doesCategoryExist(categoryName))
         
         // Confirm that the category is removed from main screen
-        CustomCategoriesScreen.returnToMainScreenFromCategoriesList()
+        try CustomCategoriesScreen.returnToMainScreenFromCategoriesList()
         XCTAssertFalse(MainScreen.locateAndSelectDestinationCategory(.environment))
     }
     
-    func testShowHideButtonIsDisabledForMySayingsCategory() {
+    func testShowHideButtonIsDisabledForMySayingsCategory() throws {
         let categoryName = "My Sayings"
         
-        SettingsScreen.navigateToSettingsCategoryScreen()
-        SettingsScreen.openCategorySettings(category: categoryName)
+        try SettingsScreen.navigateToSettingsCategoryScreen()
+        try SettingsScreen.openCategorySettings(category: categoryName)
         XCTAssertFalse(SettingsScreen.showCategoryButton.isEnabled)
     }
     
     // For the first 5 preset categories, tap() the top left phrase, then verify that all selected phrases appear in "Recents"
-    func testRecentScreen_ShowsPressedButtons(){
+    func testRecentScreen_ShowsPressedButtons() throws {
         var listOfSelectedPhrases: [String] = []
         var firstPhrase = ""
         let listOfCategoriesToSkip: [String] = [CategoryIdentifier.keyPad.identifier,
@@ -86,7 +86,8 @@ class PresetCategoryTests: BaseTest {
         MainScreen.locateAndSelectDestinationCategory(.recents)
         
         for phrase in listOfSelectedPhrases {
-            XCTAssertTrue(MainScreen.locatePhraseCell(phrase: phrase).exists, "Expected \(phrase) to appear in Recents category")
+            try MainScreen.locatePhraseCell(phrase: phrase)
+                .assertExistence("Expected \(phrase) to appear in Recents category")
         }
     }
     

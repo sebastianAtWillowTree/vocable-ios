@@ -33,75 +33,75 @@ class CustomPhraseTests: XCTestCase {
         app.launch()
     }
     
-    func testAddNewPhrase() {
+    func testAddNewPhrase() throws {
         let customPhrase = "dd"
         
         // Navigate to our test category
-        MainScreen.navigateToSettingsAndOpenCategory(name: emptyCategory.presetCategory.utterance)
-        CustomCategoriesScreen.editCategoryPhrasesButton.tap()
+        try MainScreen.navigateToSettingsAndOpenCategory(name: emptyCategory.presetCategory.utterance)
+        try CustomCategoriesScreen.editCategoryPhrasesButton.tapWhenExists()
 
         // Verify Phrase is not added if edits are discarded
-        CustomCategoriesScreen.categoriesPageAddPhraseButton.tap()
-        KeyboardScreen.typeText("A")
-        KeyboardScreen.navBarDismissButton.tap()
-        XCTAssertTrue(KeyboardScreen.alertMessageLabel.exists)
+        try CustomCategoriesScreen.categoriesPageAddPhraseButton.tapWhenExists()
+        try KeyboardScreen.typeText("A")
+        try KeyboardScreen.navBarDismissButton.tapWhenExists()
+        try KeyboardScreen.alertMessageLabel.assertExistence()
 
-        SettingsScreen.alertDiscardButton.tap(afterWaitingForExistenceWithTimeout: 0.5)
-        XCTAssertTrue(CustomCategoriesScreen.emptyStateAddPhraseButton.exists)
+        try SettingsScreen.alertDiscardButton.tapWhenExists()
+        try CustomCategoriesScreen.emptyStateAddPhraseButton.assertExistence()
 
         // Verify Phrase can be added if continuing edit
-        CustomCategoriesScreen.categoriesPageAddPhraseButton.tap()
-        KeyboardScreen.typeText("A")
-        KeyboardScreen.navBarDismissButton.tap()
-        XCTAssertTrue(KeyboardScreen.alertMessageLabel.exists)
-        SettingsScreen.alertContinueButton.tap(afterWaitingForExistenceWithTimeout: 0.5)
+        try CustomCategoriesScreen.categoriesPageAddPhraseButton.tapWhenExists()
+        try KeyboardScreen.typeText("A")
+        try KeyboardScreen.navBarDismissButton.tapWhenExists()
+        try KeyboardScreen.alertMessageLabel.assertExistence()
+        try SettingsScreen.alertContinueButton.tapWhenExists()
 
-        KeyboardScreen.typeText(customPhrase)
-        KeyboardScreen.checkmarkAddButton.tap()
+        try KeyboardScreen.typeText(customPhrase)
+        try KeyboardScreen.checkmarkAddButton.tapWhenExists()
 
         XCTAssert(MainScreen.isTextDisplayed("A"+customPhrase), "Expected the phrase \("A"+customPhrase) to be displayed")
     }
 
-    func testCustomPhraseEdit() {
+    func testCustomPhraseEdit() throws {
         let editSuffix = "test"
         let phraseId = editableCategory.presetPhrases[0].id
         let updatedPhrase = editableCategory.presetPhrases[0].utterance + editSuffix
         
         // Navigate to our test category
-        MainScreen.navigateToSettingsAndOpenCategory(name: editableCategory.presetCategory.utterance)
-        CustomCategoriesScreen.editCategoryPhrasesButton.tap()
+        try MainScreen.navigateToSettingsAndOpenCategory(name: editableCategory.presetCategory.utterance)
+        try CustomCategoriesScreen.editCategoryPhrasesButton.tapWhenExists()
         
         // Edit an existing phrase
-        CustomCategoriesScreen.phraseCell(phraseId).buttons[.settings.editPhrases.editPhraseButton].tap()
-        KeyboardScreen.typeText("test")
-        KeyboardScreen.checkmarkAddButton.tap()
+        try CustomCategoriesScreen.phraseCell(phraseId).buttons[.settings.editPhrases.editPhraseButton].tapWhenExists()
+        try KeyboardScreen.typeText("test")
+        try KeyboardScreen.checkmarkAddButton.tapWhenExists()
         
         // Verify phrase has been updated
         XCTAssert(MainScreen.isTextDisplayed(updatedPhrase), "Expected the phrase \(updatedPhrase) to be displayed")
     }
     
-    func testDeleteCustomPhrase() {
-        MainScreen.navigateToSettingsAndOpenCategory(name: editableCategory.presetCategory.utterance)
-        CustomCategoriesScreen.editCategoryPhrasesButton.tap()
+    func testDeleteCustomPhrase() throws {
+        try MainScreen.navigateToSettingsAndOpenCategory(name: editableCategory.presetCategory.utterance)
+        try CustomCategoriesScreen.editCategoryPhrasesButton.tapWhenExists()
         
-        CustomCategoriesScreen.categoriesPageDeletePhraseButton.tap()
-        SettingsScreen.alertDeleteButton.tap(afterWaitingForExistenceWithTimeout: 0.5)
-        XCTAssertTrue(CustomCategoriesScreen.emptyStateAddPhraseButton.exists, "Expected the phrase to be deleted")
+        try CustomCategoriesScreen.categoriesPageDeletePhraseButton.tapWhenExists()
+        try SettingsScreen.alertDeleteButton.tapWhenExists()
+        try CustomCategoriesScreen.emptyStateAddPhraseButton.assertExistence(timeout: 0.5, "Expected the phrase to be deleted")
     }
     
-    func testCanAddDuplicatePhrasesToCategories() {
+    func testCanAddDuplicatePhrasesToCategories() throws {
         // Navigate to our test category.
-        MainScreen.navigateToSettingsAndOpenCategory(name: editableCategory.presetCategory.utterance)
-        CustomCategoriesScreen.editCategoryPhrasesButton.tap()
+        try MainScreen.navigateToSettingsAndOpenCategory(name: editableCategory.presetCategory.utterance)
+        try CustomCategoriesScreen.editCategoryPhrasesButton.tapWhenExists()
 
         // Duplicate the phrase in this category.
         let originalPhraseId = editableCategory.presetPhrases[0].id
         let duplicatedPhrase = editableCategory.presetPhrases[0].utterance
-        CustomCategoriesScreen.addPhrase(duplicatedPhrase)
-        KeyboardScreen.createDuplicateButton.tap(afterWaitingForExistenceWithTimeout: 0.5)
+        try CustomCategoriesScreen.addPhrase(duplicatedPhrase)
+        try KeyboardScreen.createDuplicateButton.tapWhenExists()
         
         // Wait for the keyboard to dismiss.
-        _ = CustomCategoriesScreen.navBarBackButton.waitForExistence(timeout: 0.5)
+        try CustomCategoriesScreen.navBarBackButton.assertExistence(timeout: 1.0)
         
         // Verify we now have 2 phrases, with matching labels, but unique identifiers.
         let allPhraseCells = XCUIApplication().cells

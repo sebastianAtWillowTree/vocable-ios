@@ -10,30 +10,30 @@ import XCTest
 
 class MainScreenPaginationTests: PaginationBaseTest {
     
-    func testDeletingPhrasesAdjustsPagination() {
+    func testDeletingPhrasesAdjustsPagination() throws {
         // Navigate to main screen to verify page numbers; expected to be "Page 1 of 2"
         VTAssertPaginationEquals(1, of: 2)
         
         // Delete one of the phrases to reduce the total number of pages to 1.
-        MainScreen.navigateToSettingsAndOpenCategory(name: eightPhrasesCategory.presetCategory.utterance)
-        CustomCategoriesScreen.editCategoryPhrasesButton.tap()
+        try MainScreen.navigateToSettingsAndOpenCategory(name: eightPhrasesCategory.presetCategory.utterance)
+        try CustomCategoriesScreen.editCategoryPhrasesButton.tapWhenExists()
         CustomCategoriesScreen.categoriesPageDeletePhraseButton.firstMatch.tap()
-        SettingsScreen.alertDeleteButton.tap(afterWaitingForExistenceWithTimeout: 0.5)
+        try SettingsScreen.alertDeleteButton.tapWhenExists()
         
         // Navigate back to the home screen to verify that the total pages reduced from 2 to 1.
-        CustomCategoriesScreen.returnToMainScreenFromEditPhrases()
+        try CustomCategoriesScreen.returnToMainScreenFromEditPhrases()
         VTAssertPaginationEquals(1, of: 1, enabledArrows: .none)
     }
     
-    func testAddingPhrasesAdjustsPagination() {
+    func testAddingPhrasesAdjustsPagination() throws {
         // Navigate to our test category to verify initial page numbers; expected to be "Page 1 of 1"
         MainScreen.locateAndSelectDestinationCategory(CategoryIdentifier(sevenPhrasesCategory.presetCategory.id))
         VTAssertPaginationEquals(1, of: 1, enabledArrows: .none)
         
         // Use the '+ Add Phrase' button to add a new phrase
-        MainScreen.addPhraseButton.tap()
-        KeyboardScreen.typeText("A")
-        KeyboardScreen.checkmarkAddButton.tap()
+        try MainScreen.addPhraseButton.tapWhenExists()
+        try KeyboardScreen.typeText("A")
+        try KeyboardScreen.checkmarkAddButton.tapWhenExists()
         
         // Verify that the pagination adjusts as expected
         VTAssertPaginationEquals(1, of: 2, enabledArrows: .both)
@@ -63,21 +63,21 @@ class MainScreenPaginationTests: PaginationBaseTest {
         VTAssertPaginationEquals(1, of: 2)
     }
     
-    func testPaginationAdjustsToDeviceOrientation() {        
+    func testPaginationAdjustsToDeviceOrientation() throws {
         // Verify we're on the first page
         MainScreen.locateAndSelectDestinationCategory(CategoryIdentifier(sevenPhrasesCategory.presetCategory.id))
         VTAssertPaginationEquals(1, of: 1, enabledArrows: .none)
         
         // Rotate the device
         XCUIDevice.shared.orientation = .landscapeLeft
-        _ = MainScreen.settingsButton.waitForExistence(timeout: 1) // Wait for rotation to complete
+        try MainScreen.settingsButton.assertExistence(timeout: 1) // Wait for rotation to complete
         
         // Ensure that the total number of pages increases and the current page stays the same
         VTAssertPaginationEquals(1, of: 2, enabledArrows: .both)
         
         // Rotate back to Portrait
         XCUIDevice.shared.orientation = .portrait
-        _ = MainScreen.settingsButton.waitForExistence(timeout: 1) // Wait for rotation to complete
+        try MainScreen.settingsButton.assertExistence(timeout: 1) // Wait for rotation to complete
         
         // Verify that the pagination returns to initial state
         VTAssertPaginationEquals(1, of: 1, enabledArrows: .none)

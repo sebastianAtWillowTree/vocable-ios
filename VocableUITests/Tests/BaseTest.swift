@@ -13,7 +13,7 @@ let app = XCUIApplication()
 
 class BaseTest: XCTestCase {
     
-    override func setUp() {
+    override func setUpWithError() throws {
         
         app.configure {
             Arguments(.resetAppDataOnLaunch, .enableListeningMode, .disableAnimations)
@@ -25,6 +25,9 @@ class BaseTest: XCTestCase {
             alert.buttons["OK"].tap()
             return true
         }
+        
+        // Ensure the main screen has loaded before continuing
+        try MainScreen.outputText.assertExistence(timeout: 2.0, "Did not arrive on main screen")
     }
     
     override func tearDown() {

@@ -53,30 +53,30 @@ class MainScreenTests: XCTestCase {
         XCTAssertEqual(phraseTwo, secondTestCategory.presetPhrases[0].utterance)
     }
     
-    func testWhenTappingPhrase_ThenThatPhraseDisplaysOnOutputLabel() {
+    func testWhenTappingPhrase_ThenThatPhraseDisplaysOnOutputLabel() throws {
         let customTestCategories = [firstTestCategory,
                                     secondTestCategory,
                                     thirdTestCategory]
         for category in customTestCategories {
             let phrase = category.presetPhrases[0]
             MainScreen.locateAndSelectDestinationCategory(CategoryIdentifier(category.presetCategory.id))
-            _ = XCUIApplication().collectionViews.staticTexts.element(boundBy: 0).waitForExistence(timeout: 0.5)
-            XCUIApplication().cells[phrase.id].tap()
+            try app.collectionViews.staticTexts.element(boundBy: 0).assertExistence(timeout: 1.0)
+            try app.cells[phrase.id].tapWhenExists()
             XCTAssertEqual(MainScreen.outputText.label, phrase.utterance)
         }
     }
     
-    func testDisablingCategory() {
+    func testDisablingCategory() throws {
         let hiddenCategory = secondTestCategory
-        SettingsScreen.navigateToSettingsCategoryScreen()
-        XCTAssertTrue(SettingsScreen.locateCategoryCell(hiddenCategory.presetCategory.utterance).element.exists)
+        try SettingsScreen.navigateToSettingsCategoryScreen()
+        try SettingsScreen.locateCategoryCell(hiddenCategory.presetCategory.utterance)
 
         // Navigate to the category and hide it.
-        SettingsScreen.openCategorySettings(category: hiddenCategory.presetCategory.utterance)
-        SettingsScreen.showCategoryButton.tap()
+        try SettingsScreen.openCategorySettings(category: hiddenCategory.presetCategory.utterance)
+        try SettingsScreen.showCategoryButton.tapWhenExists()
         
         // Return to the main screen
-        CustomCategoriesScreen.returnToMainScreenFromCategoryDetails()
+        try CustomCategoriesScreen.returnToMainScreenFromCategoryDetails()
         
         // Confirm that the category is no longer accessible.
         let isVisible = MainScreen.locateAndSelectDestinationCategory(CategoryIdentifier(hiddenCategory.presetCategory.id))

@@ -15,15 +15,26 @@ extension XCUIElement {
     ///
     /// Returns false if the timeout expires without the element coming into existence. In this case, the `tap` action
     /// will not occur.
-    func tap(afterWaitingForExistenceWithTimeout timeout: TimeInterval,
-             file: StaticString = #file,
-             line: UInt = #line)
-    {
-        guard self.waitForExistence(timeout: timeout) else {
-            XCTFail("Element did not come into existence before timeout.", file: file, line: line)
-            return
-        }
+    func tapWhenExists(
+        timeout: TimeInterval = 0.5,
+        file: StaticString = #file,
+        line: UInt = #line
+    ) throws {
+        try assertExistence(timeout: timeout, file: file, line: line)
         self.tap()
+    }
+    
+    func assertExistence(
+        timeout: TimeInterval = 0.5,
+        _ message: String? = nil,
+        file: StaticString = #file,
+        line: UInt = #line
+    ) throws {
+        guard self.waitForExistence(timeout: timeout) else {
+            let message = message ?? "Element did not come into existence before timeout."
+            XCTFail(message, file: file, line: line)
+            throw XCTestError(.timeoutWhileWaiting)
+        }
     }
     
 }

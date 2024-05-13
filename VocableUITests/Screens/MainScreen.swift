@@ -82,7 +82,11 @@ class MainScreen: BaseScreen {
     }
     
     /// Assuming there is at least one page of phrases within a category, locate the cell containing the given phrase.
-    static func locatePhraseCell(phrase: String) -> XCUIElement {
+    static func locatePhraseCell(
+        phrase: String,
+        file: StaticString = #file,
+        line: UInt = #line
+    ) throws -> XCUIElement {
         let predicate = NSPredicate(format: "label MATCHES %@", phrase)
         
         // Loop through each custom category page to find our phrase
@@ -90,16 +94,20 @@ class MainScreen: BaseScreen {
             if app.cells.staticTexts.containing(predicate).element.exists {
                 break
             } else {
-                paginationRightButton.tap()
+                try paginationRightButton.tapWhenExists(file: file, line: line)
             }
         }
         return app.cells.staticTexts.containing(predicate).element
     }
     
-    static func navigateToSettingsAndOpenCategory(name: String) {
-        MainScreen.settingsButton.tap()
-        SettingsScreen.categoriesAndPhrasesCell.tap()
-        SettingsScreen.openCategorySettings(category: name)
+    static func navigateToSettingsAndOpenCategory(
+        name: String,
+        file: StaticString = #file,
+        line: UInt = #line
+    ) throws {
+        try MainScreen.settingsButton.tapWhenExists(file: file, line: line)
+        try SettingsScreen.categoriesAndPhrasesCell.tapWhenExists(file: file, line: line)
+        try SettingsScreen.openCategorySettings(category: name, file: file, line: line)
     }
 
 }

@@ -24,62 +24,99 @@ class CustomCategoriesScreen: BaseScreen {
         return XCUIApplication().cells.matching(identifier: phraseId)
     }
     
-    static func createCustomCategory(categoryName: String) {
-        SettingsScreen.addCategoryButton.tap(afterWaitingForExistenceWithTimeout: 0.5)
-        KeyboardScreen.typeText(categoryName)
-        KeyboardScreen.checkmarkAddButton.tap(afterWaitingForExistenceWithTimeout: 0.75)
+    static func createCustomCategory(
+        categoryName: String,
+        file: StaticString = #file,
+        line: UInt = #line
+    ) throws {
+        try SettingsScreen.addCategoryButton.tapWhenExists(file: file, line: line)
+        try KeyboardScreen.typeText(categoryName, file: file, line: line)
+        try KeyboardScreen.checkmarkAddButton.tapWhenExists(file: file, line: line)
     }
     
-    static func createAndLocateCustomCategory(_ categoryName: String) -> CategoryIdentifier {
-        createCustomCategory(categoryName: categoryName)
-        let customCategoryIdentifier = SettingsScreen.locateCategoryCell(categoryName).element.identifier
+    static func createAndLocateCustomCategory(
+        _ categoryName: String,
+        file: StaticString = #file,
+        line: UInt = #line
+    ) throws -> CategoryIdentifier {
+        try createCustomCategory(categoryName: categoryName, file: file, line: line)
+        let customCategoryIdentifier = try SettingsScreen.locateCategoryCell(categoryName, file: file, line: line).identifier
         return CategoryIdentifier(customCategoryIdentifier)
     }
     
-    static func addPhrase(_ phrase: String) {
-        categoriesPageAddPhraseButton.tap()
-        _ = KeyboardScreen.checkmarkAddButton.waitForExistence(timeout: 0.75)
-        KeyboardScreen.typeText(phrase)
-        KeyboardScreen.checkmarkAddButton.tap()
-        _ = categoriesPageAddPhraseButton.waitForExistence(timeout: 0.5)
+    static func addPhrase(
+        _ phrase: String,
+        file: StaticString = #file,
+        line: UInt = #line
+    ) throws {
+        try categoriesPageAddPhraseButton.tapWhenExists(file: file, line: line)
+        try KeyboardScreen.checkmarkAddButton.assertExistence(timeout: 1.0, file: file, line: line)
+        try KeyboardScreen.typeText(phrase, file: file, line: line)
+        try KeyboardScreen.checkmarkAddButton.tapWhenExists(file: file, line: line)
     }
     
-    static func addRandomPhrases(numberOfPhrases: Int) {
+    static func addRandomPhrases(
+        numberOfPhrases: Int,
+        file: StaticString = #file,
+        line: UInt = #line
+    ) throws {
         for _ in 1...numberOfPhrases {
             let randomPhrase = KeyboardScreen.randomString(length: 2)
-            categoriesPageAddPhraseButton.tap()
-            KeyboardScreen.typeText(randomPhrase)
-            KeyboardScreen.checkmarkAddButton.tap()
+            try categoriesPageAddPhraseButton.tapWhenExists(file: file, line: line)
+            try KeyboardScreen.typeText(randomPhrase, file: file, line: line)
+            try KeyboardScreen.checkmarkAddButton.tapWhenExists(file: file, line: line)
         }
-        _ = categoriesPageAddPhraseButton.waitForExistence(timeout: 0.5)
+        try categoriesPageAddPhraseButton.assertExistence(timeout: 1.0, file: file, line: line)
     }
     
-    static func returnToMainScreenFromCategoriesList() {
+    static func returnToMainScreenFromCategoriesList(
+        file: StaticString = #file,
+        line: UInt = #line
+    ) throws {
         // Exit the Edit Categories and Settings Screens
-        navBarBackButton.tap(afterWaitingForExistenceWithTimeout: 0.5)
-        navBarDismissButton.tap(afterWaitingForExistenceWithTimeout: 0.5)
+        try navBarBackButton.tapWhenExists(file: file, line: line)
+        try navBarDismissButton.tapWhenExists(file: file, line: line)
         
         // Wait for the Main Screen to appear
-        XCTAssert(MainScreen.settingsButton.waitForExistence(timeout: 0.5), "Did not return to Main Screen as expected.")
+        try MainScreen.settingsButton.assertExistence(
+            timeout: 1.0,
+            "Did not return to main screen as expected",
+            file: file,
+            line: line
+        )
     }
     
-    static func returnToMainScreenFromCategoryDetails() {
-        navBarBackButton.tap(afterWaitingForExistenceWithTimeout: 0.5)
-        returnToMainScreenFromCategoriesList()
+    static func returnToMainScreenFromCategoryDetails(
+        file: StaticString = #file,
+        line: UInt = #line
+    ) throws {
+        try navBarBackButton.tapWhenExists(file: file, line: line)
+        try returnToMainScreenFromCategoriesList(file: file, line: line)
     }
     
-    static func returnToMainScreenFromEditPhrases() {
-        navBarBackButton.tap()
-        returnToMainScreenFromCategoryDetails()
+    static func returnToMainScreenFromEditPhrases(
+        file: StaticString = #file,
+        line: UInt = #line
+    ) throws {
+        try navBarBackButton.tapWhenExists(file: file, line: line)
+        try returnToMainScreenFromCategoryDetails(file: file, line: line)
     }
     
-    static func navigateToSettingsCategoryScreenFromCategoryEditPhrases() {
+    static func navigateToSettingsCategoryScreenFromCategoryEditPhrases(
+        file: StaticString = #file,
+        line: UInt = #line
+    ) throws {
         // Exit the Edit Phrases and Category Detail Screens
-        navBarBackButton.tap(afterWaitingForExistenceWithTimeout: 0.5)
-        navBarBackButton.tap(afterWaitingForExistenceWithTimeout: 0.5)
+        try navBarBackButton.tapWhenExists(file: file, line: line)
+        try navBarBackButton.tapWhenExists(file: file, line: line)
         
         // Wait for the Categories Screen to appear
-        XCTAssert(SettingsScreen.addCategoryButton.waitForExistence(timeout: 0.5), "Did not return to Settings Categories Screen as expected.")
+        try SettingsScreen.addCategoryButton.assertExistence(
+            timeout: 1.0,
+            "Did not return to Settings Categories Screen as expected.",
+            file: file,
+            line: line
+        )
     }
     
 }

@@ -15,7 +15,7 @@ class CustomCategoryAppRestartTests: XCTestCase {
     let secondCustomCategory: String = "Second"
     let phrase: String = "Test"
 
-    override func setUp() {
+    override func setUpWithError() throws {
         let app = XCUIApplication()
         app.configure {
             Arguments(.resetAppDataOnLaunch, .disableAnimations)
@@ -24,45 +24,45 @@ class CustomCategoryAppRestartTests: XCTestCase {
         app.launch()
         
         // Create a custom category
-        SettingsScreen.navigateToSettingsCategoryScreen()
-        CustomCategoriesScreen.createCustomCategory(categoryName: firstCustomCategory)
+        try SettingsScreen.navigateToSettingsCategoryScreen()
+        try CustomCategoriesScreen.createCustomCategory(categoryName: firstCustomCategory)
     }
     
-    func testCategoryAndPhraseCustomizationPersists() {
+    func testCategoryAndPhraseCustomizationPersists() throws {
         // Verify that custom category exists
-        XCTAssertTrue(SettingsScreen.doesCategoryExist(firstCustomCategory))
+        XCTAssertTrue(try SettingsScreen.doesCategoryExist(firstCustomCategory))
         
         // Add a custom phrase to the custom category and verify that it exists
-        SettingsScreen.openCategorySettings(category: firstCustomCategory)
-        CustomCategoriesScreen.editCategoryPhrasesButton.tap()
-        CustomCategoriesScreen.addPhrase(phrase)
+        try SettingsScreen.openCategorySettings(category: firstCustomCategory)
+        try CustomCategoriesScreen.editCategoryPhrasesButton.tapWhenExists()
+        try CustomCategoriesScreen.addPhrase(phrase)
         XCTAssertTrue(CustomCategoriesScreen.phraseDoesExist(phrase))
      
         // Restart the app
         Utilities.restartApp()
         
         // Navigate to Settings Category Screen
-        SettingsScreen.navigateToSettingsCategoryScreen()
+        try SettingsScreen.navigateToSettingsCategoryScreen()
         
         // Verify that the custom category and phrase persist after restarting
-        XCTAssertTrue(SettingsScreen.doesCategoryExist(firstCustomCategory))
+        XCTAssertTrue(try SettingsScreen.doesCategoryExist(firstCustomCategory))
         
-        SettingsScreen.openCategorySettings(category: firstCustomCategory)
-        CustomCategoriesScreen.editCategoryPhrasesButton.tap()
+        try SettingsScreen.openCategorySettings(category: firstCustomCategory)
+        try CustomCategoriesScreen.editCategoryPhrasesButton.tapWhenExists()
         XCTAssertTrue(CustomCategoriesScreen.phraseDoesExist(phrase))
     }
     
-    func testHideCategoryPersists() {
+    func testHideCategoryPersists() throws {
         // Verify that custom category exists
-        XCTAssertTrue(SettingsScreen.doesCategoryExist(firstCustomCategory))
+        XCTAssertTrue(try SettingsScreen.doesCategoryExist(firstCustomCategory))
         
         // Verify that when the custom category is shown (last in the list), up button is enabled and down button is disabled
         VTAssertReorderArrowsEqual(.upEnabledOnly, for: firstCustomCategory)
         
         // Hide the custom category
-        SettingsScreen.openCategorySettings(category: firstCustomCategory)
-        SettingsScreen.showCategoryButton.tap()
-        SettingsScreen.navBarBackButton.tap()
+        try SettingsScreen.openCategorySettings(category: firstCustomCategory)
+        try SettingsScreen.showCategoryButton.tapWhenExists()
+        try SettingsScreen.navBarBackButton.tapWhenExists()
         
         // Verify that when the category is hidden, up and down buttons are disabled
         VTAssertReorderArrowsEqual(.none, for: firstCustomCategory)
@@ -71,18 +71,18 @@ class CustomCategoryAppRestartTests: XCTestCase {
         Utilities.restartApp()
         
         // Verify that after restart, hidden category's up and down buttons are disabled
-        SettingsScreen.navigateToSettingsCategoryScreen()
+        try SettingsScreen.navigateToSettingsCategoryScreen()
         VTAssertReorderArrowsEqual(.none, for: firstCustomCategory)
     }
     
-    func testReorderPersists() {
+    func testReorderPersists() throws {
         // Verify that first custom category exists
-        XCTAssertTrue(SettingsScreen.doesCategoryExist(firstCustomCategory))
+        XCTAssertTrue(try SettingsScreen.doesCategoryExist(firstCustomCategory))
         
         // Create second custom category and verify that it exists
-        CustomCategoriesScreen.createCustomCategory(categoryName: secondCustomCategory)
-        let _ = SettingsScreen.navBarBackButton.waitForExistence(timeout: 1)
-        XCTAssertTrue(SettingsScreen.doesCategoryExist(secondCustomCategory))
+        try CustomCategoriesScreen.createCustomCategory(categoryName: secondCustomCategory)
+        try SettingsScreen.navBarBackButton.assertExistence(timeout: 1.0)
+        XCTAssertTrue(try SettingsScreen.doesCategoryExist(secondCustomCategory))
         
         // Verify that first custom category's up and down buttons are enabled
         VTAssertReorderArrowsEqual(.both, for: firstCustomCategory)
@@ -91,9 +91,9 @@ class CustomCategoryAppRestartTests: XCTestCase {
         VTAssertReorderArrowsEqual(.upEnabledOnly, for: secondCustomCategory)
         
         // Reorder custom categories, move first custom category to the end of the list
-        let firstCategory = SettingsScreen.locateCategoryCell(firstCustomCategory)
-        firstCategory.buttons[.settings.editCategories.moveDownButton].tap()
-        let _ = SettingsScreen.navBarBackButton.waitForExistence(timeout: 1)
+        let firstCategory = try SettingsScreen.locateCategoryCell(firstCustomCategory)
+        try firstCategory.buttons[.settings.editCategories.moveDownButton].tapWhenExists()
+        try SettingsScreen.navBarBackButton.assertExistence(timeout: 1.0)
         
         // Verify that first custom category's (last in the list), up button is enabled and down button is disabled
         VTAssertReorderArrowsEqual(.upEnabledOnly, for: firstCustomCategory)
@@ -103,7 +103,7 @@ class CustomCategoryAppRestartTests: XCTestCase {
         
         // Restart the app and navigate to Settings Category Screen
         Utilities.restartApp()
-        SettingsScreen.navigateToSettingsCategoryScreen()
+        try SettingsScreen.navigateToSettingsCategoryScreen()
         
         // Verify that first custom category's (last in the list), up button is enabled and down button is disabled
         VTAssertReorderArrowsEqual(.upEnabledOnly, for: firstCustomCategory)

@@ -11,48 +11,50 @@ import XCTest
 
 class KeyboardScreenTests: BaseTest {
     
-    func testKeyboardOutputIsDisplayed() {
+    func testKeyboardOutputIsDisplayed() throws {
         let testPhrase = "Test"
         
-        MainScreen.keyboardButton.tap()
-        KeyboardScreen.typeText(testPhrase)
+        try MainScreen.keyboardButton.tapWhenExists()
+        try KeyboardScreen.typeText(testPhrase)
        
-        XCTAssertTrue(KeyboardScreen.keyboardTextView.staticTexts[testPhrase].exists, "Expected the text \(testPhrase) to be displayed")
+        try KeyboardScreen.keyboardTextView.staticTexts[testPhrase]
+            .assertExistence("Expected the text \(testPhrase) to be displayed")
     }
   
-    func testAddPhraseToMySayingsFromKeyboard() {
+    func testAddPhraseToMySayingsFromKeyboard() throws {
         let testPhrase = "Test"
         
-        MainScreen.keyboardButton.tap()
-        KeyboardScreen.typeText(testPhrase)
-        KeyboardScreen.favoriteButton.tap()
-        KeyboardScreen.navBarDismissButton.tap()
+        try MainScreen.keyboardButton.tapWhenExists()
+        try KeyboardScreen.typeText(testPhrase)
+        try KeyboardScreen.favoriteButton.tapWhenExists()
+        try KeyboardScreen.navBarDismissButton.tapWhenExists()
         
         MainScreen.locateAndSelectDestinationCategory(.mySayings)
 
-        XCTAssertTrue(MainScreen.locatePhraseCell(phrase: testPhrase).exists, "Expected the phrase \(testPhrase) to be added to and displayed in 'My Sayings'")
+        try MainScreen.locatePhraseCell(phrase: testPhrase)
+            .assertExistence("Expected the phrase \(testPhrase) to be added to and displayed in 'My Sayings'")
     }
     
-    func testRemovePhraseFromMySayingsFromKeyboard() {
-       let testPhrase = "Test"
-       
-        MainScreen.keyboardButton.tap()
-        KeyboardScreen.typeText(testPhrase)
-        KeyboardScreen.favoriteButton.tap()
-        KeyboardScreen.navBarDismissButton.tap()
-       
-        MainScreen.locateAndSelectDestinationCategory(.mySayings)
-       
-        XCTAssertTrue(MainScreen.locatePhraseCell(phrase: testPhrase).exists, "Expected the phrase \(testPhrase) to be added to and displayed in 'My Sayings'")
+    func testRemovePhraseFromMySayingsFromKeyboard() throws {
+        let testPhrase = "Test"
         
-        MainScreen.keyboardButton.tap()
-        KeyboardScreen.typeText(testPhrase)
-        KeyboardScreen.favoriteButton.tap()
-        KeyboardScreen.navBarDismissButton.tap()
+        try MainScreen.keyboardButton.tapWhenExists()
+        try KeyboardScreen.typeText(testPhrase)
+        try KeyboardScreen.favoriteButton.tapWhenExists()
+        try KeyboardScreen.navBarDismissButton.tapWhenExists()
+        
+        MainScreen.locateAndSelectDestinationCategory(.mySayings)
+        
+        try MainScreen.locatePhraseCell(phrase: testPhrase).assertExistence("Expected the phrase \(testPhrase) to be added to and displayed in 'My Sayings'")
+        
+        try MainScreen.keyboardButton.tapWhenExists()
+        try KeyboardScreen.typeText(testPhrase)
+        try KeyboardScreen.favoriteButton.tapWhenExists()
+        try KeyboardScreen.navBarDismissButton.tapWhenExists()
         MainScreen.locateAndSelectDestinationCategory(.mySayings)
         
         // We expect 'My Sayings' to be empty now.
-        XCTAssertTrue(MainScreen.emptyStateAddPhraseButton.exists, "Expected the phrase \(testPhrase) to be deleted from 'My Sayings'")
+        try MainScreen.emptyStateAddPhraseButton.assertExistence("Expected the phrase \(testPhrase) to be deleted from 'My Sayings'")
     }
-     
+    
 }

@@ -21,13 +21,18 @@ class KeyboardScreen: BaseScreen {
         _ textToType: String,
         file: StaticString = #file,
         line: UInt = #line
-    ) {
+    ) throws {
         // Ensure the keyboard is visible on screen before tapping any cells
-        if !keyboardCollectionView.waitForExistence(timeout: 0.5) {
-            XCTFail("Failed to locate keyboard", file: file, line: line)
-            return
-        }
+        try keyboardCollectionView.assertExistence(
+            timeout: 0.5,
+            "Failed to locate keyboard",
+            file: file,
+            line: line
+        )
         
+        // The entire keyboard is visible by design, so it is okay to
+        // not wait for the existence of each cell before tapping. It's
+        // a minor optimization, but the savings add up.
         for char in textToType {
             keyboardCollectionView.cells[.shared.keyboard.key("\(char)")].tap()
         }

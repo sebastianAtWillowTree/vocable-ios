@@ -21,21 +21,21 @@ private class EmptyStateButton: GazeableButton {
     }
 
     private func commonInit() {
-        updateForCurrentTraitCollection()
+        configuration = UIButton.Configuration.plain()
     }
 
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        updateForCurrentTraitCollection()
-    }
-
-    private func updateForCurrentTraitCollection() {
-        let hasCompactSize = [traitCollection.horizontalSizeClass, traitCollection.verticalSizeClass]
-            .contains(.compact)
-
-        contentEdgeInsets = hasCompactSize ?
-            .vertical(8) + .horizontal(48) :
-            .uniform(32)
+    override func updateConfiguration() {
+        guard let configuration = configuration else {
+            return
+        }
+        
+        var updateConfiguration = configuration
+        
+        let hasCompactSize = [traitCollection.horizontalSizeClass, traitCollection.verticalSizeClass].contains(.compact)
+        updateConfiguration.contentInsets = hasCompactSize ?
+                    .vertical(8) + .horizontal(48) :
+                    .uniform(32)
+        self.configuration = updateConfiguration
     }
 }
 

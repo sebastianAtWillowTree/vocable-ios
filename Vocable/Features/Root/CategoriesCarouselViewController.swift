@@ -64,7 +64,8 @@ import Combine
         collectionView.delaysContentTouches = true
         collectionView.delegate = self
         for button in [backChevron, forwardChevron] {
-            button?.setFillColor(.categoryBackgroundColor, for: .normal)
+            // FIXME: Fix with button configuraton
+//            button?.setFillColor(.categoryBackgroundColor, for: .normal)
             button?.cornerRadius = 8
         }
 

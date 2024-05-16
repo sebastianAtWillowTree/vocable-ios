@@ -175,10 +175,12 @@ private final class GazeableAlertButton: GazeableButton {
             }
         }
         
-        contentEdgeInsets = .init(top: 24, left: 24, bottom: 24, right: 24)
-
-        setFillColor(.clear, for: .normal)
-        setFillColor(.primaryColor, for: .selected)
+        configuration?.contentInsets = NSDirectionalEdgeInsets(top: 24, leading: 24, bottom: 24, trailing: 24)
+        
+        // FIXME: Remove? 
+//        contentEdgeInsets = .init(top: 24, left: 24, bottom: 24, right: 24)
+//        setFillColor(.clear, for: .normal)
+//        setFillColor(.primaryColor, for: .selected)
 
         if case .destructive = style {
             setTitleColor(.errorRed, for: .normal)

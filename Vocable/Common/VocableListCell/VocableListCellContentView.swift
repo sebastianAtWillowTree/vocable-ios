@@ -40,7 +40,7 @@ final class VocableListCellContentView: UIView, UIContentView {
     private lazy var primaryLabelButton: VocableListCellPrimaryButton = {
         let button = VocableListCellPrimaryButton()
         button.contentHorizontalAlignment = .left
-        button.contentEdgeInsets = .init(uniform: 16)
+        button.configuration?.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 16, bottom: 16, trailing: 16)
         return button
     }()
 
@@ -152,11 +152,6 @@ final class VocableListCellContentView: UIView, UIContentView {
         primaryLabelButton.accessibilityIdentifier = configuration?.accessibilityIdentifier
         primaryLabelButton.addTarget(self, action: #selector(handlePrimaryActionSelection(_:)), for: .primaryActionTriggered)
         primaryLabelButton.isEnabled = configuration?.isPrimaryActionEnabled ?? true
-
-        if let backgroundColor = configuration?.primaryBackgroundColor {
-            primaryLabelButton.setFillColor(backgroundColor, for: .normal)
-            primaryLabelButton.setFillColor(backgroundColor.disabled(blending: .collectionViewBackgroundColor), for: .disabled)
-        }
     }
 
     private func updateLeadingActionAccessoryButtons(with configuration: VocableListContentConfiguration?) {

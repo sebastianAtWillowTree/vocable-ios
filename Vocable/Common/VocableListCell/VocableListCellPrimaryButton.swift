@@ -41,6 +41,9 @@ final class VocableListCellPrimaryButton: GazeableButton {
     }
 
     private func commonInit() {
+        
+        configuration = UIButton.Configuration.plain()
+        
         addLayoutGuide(trailingAccessoryViewLayoutGuide)
         NSLayoutConstraint.activate([
             trailingAccessoryViewLayoutGuide.topAnchor.constraint(equalTo: topAnchor),
@@ -158,15 +161,15 @@ final class VocableListCellPrimaryButton: GazeableButton {
 
     override func layoutSubviews() {
 
-        var trailingInset = trailingAccessoryViewLayoutGuide.layoutFrame.width
-        var leadingInset = leadingAccessoryViewLayoutGuide.layoutFrame.width
+        let trailingInset = trailingAccessoryViewLayoutGuide.layoutFrame.width
+        let leadingInset = leadingAccessoryViewLayoutGuide.layoutFrame.width
 
-        if self.contentEdgeInsets.left != leadingInset {
-            self.contentEdgeInsets.left = leadingInset
+        if self.configuration?.contentInsets.leading != leadingInset {
+            self.configuration?.contentInsets.leading = leadingInset
         }
 
-        if self.contentEdgeInsets.right != trailingInset {
-            self.contentEdgeInsets.right = trailingInset
+        if self.configuration?.contentInsets.trailing != trailingInset {
+            self.configuration?.contentInsets.trailing = trailingInset
         }
 
         super.layoutSubviews()

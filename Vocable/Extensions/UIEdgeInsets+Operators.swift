@@ -40,3 +40,36 @@ extension UIEdgeInsets {
         .init(top: 0, left: horizontalInset, bottom: 0, right: horizontalInset)
     }
 }
+
+extension NSDirectionalEdgeInsets {
+
+    init(uniform value: CGFloat) {
+        self.init(top: value, leading: value, bottom: value, trailing: value)
+    }
+
+    static func + (lhs: NSDirectionalEdgeInsets, rhs: NSDirectionalEdgeInsets) -> NSDirectionalEdgeInsets {
+        return NSDirectionalEdgeInsets(top: lhs.top + rhs.top,
+                                       leading: lhs.leading + rhs.leading,
+                                       bottom: lhs.bottom + rhs.bottom,
+                                       trailing: lhs.trailing + rhs.trailing)
+    }
+
+    static func - (lhs: NSDirectionalEdgeInsets, rhs: NSDirectionalEdgeInsets) -> NSDirectionalEdgeInsets {
+        return NSDirectionalEdgeInsets(top: lhs.top - rhs.top,
+                                       leading: lhs.leading - rhs.leading,
+                                       bottom: lhs.bottom - rhs.bottom,
+                                       trailing: lhs.trailing - rhs.trailing)
+    }
+
+    static func uniform(_ inset: CGFloat) -> NSDirectionalEdgeInsets {
+        .init(top: inset, leading: inset, bottom: inset, trailing: inset)
+    }
+
+    static func vertical(_ verticalInset: CGFloat) -> NSDirectionalEdgeInsets {
+        .init(top: verticalInset, leading: 0, bottom: verticalInset, trailing: 0)
+    }
+
+    static func horizontal(_ horizontalInset: CGFloat) -> NSDirectionalEdgeInsets {
+        .init(top: 0, leading: horizontalInset, bottom: 0, trailing: horizontalInset)
+    }
+}

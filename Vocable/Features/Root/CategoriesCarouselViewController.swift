@@ -63,10 +63,11 @@ import Combine
 
         collectionView.delaysContentTouches = true
         collectionView.delegate = self
-        for button in [backChevron, forwardChevron] {
-            // FIXME: Fix with button configuraton
-//            button?.setFillColor(.categoryBackgroundColor, for: .normal)
-            button?.cornerRadius = 8
+        for button in [backChevron, forwardChevron].compacted() {
+            button.configurationUpdateHandler = { button in
+                button.configuration?.background.cornerRadius = 8.0
+                button.configuration?.background.backgroundColor = .categoryBackgroundColor
+            }
         }
 
         updateForCurrentTraitCollection()
@@ -236,14 +237,17 @@ import Combine
             collectionViewMask.cornerRadius = 8
             collectionView.layout.pageInsets = .init(top: 0, left: 8, bottom: 0, right: 8)
             collectionView.backgroundColor = .collectionViewBackgroundColor
-            backChevron.cornerRadius = collectionViewMask.cornerRadius
-            forwardChevron.cornerRadius = collectionViewMask.cornerRadius
         } else {
             collectionViewMask.cornerRadius = 8
             collectionView.layout.pageInsets = .init(top: 8, left: 8, bottom: 8, right: 8)
             collectionView.backgroundColor = .categoryBackgroundColor
-            backChevron.cornerRadius = collectionViewMask.cornerRadius
-            forwardChevron.cornerRadius = collectionViewMask.cornerRadius
+        }
+        
+        for button in [backChevron, forwardChevron].compacted() {
+            button.configurationUpdateHandler = { [weak self] button in
+                guard let collectionViewMask = self?.collectionViewMask else { return }
+                button.configuration?.background.cornerRadius = collectionViewMask.cornerRadius
+            }
         }
 
         switch sizeClass {

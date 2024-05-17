@@ -87,7 +87,7 @@ struct VocableListContentConfiguration: UIContentConfiguration, Equatable {
         accessibilityLabel: String? = nil,
         primaryAction: @escaping () -> Void
     ) {
-        let attributes: [NSAttributedString.Key: Any] = [.font: UIFont.systemFont(ofSize: 22, weight: .bold)]
+        let attributes: [NSAttributedString.Key: Any] = [.font: UIFont.settingsCellTitle()]
         let attributedText = NSAttributedString(string: title, attributes: attributes)
 
         self.init(

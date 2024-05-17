@@ -9,18 +9,10 @@
 import Foundation
 import UIKit
 
-extension UIControl.State: Hashable {
-
-}
-
 @IBDesignable
 class GazeableButton: UIButton {
 
     fileprivate var gazeBeganDate: Date?
-    private var cachedFillColors = [UIControl.State: UIColor]()
-    private var cachedTitleColors = [UIControl.State: UIColor]()
-    private var cachedHighlightColor: UIColor?
-    private let defaultIBStates = [UIControl.State.normal, .highlighted, .selected, .disabled]
 
     var shouldShrinkWhenTouched = true {
         didSet {
@@ -36,32 +28,7 @@ class GazeableButton: UIButton {
             updateSelectionAppearance()
         }
     }
-
-    @IBInspectable var cornerRadius: CGFloat = 8 {
-        didSet {
-            guard oldValue != cornerRadius else { return }
-            // FIXME: Replace with UIButtonConfiguration
-//            updateBackgroundImagesForCurrentParameters()
-        }
-    }
-
-    @IBInspectable var borderWidth: CGFloat = 4 {
-        didSet {
-            guard oldValue != borderWidth else { return }
-            // FIXME: Replace with UIButtonConfiguration
-//            updateBackgroundImagesForCurrentParameters()
-        }
-    }
-
-    // FIXME: needed
-    var roundedCorners: UIRectCorner = .allCorners {
-        didSet {
-            guard oldValue != roundedCorners else { return }
-            // FIXME: Replace with UIButtonConfiguration
-//            updateBackgroundImagesForCurrentParameters()
-        }
-    }
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -77,61 +44,54 @@ class GazeableButton: UIButton {
     }
     
     override func updateConfiguration() {
-        guard let configuration = configuration else {
-            return
-        }
         
-        var updatedConfiguration = configuration
-        
-        tintColor = .defaultTextColor
+        var configuration = configuration ?? .plain()
         
         var fillColor = UIColor.defaultCellBackgroundColor
         var titleColor = UIColor.defaultTextColor
-        
         
         if self.state.contains(.selected) {
             fillColor = .cellSelectionColor
             titleColor = .collectionViewBackgroundColor
         }
         
-        if self.state.contains(.disabled)  {
+        if self.state.contains(.disabled) {
             fillColor = fillColor.disabled(blending: .collectionViewBackgroundColor)
-            titleColor = .white.withAlphaComponent(0.5)
-        }
-        
-        if isTrackingTouches {
-            fillColor = fillColor.darkenedForHighlight()
+            titleColor = titleColor.blended(with: fillColor, amount: 0.5)
         }
         
         var strokeColor = fillColor
         
         if self.state.contains(.highlighted) {
             strokeColor = UIColor.cellBorderHighlightColor
+            if isTrackingTouches {
+                fillColor = fillColor.darkenedForHighlight()
+            }
         }
 
-        updatedConfiguration.background.backgroundColor = fillColor
-        updatedConfiguration.baseForegroundColor = titleColor
+        tintColor = titleColor
+        configuration.background.backgroundColor = fillColor
+        configuration.baseForegroundColor = titleColor
         
-        updatedConfiguration.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { incoming in
+        configuration.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { incoming in
             var outgoing = incoming
             outgoing.foregroundColor = titleColor
             return outgoing
         }
         
-        updatedConfiguration.imageColorTransformer = UIConfigurationColorTransformer { incoming in
+        configuration.imageColorTransformer = UIConfigurationColorTransformer { incoming in
             return titleColor
         }
         
-        updatedConfiguration.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
-        updatedConfiguration.preferredSymbolConfigurationForImage = UIImage.SymbolConfiguration(pointSize: 24, weight: .bold)
+        configuration.contentInsets = NSDirectionalEdgeInsets(uniform: 8)
+        configuration.preferredSymbolConfigurationForImage = UIImage.SymbolConfiguration(pointSize: 24, weight: .bold)
 
-        updatedConfiguration.background.strokeColor = strokeColor
-        updatedConfiguration.background.strokeWidth = borderWidth
-
-        print("isTrackingTouches: \(isTrackingTouches)")
-        print("highlighted: \(self.state.contains(.highlighted))")
+        configuration.background.strokeColor = strokeColor
+        configuration.background.strokeWidth = 4.0
         
-        self.configuration = updatedConfiguration
+        self.configuration = configuration
+        
+        updateSelectionAppearance()
     }
 
     private func updateSelectionAppearance() {
@@ -142,11 +102,13 @@ class GazeableButton: UIButton {
         }
 
         if UIView.inheritedAnimationDuration == 0 {
-            UIView.animate(withDuration: 0.2,
-                           delay: 0,
-                           options: [.beginFromCurrentState, .curveEaseOut],
-                           animations: actions,
-                           completion: nil)
+            UIView.animate(
+                withDuration: 0.2,
+                delay: 0,
+                options: [.beginFromCurrentState, .curveEaseOut],
+                animations: actions,
+                completion: nil
+            )
         } else {
             actions()
         }

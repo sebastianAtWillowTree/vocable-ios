@@ -119,7 +119,7 @@ private final class GazeableAlertView: UIVisualEffectView {
     }
 
     override var intrinsicContentSize: CGSize {
-        if [traitCollection.horizontalSizeClass, traitCollection.verticalSizeClass].contains(.compact) {
+        if sizeClass.contains(any: .compact) {
             return CGSize(width: 695 / 2, height: UIView.noIntrinsicMetric)
         }
         return CGSize(width: 695, height: UIView.noIntrinsicMetric)
@@ -129,12 +129,21 @@ private final class GazeableAlertView: UIVisualEffectView {
 
 private final class GazeableAlertButton: GazeableButton {
 
-    var style: GazeableAlertAction.Style = .default {
+    private let backgroundView = BorderedView()
+    
+    var actionStyle: GazeableAlertAction.Style = .default {
         didSet {
-            updateForCurrentTraitCollection()
+            setNeedsUpdateConfiguration()
         }
     }
 
+    var roundedCorners: UIRectCorner = .allCorners {
+        didSet {
+            guard oldValue != roundedCorners else { return }
+            setNeedsUpdateConfiguration()
+        }
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
 
@@ -148,53 +157,73 @@ private final class GazeableAlertButton: GazeableButton {
     }
 
     private func commonInit() {
-
-        cornerRadius = 14
         titleLabel?.adjustsFontSizeToFitWidth = true
         setContentCompressionResistancePriority(.required, for: .horizontal)
         setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
-
-        updateForCurrentTraitCollection()
     }
-
-    private func updateForCurrentTraitCollection() {
-
-        switch style {
+    
+    override func updateConfiguration() {
+        super.updateConfiguration()
+        guard var configuration else { return }
+        configuration.background.cornerRadius = 14.0
+        
+        let font: UIFont
+        let foregroundColor: UIColor
+        let backgroundColor: UIColor
+        switch actionStyle {
         case .bold, .destructive:
-            if [traitCollection.horizontalSizeClass, traitCollection.verticalSizeClass].contains(.compact) {
-                titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .bold)
+            if sizeClass.contains(any: .compact) {
+                font = UIFont.systemFont(ofSize: 15, weight: .bold)
             } else {
-                titleLabel?.font = UIFont.systemFont(ofSize: 28, weight: .bold)
+                font = UIFont.systemFont(ofSize: 28, weight: .bold)
             }
 
         case .default:
-            if [traitCollection.horizontalSizeClass, traitCollection.verticalSizeClass].contains(.compact) {
-                titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .regular)
+            if sizeClass.contains(any: .compact) {
+                font = UIFont.systemFont(ofSize: 15, weight: .semibold)
             } else {
-                titleLabel?.font = UIFont.systemFont(ofSize: 28, weight: .regular)
+                font = UIFont.systemFont(ofSize: 28, weight: .semibold)
             }
         }
         
-        configuration?.contentInsets = NSDirectionalEdgeInsets(top: 24, leading: 24, bottom: 24, trailing: 24)
-        
-        // FIXME: Remove? 
-//        contentEdgeInsets = .init(top: 24, left: 24, bottom: 24, right: 24)
-//        setFillColor(.clear, for: .normal)
-//        setFillColor(.primaryColor, for: .selected)
-
-        if case .destructive = style {
-            setTitleColor(.errorRed, for: .normal)
+        configuration.contentInsets = NSDirectionalEdgeInsets(uniform: 24.0)
+    
+        if state.contains(.selected) {
+            foregroundColor = .white
+            backgroundColor = .primaryColor
+        } else if case .destructive = actionStyle {
+            foregroundColor = .errorRed
+            backgroundColor = .clear
         } else {
-            setTitleColor(.alertNormalText, for: .normal)
+            foregroundColor = .alertNormalText
+            backgroundColor = .clear
         }
-
-        setTitleColor(.white, for: .selected)
-    }
-
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-
-        updateForCurrentTraitCollection()
+        
+        let strokeColor: UIColor
+        if state.contains(.highlighted) {
+            strokeColor = .cellBorderHighlightColor
+        } else {
+            strokeColor = backgroundColor
+        }
+        
+        configuration.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { incoming in
+            var outgoing = incoming
+            outgoing.foregroundColor = foregroundColor
+            outgoing.font = font
+            return outgoing
+        }
+        configuration.imageColorTransformer = UIConfigurationColorTransformer { _ in
+            foregroundColor
+        }
+        
+        backgroundView.cornerRadius = configuration.background.cornerRadius
+        backgroundView.fillColor = backgroundColor
+        backgroundView.roundedCorners = roundedCorners
+        backgroundView.borderColor = strokeColor
+        backgroundView.borderWidth = configuration.background.strokeWidth
+        configuration.background = .clear()
+        configuration.background.customView = backgroundView
+        self.configuration = configuration
     }
 
 }
@@ -263,7 +292,7 @@ final class GazeableAlertViewController: UIViewController, UIViewControllerTrans
     }
 
     private func updateContentForCurrentTraitCollection() {
-        if [traitCollection.horizontalSizeClass, traitCollection.verticalSizeClass].contains(.compact) {
+        if sizeClass.contains(any: .compact) {
             messageLabel.font = .systemFont(ofSize: 15, weight: .regular)
             titleContainerView.layoutMargins = UIEdgeInsets(top: 20, left: 35, bottom: 20, right: 35)
         } else {
@@ -339,7 +368,7 @@ final class GazeableAlertViewController: UIViewController, UIViewControllerTrans
         actions.forEach { action in
             let button = GazeableAlertButton(frame: .zero)
             button.setTitle(action.title, for: .normal)
-            button.style = action.style
+            button.actionStyle = action.style
             button.shouldShrinkWhenTouched = false
             button.backgroundColor = .clear
             button.accessibilityIdentifier = action.accessibilityIdentifier

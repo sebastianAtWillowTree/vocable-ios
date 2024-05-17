@@ -60,6 +60,22 @@ final class VocableListCellPrimaryButton: GazeableButton {
             leadingAccessoryViewLayoutGuide.widthAnchor.constraint(equalToConstant: defaultInsets.leading).withPriority(.defaultLow)
         ])
     }
+    
+    override func updateConfiguration() {
+        super.updateConfiguration()
+        guard var configuration else { return }
+        let trailingInset = trailingAccessoryViewLayoutGuide.layoutFrame.width
+        let leadingInset = leadingAccessoryViewLayoutGuide.layoutFrame.width
+
+        if configuration.contentInsets.leading != leadingInset {
+            configuration.contentInsets.leading = leadingInset
+        }
+
+        if configuration.contentInsets.trailing != trailingInset {
+            configuration.contentInsets.trailing = trailingInset
+        }
+        self.configuration = configuration
+    }
 
     func setTrailingAccessory(_ accessory: VocableListCellAccessory?) {
         let trailingInsets: NSDirectionalEdgeInsets = defaultInsets
@@ -157,21 +173,5 @@ final class VocableListCellPrimaryButton: GazeableButton {
             view.centerYAnchor.constraint(equalTo: leadingAccessoryViewLayoutGuide.centerYAnchor),
             view.trailingAnchor.constraint(equalTo: leadingAccessoryViewLayoutGuide.trailingAnchor, constant: -insets.trailing)
         ])
-    }
-
-    override func layoutSubviews() {
-
-        let trailingInset = trailingAccessoryViewLayoutGuide.layoutFrame.width
-        let leadingInset = leadingAccessoryViewLayoutGuide.layoutFrame.width
-
-        if self.configuration?.contentInsets.leading != leadingInset {
-            self.configuration?.contentInsets.leading = leadingInset
-        }
-
-        if self.configuration?.contentInsets.trailing != trailingInset {
-            self.configuration?.contentInsets.trailing = trailingInset
-        }
-
-        super.layoutSubviews()
     }
 }

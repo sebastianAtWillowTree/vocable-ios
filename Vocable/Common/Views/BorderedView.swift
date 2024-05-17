@@ -209,7 +209,8 @@ class BorderedView: UIView {
         guard window != nil else { return }
 
         shapeLayer.lineDashPattern = borderDashPattern
-        shapeLayer.lineJoin = .round
+        shapeLayer.lineJoin = .miter
+        shapeLayer.lineCap = borderDashPattern == nil ? .square : .butt
         shapeLayer.lineWidth = borderWidth
         shapeLayer.strokeColor = borderColor.cgColor
         shapeLayer.masksToBounds = false
@@ -222,12 +223,15 @@ class BorderedView: UIView {
 
         guard !shapeRect.isEmpty, window != nil else { return }
 
+        let cornerRadius = cornerRadius - borderWidth / 2
         let cornerRadii = CGSize(width: cornerRadius, height: cornerRadius)
         let boundsRect = CGRect(origin: .zero, size: shapeRect.size)
         let insetRect = boundsRect.insetBy(dx: borderWidth / 2, dy: borderWidth / 2)
-        let path = UIBezierPath(roundedRect: insetRect,
-                                byRoundingCorners: roundedCorners,
-                                cornerRadii: cornerRadii).cgPath
+        let path = UIBezierPath(
+            roundedRect: insetRect,
+            byRoundingCorners: roundedCorners,
+            cornerRadii: cornerRadii
+        ).cgPath
         shapeLayer.path = path
         shapeLayer.shadowPath = path
 

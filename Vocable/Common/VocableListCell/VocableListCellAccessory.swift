@@ -40,8 +40,11 @@ struct VocableListCellAccessory: Equatable {
         } else {
             symbolName = "chevron.left"
         }
-
-        let image = UIImage(systemName: symbolName, withConfiguration: trailingDefaultSymbolConfiguration)!
+        return .systemImage(symbolName, isEnabled: isEnabled)
+    }
+    
+    static func systemImage(_ name: String, isEnabled: Bool = true) -> VocableListCellAccessory {
+        let image = UIImage(systemName: name, withConfiguration: trailingDefaultSymbolConfiguration)!
         return VocableListCellAccessory(content: .image(image), isEnabled: isEnabled)
     }
 
@@ -54,20 +57,14 @@ struct VocableListCellAccessory: Equatable {
     }
     
     static func checkmark(isEnabled: Bool) -> VocableListCellAccessory {
-        let image = UIImage(
-            systemName: "checkmark",
-            withConfiguration: trailingDefaultSymbolConfiguration
-        )!
-        return VocableListCellAccessory(content: .image(image), isEnabled: isEnabled)
+        .systemImage("checkmark", isEnabled: true)
     }
     
     static var playAudio: VocableListCellAccessory {
-        let image = UIImage(systemName: "play.circle", withConfiguration: trailingDefaultSymbolConfiguration)!
-        return VocableListCellAccessory(content: .image(image), isEnabled: true)
+        .systemImage("play.circle", isEnabled: true)
     }
     
     static var stopAudio: VocableListCellAccessory {
-        let image = UIImage(systemName: "stop.circle", withConfiguration: trailingDefaultSymbolConfiguration)!
-        return VocableListCellAccessory(content: .image(image), isEnabled: true)
+        .systemImage("stop.circle", isEnabled: true)
     }
 }

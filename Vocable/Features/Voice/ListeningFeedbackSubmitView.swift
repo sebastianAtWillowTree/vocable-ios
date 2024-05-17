@@ -48,15 +48,20 @@ final class ListeningFeedbackSubmitView: UIView {
         hintLabel.textAlignment = .center
         hintLabel.numberOfLines = 0
 
-        let buttonFont: UIFont = sizeClass == .hRegular_vRegular
-                           ? .systemFont(ofSize: 26, weight: .bold)
-                           : .systemFont(ofSize: 15, weight: .bold)
-
         let buttonTitle = String(localized: "listening_mode.feedback.submit.title")
         submitButton.setTitle(buttonTitle, for: .normal)
-        submitButton.contentEdgeInsets = .init(top: 10, left: 16, bottom: 10, right: 16)
-        submitButton.titleLabel?.font = buttonFont
-        submitButton.titleLabel?.textColor = .defaultTextColor
+        submitButton.configurationUpdateHandler = { button in
+            button.configuration?.contentInsets = .init(top: 10, leading: 16, bottom: 10, trailing: 16)
+            button.configuration?.titleTextAttributesTransformer = .init{ attributes in
+                var attributes = attributes
+                let font: UIFont = button.sizeClass == .hRegular_vRegular
+                ? .systemFont(ofSize: 26, weight: .bold)
+                : .systemFont(ofSize: 15, weight: .bold)
+                attributes.font = font
+                attributes.foregroundColor = button.configuration?.baseForegroundColor ?? .defaultTextColor
+                return attributes
+            }
+        }
 
         addSubview(stackView)
         stackView.translatesAutoresizingMaskIntoConstraints = false

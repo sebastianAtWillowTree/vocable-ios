@@ -40,7 +40,7 @@ final class VocableListCellContentView: UIView, UIContentView {
     private lazy var primaryLabelButton: VocableListCellPrimaryButton = {
         let button = VocableListCellPrimaryButton()
         button.contentHorizontalAlignment = .left
-        button.configuration?.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 16, bottom: 16, trailing: 16)
+        button.configuration?.contentInsets = NSDirectionalEdgeInsets(uniform: 16)
         return button
     }()
 

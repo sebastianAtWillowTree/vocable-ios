@@ -15,14 +15,15 @@ platform :ios do
     
     scan(
       scheme: "Development",
-      devices: ["iPhone 15"]
+      devices: ["iPhone 15"],
+      xcargs: "-skipPackagePluginValidation -skipMacroValidation"
     )
     # in the meantime, build the app for PRs
     match(type: "development", readonly: true)
     gym(
       scheme: "Development",
       skip_archive: true,
-      xcargs: "-skipPackagePluginValidation"
+      xcargs: "-skipPackagePluginValidation -skipMacroValidation"
     )
   end
 
@@ -67,7 +68,7 @@ platform :ios do
     
      build_app(
        scheme: "AppStore", 
-       xcargs: "-skipPackagePluginValidation"
+       xcargs: "-skipPackagePluginValidation -skipMacroValidation"
      )
 
      upload_to_testflight(

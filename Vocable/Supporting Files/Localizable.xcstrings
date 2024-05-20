@@ -8328,79 +8328,79 @@
       "localizations" : {
         "ar" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "هذا %1$@ على %2$@ %3$@ لا يدعم تتبع الرؤية.\n\nتتبع الرأس مدعوم على جميع الأجهزة مع كاميرا %4$@ ، وعلى معظم الأجهزة مع %6$@."
           }
         },
         "da" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Dette %1$@ på %2$@ %3$@ understøtter ikke hovedsporing.\n\nHovedsporing understøttes på alle enheder med et %4$@ -kamera og på de fleste enheder med %6$@."
           }
         },
         "de" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Diese %1$@ auf %2$@ %3$@ unterstützt keine Head-Tracking.\n\nHead-Tracking wird auf allen Geräten mit einer %4$@ Kamera und auf den meisten Geräten mit %6$@ unterstützt."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "This %1$@ on %2$@ %3$@ does not support head tracking.\n\nHead tracking is supported on all devices with a %4$@ camera, and on most devices with %6$@."
+            "value" : "This %1$@ on %2$@ %3$@ does not support head tracking.\n\nHead tracking is supported on all devices with a %4$@ camera, and on most devices with %5$@."
           }
         },
         "es" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Este %1$@ en %2$@ %3$@ no es compatible con el seguimiento de cabeza.\n\nEl seguimiento de cabeceras es compatible con todos los dispositivos con una cámara %4$@ , y en la mayoría de dispositivos con %6$@."
           }
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Ce %1$@ sur %2$@ %3$@ ne prend pas en charge le suivi de la tête.\n\nLe suivi de la tête est pris en charge sur tous les appareils équipés d'une caméra %4$@ et sur la plupart des appareils équipés de %6$@."
           }
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "%2$@ %3$@ पर यह %1$@ हेड ट्रैकिंग का समर्थन नहीं करता है।\n\n%4$@ कैमरे वाले सभी उपकरणों पर और %6$@ वाले अधिकांश उपकरणों पर हेड ट्रैकिंग समर्थित है।"
           }
         },
         "it" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Questo %1$@ su %2$@ %3$@ non supporta il head tracking.\n\nIl tracking della testa è supportato su tutti i dispositivi con una fotocamera %4$@ e sulla maggior parte dei dispositivi con %6$@."
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "%2$@ %3$@의 이 %1$@은(는) 머리 추적을 지원하지 않습니다.\n\n머리 추적은 %4$@ 카메라가 있는 모든 장치와 %6$@가 있는 대부분의 장치에서 지원됩니다."
           }
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Этот %1$@ на %2$@ %3$@ не поддерживает отслеживание головы.\n\nОтслеживание головы поддерживается на всех устройствах с камерой %4$@ и на большинстве устройств с %6$@."
           }
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "%1$@ trên %2$@ %3$@ này không hỗ trợ theo dõi phần đầu.\n\nTheo dõi đầu được hỗ trợ trên tất cả các thiết bị có camera %4$@ và trên hầu hết các thiết bị có %6$@."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "此 %1$@ 在 %2$@ %3$@ 上不支持头跟踪。\n\n所有设备都支持头部跟踪，所有设备都有 %4$@ 相机，在大多数设备上有 %6$@。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "%2$@ %3$@ 上的這個 %1$@ 不支持頭部跟踪。\n\n配備 %4$@ 攝像頭的所有設備以及配備 %6$@ 的大多數設備都支持頭部跟踪。"
           }
         }

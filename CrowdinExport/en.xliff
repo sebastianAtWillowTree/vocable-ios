@@ -570,10 +570,10 @@ Listening Mode is currently only available in English and requires %5$@ to be en
       <trans-unit id="settings.selection_mode.head_tracking_unsupported_footer" xml:space="preserve">
         <source>This %1$@ on %2$@ %3$@ does not support head tracking.
 
-Head tracking is supported on all devices with a %4$@ camera, and on most devices with %6$@.</source>
+Head tracking is supported on all devices with a %4$@ camera, and on most devices with %5$@.</source>
         <target state="translated">This %1$@ on %2$@ %3$@ does not support head tracking.
 
-Head tracking is supported on all devices with a %4$@ camera, and on most devices with %6$@.</target>
+Head tracking is supported on all devices with a %4$@ camera, and on most devices with %5$@.</target>
         <note>Additonal footer text noting heading tracking compatibility</note>
       </trans-unit>
       <trans-unit id="text_editor.alert.cancel_editing_confirmation.button.continue_editing.title" xml:space="preserve">

@@ -22,6 +22,7 @@ platform :ios do
     gym(
       scheme: "Development",
       skip_archive: true,
+      xcargs: "-skipPackagePluginValidation"
     )
   end
 
@@ -64,7 +65,10 @@ platform :ios do
        set_info_plist_value(path: "./Vocable/Supporting Files/Info.plist", key: "MIXPANEL_TOKEN_PRODUCTION", value: ENV["MIXPANEL_TOKEN_PRODUCTION"])
      end 
     
-     build_app(scheme: "AppStore")
+     build_app(
+       scheme: "AppStore", 
+       xcargs: "-skipPackagePluginValidation"
+     )
 
      upload_to_testflight(
        skip_waiting_for_build_processing: true

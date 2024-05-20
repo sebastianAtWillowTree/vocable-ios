@@ -64,7 +64,7 @@ class HeadGazeWindow: UIWindow {
     }
 
     func presentHeadTrackingErrorToastIfNeeded() {
-        guard !UIApplication.shared.isGazeTrackingActive, AppConfig.isHeadTrackingEnabled, !trackingDisabledByTouch else {
+        guard UIApplication.shared.isGazeTrackingActive, AppConfig.isHeadTrackingEnabled, !trackingDisabledByTouch else {
             return
         }
         let title = String(localized: "gaze_tracking.error.excessive_head_distance.title")

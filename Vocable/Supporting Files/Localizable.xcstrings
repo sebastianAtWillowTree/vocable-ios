@@ -8406,6 +8406,18 @@
         }
       }
     },
+    "settings.version_format" : {
+      "comment" : "Version information displayed at the bottom of the Settings screen. Argument is the application version.",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Version %1$@"
+          }
+        }
+      }
+    },
     "text_editor.alert.cancel_editing_confirmation.button.continue_editing.title" : {
       "comment" : "Button in the edit category title close confirmation. This button appears in an alert when there are edits made to the Category title and the user tries to close the keyboard without saving the changes. Pressing the button will allow editing the category title.",
       "localizations" : {

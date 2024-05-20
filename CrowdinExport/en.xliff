@@ -580,6 +580,11 @@ Head tracking is supported on all devices with a %4$@ camera, and on most device
 Head tracking is supported on all devices with a %4$@ camera, and on most devices with %6$@.</target>
         <note>Additonal footer text noting heading tracking compatibility</note>
       </trans-unit>
+      <trans-unit id="settings.version_format" xml:space="preserve">
+        <source>Version %1$@</source>
+        <target state="new">Version %1$@</target>
+        <note>Version information displayed at the bottom of the Settings screen. Argument is the application version.</note>
+      </trans-unit>
       <trans-unit id="text_editor.alert.cancel_editing_confirmation.button.continue_editing.title" xml:space="preserve">
         <source>Continue Editing</source>
         <target state="translated">Continue Editing</target>

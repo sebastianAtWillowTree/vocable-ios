@@ -4001,20 +4001,20 @@
       "localizations" : {
         "ar" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "يمكنك إنشاء صوت شخصي جديد في إعدادات %1$@. بمجرد إنشائه، يمكنك ضبط صوتك الشخصي كصوت Vocable."
+            "state" : "translated",
+            "value" : "يمكنك إنشاء صوت شخصي جديد في إعدادات %1$@. بمجرد إنشائه، يمكنك تعيين صوتك الشخصي كصوت للمفرد.\n\nإذا تم إنشاء صوت شخصي ولا يظهر في Vocable ، حاول إعادة تشغيل %1$@."
           }
         },
         "da" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Du kan oprette en ny personlig stemme i %1$@ indstillinger. Når den er oprettet, kan du indstille din personlige stemme som Vocable's stemme."
+            "state" : "translated",
+            "value" : "Du kan oprette en ny personlig stemme i %1$@ indstillinger. Når den er oprettet, kan du indstille din personlige stemme som Vocable's stemme.\n\nHvis en personlig stemme er blevet oprettet og ikke vises i Vocable, så prøv at genstarte %1$@."
           }
         },
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Sie können in den %1$@ Einstellungen eine neue Persönliche Stimme erstellen. Nach der Erstellung können Sie Ihre persönliche Stimme als Stimme von Vocable festlegen."
+            "state" : "translated",
+            "value" : "Sie können in den %1$@ Einstellungen eine neue Persönliche Stimme erstellen. Einmal erstellt, können Sie Ihre Persönliche Stimme als Voicable festlegen.\n\nWenn eine persönliche Stimme erstellt wurde und nicht in Vocable erscheint, versuchen Sie %1$@ neu zu starten."
           }
         },
         "en" : {
@@ -4025,56 +4025,56 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Puede crear una nueva voz personal en la configuración del %1$@. Una vez creada, puede configurar su Voz personal como la voz de Vocable."
+            "state" : "translated",
+            "value" : "Puedes crear una nueva voz personal en %1$@ Configuración. Una vez creada, puede configurar su Voz personal como la voz de Vocable.\n\nSi se creó una voz personal y no aparece en Vocable, intente reiniciar %1$@."
           }
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Vous pouvez créer une nouvelle voix personnelle dans les paramètres %1$@ . Une fois créé, vous pouvez définir votre voix personnelle comme voix Vocable."
+            "state" : "translated",
+            "value" : "Vous pouvez créer une nouvelle voix personnelle dans %1$@ Paramètres. Une fois créé, vous pouvez définir votre voix personnelle comme voix de Vocable.\n\nSi une voix personnelle a été créée et n'apparaît pas dans Vocable, essayez de redémarrer %1$@."
           }
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "आप %1$@ सेटिंग्स में एक नई व्यक्तिगत आवाज़ बना सकते हैं। एक बार बन जाने के बाद, आप अपनी व्यक्तिगत आवाज़ को वोकेबल की आवाज़ के रूप में सेट कर सकते हैं।"
+            "state" : "translated",
+            "value" : "आप %1$@ सेटिंग्स में एक नई व्यक्तिगत आवाज़ बना सकते हैं। एक बार बन जाने के बाद, आप अपनी व्यक्तिगत आवाज़ को वोकेबल की आवाज़ के रूप में सेट कर सकते हैं।\n\nयदि कोई व्यक्तिगत आवाज़ बनाई गई है और वोकेबल में दिखाई नहीं देती है, तो %1$@ को पुनः आरंभ करने का प्रयास करें।"
           }
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Puoi creare una nuova Voce Personale nelle Impostazioni di %1$@. Una volta creata, puoi impostare la tua Voce Personale come Vocable."
+            "state" : "translated",
+            "value" : "Puoi creare una nuova Voce Personale nelle Impostazioni di %1$@. Una volta creata, puoi impostare la tua Voce Personale come Vocabile.\n\nSe una Voce Personale è stata creata e non appare in Vocabile, prova a riavviare %1$@."
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "%1$@ 설정에서 새 개인 음성을 만들 수 있습니다. 생성된 후에는 개인 음성을 Vocable의 음성으로 설정할 수 있습니다."
+            "state" : "translated",
+            "value" : "%1$@ 설정에서 새 개인 음성을 만들 수 있습니다. 생성된 후에는 개인 음성을 Vocable의 음성으로 설정할 수 있습니다.\n\n개인 음성이 생성되었지만 Vocable에 표시되지 않는 경우 %1$@을(를) 다시 시작해 보세요."
           }
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Вы можете создать новый личный голос в настройках %1$@. После создания вы можете установить свой личный голос в качестве голоса Vocable."
+            "state" : "translated",
+            "value" : "Вы можете создать новый личный голос в настройках %1$@. После создания вы можете задать свой голос как голос для вокала.\n\nЕсли персональный голос был создан и не отображается в разделе \"Словарь\", попробуйте перезапустить %1$@."
           }
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Bạn có thể tạo Giọng nói cá nhân mới trong Cài đặt %1$@. Sau khi tạo, bạn có thể đặt Giọng nói cá nhân làm Giọng nói có thể phát âm của mình."
+            "state" : "translated",
+            "value" : "Bạn có thể tạo Giọng nói cá nhân mới trong Cài đặt %1$@. Sau khi tạo, bạn có thể đặt Giọng nói cá nhân của mình làm giọng nói của Vocable.\n\nNếu Giọng nói Cá nhân đã được tạo và không xuất hiện trong Từ vựng, hãy thử khởi động lại %1$@."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "您可以在%1$@ 设置中创建新的个人语音。 创建后，您可以将您的个人语音设置为 Vocable 的语音。"
+            "state" : "translated",
+            "value" : "您可以在 %1$@ 设置中创建一个新的个人语音。一旦创建，您可以将您的个人语音设置为词汇。\n\n如果个人语音已被创建并且没有出现在词汇中，请尝试重启 %1$@。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "您可以在%1$@ 設定中建立新的個人語音。 建立後，您可以將您的個人語音設定為 Vocable 的語音。"
+            "state" : "translated",
+            "value" : "您可以在%1$@ 設定中建立新的個人語音。 建立後，您可以將您的個人語音設定為 Vocable 的語音。\n\n如果個人語音已建立但未出現在 Vocable 中，請嘗試重新啟動 %1$@。"
           }
         }
       }
@@ -8328,20 +8328,20 @@
       "localizations" : {
         "ar" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "هذا %1$@ على %2$@ %3$@ لا يدعم تتبع الرؤية.\n\nتتبع الرأس مدعوم على جميع الأجهزة مع كاميرا %4$@ ، وعلى معظم الأجهزة مع %6$@."
+            "state" : "translated",
+            "value" : "هذا %1$@ على %2$@ %3$@ لا يدعم تتبع الرأس.\n\nتتبع الرأس مدعوم على جميع الأجهزة مع كاميرا %4$@ ، وعلى معظم الأجهزة باستخدام %5$@."
           }
         },
         "da" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Dette %1$@ på %2$@ %3$@ understøtter ikke hovedsporing.\n\nHovedsporing understøttes på alle enheder med et %4$@ -kamera og på de fleste enheder med %6$@."
+            "state" : "translated",
+            "value" : "Denne %1$@ på %2$@ %3$@ understøtter ikke hovedsporing.\n\nHovedsporing understøttes på alle enheder med et %4$@ kamera og på de fleste enheder med %5$@."
           }
         },
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Diese %1$@ auf %2$@ %3$@ unterstützt keine Head-Tracking.\n\nHead-Tracking wird auf allen Geräten mit einer %4$@ Kamera und auf den meisten Geräten mit %6$@ unterstützt."
+            "state" : "translated",
+            "value" : "Dieses %1$@ auf %2$@ %3$@ unterstützt keine Head-Tracking.\n\nHead-Tracking wird auf allen Geräten mit einer %4$@ Kamera und auf den meisten Geräten mit %5$@ unterstützt."
           }
         },
         "en" : {
@@ -8352,56 +8352,56 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Este %1$@ en %2$@ %3$@ no es compatible con el seguimiento de cabeza.\n\nEl seguimiento de cabeceras es compatible con todos los dispositivos con una cámara %4$@ , y en la mayoría de dispositivos con %6$@."
+            "state" : "translated",
+            "value" : "Este %1$@ con %2$@ %3$@ no admite el seguimiento de la cabeza.\n\nEl seguimiento de la cabeza es compatible con todos los dispositivos con una cámara %4$@ y en la mayoría de los dispositivos con %5$@."
           }
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Ce %1$@ sur %2$@ %3$@ ne prend pas en charge le suivi de la tête.\n\nLe suivi de la tête est pris en charge sur tous les appareils équipés d'une caméra %4$@ et sur la plupart des appareils équipés de %6$@."
+            "state" : "translated",
+            "value" : "Ce %1$@ sur %2$@ %3$@ ne prend pas en charge le suivi de la tête.\n\nLe suivi de la tête est pris en charge sur tous les appareils équipés d'une caméra %4$@ et sur la plupart des appareils dotés de %5$@."
           }
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "%2$@ %3$@ पर यह %1$@ हेड ट्रैकिंग का समर्थन नहीं करता है।\n\n%4$@ कैमरे वाले सभी उपकरणों पर और %6$@ वाले अधिकांश उपकरणों पर हेड ट्रैकिंग समर्थित है।"
+            "state" : "translated",
+            "value" : "यह %1$@ %2$@ %3$@ पर हेड ट्रैकिंग का समर्थन नहीं करता है।\n\nहेड ट्रैकिंग %4$@ कैमरे वाले सभी डिवाइसों पर और %5$@ वाले अधिकांश डिवाइसों पर समर्थित है।"
           }
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Questo %1$@ su %2$@ %3$@ non supporta il head tracking.\n\nIl tracking della testa è supportato su tutti i dispositivi con una fotocamera %4$@ e sulla maggior parte dei dispositivi con %6$@."
+            "state" : "translated",
+            "value" : "Questo %1$@ su %2$@ %3$@ non supporta il head tracking.\n\nIl tracking testa è supportato su tutti i dispositivi con una fotocamera %4$@ e sulla maggior parte dei dispositivi con %5$@."
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "%2$@ %3$@의 이 %1$@은(는) 머리 추적을 지원하지 않습니다.\n\n머리 추적은 %4$@ 카메라가 있는 모든 장치와 %6$@가 있는 대부분의 장치에서 지원됩니다."
+            "state" : "translated",
+            "value" : "이 %1$@ on %2$@ %3$@는 헤드 추적을 지원하지 않습니다.\n\n헤드 추적은 %4$@ 카메라가있는 모든 장치와 %5$@ 의 대부분의 장치에서 지원됩니다."
           }
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Этот %1$@ на %2$@ %3$@ не поддерживает отслеживание головы.\n\nОтслеживание головы поддерживается на всех устройствах с камерой %4$@ и на большинстве устройств с %6$@."
+            "state" : "translated",
+            "value" : "Этот %1$@ на %2$@ %3$@ не поддерживает отслеживание головы.\n\nОтслеживание Head поддерживается на всех устройствах с помощью %4$@ камеры, а также на большинстве устройств с помощью %5$@."
           }
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "%1$@ trên %2$@ %3$@ này không hỗ trợ theo dõi phần đầu.\n\nTheo dõi đầu được hỗ trợ trên tất cả các thiết bị có camera %4$@ và trên hầu hết các thiết bị có %6$@."
+            "state" : "translated",
+            "value" : "%1$@ này trên %2$@ %3$@ này không hỗ trợ theo dõi đầu.\n\nTheo dõi đầu được hỗ trợ trên tất cả các thiết bị có camera %4$@ và trên hầu hết các thiết bị có %5$@."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "此 %1$@ 在 %2$@ %3$@ 上不支持头跟踪。\n\n所有设备都支持头部跟踪，所有设备都有 %4$@ 相机，在大多数设备上有 %6$@。"
+            "state" : "translated",
+            "value" : "此 %1$@ 在 %2$@ %3$@ 不支持头条跟踪。\n\n在所有带有 %4$@ 相机的设备以及大多数带有 %5$@的设备上支持头部跟踪。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "%2$@ %3$@ 上的這個 %1$@ 不支持頭部跟踪。\n\n配備 %4$@ 攝像頭的所有設備以及配備 %6$@ 的大多數設備都支持頭部跟踪。"
+            "state" : "translated",
+            "value" : "%2$@ %3$@ 上的此 %1$@ 不支援頭部追蹤。\n\n所有配備 %4$@ 攝影機的設備以及大多數配備 %5$@ 的設備均支援頭部追蹤。"
           }
         }
       }
@@ -8410,10 +8410,82 @@
       "comment" : "Version information displayed at the bottom of the Settings screen. Argument is the application version.",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الإصدار %1$@"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Version %1$@"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Version %1$@"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "new",
             "value" : "Version %1$@"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Versión %1$@"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Version %1$@"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "संस्करण %1$@"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Versione %1$@"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "버전 %1$@"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Версия %1$@"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Phiên bản %1$@"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "版本 %1$@"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "版本%1$@"
           }
         }
       }

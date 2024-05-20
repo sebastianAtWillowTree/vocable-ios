@@ -4001,79 +4001,79 @@
       "localizations" : {
         "ar" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "يمكنك إنشاء صوت شخصي جديد في إعدادات %1$@. بمجرد إنشائه، يمكنك ضبط صوتك الشخصي كصوت Vocable."
           }
         },
         "da" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Du kan oprette en ny personlig stemme i %1$@ indstillinger. Når den er oprettet, kan du indstille din personlige stemme som Vocable's stemme."
           }
         },
         "de" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Sie können in den %1$@ Einstellungen eine neue Persönliche Stimme erstellen. Nach der Erstellung können Sie Ihre persönliche Stimme als Stimme von Vocable festlegen."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "You can create a new Personal Voice in %1$@ Settings. Once created, you can set your Personal Voice as Vocable's voice."
+            "value" : "You can create a new Personal Voice in %1$@ Settings. Once created, you can set your Personal Voice as Vocable's voice.\n\nIf a Personal Voice has been created and does not appear in Vocable, try restarting %1$@."
           }
         },
         "es" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Puede crear una nueva voz personal en la configuración del %1$@. Una vez creada, puede configurar su Voz personal como la voz de Vocable."
           }
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Vous pouvez créer une nouvelle voix personnelle dans les paramètres %1$@ . Une fois créé, vous pouvez définir votre voix personnelle comme voix Vocable."
           }
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "आप %1$@ सेटिंग्स में एक नई व्यक्तिगत आवाज़ बना सकते हैं। एक बार बन जाने के बाद, आप अपनी व्यक्तिगत आवाज़ को वोकेबल की आवाज़ के रूप में सेट कर सकते हैं।"
           }
         },
         "it" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Puoi creare una nuova Voce Personale nelle Impostazioni di %1$@. Una volta creata, puoi impostare la tua Voce Personale come Vocable."
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "%1$@ 설정에서 새 개인 음성을 만들 수 있습니다. 생성된 후에는 개인 음성을 Vocable의 음성으로 설정할 수 있습니다."
           }
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Вы можете создать новый личный голос в настройках %1$@. После создания вы можете установить свой личный голос в качестве голоса Vocable."
           }
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Bạn có thể tạo Giọng nói cá nhân mới trong Cài đặt %1$@. Sau khi tạo, bạn có thể đặt Giọng nói cá nhân làm Giọng nói có thể phát âm của mình."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "您可以在%1$@ 设置中创建新的个人语音。 创建后，您可以将您的个人语音设置为 Vocable 的语音。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "您可以在%1$@ 設定中建立新的個人語音。 建立後，您可以將您的個人語音設定為 Vocable 的語音。"
           }
         }

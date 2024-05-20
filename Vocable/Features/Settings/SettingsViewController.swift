@@ -124,11 +124,22 @@ final class SettingsViewController: VocableCollectionViewController, MFMailCompo
         }
     }
 
-    static private var versionAndBuildNumber: String {
-        let versionNumber = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0.0"
-        let buildNumber = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "1"
-        return "Version \(versionNumber)-\(buildNumber)"
-    }
+    static private let versionAndBuildNumber: String = {
+        guard
+            let infoDict = Bundle.main.infoDictionary,
+            let versionNumber = infoDict["CFBundleShortVersionString"] as? String,
+            let buildNumber = infoDict["CFBundleVersion"] as? String
+        else {
+            return ""
+        }
+        let joinedVersion = "\(versionNumber) (\(buildNumber))"
+        let format = String(
+            localized: "settings.version_format",
+            defaultValue: "Version %1$@",
+            comment: "Version information displayed at the bottom of the Settings screen. Argument is the application version."
+        )
+        return String(format: format, joinedVersion)
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()

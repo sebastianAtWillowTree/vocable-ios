@@ -127,7 +127,6 @@ final class ListeningModeViewController: VocableCollectionViewController {
             collectionView.backgroundView = nil
         }
 
-
         let reconfigurableItems = [.smartAssistEnabled, .hotWordEnabled, .listeningModeEnabled].filter(snapshot.itemIdentifiers.contains)
         snapshot.reconfigureItems(reconfigurableItems)
 

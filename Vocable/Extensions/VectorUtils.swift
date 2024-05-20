@@ -23,8 +23,6 @@
 import Foundation
 import SceneKit
 
-// swiftlint:disable shorthand_operator
-
 extension SCNVector3 {
     /**
      * Negates the vector described by SCNVector3 and returns

@@ -19,7 +19,6 @@ private func makeFetchRequest(_ categoryId: NSManagedObjectID) -> NSFetchRequest
     return request
 }
 
-
 /// A SwiftUI version of the Edit Category Detail screen
 ///
 /// **WARNING** - This view is meant to be used as an example only, it should
@@ -61,7 +60,7 @@ struct EditCategoryDetail: View {
 
             LazyVGrid(columns: [.init(.flexible()), .init(.flexible())]) {
                 GazeButton {
-                    // TODO: Handle this action
+                    // Unhandled action
                 } label: {
                     HStack {
                         Text("category_editor.detail.button.rename_category.title")
@@ -81,7 +80,7 @@ struct EditCategoryDetail: View {
                 }
 
                 GazeButton {
-                    // TODO: Handle this action
+                    // Unhandled action
                 } label: {
                     HStack {
                         Text("category_editor.detail.button.edit_phrases.title")

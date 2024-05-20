@@ -11,8 +11,8 @@ import AVFoundation
 import UIKit
 import Combine
 
-protocol VoiceProfilePreviewSynthesizerDelegate {
-    func voiceProfilePreviewDidBegin(_ : AVSpeechSynthesisVoice?)
+protocol VoiceProfilePreviewSynthesizerDelegate: AnyObject {
+    func voiceProfilePreviewDidBegin(_: AVSpeechSynthesisVoice?)
     func voiceProfilePreviewDidEnd()
 }
 

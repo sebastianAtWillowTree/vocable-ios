@@ -4,12 +4,15 @@ platform :ios do
   before_all do
     ENV["FASTLANE_XCODEBUILD_SETTINGS_TIMEOUT"] = "60"
     setup_circle_ci
+    if is_ci
+      sh "defaults write com.apple.dt.Xcode IDESkipPackagePluginFingerprintValidation -bool YES"
+      sh "defaults write com.apple.dt.Xcode IDESkipMacroFingerprintValidation -bool YES"
+    end
   end
 
   desc "Runs all the tests"
   lane :test do
     
-    lint
     scan(
       scheme: "Development",
       devices: ["iPhone 15"]
@@ -19,15 +22,6 @@ platform :ios do
     gym(
       scheme: "Development",
       skip_archive: true,
-    )
-  end
-
-  desc "Run swiftlint"
-  lane :lint do
-    sh("brew install swiftlint")
-    swiftlint(
-      mode: :lint,      # SwiftLint mode: :lint (default) or :autocorrect
-      ignore_exit_status: true    # Allow fastlane to continue even if SwiftLint returns a non-zero exit status
     )
   end
 

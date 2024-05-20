@@ -66,7 +66,7 @@ final class VoiceSettingsViewController: VocableCollectionViewController {
         let items = items ?? previewController.items
         var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
         snapshot.appendSections([.voicePreview])
-        snapshot.appendItems(items.map{.selectedProfile($0)})
+        snapshot.appendItems(items.map { .selectedProfile($0) })
         snapshot.appendItems([.voicePicker])
         if #available(iOS 17.0, *) {
             // Don't show the row if the device doesn't support the feature
@@ -89,7 +89,7 @@ final class VoiceSettingsViewController: VocableCollectionViewController {
             withReuseIdentifier: SupplementaryKind.voicePickerFooter.rawValue
         )
         
-        let cellRegistration = UICollectionView.CellRegistration<VocableListCell, Item> { [weak self] cell, indexPath, item in
+        let cellRegistration = UICollectionView.CellRegistration<VocableListCell, Item> { [weak self] cell, _, item in
             guard let self else { return }
             switch item {
             case let .selectedProfile(profile):

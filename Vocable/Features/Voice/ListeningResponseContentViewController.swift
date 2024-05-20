@@ -18,6 +18,9 @@ final class ListeningResponseContentViewController: PagingCarouselViewController
     private var _content: [String] = []
     
     var content: [String] {
+        get {
+            _content
+        }
         set {
             var uniqueContent = OrderedSet<String>()
             uniqueContent.append(contentsOf: newValue)
@@ -31,10 +34,6 @@ final class ListeningResponseContentViewController: PagingCarouselViewController
             self.diffableDataSource.apply(newSnapshot, animatingDifferences: false)
 
             self.collectionView.backgroundView = nil
-        }
-        
-        get {
-            _content
         }
     }
 

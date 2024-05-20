@@ -37,7 +37,6 @@ class UIHeadGaze: UITouch {
         self._timestamp = Date().timeIntervalSince1970
     }
 
-
     /// - Returns:  1. Position of gaze projected on the screen measured in the coordinates of given view
     ///             2. or position in NDC coordinates if view is nil
     override func location(in view: UIView?) -> CGPoint {

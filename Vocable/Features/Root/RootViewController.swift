@@ -53,10 +53,6 @@ import SwiftUI
             }.store(in: &disposables)
     }
 
-    override func prepareForInterfaceBuilder() {
-        super.prepareForInterfaceBuilder()
-    }
-
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "CategoryCarousel" {
             categoryCarousel = (segue.destination as? CategoriesCarouselViewController)!

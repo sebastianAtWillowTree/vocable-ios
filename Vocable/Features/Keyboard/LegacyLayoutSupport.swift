@@ -382,7 +382,13 @@ class PresetCollectionViewCompositionalLayout: UICollectionViewCompositionalLayo
     
     static private func keyboardGroupLayout(environment: NSCollectionLayoutEnvironment, dimensions: (rows: Int, columns: Int), fractionalHeights: (compactHeight: CGFloat, defaultHeight: CGFloat)) -> NSCollectionLayoutGroup {
         let sizeClass = SizeClass(environment.traitCollection)
-        let keyItem = PresetCollectionViewCompositionalLayout.keyboardCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0 / CGFloat(dimensions.columns)), heightDimension: .fractionalHeight(1)), sizeClass: sizeClass)
+        let keyItem = PresetCollectionViewCompositionalLayout.keyboardCollectionLayoutItem(
+            layoutSize: NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(1.0 / CGFloat(dimensions.columns)),
+                heightDimension: .fractionalHeight(1)
+            ),
+            sizeClass: sizeClass
+        )
         
         // Character key group (Top 3 rows)
         let characterKeyGroup = NSCollectionLayoutGroup.horizontal(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)), subitem: keyItem, count: dimensions.columns)

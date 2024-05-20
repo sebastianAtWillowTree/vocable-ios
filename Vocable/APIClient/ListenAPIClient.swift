@@ -43,7 +43,7 @@ class ListenAPIClient {
     /// Storage for caching the availability check for the query API
     ///
     /// `nil` means that we have not checked. On API failures `isAvailable` will remain `nil`.
-    private (set) var isAvailable: Bool? = nil
+    private (set) var isAvailable: Bool?
     
     // MARK: - Init
     

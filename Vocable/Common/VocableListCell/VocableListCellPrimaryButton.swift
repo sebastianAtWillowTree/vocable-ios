@@ -41,6 +41,9 @@ final class VocableListCellPrimaryButton: GazeableButton {
     }
 
     private func commonInit() {
+        
+        configuration = UIButton.Configuration.plain()
+        
         addLayoutGuide(trailingAccessoryViewLayoutGuide)
         NSLayoutConstraint.activate([
             trailingAccessoryViewLayoutGuide.topAnchor.constraint(equalTo: topAnchor),
@@ -56,6 +59,22 @@ final class VocableListCellPrimaryButton: GazeableButton {
             leadingAccessoryViewLayoutGuide.leadingAnchor.constraint(equalTo: leadingAnchor),
             leadingAccessoryViewLayoutGuide.widthAnchor.constraint(equalToConstant: defaultInsets.leading).withPriority(.defaultLow)
         ])
+    }
+    
+    override func updateConfiguration() {
+        super.updateConfiguration()
+        guard var configuration else { return }
+        let trailingInset = trailingAccessoryViewLayoutGuide.layoutFrame.width
+        let leadingInset = leadingAccessoryViewLayoutGuide.layoutFrame.width
+
+        if configuration.contentInsets.leading != leadingInset {
+            configuration.contentInsets.leading = leadingInset
+        }
+
+        if configuration.contentInsets.trailing != trailingInset {
+            configuration.contentInsets.trailing = trailingInset
+        }
+        self.configuration = configuration
     }
 
     func setTrailingAccessory(_ accessory: VocableListCellAccessory?) {
@@ -154,21 +173,5 @@ final class VocableListCellPrimaryButton: GazeableButton {
             view.centerYAnchor.constraint(equalTo: leadingAccessoryViewLayoutGuide.centerYAnchor),
             view.trailingAnchor.constraint(equalTo: leadingAccessoryViewLayoutGuide.trailingAnchor, constant: -insets.trailing)
         ])
-    }
-
-    override func layoutSubviews() {
-
-        var trailingInset = trailingAccessoryViewLayoutGuide.layoutFrame.width
-        var leadingInset = leadingAccessoryViewLayoutGuide.layoutFrame.width
-
-        if self.contentEdgeInsets.left != leadingInset {
-            self.contentEdgeInsets.left = leadingInset
-        }
-
-        if self.contentEdgeInsets.right != trailingInset {
-            self.contentEdgeInsets.right = trailingInset
-        }
-
-        super.layoutSubviews()
     }
 }

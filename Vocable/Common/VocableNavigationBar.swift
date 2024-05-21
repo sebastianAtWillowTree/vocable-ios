@@ -50,8 +50,12 @@ private class ContentView: UIView {
     private func updateContentViews() {
 
         layoutMargins = .zero
-        leftButton?.contentEdgeInsets = .init(top: 8, left: 8, bottom: 8, right: 8)
-        rightButton?.contentEdgeInsets = .init(top: 8, left: 8, bottom: 8, right: 8)
+        
+        let updateHandler: UIButton.ConfigurationUpdateHandler = { button in
+            button.configuration?.contentInsets = .init(uniform: 8)
+        }
+        leftButton?.configurationUpdateHandler = updateHandler
+        rightButton?.configurationUpdateHandler = updateHandler
 
         setNeedsUpdateConstraints()
     }

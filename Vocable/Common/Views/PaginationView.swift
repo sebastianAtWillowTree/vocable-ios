@@ -17,7 +17,7 @@ private class PaginationViewGazeableButton: GazeableButton {
     }
 
     override var intrinsicContentSize: CGSize {
-        if [traitCollection.horizontalSizeClass, traitCollection.verticalSizeClass].contains(.compact) {
+        if sizeClass.contains(any: .compact) {
             return CGSize(width: 56, height: 48)
         }
         return CGSize(width: 104, height: 94)

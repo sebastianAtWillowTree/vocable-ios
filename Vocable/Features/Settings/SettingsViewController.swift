@@ -11,12 +11,17 @@ import MessageUI
 
 final class SettingsViewController: VocableCollectionViewController, MFMailComposeViewControllerDelegate {
 
+    private typealias DataSource = UICollectionViewDiffableDataSource<SettingsViewController.Section, SettingsItem>
+    private typealias CellRegistration = UICollectionView.CellRegistration<VocableListCell, SettingsItem>
+    
+    private var dataSource: DataSource!
+    private var cellRegistration: CellRegistration!
+    
     private weak var composeVC: MFMailComposeViewController?
 
     private enum Section: Int, CaseIterable {
         case internalSettings
         case externalURL
-        case version
     }
 
     private enum SettingsItem: Int, CaseIterable {
@@ -28,7 +33,6 @@ final class SettingsViewController: VocableCollectionViewController, MFMailCompo
         case privacyPolicy
         case contactDevs
         case pidTuner
-        case versionNum
         case listeningMode
         case voiceConfiguration
 
@@ -54,8 +58,6 @@ final class SettingsViewController: VocableCollectionViewController, MFMailCompo
                 return String(localized: "settings.cell.listening_mode.title")
             case .voiceConfiguration:
                 return String(localized: "settings.cell.voice_configuration.title")
-            case .versionNum:
-                return ""
             }
         }
         
@@ -77,7 +79,9 @@ final class SettingsViewController: VocableCollectionViewController, MFMailCompo
                 return .settings.listeningModeCell
             case .voiceConfiguration:
                 return .settings.voiceSettingsCell
-            default:
+            case .keyboardLayout:
+                return .settings.keyboardLayoutCell
+            case .pidTuner:
                 return ""
             }
         }
@@ -93,53 +97,16 @@ final class SettingsViewController: VocableCollectionViewController, MFMailCompo
             return true
         }
     }
-
-    private lazy var dataSource: UICollectionViewDiffableDataSource<Section, SettingsItem> =
-        .init(collectionView: collectionView) {(collectionView, indexPath, item) -> UICollectionViewCell in
-
-        switch item {
-        case .categories, .timingSensitivity, .resetAppSettings, .selectionMode, .listeningMode, .keyboardLayout:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SettingsCollectionViewCell.reuseIdentifier, for: indexPath) as! SettingsCollectionViewCell
-            cell.setup(title: item.title, image: UIImage(systemName: "chevron.right"))
-            cell.accessibilityID = item.accessibiltyId
-            return cell
-        case .privacyPolicy, .contactDevs:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SettingsCollectionViewCell.reuseIdentifier, for: indexPath) as! SettingsCollectionViewCell
-            cell.setup(title: item.title, image: UIImage(systemName: "arrow.up.right"))
-            cell.accessibilityID = item.accessibiltyId
-            return cell
-        case .voiceConfiguration:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SettingsCollectionViewCell.reuseIdentifier, for: indexPath) as! SettingsCollectionViewCell
-            cell.setup(title: item.title, image: UIImage(systemName: "chevron.right"))
-            return cell
-        case .versionNum:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SettingsFooterCollectionViewCell.reuseIdentifier, for: indexPath) as! SettingsFooterCollectionViewCell
-            cell.setup(versionLabel: SettingsViewController.versionAndBuildNumber)
-            return cell
-        case .pidTuner:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SettingsCollectionViewCell.reuseIdentifier, for: indexPath) as! SettingsCollectionViewCell
-            cell.setup(title: item.title, image: UIImage())
-            return cell
-            
-        }
+    
+    private enum SupplementaryKind: String {
+        case versionNumberFooter
     }
 
-    static private let versionAndBuildNumber: String = {
-        guard
-            let infoDict = Bundle.main.infoDictionary,
-            let versionNumber = infoDict["CFBundleShortVersionString"] as? String,
-            let buildNumber = infoDict["CFBundleVersion"] as? String
-        else {
-            return ""
-        }
-        let joinedVersion = "\(versionNumber) (\(buildNumber))"
-        let format = String(
-            localized: "settings.version_format",
-            defaultValue: "Version %1$@",
-            comment: "Version information displayed at the bottom of the Settings screen. Argument is the application version."
-        )
-        return String(format: format, joinedVersion)
-    }()
+    private var versionAndBuildNumber: String {
+        let versionNumber = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0.0"
+        let buildNumber = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "1"
+        return "Version \(versionNumber)-\(buildNumber)"
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -163,25 +130,57 @@ final class SettingsViewController: VocableCollectionViewController, MFMailCompo
         collectionView.backgroundColor = .collectionViewBackgroundColor
         collectionView.delaysContentTouches = false
         collectionView.isScrollEnabled = false
-
-        collectionView.register(UINib(nibName: "SettingsFooterCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: SettingsFooterCollectionViewCell.reuseIdentifier)
-        collectionView.register(UINib(nibName: "SettingsCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: SettingsCollectionViewCell.reuseIdentifier)
-
+        
+        collectionView.register(UINib(nibName: "SettingsFooterTextSupplementaryView", bundle: nil),
+                                forSupplementaryViewOfKind: SupplementaryKind.versionNumberFooter.rawValue,
+                                withReuseIdentifier: SupplementaryKind.versionNumberFooter.rawValue)
+        
         collectionView.collectionViewLayout = UICollectionViewCompositionalLayout { [weak self] (sectionIndex, environment) -> NSCollectionLayoutSection? in
-            guard let self = self else {
-                return nil
-            }
+            guard let self else { return nil }
             let section = self.dataSource.snapshot().sectionIdentifiers[sectionIndex]
             switch section {
             case .internalSettings:
                 return self.internalLinksSection(environment: environment)
             case .externalURL:
                 return self.externalLinksSection(environment: environment)
-            case .version:
-                return self.versionLabelSection(environment: environment)
             }
         }
-
+        
+        let cellRegistration = CellRegistration { [weak self] cell, indexPath, item in
+            if [.privacyPolicy, .contactDevs].contains(item) {
+                cell.contentConfiguration = VocableListContentConfiguration(
+                    title: item.title,
+                    trailingAccessory: .systemImage("arrow.up.right")
+                ) {
+                    self?.handleItemSelection(item)
+                }
+                cell.accessibilityID = item.accessibiltyId
+            } else {
+                cell.contentConfiguration = VocableListContentConfiguration.disclosureCellConfiguration(withTitle: item.title) {
+                    self?.handleItemSelection(item)
+                }
+                cell.accessibilityID = item.accessibiltyId
+            }
+        }
+        
+        dataSource = DataSource(collectionView: collectionView) { (collectionView, indexPath, item) -> UICollectionViewCell in
+            collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: item)
+        }
+        
+        dataSource.supplementaryViewProvider = { [weak self] (collectionView, elementKind, indexPath) in
+            guard let self else { return UICollectionReusableView() }
+            switch SupplementaryKind(rawValue: elementKind) {
+            case .none:
+                return UICollectionReusableView()
+            case .versionNumberFooter:
+                let footer = collectionView.dequeueReusableSupplementaryView(ofKind: elementKind, withReuseIdentifier: elementKind, for: indexPath) as! SettingsFooterTextSupplementaryView
+                footer.textLabel.text = self.versionAndBuildNumber
+                footer.textLabel.textAlignment = .center
+                return footer
+            }
+        }
+        
+        self.cellRegistration = cellRegistration
         updateDataSource()
     }
 
@@ -203,16 +202,16 @@ final class SettingsViewController: VocableCollectionViewController, MFMailCompo
         snapshot.appendSections([.externalURL])
         snapshot.appendItems([.privacyPolicy,
                               .contactDevs].filter(\.isFeatureEnabled))
-        snapshot.appendSections([.version])
-        snapshot.appendItems([.versionNum])
         dataSource.apply(snapshot, animatingDifferences: false)
     }
 
     private func sectionInsets(for environment: NSCollectionLayoutEnvironment) -> NSDirectionalEdgeInsets {
-        return NSDirectionalEdgeInsets(top: 0,
-                                       leading: max(view.layoutMargins.left - environment.container.contentInsets.leading, 0),
-                                       bottom: 0,
-                                       trailing: max(view.layoutMargins.right - environment.container.contentInsets.trailing, 0))
+        NSDirectionalEdgeInsets(
+            top: 0,
+            leading: max(view.layoutMargins.left - environment.container.contentInsets.leading, 0),
+            bottom: 0,
+            trailing: max(view.layoutMargins.right - environment.container.contentInsets.trailing, 0)
+        )
     }
 
     private func internalLinksSection(environment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection {
@@ -226,20 +225,16 @@ final class SettingsViewController: VocableCollectionViewController, MFMailCompo
         let section = defaultSection(environment: environment)
         section.contentInsets = sectionInsets(for: environment)
         section.contentInsets.top = 24
-        return section
-    }
-
-    private func versionLabelSection(environment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection {
-        let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(44))
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 1)
-        let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = sectionInsets(for: environment)
-        if sizeClass.contains(.vCompact) {
-            section.contentInsets.top = 8
-        } else {
-            section.contentInsets.top = 24
-        }
+        section.contentInsets.bottom = 16
+        
+        let versionItem = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: .init(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(88)),
+            elementKind: SupplementaryKind.versionNumberFooter.rawValue,
+            alignment: .bottom
+        )
+        section.boundarySupplementaryItems = [
+            versionItem
+        ]
         return section
     }
 
@@ -275,24 +270,16 @@ final class SettingsViewController: VocableCollectionViewController, MFMailCompo
 
     // MARK: UICollectionViewController
 
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if collectionView.indexPathForGazedItem != indexPath {
-            collectionView.deselectItem(at: indexPath, animated: true)
-        }
-
-        let item = dataSource.itemIdentifier(for: indexPath)
+    private func handleItemSelection(_ item: SettingsItem) {
         switch item {
         case .privacyPolicy:
             presentLeavingHeadTrackableDomainAlert(withConfirmation: presentPrivacyAlert)
-
         case .timingSensitivity:
             let viewController = TimingSensitivityViewController()
             show(viewController, sender: nil)
-
         case .selectionMode:
             let viewController = SelectionModeViewController()
             show(viewController, sender: nil)
-
         case .categories:
             let viewController = EditCategoriesViewController()
             show(viewController, sender: nil)
@@ -308,20 +295,21 @@ final class SettingsViewController: VocableCollectionViewController, MFMailCompo
             presentPidTuner()
         case .resetAppSettings:
             presentAppResetPrompt()
-
         case .keyboardLayout:
             let viewController = KeyboardLayoutViewController()
             show(viewController, sender: nil)
-        default:
-            break
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView.indexPathForGazedItem != indexPath {
+            collectionView.deselectItem(at: indexPath, animated: true)
         }
     }
 
     func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
         let item = dataSource.itemIdentifier(for: indexPath)
         switch item {
-        case .versionNum:
-            return false
         case .pidTuner:
             return AppConfig.isHeadTrackingEnabled
         default:
@@ -332,8 +320,6 @@ final class SettingsViewController: VocableCollectionViewController, MFMailCompo
     func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
         let item = dataSource.itemIdentifier(for: indexPath)
         switch item {
-        case .versionNum:
-            return false
         case .pidTuner:
             return AppConfig.isHeadTrackingEnabled
         default:
@@ -385,7 +371,7 @@ final class SettingsViewController: VocableCollectionViewController, MFMailCompo
         let composeVC = MFMailComposeViewController()
         composeVC.mailComposeDelegate = self
         composeVC.setToRecipients(["vocable@willowtreeapps.com"])
-        composeVC.setSubject("Feedback for iOS Vocable \(SettingsViewController.versionAndBuildNumber)")
+        composeVC.setSubject("Feedback for iOS Vocable \(versionAndBuildNumber)")
         self.composeVC = composeVC
 
         self.present(composeVC, animated: true)

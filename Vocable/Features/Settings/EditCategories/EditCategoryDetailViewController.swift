@@ -62,6 +62,11 @@ final class EditCategoryDetailViewController: VocableCollectionViewController {
             return button
         }()
     }
+    
+    override func viewLayoutMarginsDidChange() {
+        super.viewLayoutMarginsDidChange()
+        collectionView.collectionViewLayout.invalidateLayout()
+    }
 
     // MARK: UICollectionViewDataSource
 
@@ -138,8 +143,8 @@ final class EditCategoryDetailViewController: VocableCollectionViewController {
     }
 
     private func makeShowCategoryCellRegistration() -> CellRegistration {
-        CellRegistration { [category] cell, indexPath, item in
-            guard item == .showCategoryToggle else {
+        CellRegistration { [weak category] cell, indexPath, item in
+            guard let category, item == .showCategoryToggle else {
                 return assertionFailure("This cell registration is for the Show Category cell.")
             }
 
@@ -159,8 +164,8 @@ final class EditCategoryDetailViewController: VocableCollectionViewController {
     }
 
     private func makeEditPhrasesCellRegistration() -> CellRegistration {
-        CellRegistration { [category] cell, _, item in
-            guard item == .editPhrases else {
+        CellRegistration { [weak category] cell, _, item in
+            guard let category, item == .editPhrases else {
                 return assertionFailure("This cell registration is for the Edit Phrases cell.")
             }
 
@@ -179,8 +184,8 @@ final class EditCategoryDetailViewController: VocableCollectionViewController {
     }
 
     private func makeRemoveCategoryCellRegistration() -> CellRegistration {
-        CellRegistration { [category] cell, _, item in
-            guard item == .removeCategory else {
+        CellRegistration { [weak category] cell, _, item in
+            guard let category, item == .removeCategory else {
                 return assertionFailure("This cell registration is for the Remove Category cell.")
             }
 
@@ -257,10 +262,12 @@ final class EditCategoryDetailViewController: VocableCollectionViewController {
     }
 
     private func sectionInsets(for environment: NSCollectionLayoutEnvironment) -> NSDirectionalEdgeInsets {
-        return NSDirectionalEdgeInsets(top: 0,
-                                       leading: max(view.layoutMargins.left - environment.container.contentInsets.leading, 0),
-                                       bottom: 0,
-                                       trailing: max(view.layoutMargins.right - environment.container.contentInsets.trailing, 0))
+        NSDirectionalEdgeInsets(
+            top: 0,
+            leading: max(view.directionalLayoutMargins.leading - environment.container.contentInsets.leading, 0),
+            bottom: 0,
+            trailing: max(view.directionalLayoutMargins.trailing - environment.container.contentInsets.trailing, 0)
+        )
     }
 
     // MARK: Actions

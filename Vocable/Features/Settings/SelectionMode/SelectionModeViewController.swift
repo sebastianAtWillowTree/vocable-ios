@@ -18,9 +18,11 @@ final class SelectionModeViewController: VocableCollectionViewController {
         case headTrackingUnsupportedFooter
     }
 
-    private lazy var dataSource: UICollectionViewDiffableDataSource<Int, SelectionModeItem> = .init(collectionView: collectionView) { [weak self] (collectionView, indexPath, item) -> UICollectionViewCell? in
-        return self?.collectionView(collectionView, cellForItemAt: indexPath, item: item)
-    }
+    private typealias DataSource = UICollectionViewDiffableDataSource<Int, SelectionModeItem>
+    private typealias CellRegistration = UICollectionView.CellRegistration<VocableListCell, SelectionModeItem>
+    
+    private var dataSource: DataSource!
+    private var cellRegistration: CellRegistration!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,11 +52,29 @@ final class SelectionModeViewController: VocableCollectionViewController {
 
     private func setupCollectionView() {
         collectionView.backgroundColor = .collectionViewBackgroundColor
-        collectionView.register(UINib(nibName: "SettingsToggleCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: SettingsToggleCollectionViewCell.reuseIdentifier)
         collectionView.register(UINib(nibName: "SettingsFooterTextSupplementaryView", bundle: nil),
                                 forSupplementaryViewOfKind: SupplementaryKind.headTrackingUnsupportedFooter.rawValue,
                                 withReuseIdentifier: SupplementaryKind.headTrackingUnsupportedFooter.rawValue)
-
+        
+        let cellRegistration = CellRegistration { cell, indexPath, item in
+            switch item {
+            case .headTrackingToggle:
+                let title = String(localized: "settings.cell.head_tracking.title")
+                cell.contentConfiguration = VocableListContentConfiguration.toggleCellConfiguration(
+                    withTitle: title,
+                    isOn: AppConfig.isHeadTrackingEnabled
+                ) {
+                    AppConfig.isHeadTrackingEnabled.toggle()
+                }
+            }
+        }
+        dataSource = DataSource(collectionView: collectionView) { collectionView, indexPath, itemIdentifier in
+            collectionView.dequeueConfiguredReusableCell(
+                using: cellRegistration,
+                for: indexPath,
+                item: itemIdentifier
+            )
+        }
         dataSource.supplementaryViewProvider = { (collectionView, elementKind, indexPath) in
             switch SupplementaryKind(rawValue: elementKind) {
             case .none:
@@ -66,9 +86,10 @@ final class SelectionModeViewController: VocableCollectionViewController {
                 return footer
             }
         }
-        collectionView.collectionViewLayout = UICollectionViewCompositionalLayout(sectionProvider: { [weak self] (_, environment) -> NSCollectionLayoutSection? in
-            return self?.layoutSection(environment: environment)
-        })
+        collectionView.collectionViewLayout = UICollectionViewCompositionalLayout { [weak self] _, environment in
+            self?.layoutSection(environment: environment)
+        }
+        self.cellRegistration = cellRegistration
     }
 
     private func layoutSection(environment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection {
@@ -77,7 +98,7 @@ final class SelectionModeViewController: VocableCollectionViewController {
         if sizeClass.contains(.vCompact) {
             itemHeightDimension = NSCollectionLayoutDimension.absolute(50)
         } else {
-            itemHeightDimension = NSCollectionLayoutDimension.absolute(100)
+            itemHeightDimension = NSCollectionLayoutDimension.absolute(88)
         }
 
         let itemWidthDimension = NSCollectionLayoutDimension.fractionalWidth(1.0)
@@ -106,10 +127,12 @@ final class SelectionModeViewController: VocableCollectionViewController {
     }
 
     private func sectionInsets(for environment: NSCollectionLayoutEnvironment) -> NSDirectionalEdgeInsets {
-        return NSDirectionalEdgeInsets(top: 0,
-                                       leading: max(view.layoutMargins.left - environment.container.contentInsets.leading, 0),
-                                       bottom: 0,
-                                       trailing: max(view.layoutMargins.right - environment.container.contentInsets.trailing, 0))
+        NSDirectionalEdgeInsets(
+            top: 0,
+            leading: max(view.layoutMargins.left - environment.container.contentInsets.leading, 0),
+            bottom: 0,
+            trailing: max(view.layoutMargins.right - environment.container.contentInsets.trailing, 0)
+        )
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -145,16 +168,6 @@ final class SelectionModeViewController: VocableCollectionViewController {
         switch item {
         case .headTrackingToggle:
             return AppConfig.isHeadTrackingSupported
-        }
-    }
-
-    private func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath, item: SelectionModeItem) -> UICollectionViewCell {
-        switch item {
-        case .headTrackingToggle:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SettingsToggleCollectionViewCell.reuseIdentifier, for: indexPath) as! SettingsToggleCollectionViewCell
-            let title = String(localized: "settings.cell.head_tracking.title")
-            cell.setup(title: title, value: AppConfig.$isHeadTrackingEnabled)
-            return cell
         }
     }
 

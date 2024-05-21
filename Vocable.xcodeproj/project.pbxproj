@@ -224,8 +224,6 @@
 		A93E9403244E00A6008B61D2 /* UICollectionView+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93E9402244E00A5008B61D2 /* UICollectionView+Helpers.swift */; };
 		A93E94052450EEC8008B61D2 /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93E94042450EEC8008B61D2 /* KeyboardViewController.swift */; };
 		A944D0052405AE8C00F3863E /* GazeableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A944D0042405AE8C00F3863E /* GazeableButton.swift */; };
-		A944D0092406D54400F3863E /* SettingsToggleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A944D0082406D54400F3863E /* SettingsToggleCollectionViewCell.swift */; };
-		A944D00B2406D55F00F3863E /* SettingsToggleCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A944D00A2406D55F00F3863E /* SettingsToggleCollectionViewCell.xib */; };
 		A94720CE241A8D9B00F7B4FF /* PaginationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94720CD241A8D9B00F7B4FF /* PaginationView.swift */; };
 		A94C3FAE27F49CBC001D4F01 /* CategoryNameEditorConfigurationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94C3FAD27F49CBC001D4F01 /* CategoryNameEditorConfigurationProvider.swift */; };
 		A94C3FB027F4A5DC001D4F01 /* PhraseEditorConfigurationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94C3FAF27F4A5DC001D4F01 /* PhraseEditorConfigurationProvider.swift */; };
@@ -270,6 +268,7 @@
 		B24F02352BEBEF4E003C6BF9 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = B24F02342BEBEF4E003C6BF9 /* Localizable.xcstrings */; };
 		B24F02372BEBEF4E003C6BF9 /* Presets.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = B24F02362BEBEF4E003C6BF9 /* Presets.xcstrings */; };
 		B24F02392BEBEF4E003C6BF9 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = B24F02382BEBEF4E003C6BF9 /* InfoPlist.xcstrings */; };
+		B277CDC02BF7AF55003BFACE /* UIFont+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B277CDBF2BF7AF55003BFACE /* UIFont+Helpers.swift */; };
 		B2BC6CA92BD94F5A00D459F6 /* VocableListContentConfiguration+VoiceProfileItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BC6CA82BD94F5A00D459F6 /* VocableListContentConfiguration+VoiceProfileItem.swift */; };
 		B2BC6CAB2BD94FB500D459F6 /* VoiceProfilePreviewSynthesizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BC6CAA2BD94FB500D459F6 /* VoiceProfilePreviewSynthesizer.swift */; };
 		B2BC6CAD2BD96CD000D459F6 /* VoiceProfilePreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BC6CAC2BD96CD000D459F6 /* VoiceProfilePreviewController.swift */; };
@@ -503,8 +502,6 @@
 		A93E9402244E00A5008B61D2 /* UICollectionView+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Helpers.swift"; sourceTree = "<group>"; };
 		A93E94042450EEC8008B61D2 /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
 		A944D0042405AE8C00F3863E /* GazeableButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GazeableButton.swift; sourceTree = "<group>"; };
-		A944D0082406D54400F3863E /* SettingsToggleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsToggleCollectionViewCell.swift; sourceTree = "<group>"; };
-		A944D00A2406D55F00F3863E /* SettingsToggleCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsToggleCollectionViewCell.xib; sourceTree = "<group>"; };
 		A94720CD241A8D9B00F7B4FF /* PaginationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginationView.swift; sourceTree = "<group>"; };
 		A94C3FAD27F49CBC001D4F01 /* CategoryNameEditorConfigurationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryNameEditorConfigurationProvider.swift; sourceTree = "<group>"; };
 		A94C3FAF27F4A5DC001D4F01 /* PhraseEditorConfigurationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhraseEditorConfigurationProvider.swift; sourceTree = "<group>"; };
@@ -549,6 +546,7 @@
 		B24F02342BEBEF4E003C6BF9 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		B24F02362BEBEF4E003C6BF9 /* Presets.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Presets.xcstrings; sourceTree = "<group>"; };
 		B24F02382BEBEF4E003C6BF9 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
+		B277CDBF2BF7AF55003BFACE /* UIFont+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Helpers.swift"; sourceTree = "<group>"; };
 		B2BC6CA82BD94F5A00D459F6 /* VocableListContentConfiguration+VoiceProfileItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VocableListContentConfiguration+VoiceProfileItem.swift"; sourceTree = "<group>"; };
 		B2BC6CAA2BD94FB500D459F6 /* VoiceProfilePreviewSynthesizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceProfilePreviewSynthesizer.swift; sourceTree = "<group>"; };
 		B2BC6CAC2BD96CD000D459F6 /* VoiceProfilePreviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceProfilePreviewController.swift; sourceTree = "<group>"; };
@@ -1069,8 +1067,6 @@
 				A96D61D624229F7400577144 /* SettingsCollectionViewCell.xib */,
 				A98E8A2223F1DBDF00BF1F22 /* SettingsFooterCollectionViewCell.swift */,
 				A98E8A2423F1DBF200BF1F22 /* SettingsFooterCollectionViewCell.xib */,
-				A944D0082406D54400F3863E /* SettingsToggleCollectionViewCell.swift */,
-				A944D00A2406D55F00F3863E /* SettingsToggleCollectionViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1205,6 +1201,7 @@
 			isa = PBXGroup;
 			children = (
 				A9DE170123F492B20094DB64 /* Array+Split.swift */,
+				B277CDBF2BF7AF55003BFACE /* UIFont+Helpers.swift */,
 				6B17CD7B23E9DFD50050BCB8 /* AVSpeechSynthesizer+Shared.swift */,
 				714407EC243CEEA1009D077B /* Category+Helpers.swift */,
 				B8DA9DF123F30BAF00FEBE19 /* Cell+NibLoading.swift */,
@@ -1408,7 +1405,6 @@
 				64A220BE2452173C0014EA80 /* Root.storyboard in Resources */,
 				2631B366251181C400B94402 /* GoogleService-Info.plist in Resources */,
 				A9CF2AF3242D4EDE005633A7 /* DwellTimeCollectionViewCell.xib in Resources */,
-				A944D00B2406D55F00F3863E /* SettingsToggleCollectionViewCell.xib in Resources */,
 				6B3DCC1F24101F530039E45E /* TrackingDebugOverlayViewController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1436,7 +1432,6 @@
 			files = (
 				B2BC6CA92BD94F5A00D459F6 /* VocableListContentConfiguration+VoiceProfileItem.swift in Sources */,
 				B2BC6CB52BDAD1B500D459F6 /* VoiceProfileItem.swift in Sources */,
-				A944D0092406D54400F3863E /* SettingsToggleCollectionViewCell.swift in Sources */,
 				4E70DA6A27FE859F0027B40B /* ContentHuggingPriority.swift in Sources */,
 				64A54545242A490700218BE8 /* GazeEatingView.swift in Sources */,
 				2745402B2460DD490056EF98 /* Presets.swift in Sources */,
@@ -1596,6 +1591,7 @@
 				6B8D3C02282C227500DDB9B7 /* UIAccessibilityIdentification+AccessibilityID.swift in Sources */,
 				6B005AE3245B057E004919F4 /* VocableCollectionViewController.swift in Sources */,
 				A94720CE241A8D9B00F7B4FF /* PaginationView.swift in Sources */,
+				B277CDC02BF7AF55003BFACE /* UIFont+Helpers.swift in Sources */,
 				B838200F23F4B011005A79CD /* VocableCollectionViewCell.swift in Sources */,
 				6B2E78A0258BE6A400A3DC82 /* AudioEngineController.swift in Sources */,
 				B8EB51D12409860A00F425A6 /* GazeableAlertViewController.swift in Sources */,

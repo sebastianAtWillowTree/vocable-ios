@@ -10,32 +10,13 @@ import UIKit
 
 private class EmptyStateButton: GazeableButton {
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        commonInit()
-    }
-
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        commonInit()
-    }
-
-    private func commonInit() {
-        updateForCurrentTraitCollection()
-    }
-
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        updateForCurrentTraitCollection()
-    }
-
-    private func updateForCurrentTraitCollection() {
-        let hasCompactSize = [traitCollection.horizontalSizeClass, traitCollection.verticalSizeClass]
-            .contains(.compact)
-
-        contentEdgeInsets = hasCompactSize ?
-            .vertical(8) + .horizontal(48) :
-            .uniform(32)
+    override func updateConfiguration() {
+        super.updateConfiguration()
+        
+        let hasCompactSize = sizeClass.contains(any: .compact)
+        configuration?.contentInsets = hasCompactSize ?
+                    .vertical(8) + .horizontal(48) :
+                    .uniform(32)
     }
 }
 

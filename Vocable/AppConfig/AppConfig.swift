@@ -56,5 +56,5 @@ struct AppConfig {
     static var isCompactQWERTYKeyboardEnabled: Bool = false
     
     @PublishedDefault(.selectedVoiceIdentifier)
-    static var selectedVoiceIdentifier: String? = nil
+    static var selectedVoiceIdentifier: String? = .none
 }

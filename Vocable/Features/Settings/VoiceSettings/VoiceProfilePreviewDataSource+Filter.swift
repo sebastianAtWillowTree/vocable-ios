@@ -29,7 +29,7 @@ extension VoiceProfilePreviewDataSource.Filter {
     
     /// Only allow the selected voice to remain in the collection
     static var selectedVoice: Self {
-        Self { (voice: AVSpeechSynthesisVoice, isSelected: Bool) in
+        Self { (_: AVSpeechSynthesisVoice, isSelected: Bool) in
             isSelected
         }
     }
@@ -39,7 +39,7 @@ extension VoiceProfilePreviewDataSource.Filter {
     /// gendered voices because that appears to be the best (only?) strategy we have for
     /// filtering out novelty voices due to the lack of relevant metadata.
     static var systemVoices: Self {
-        Self { (voice: AVSpeechSynthesisVoice, isSelected: Bool) in
+        Self { (voice: AVSpeechSynthesisVoice, _: Bool) in
             if #available(iOS 17.0, *) {
                 return !voice.voiceTraits.contains(.isNoveltyVoice)
             } else {
@@ -52,7 +52,7 @@ extension VoiceProfilePreviewDataSource.Filter {
     }
 
     static var personalVoices: Self {
-        Self { (voice: AVSpeechSynthesisVoice, isSelected: Bool) in
+        Self { (voice: AVSpeechSynthesisVoice, _: Bool) in
             if #available(iOS 17.0, *) {
                 return voice.voiceTraits.contains(.isPersonalVoice)
             } else {

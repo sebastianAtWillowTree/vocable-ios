@@ -1263,11 +1263,11 @@
 				130C00B020D2AD2A007C3163 /* Sources */,
 				2631B3FF251191C500B94402 /* Frameworks */,
 				130C00B220D2AD2A007C3163 /* Resources */,
-				54481D4823E9CBF000ECF249 /* Swift Lint */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				B277CDC32BFBDD68003BFACE /* PBXTargetDependency */,
 			);
 			name = Vocable;
 			packageProductDependencies = (
@@ -1323,6 +1323,7 @@
 		130C00AC20D2AD2A007C3163 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1130;
 				LastUpgradeCheck = 1530;
 				ORGANIZATIONNAME = WillowTree;
@@ -1368,6 +1369,7 @@
 				6B05020227F3489C000CFE5A /* XCRemoteSwiftPackageReference "swift-collections" */,
 				6B8D3B712821C09200DDB9B7 /* XCRemoteSwiftPackageReference "mixpanel-swift" */,
 				227794D82AA18FB20049D125 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				B277CDBA2BF502F2003BFACE /* XCRemoteSwiftPackageReference "SwiftLint" */,
 			);
 			productRefGroup = 130C00B520D2AD2A007C3163 /* Products */;
 			projectDirPath = "";
@@ -1426,27 +1428,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		54481D4823E9CBF000ECF249 /* Swift Lint */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Swift Lint";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		130C00B020D2AD2A007C3163 /* Sources */ = {
@@ -1746,6 +1727,10 @@
 			isa = PBXTargetDependency;
 			target = 130C00B320D2AD2A007C3163 /* Vocable */;
 			targetProxy = 54D3C41923E37CD40061EF47 /* PBXContainerItemProxy */;
+		};
+		B277CDC32BFBDD68003BFACE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = B277CDC22BFBDD68003BFACE /* SwiftLintBuildToolPlugin */;
 		};
 /* End PBXTargetDependency section */
 
@@ -2278,6 +2263,14 @@
 				kind = branch;
 			};
 		};
+		B277CDBA2BF502F2003BFACE /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/SwiftLint.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.55.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -2305,6 +2298,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6B8D3B712821C09200DDB9B7 /* XCRemoteSwiftPackageReference "mixpanel-swift" */;
 			productName = Mixpanel;
+		};
+		B277CDC22BFBDD68003BFACE /* SwiftLintBuildToolPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B277CDBA2BF502F2003BFACE /* XCRemoteSwiftPackageReference "SwiftLint" */;
+			productName = "plugin:SwiftLintBuildToolPlugin";
 		};
 /* End XCSwiftPackageProductDependency section */
 

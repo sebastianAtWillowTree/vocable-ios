@@ -9,12 +9,5 @@
 import UIKit
 
 class SettingsFooterTextSupplementaryView: UICollectionReusableView {
-
     @IBOutlet private(set) var textLabel: UILabel!
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-    
 }

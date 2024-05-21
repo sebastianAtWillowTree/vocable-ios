@@ -10,6 +10,7 @@ import UIKit
 
 final class CursorView: UIView {
 
+    // swiftlint:disable:next static_over_final_class
     override class var layerClass: AnyClass {
         return CAShapeLayer.self
     }

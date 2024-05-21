@@ -34,7 +34,7 @@ class Analytics {
 
     struct Event {
         let name: String
-        var properties: Properties? = nil
+        var properties: Properties?
     }
 
     private static let token: String? = {

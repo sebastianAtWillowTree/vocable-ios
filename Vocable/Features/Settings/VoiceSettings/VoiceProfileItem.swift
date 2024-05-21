@@ -20,7 +20,7 @@ struct VoiceProfileItem: Hashable {
         isPlaying.hash(into: &hasher)
     }
     
-    static func ==(_ lhs: VoiceProfileItem, _ rhs: VoiceProfileItem) -> Bool {
+    static func == (_ lhs: VoiceProfileItem, _ rhs: VoiceProfileItem) -> Bool {
         lhs.isSelected == rhs.isSelected &&
         lhs.isPlaying == rhs.isPlaying &&
         lhs.voice.identifier == rhs.voice.identifier

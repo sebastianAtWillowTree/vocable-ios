@@ -22,15 +22,16 @@ extension AVSpeechSynthesizer {
     
     func speak(_ string: String, language: String) {
         let utterance = AVSpeechUtterance(string: string)
-        if let selectedVoiceID = AppConfig.selectedVoiceIdentifier,
-            let voice = AVSpeechSynthesisVoice(identifier: selectedVoiceID)
-        {
-            let languageLocale = NSLocale(localeIdentifier: language)
-            let voiceLocale = NSLocale(localeIdentifier: voice.language)
-            
-            // Check to be sure the user-provided voice can speak this language
-            if languageLocale.languageCode == voiceLocale.languageCode {
-                utterance.voice = voice
+        
+        if let selectedVoiceID = AppConfig.selectedVoiceIdentifier {
+            if let voice = AVSpeechSynthesisVoice(identifier: selectedVoiceID) {
+                let languageLocale = NSLocale(localeIdentifier: language)
+                let voiceLocale = NSLocale(localeIdentifier: voice.language)
+                
+                // Check to be sure the user-provided voice can speak this language
+                if languageLocale.languageCode == voiceLocale.languageCode {
+                    utterance.voice = voice
+                }
             }
         }
         

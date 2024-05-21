@@ -111,7 +111,7 @@ class CarouselGridCollectionView: UICollectionView {
         if let offset = layout.scrollOffsetForPageWithOffsetFromCurrentPage(offset: 1) {
             let shouldAnimate = UIView.areAnimationsEnabled
             scrollRectToVisible(CGRect(origin: offset, size: bounds.size), animated: shouldAnimate)
-            if (!shouldAnimate) {
+            if !shouldAnimate {
                 layout.updatePagingProgress()
             }
         }
@@ -125,7 +125,7 @@ class CarouselGridCollectionView: UICollectionView {
         if let offset = layout.scrollOffsetForPageWithOffsetFromCurrentPage(offset: -1) {
             let shouldAnimate = UIView.areAnimationsEnabled
             scrollRectToVisible(CGRect(origin: offset, size: bounds.size), animated: shouldAnimate)
-            if (!shouldAnimate) {
+            if !shouldAnimate {
                 layout.updatePagingProgress()
             }
         }

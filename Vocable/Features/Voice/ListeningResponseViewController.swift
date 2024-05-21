@@ -257,7 +257,7 @@ final class ListeningResponseViewController: VocableViewController {
                 let responses = try await apiClient.query(prompt)
                 self.setContent(.choices(responses), trackingPrompt: prompt)
             } catch {
-                self.setContent(.empty(.vocableAPIFailure ,action: .none))
+                self.setContent(.empty(.vocableAPIFailure, action: .none))
             }
         }
     }

@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         get {
             gazeableWindow
         }
-        // swiftlint:disable unused_setter_value
+        // swiftlint:disable:next unused_setter_value
         set {
 
         }

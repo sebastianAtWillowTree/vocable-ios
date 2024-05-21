@@ -71,7 +71,7 @@ enum KeyboardFunctionButton {
         case .space:
             return UIImage(systemName: "space")!
         case .speak:
-            return UIImage(systemName: "speaker.wave.2.bubble.left.fill")!
+            return UIImage(systemName: "person.wave.2.fill")!
         }
     }
 }

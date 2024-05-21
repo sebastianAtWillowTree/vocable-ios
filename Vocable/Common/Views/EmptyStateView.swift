@@ -71,7 +71,7 @@ enum EmptyStateType: EmptyStateRepresentable {
     var image: UIImage? {
         switch self {
         case .recents:
-            return UIImage(named: "recents")
+            return UIImage(systemName: "clock")
         default:
             return nil
         }
@@ -126,8 +126,11 @@ final class EmptyStateView: UIView {
         self.action = action
         super.init(frame: .zero)
 
+        let font = UIFont.boldSystemFont(ofSize: 24)
         imageView.image = type.image
-        let attributedTitle = NSAttributedString(string: type.title, attributes: [.font: UIFont.boldSystemFont(ofSize: 24), .foregroundColor: UIColor.defaultTextColor])
+        imageView.tintColor = .highlightedTextColor
+        imageView.preferredSymbolConfiguration = .init(font: font)
+        let attributedTitle = NSAttributedString(string: type.title, attributes: [.font: font, .foregroundColor: UIColor.defaultTextColor])
         titleAttributedText = attributedTitle
 
         if let description = type.description {

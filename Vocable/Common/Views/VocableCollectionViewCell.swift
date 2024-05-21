@@ -57,9 +57,7 @@ class VocableCollectionViewCell: UICollectionViewCell {
             setNeedsUpdateContent()
         }
     }
-    
-    fileprivate var defaultBackgroundColor: UIColor?
-    
+        
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -86,6 +84,11 @@ class VocableCollectionViewCell: UICollectionViewCell {
             updateContent()
             needsUpdateContent = false
         }
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        setNeedsUpdateContent()
     }
     
     func updateContent() {

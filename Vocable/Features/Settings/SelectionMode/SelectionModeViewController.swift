@@ -56,7 +56,7 @@ final class SelectionModeViewController: VocableCollectionViewController {
                                 forSupplementaryViewOfKind: SupplementaryKind.headTrackingUnsupportedFooter.rawValue,
                                 withReuseIdentifier: SupplementaryKind.headTrackingUnsupportedFooter.rawValue)
         
-        let cellRegistration = CellRegistration { cell, indexPath, item in
+        let cellRegistration = CellRegistration { cell, _, item in
             switch item {
             case .headTrackingToggle:
                 let title = String(localized: "settings.cell.head_tracking.title")

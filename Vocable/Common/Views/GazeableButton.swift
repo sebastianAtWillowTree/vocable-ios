@@ -79,7 +79,7 @@ class GazeableButton: UIButton {
             return outgoing
         }
         
-        configuration.imageColorTransformer = UIConfigurationColorTransformer { incoming in
+        configuration.imageColorTransformer = UIConfigurationColorTransformer { _ in
             return titleColor
         }
         

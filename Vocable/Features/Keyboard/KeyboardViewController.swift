@@ -78,9 +78,15 @@ class KeyboardViewController: UICollectionViewController {
         collectionView.delaysContentTouches = false
         collectionView.isScrollEnabled = false
         
-        collectionView.register(UINib(nibName: "KeyboardKeyCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: KeyboardKeyCollectionViewCell.reuseIdentifier)
+        collectionView.register(
+            KeyboardKeyCollectionViewCell.self,
+            forCellWithReuseIdentifier: KeyboardKeyCollectionViewCell.reuseIdentifier
+        )
+        collectionView.register(
+            SpeakFunctionKeyboardKeyCollectionViewCell.self,
+            forCellWithReuseIdentifier: SpeakFunctionKeyboardKeyCollectionViewCell.reuseIdentifier
+        )
         collectionView.register(UINib(nibName: "SuggestionCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: SuggestionCollectionViewCell.reuseIdentifier)
-        collectionView.register(UINib(nibName: "SpeakFunctionKeyboardKeyCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: SpeakFunctionKeyboardKeyCollectionViewCell.reuseIdentifier)
 
         let layout = createLayout()
         collectionView.collectionViewLayout = layout

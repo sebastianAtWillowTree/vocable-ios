@@ -1,0 +1,1373 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "categories_list_editor.header.title" : {
+      "comment" : "Categories Header title.  This appears in the Settings flow when navigating to the list of Categories",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Categories"
+          }
+        }
+      }
+    },
+    "category_editor.alert.delete_category_confirmation.button.cancel.title" : {
+      "comment" : "Delete category alert cancel button title",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel"
+          }
+        }
+      }
+    },
+    "category_editor.alert.delete_category_confirmation.button.remove.title" : {
+      "comment" : "Delete category alert action button title",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remove"
+          }
+        }
+      }
+    },
+    "category_editor.alert.delete_category_confirmation.title" : {
+      "comment" : "Delete category confirmation alert title",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deleted categories cannot be recovered."
+          }
+        }
+      }
+    },
+    "category_editor.alert.delete_phrase_confirmation.button.cancel.title" : {
+      "comment" : "Delete phrase alert cancel button title",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel"
+          }
+        }
+      }
+    },
+    "category_editor.alert.delete_phrase_confirmation.button.delete.title" : {
+      "comment" : "Delete phrase alert action button title",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remove"
+          }
+        }
+      }
+    },
+    "category_editor.alert.delete_phrase_confirmation.title" : {
+      "comment" : "Delete phrase confirmation alert title",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deleted phrases cannot be recovered."
+          }
+        }
+      }
+    },
+    "category_editor.detail.button.edit_phrases.title" : {
+      "comment" : "Setting option for a category.  Navigates the user to a list of phrases within the category where the phrases can be deleted or edited.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit Phrases"
+          }
+        }
+      }
+    },
+    "category_editor.detail.button.remove_category.title" : {
+      "comment" : "Setting option for a category.  Button that will delete the category.  Tapping the button will display an alert confirmation.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remove Category"
+          }
+        }
+      }
+    },
+    "category_editor.detail.button.rename_category.title" : {
+      "comment" : "Setting option for a category.  Navigates the user to a keyboard view where they can edit the Category name.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rename Category"
+          }
+        }
+      }
+    },
+    "category_editor.detail.button.show_category.title" : {
+      "comment" : "Toggle option for a category within settings.  Can be toggled on or off to hide or show the category in the main view.  Hiding the category will also move the category in settings to the end of the list.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Show Category"
+          }
+        }
+      }
+    },
+    "category_editor.toast.changes_saved.title" : {
+      "comment" : "changes to an existing phrase were saved successfully",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Changes saved"
+          }
+        }
+      }
+    },
+    "category_editor.toast.successfully_saved.title" : {
+      "comment" : "Toast message that appears after saving edits made to the Category title",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Changes Saved"
+          }
+        }
+      }
+    },
+    "empty_state.button.title" : {
+      "comment" : "Category empty state button.  This button appears with the empty state to allow the user to add a phrase",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add Phrase"
+          }
+        }
+      }
+    },
+    "empty_state.header.title" : {
+      "comment" : "Category empty state.  This empty state appears when there are no phrases in the category in both the main screen and settings screen.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No phrases have been saved yet."
+          }
+        }
+      }
+    },
+    "gaze_settings.alert.disable_head_tracking_confirmation.button.cancel.title" : {
+      "comment" : "Cancel alert action title",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel"
+          }
+        }
+      }
+    },
+    "gaze_settings.alert.disable_head_tracking_confirmation.button.confirm.title" : {
+      "comment" : "Confirm alert action title",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continue"
+          }
+        }
+      }
+    },
+    "gaze_settings.alert.disable_head_tracking_confirmation.title" : {
+      "comment" : "Disable head tracking confirmation alert title",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Turning off head tracking will make Vocable touch-only. Would you like to continue?"
+          }
+        }
+      }
+    },
+    "gaze_tracking.error.excessive_head_distance.title" : {
+      "comment" : "Warning message presented to the user when the head tracking system",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please move closer to the device."
+          }
+        }
+      }
+    },
+    "listening_mode.empty_state.actively_listening.message" : {
+      "comment" : "Listening mode empty state message for when listening has began but no responses have been displayed yet",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "When someone asks a question out loud, Vocable will offer quick response options."
+          }
+        }
+      }
+    },
+    "listening_mode.empty_state.actively_listening.title" : {
+      "comment" : "Listening mode empty state title for when listening has began but no responses have been displayed yet",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Listening..."
+          }
+        }
+      }
+    },
+    "listening_mode.empty_state.free_response.message" : {
+      "comment" : "Listen mode empty state message for when no responses could be generated",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not sure what to suggest. Please use the keyboard or select an existing phrase to reply."
+          }
+        }
+      }
+    },
+    "listening_mode.empty_state.free_response.title" : {
+      "comment" : "Listen mode empty state title for when no responses could be generated",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sounds complicated"
+          }
+        }
+      }
+    },
+    "listening_mode.empty_state.microphone_permission_denied.action" : {
+      "comment" : "Listen mode empty state action that will allow the user to open the Settings app in order to grant microphone permissions.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open Settings"
+          }
+        }
+      }
+    },
+    "listening_mode.empty_state.microphone_permission_denied.message" : {
+      "comment" : "Listening mode empty state message for when microphone permissions are required, but the user has denied them",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vocable needs to use the microphone to enable Listening Mode. Please allow microphone access in %1$@ Settings.\n\nYou can also disable Listening Mode to hide this category."
+          }
+        }
+      }
+    },
+    "listening_mode.empty_state.microphone_permission_denied.title" : {
+      "comment" : "Listening mode empty state title for when microphone permissions are required, but the user has denied them",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Microphone Access"
+          }
+        }
+      }
+    },
+    "listening_mode.empty_state.microphone_permission_undetermined.action" : {
+      "comment" : "Listening mode empty state action that will allow the user to grant access to microphone permissions via the system permissions alert.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grant Access"
+          }
+        }
+      }
+    },
+    "listening_mode.empty_state.microphone_permission_undetermined.message" : {
+      "comment" : "Listening mode empty state message for when microphone permissions are required and the user has not been shown the system permissions prompt yet",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vocable needs microphone access to enable Listening Mode. The button below presents an iOS permission dialog that Vocable's head tracking cannot interract with."
+          }
+        }
+      }
+    },
+    "listening_mode.empty_state.microphone_permission_undetermined.title" : {
+      "comment" : "Listening mode empty state title for when microphone permissions are required and the user has not been shown the system permissions prompt yet",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Microphone Access"
+          }
+        }
+      }
+    },
+    "listening_mode.empty_state.speech_permission_denied.action" : {
+      "comment" : "Listening mode empty state action that will allow the user to open the Settings app in order to grant speech recognition permissions.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open Settings"
+          }
+        }
+      }
+    },
+    "listening_mode.empty_state.speech_permission_denied.message" : {
+      "comment" : "Listening mode empty state message for when speech recognition permissions are required, but the user has denied them",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vocable needs speech recognition to enable Listening Mode. Please enable speech recognition in %1$@ Settings.\n\nYou can also disable Listening Mode to hide this category."
+          }
+        }
+      }
+    },
+    "listening_mode.empty_state.speech_permission_denied.title" : {
+      "comment" : "Listening mode empty state title for when speech recognition permissions are required, but the user has denied them",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Speech Recognition"
+          }
+        }
+      }
+    },
+    "listening_mode.empty_state.speech_permission_undetermined.action" : {
+      "comment" : "Listen mode empty state action that will allow the user to grant access to speech recognition permissions via the system permissions alert.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grant Access"
+          }
+        }
+      }
+    },
+    "listening_mode.empty_state.speech_permission_undetermined.message" : {
+      "comment" : "Listening mode empty state message for when speech recognition permissions are required and the user has not been shown the system permissions prompt yet",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vocable needs to request speech permissions to enable Listening Mode. This will present an iOS permission dialog that Vocable's head tracking cannot interract with."
+          }
+        }
+      }
+    },
+    "listening_mode.empty_state.speech_permission_undetermined.title" : {
+      "comment" : "Listening mode empty state title for when speech recognition permissions are required and the user has not been shown the system permissions prompt yet",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Speech Recognition"
+          }
+        }
+      }
+    },
+    "listening_mode.empty_state.speech_unavailable.message" : {
+      "comment" : "Listening mode error state message for when Apple's speech to text service is unavailable",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Speech services require one of the following features to be enabled on your device: Siri or Dictation. Please check your device settings and enable Siri or Dictation."
+          }
+        }
+      }
+    },
+    "listening_mode.empty_state.speech_unavailable.title" : {
+      "comment" : "Listening mode error state title for when Apple's speech to text service is unavailable",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Speech services unavailable"
+          }
+        }
+      }
+    },
+    "listening_mode.empty_state.unsupported.message" : {
+      "comment" : "Listening mode empty state message for when microphone permissions are required, but listening mode is unsupported",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This %1$@ on %2$@ %3$@ does not support Listening Mode.\n\nListening Mode is currently only available in English and requires %4$@ to be enabled."
+          }
+        }
+      }
+    },
+    "listening_mode.empty_state.unsupported.title" : {
+      "comment" : "Listening mode empty state title for for when microphone permissions are required, but listening mode is unsupported",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Listening Mode Unsupported"
+          }
+        }
+      }
+    },
+    "listening_mode.empty_state.vocableAPIFailure.message" : {
+      "comment" : "Listen mode error state message for when the vocable API fails",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please check your internet connection and try again later."
+          }
+        }
+      }
+    },
+    "listening_mode.empty_state.vocableAPIFailure.title" : {
+      "comment" : "Listen mode error state message for when the vocable API fails",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Network failure"
+          }
+        }
+      }
+    },
+    "listening_mode.feedback.confirmation.title" : {
+      "comment" : "Thank you confirmation.  This text appears after sharing with developer",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thank You!"
+          }
+        }
+      }
+    },
+    "listening_mode.feedback.hint.text" : {
+      "comment" : "Information text around what the Share with Deeveloper button does.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Don’t like these responses? Anonymously share this question to help improve listening mode."
+          }
+        }
+      }
+    },
+    "listening_mode.feedback.submit.title" : {
+      "comment" : "Share with Developer button.  The button appears if Listen mode could not generate a reponese.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Share with Developers"
+          }
+        }
+      }
+    },
+    "main_screen.textfield_placeholder.default" : {
+      "comment" : "Select something below to speak Hint Text",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select something below to speak"
+          }
+        }
+      }
+    },
+    "paging_progress_indicator_format" : {
+      "comment" : "Page indicator progress format. \\\"Page x of n\\\"",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Page %1$d of %2$d"
+          }
+        }
+      }
+    },
+    "personal_voices.empty_state.denied.button.title" : {
+      "comment" : "Action button for the personal voices screen allowing the user to open the system settings app to resolve an error.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open Settings"
+          }
+        }
+      }
+    },
+    "personal_voices.empty_state.denied.description" : {
+      "comment" : "Empty state description for when Personal Voice access has been denied by the user. It informs the user how to re-enable access by navigating to system settings. The placeholder is the device model (e.g. \"iPhone\" or \"iPad\")",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vocable needs permission to access Personal Voices on this device.\n\nYou can enable access in %1$@ Settings."
+          }
+        }
+      }
+    },
+    "personal_voices.empty_state.denied.title" : {
+      "comment" : "Title of the Personal Voices screen empty state when a user must grant access to the app.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Personal Voice Access"
+          }
+        }
+      }
+    },
+    "personal_voices.empty_state.no_content.description" : {
+      "comment" : "Empty state description for when there are not personal voices to display. This is typically because the user has not created any yet. The placeholder is the device model (e.g. \"iPhone\" or \"iPad\").",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You can create a new Personal Voice in %1$@ Settings. Once created, you can set your Personal Voice as Vocable's voice.\n\nIf a Personal Voice has been created and does not appear in Vocable, try restarting %1$@."
+          }
+        }
+      }
+    },
+    "personal_voices.empty_state.no_content.title" : {
+      "comment" : "Title of the Personal Voices screen empty state when there are no voices available on the device.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No Personal Voices"
+          }
+        }
+      }
+    },
+    "personal_voices.empty_state.not_authorized.button.title" : {
+      "comment" : "Action button for the personal voices screen that will display a system prompt allowing access to their Personal Voice profiles stored on their device.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grant Access"
+          }
+        }
+      }
+    },
+    "personal_voices.empty_state.not_authorized.description" : {
+      "comment" : "Empty state description for when Personal Voice access has not yet been prompted to the user. Below this text will be a button that will prompt the user for access.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Allow Vocable to access Personal Voices stored on this device."
+          }
+        }
+      }
+    },
+    "personal_voices.empty_state.not_authorized.title" : {
+      "comment" : "Title of the Personal Voices screen empty state when a user has denied access to the app.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Personal Voice Access"
+          }
+        }
+      }
+    },
+    "personal_voices.title" : {
+      "comment" : "Title of the Personal Voices screen",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Personal Voices"
+          }
+        }
+      }
+    },
+    "phrase_editor.alert.cancel_editing_confirmation.button.continue_editing.title" : {
+      "comment" : "Button in the Phrase close confirmation. This button appears in an alert when there are edits made to the Category title and the user tries to close the keyboard without saving the changes. Pressing the button will allow editing the category title.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continue Editing"
+          }
+        }
+      }
+    },
+    "phrase_editor.alert.cancel_editing_confirmation.button.discard.title" : {
+      "comment" : "Button in the edit Phrase close confirmation.  This button appears in an alert when there are edits made to the Phrase and the user tries to close the keyboard without saving the changes. Pressing the button will not save any changes and close the keyboard view.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Discard"
+          }
+        }
+      }
+    },
+    "phrase_editor.alert.cancel_editing_confirmation.title" : {
+      "comment" : "Phrase editor close confirmation text.  This text appears in an alert when there are edits made to the Phrase and the user tries to close the keyboard without saving the changes.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "If you close without saving, your changes will be lost."
+          }
+        }
+      }
+    },
+    "phrase_editor.alert.phrase_name_exists.cancel.button" : {
+      "comment" : "Duplicate Phrase alert cancel button. Text on this button appears on an alert where a duplicate phrase is being created. Pressing the button allows the user to continue editing the category title.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel"
+          }
+        }
+      }
+    },
+    "phrase_editor.alert.phrase_name_exists.create.button" : {
+      "comment" : "Duplicate Phrase alert create duplicate button.  Pressing this button will allow for multiple categories with the same title.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Create Duplicate"
+          }
+        }
+      }
+    },
+    "phrase_editor.alert.phrase_name_exists.title" : {
+      "comment" : "Duplicate Phrase alert text.  This text appears in an alert when a phrase is created with the same text as an existing phrase within the same category.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This phrase already exists. Would you like to create a duplicate?"
+          }
+        }
+      }
+    },
+    "phrase_editor.toast.successfully_saved_to_favorites.title_format" : {
+      "comment" : "Informs the user that their newly-created phrase was successfully saved. The variable parameter is the name of the category that the phrase was saved to.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saved to %@"
+          }
+        }
+      }
+    },
+    "preset.category.add.phrase.title" : {
+      "comment" : "Add phrase to category button title",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add Phrase"
+          }
+        }
+      }
+    },
+    "preset.category.numberpad.phrase.no.title" : {
+      "comment" : "'No' num pad response",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No"
+          }
+        }
+      }
+    },
+    "preset.category.numberpad.phrase.yes.title" : {
+      "comment" : "'Yes' num pad response",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yes"
+          }
+        }
+      }
+    },
+    "recents_empty_state.body.title" : {
+      "comment" : "Recents empty state body string.  This will appear in the Recents Category if no phrases have been used yet.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start using Vocable to see your most recently used phrases here."
+          }
+        }
+      }
+    },
+    "recents_empty_state.header.title" : {
+      "comment" : "Recents empty state title string.  This will appear in the Recents Category if no phrases have been used yet.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No recently used phrases"
+          }
+        }
+      }
+    },
+    "selection_mode.header.title" : {
+      "comment" : "Selection mode setting header title",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selection Mode"
+          }
+        }
+      }
+    },
+    "settings.alert.no_email_configured.button.dismiss.title" : {
+      "comment" : "No email account configured error alert dismiss button title",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        }
+      }
+    },
+    "settings.alert.no_email_configured.title" : {
+      "comment" : "No email account configured error alert title",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please sign into an account with Mail for %1$@."
+          }
+        }
+      }
+    },
+    "settings.alert.reset_app_settings_confirmation.body" : {
+      "comment" : "Reset setting alert confirmation prompt",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Are you sure you want to reset Vocable to default settings? This action cannot be undone."
+          }
+        }
+      }
+    },
+    "settings.alert.reset_app_settings_confirmation.button.cancel.title" : {
+      "comment" : "Reset setting alert Cancel button.  This will cancel the reset operation.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel"
+          }
+        }
+      }
+    },
+    "settings.alert.reset_app_settings_confirmation.button.confirm.title" : {
+      "comment" : "Reset setting alert settings Reset button.  This will continue with the reset operation.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reset"
+          }
+        }
+      }
+    },
+    "settings.alert.reset_app_settings_failure.body" : {
+      "comment" : "Reset app settings failure alert",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vocable failed to reset. Please try again or reinstall Vocable if the issue persists."
+          }
+        }
+      }
+    },
+    "settings.alert.reset_app_settings_failure.button.ok" : {
+      "comment" : "Button to dismiss the Reset app failure alert",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        }
+      }
+    },
+    "settings.alert.reset_app_settings_success.body" : {
+      "comment" : "Reset app settings success alert",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vocable has been reset successfully."
+          }
+        }
+      }
+    },
+    "settings.alert.reset_app_settings_success.button.ok" : {
+      "comment" : "Button to dismiss the Reset app success alert",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        }
+      }
+    },
+    "settings.alert.surrender_gaze_confirmation.body" : {
+      "comment" : "Body of confirmation alert shown when user is about to navigate to a destination where Vocable's head tracking will not be available.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You're about to leave the Vocable app. You may lose head tracking control."
+          }
+        }
+      }
+    },
+    "settings.alert.surrender_gaze_confirmation.button.cancel.title" : {
+      "comment" : "Button cancelling the action that would have taken them away from the head tracking-navigable portion of the app",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel"
+          }
+        }
+      }
+    },
+    "settings.alert.surrender_gaze_confirmation.button.confirm.title" : {
+      "comment" : "Button confirming that the user would like to navigate away from the head tracking-navigable portion of the app",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Confirm"
+          }
+        }
+      }
+    },
+    "settings.cell.categories.title" : {
+      "comment" : "edit categories settings menu item",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Categories and Phrases"
+          }
+        }
+      }
+    },
+    "settings.cell.contact_developers.title" : {
+      "comment" : "contact developers settings menu item",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contact Developers"
+          }
+        }
+      }
+    },
+    "settings.cell.head_tracking.title" : {
+      "comment" : "Option within Selectin Mode.  This option is to enable to disable head tracking via a toggle.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Head Tracking"
+          }
+        }
+      }
+    },
+    "settings.cell.keyboard_layout.title" : {
+      "comment" : "edit keyboard layout settings menu item",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keyboard Layout"
+          }
+        }
+      }
+    },
+    "settings.cell.listening_mode.title" : {
+      "comment" : "Listening Mode root settings menu item. Navigates the user to the Listening Mode settings screen where they can configure their preferences for listening mode.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Listening Mode"
+          }
+        }
+      }
+    },
+    "settings.cell.privacy_policy.title" : {
+      "comment" : "view privacy policy settings menu item",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Privacy Policy"
+          }
+        }
+      }
+    },
+    "settings.cell.qwerty_layout.title" : {
+      "comment" : "Option within Keyboard Layout. This option is to enable or disable QWERTY keyboard on portrait iPhone.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Compact QWERTY"
+          }
+        }
+      }
+    },
+    "settings.cell.reset_all.title" : {
+      "comment" : "reset all settings menu item",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reset App Settings"
+          }
+        }
+      }
+    },
+    "settings.cell.selection_mode.title" : {
+      "comment" : "edit cursor selection mode settings menu item",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selection Mode"
+          }
+        }
+      }
+    },
+    "settings.cell.timing_sensitivity.title" : {
+      "comment" : "edit cursor timing and sensititivy settings menu item",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Timing and Sensitivity"
+          }
+        }
+      }
+    },
+    "settings.cell.voice_configuration.title" : {
+      "comment" : "Settings option title for row that navigates to the Voice settings screen",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voice"
+          }
+        }
+      }
+    },
+    "settings.header.title" : {
+      "comment" : "Settings screen header title",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Settings"
+          }
+        }
+      }
+    },
+    "settings.keyboard_layout.header.title" : {
+      "comment" : "Keyboard Layout setting header title",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keyboard Layout"
+          }
+        }
+      }
+    },
+    "settings.keyboard_layout.qwerty_layout.explanation_footer" : {
+      "comment" : "Option within Keyboard Layout. This option is to enable or disable QWERTY keyboard on portrait iPhone.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Use QWERTY keyboard layout in all orientations. Keys may be smaller, making typing more difficult."
+          }
+        }
+      }
+    },
+    "settings.listening_mode.device_unsupported_explanation_footer" : {
+      "comment" : "Footer text displayed in the Listening Mode preferences screen. This is only displayed if the user's device does not support Listening Mode because of it's language or lack of neural engine.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This %1$@ on %2$@ %3$@ does not support Listening Mode.\n\nListening Mode is currently only available in English and requires %4$@ to be enabled."
+          }
+        }
+      }
+    },
+    "settings.listening_mode.hot_word_toggle_cell.title" : {
+      "comment" : "Title of Listening Mode preferences cell that toggles \"Hey Vocable\" shortcut feature on or off when selected",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\"Hey Vocable\" shortcut"
+          }
+        }
+      }
+    },
+    "settings.listening_mode.hotword_explanation_footer" : {
+      "comment" : "Footer text displayed in the Listening Mode preferences screen. This text describes the \"Hey Vocable\" feature, how it is activated, and how it automatically navigates the user to the Listening Mode screen.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Automatically navigate to the Listening Mode category when Vocable hears someone say \"Hey, Vocable\""
+          }
+        }
+      }
+    },
+    "settings.listening_mode.listening_mode_explanation_footer" : {
+      "comment" : "Footer text displayed in the Listening Mode preferences screen. This text describes the overall Listening Mode feature as well as the kinds of responses it can generate for the user.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This is a conversational category that listens for someone to ask questions, then offers a selection of responses. Either/or questions and questions that can be answered with yes, no, or a number are currently supported."
+          }
+        }
+      }
+    },
+    "settings.listening_mode.listening_mode_toggle_cell.title" : {
+      "comment" : "Title of Listening Mode preferences cell that toggles Listening Mode on or off when selected",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Listening Mode"
+          }
+        }
+      }
+    },
+    "settings.listening_mode.smart_assist_explanation_footer" : {
+      "comment" : "Footer text displayed in the Listening Mode preferences screen. This text describes the Smart Assist feature and how it works.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Smart Assist uses AI to provide higher-quality suggestions for Listening Mode. An Internet connection is required, but no conversation history is ever stored, just like in regular Listening Mode."
+          }
+        }
+      }
+    },
+    "settings.listening_mode.smart_assist_toggle_cell.title" : {
+      "comment" : "Title of Smart Assist preferences cell that toggles the Smart Assist feature on or off when selected",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Smart Assist"
+          }
+        }
+      }
+    },
+    "settings.listening_mode.title" : {
+      "comment" : "Listening Mode preferences screen title",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Listening Mode"
+          }
+        }
+      }
+    },
+    "settings.selection_mode.head_tracking_unsupported_footer" : {
+      "comment" : "Additonal footer text noting heading tracking compatibility",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This %1$@ on %2$@ %3$@ does not support head tracking.\n\nHead tracking is supported on all devices with a %4$@ camera, and on most devices with %5$@."
+          }
+        }
+      }
+    },
+    "settings.version_format" : {
+      "comment" : "Version information displayed at the bottom of the Settings screen. Argument is the application version.",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Version %1$@"
+          }
+        }
+      }
+    },
+    "text_editor.alert.cancel_editing_confirmation.button.continue_editing.title" : {
+      "comment" : "Button in the edit category title close confirmation. This button appears in an alert when there are edits made to the Category title and the user tries to close the keyboard without saving the changes. Pressing the button will allow editing the category title.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continue Editing"
+          }
+        }
+      }
+    },
+    "text_editor.alert.cancel_editing_confirmation.button.discard.title" : {
+      "comment" : "Button in the edit category title close confirmation. This button appears in an alert when there are edits made to the Category title and the user tries to close the keyboard without saving the changes. Pressing the button will not save any changes and close the keyboard view.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Discard"
+          }
+        }
+      }
+    },
+    "text_editor.alert.cancel_editing_confirmation.title" : {
+      "comment" : "Category close confirmation text.  This text appears in an alert when there are edits made to the Category title and the user tries to close the keyboard without saving the changes.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "If you close without saving, your changes will be lost."
+          }
+        }
+      }
+    },
+    "text_editor.alert.category_name_exists.cancel.button" : {
+      "comment" : "Duplicate Category alert cancel button.  Text on this button appears on an alert where a duplicate category title is being created.\n   Pressing the button will allow continuing to edit category title",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel"
+          }
+        }
+      }
+    },
+    "text_editor.alert.category_name_exists.create.button" : {
+      "comment" : "Duplicate Alert create duplicate button.  Pressing this button will allow for multiple categories with the same title.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Create Duplicate"
+          }
+        }
+      }
+    },
+    "text_editor.alert.category_name_exists.title" : {
+      "comment" : "Duplicate Category alert text.  This text appears in an alert when a category is created with the same title as an existing category.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This category name already exists. Would you like to create a duplicate?"
+          }
+        }
+      }
+    },
+    "timing_and_sensitivity.button.high.title" : {
+      "comment" : "Button option for the Curson Sensitivity setting.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "High"
+          }
+        }
+      }
+    },
+    "timing_and_sensitivity.button.low.title" : {
+      "comment" : "Button option for the Curson Sensitivity setting.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Low"
+          }
+        }
+      }
+    },
+    "timing_and_sensitivity.button.medium.title" : {
+      "comment" : "Button option for the Curson Sensitivity setting.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Medium"
+          }
+        }
+      }
+    },
+    "timing_and_sensitivity.cell.cursor_sensitivity.title" : {
+      "comment" : "Text for a Timing and sensitivity setting.  This setting is the sensitivity for the head tracking cursor.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cursor Sensitivity"
+          }
+        }
+      }
+    },
+    "timing_and_sensitivity.cell.dwell_duration.title" : {
+      "comment" : "Text for a Timing and sensitivity setting.  This setting is the amount of time the head tracking cursor needs to stay on a button before it triggers it.\n   Hove time can be adjusted in .5 sec increments from .5 to 5",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hover Time"
+          }
+        }
+      }
+    },
+    "timing_and_sensitivity.header.title" : {
+      "comment" : "Timing and sensitivity Header title.  This text appears in the Settings flow when navigating into the Timing and Sensitivity setting",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Timing and Sensitivity"
+          }
+        }
+      }
+    },
+    "voice_picker.empty_state.description" : {
+      "comment" : "Voice picker empty state body. Shown when the user attempts to change their voice settings and the operating system\nfails to return any viable voice profiles that the user could select from.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No voices that match your language and region settings are installed."
+          }
+        }
+      }
+    },
+    "voice_picker.empty_state.title" : {
+      "comment" : "Voice picker empty state title.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No Voices"
+          }
+        }
+      }
+    },
+    "voice_picker.title" : {
+      "comment" : "Voice Picker title",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Change Voice"
+          }
+        }
+      }
+    },
+    "voice_preview.sample_audio.introducion_format" : {
+      "comment" : "In the voice configuration screen within the app's settings, this format is used to construct the phrase read aloud when the user selects a button to preview a voice profile. Each voice profile has a name provided by the operating system, so the phrase is currently structured as if the voice profile is introducing itself.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hello, this is %1$@"
+          }
+        }
+      }
+    },
+    "voice_settings.cell.change_voice.title" : {
+      "comment" : "Button in the Voice Settings screen that will navigate the user to the voice picker/Change Voice screen",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Change Voice"
+          }
+        }
+      }
+    },
+    "voice_settings.cell.personal_voice.title" : {
+      "comment" : "Button in the Voice Settings screen that will navigate the user to the Personal Voice screen",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Personal Voices"
+          }
+        }
+      }
+    },
+    "voice_settings.title" : {
+      "comment" : "Voice Configuration title",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voice"
+          }
+        }
+      }
+    },
+    "voice_settings.voice_picker_footer.title" : {
+      "comment" : "Footer title that accompanies the button that will present the voice picker. This is meant to inform the user that additional voices can be downloaded from the system settings app. The parameter variable is substituted with the device model e.g. \"iPad\" or \"iPhone\".",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Additional voices and voice quality enhancements may be available for download in %1$@ Settings."
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

@@ -261,6 +261,7 @@
 		A9E665A7241A785F00FE577A /* CarouselGridCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E665A6241A785F00FE577A /* CarouselGridCollectionViewController.swift */; };
 		A9FD68A528008AD3006ABA3F /* AddPhraseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FD68A428008AD3006ABA3F /* AddPhraseCollectionViewCell.swift */; };
 		A9FD68A728009646006ABA3F /* NSAttributedString+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FD68A628009646006ABA3F /* NSAttributedString+Helpers.swift */; };
+		B2458E602BFE4C35007AF53D /* HighlightableContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2458E5F2BFE4C35007AF53D /* HighlightableContentCell.swift */; };
 		B24F02352BEBEF4E003C6BF9 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = B24F02342BEBEF4E003C6BF9 /* Localizable.xcstrings */; };
 		B24F02372BEBEF4E003C6BF9 /* Presets.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = B24F02362BEBEF4E003C6BF9 /* Presets.xcstrings */; };
 		B24F02392BEBEF4E003C6BF9 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = B24F02382BEBEF4E003C6BF9 /* InfoPlist.xcstrings */; };
@@ -534,6 +535,7 @@
 		A9E665A6241A785F00FE577A /* CarouselGridCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselGridCollectionViewController.swift; sourceTree = "<group>"; };
 		A9FD68A428008AD3006ABA3F /* AddPhraseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPhraseCollectionViewCell.swift; sourceTree = "<group>"; };
 		A9FD68A628009646006ABA3F /* NSAttributedString+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Helpers.swift"; sourceTree = "<group>"; };
+		B2458E5F2BFE4C35007AF53D /* HighlightableContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightableContentCell.swift; sourceTree = "<group>"; };
 		B24F02332BEBEF4E003C6BF9 /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/LaunchScreen.xcstrings; sourceTree = "<group>"; };
 		B24F02342BEBEF4E003C6BF9 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		B24F02362BEBEF4E003C6BF9 /* Presets.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Presets.xcstrings; sourceTree = "<group>"; };
@@ -1138,6 +1140,7 @@
 				6B9DFA7323E8D1270037673E /* TrackingContainerViewController.swift */,
 				6B17CD7F23EA045D0050BCB8 /* ViewControllerWrapperView.swift */,
 				B838200E23F4B011005A79CD /* VocableCollectionViewCell.swift */,
+				B2458E5F2BFE4C35007AF53D /* HighlightableContentCell.swift */,
 				30B979A424254CBC00309D7C /* WarningView.swift */,
 				71DBE5EA240DE4D000BA8D01 /* WarningView.xib */,
 			);
@@ -1418,6 +1421,7 @@
 				B2BC6CA92BD94F5A00D459F6 /* VocableListContentConfiguration+VoiceProfileItem.swift in Sources */,
 				B2BC6CB52BDAD1B500D459F6 /* VoiceProfileItem.swift in Sources */,
 				4E70DA6A27FE859F0027B40B /* ContentHuggingPriority.swift in Sources */,
+				B2458E602BFE4C35007AF53D /* HighlightableContentCell.swift in Sources */,
 				64A54545242A490700218BE8 /* GazeEatingView.swift in Sources */,
 				2745402B2460DD490056EF98 /* Presets.swift in Sources */,
 				A94C3FB027F4A5DC001D4F01 /* PhraseEditorConfigurationProvider.swift in Sources */,

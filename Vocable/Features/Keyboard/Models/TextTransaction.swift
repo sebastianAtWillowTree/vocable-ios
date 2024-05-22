@@ -17,12 +17,12 @@ struct TextTransaction: CustomDebugStringConvertible {
     private let lastTokenRange: NSRange
     private let intent: Intent
     let isHint: Bool
-    
+
     var debugDescription: String {
         return "TextDescription(text: \(text), lastCharacterRange: \(String(describing: lastChararacterRange)), lastTokenRange: \(lastTokenRange), changeType: \(intent), isHint: \(isHint))"
     }
     
-    init(text: String, intent: Intent = .none, isHint: Bool = false) {
+    init(text: String, intent: Intent = .none, isHint: Bool = false, speakingRange: NSRange? = nil) {
         if text.count == 1 {
             self.text = text.uppercased()
         } else {
@@ -49,6 +49,14 @@ struct TextTransaction: CustomDebugStringConvertible {
             break
         }
         
+        if let speakingRange {
+            attributedText.addAttribute(.foregroundColor, value: UIColor.cellBorderHighlightColor, range: speakingRange)
+        }
+        attributedText.addAttribute(
+            .font,
+            value: UIFont.textEditor(),
+            range: NSRange(location: 0, length: attributedText.length)
+        )
         self.intent = intent
     }
     
@@ -117,6 +125,10 @@ struct TextTransaction: CustomDebugStringConvertible {
         return newText
     }
     
+    func withSpeakingRange(_ range: NSRange?) -> TextTransaction {
+        .init(text: self.text, intent: self.intent, isHint: self.isHint, speakingRange: range)
+    }
+
     // To keep track of when to delete the last word or the full word (after selecting a text suggestion) when pressing backspace
     // on the keyboard.
     enum Intent {

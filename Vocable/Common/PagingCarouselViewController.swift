@@ -148,12 +148,22 @@ import AVFoundation
 
     // Speaking + highlighting consolidation
 
+    @MainActor
+    private func cellForItem(at indexPath: IndexPath) -> UICollectionViewCell? {
+        collectionView.cellForItem(at: indexPath)
+    }
+
     func speak(
         _ string: String,
         forItemAt indexPath: IndexPath
     ) {
-        Task {
-            await VocableSpeechSynthesizer.shared.speak(string, language: AppConfig.activePreferredLanguageCode)
+        Task { [weak self] in
+            let ranges = await VocableSpeechSynthesizer.shared.speak(string)
+            guard let cell = self?.cellForItem(at: indexPath) as? HighlightableContentCell else { return }
+            for await range in ranges {
+                cell.setHighlightRange(range)
+            }
+            cell.setHighlightRange(nil)
         }
     }
 }

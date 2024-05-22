@@ -11,9 +11,10 @@ import AVKit
 import Combine
 
 class KeyboardViewController: UICollectionViewController {
-    
+
     private var dataSource: UICollectionViewDiffableDataSource<Section, ItemWrapper>!
     
+    private var speechSynthesizer: VocableSpeechSynthesizer!
     private var disposables = Set<AnyCancellable>()
     
     private var _textTransaction = TextTransaction(text: "") {
@@ -58,7 +59,9 @@ class KeyboardViewController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        speechSynthesizer = VocableSpeechSynthesizer()
+
         $attributedText.receive(on: DispatchQueue.main).sink { [weak self] (newAttributedText) in
             guard let self = self, let newAttributedText = newAttributedText,
                 newAttributedText.string != self._textTransaction.text else { return }
@@ -193,8 +196,8 @@ class KeyboardViewController: UICollectionViewController {
 
                 Analytics.shared.track(.keyboardPhraseSpoken)
                 let utterance = textTransaction.text
-                DispatchQueue.global(qos: .userInitiated).async {
-                    AVSpeechSynthesizer.shared.speak(utterance, language: AppConfig.activePreferredLanguageCode)
+                Task { [weak self] in
+                    await self?.speechSynthesizer.speak(utterance)
                 }
             case .clear:
                 setTextTransaction(TextTransaction(text: "", intent: .none))

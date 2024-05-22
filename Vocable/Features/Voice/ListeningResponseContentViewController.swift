@@ -96,8 +96,8 @@ final class ListeningResponseContentViewController: PagingCarouselViewController
             apiClient.userResponded(to: trackingPrompt, with: utterance)
         }
         
-        synthesizedSpeechQueue.async {
-            AVSpeechSynthesizer.shared.speak(utterance, language: AppConfig.activePreferredLanguageCode)
+        synthesizedSpeechQueue.async { [weak self] in
+            self?.speak(utterance, forItemAt: indexPath)
         }
     }
 

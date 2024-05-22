@@ -72,9 +72,7 @@ class NumericCategoryContentViewController: PagingCarouselViewController {
         guard let utterance = diffableDataSource.itemIdentifier(for: indexPath) else { return }
         lastUtterance = utterance
 
-        DispatchQueue.global(qos: .userInitiated).async {
-            AVSpeechSynthesizer.shared.speak(utterance, language: AppConfig.activePreferredLanguageCode)
-        }
+        speak(utterance, forItemAt: indexPath)
     }
 
     func contentItems() -> [String] {

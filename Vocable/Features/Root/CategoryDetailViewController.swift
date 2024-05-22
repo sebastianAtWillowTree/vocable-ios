@@ -195,10 +195,7 @@ class CategoryDetailViewController: PagingCarouselViewController, NSFetchedResul
                     try? context.save()
                 }
 
-                // Dispatch to get off the main queue for performance
-                DispatchQueue.global(qos: .userInitiated).async {
-                    AVSpeechSynthesizer.shared.speak(utterance, language: AppConfig.activePreferredLanguageCode)
-                }
+                speak(utterance, forItemAt: indexPath)
             }
         case .addNewPhrase:
             addNewPhraseButtonSelected()

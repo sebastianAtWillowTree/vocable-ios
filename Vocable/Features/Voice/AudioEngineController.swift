@@ -100,35 +100,35 @@ class AudioEngineController: NSObject, AVAudioPlayerDelegate {
 
         node.removeTap(onBus: bus)
         node.installTap(onBus: bus, bufferSize: 1024, format: micInputFormat) { [weak self] buffer, timestamp in
-
-            guard !AVSpeechSynthesizer.shared.isSpeaking else {
-                return
-            }
-
             self?.conversionQueue.async {
-                let frameCapacity = AVAudioFrameCount(micInputFormat.sampleRate * 2.0)
-                guard let convertedBuffer = AVAudioPCMBuffer(pcmFormat: speechInputFormat, frameCapacity: frameCapacity) else {
-                    return
-                }
-                var error: NSError?
-
-                var haveData = false
-                let inputBlock: AVAudioConverterInputBlock = { _, outStatus in
-                    if haveData {
-                        outStatus.pointee = .noDataNow
-                        return nil
+                Task { [weak self] in
+                    guard await !VocableSpeechSynthesizer.shared.isSpeaking else {
+                        return
                     }
-                    outStatus.pointee = .haveData
-                    haveData = true
-                    return buffer
-                }
+                    let frameCapacity = AVAudioFrameCount(micInputFormat.sampleRate * 2.0)
+                    guard let convertedBuffer = AVAudioPCMBuffer(pcmFormat: speechInputFormat, frameCapacity: frameCapacity) else {
+                        return
+                    }
+                    var error: NSError?
 
-                formatConverter.convert(to: convertedBuffer, error: &error, withInputFrom: inputBlock)
+                    var haveData = false
+                    let inputBlock: AVAudioConverterInputBlock = { _, outStatus in
+                        if haveData {
+                            outStatus.pointee = .noDataNow
+                            return nil
+                        }
+                        outStatus.pointee = .haveData
+                        haveData = true
+                        return buffer
+                    }
 
-                if let error = error {
-                    assertionFailure(error.localizedDescription)
-                } else {
-                    self?.audioBuffer = (buffer: convertedBuffer, timestamp: timestamp)
+                    formatConverter.convert(to: convertedBuffer, error: &error, withInputFrom: inputBlock)
+
+                    if let error = error {
+                        assertionFailure(error.localizedDescription)
+                    } else {
+                        self?.audioBuffer = (buffer: convertedBuffer, timestamp: timestamp)
+                    }
                 }
             }
         }

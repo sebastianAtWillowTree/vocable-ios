@@ -172,13 +172,15 @@ import SwiftUI
         }
 
         prepare()
-        UIView.animate(withDuration: 0.6,
-                       delay: 0,
-                       usingSpringWithDamping: 0.8,
-                       initialSpringVelocity: 1.0,
-                       options: .beginFromCurrentState,
-                       animations: actions,
-                       completion: finalize)
+        UIView.animate(
+            withDuration: 0.6,
+            delay: 0,
+            usingSpringWithDamping: 0.8,
+            initialSpringVelocity: 1.0,
+            options: [.beginFromCurrentState, .allowUserInteraction],
+            animations: actions,
+            completion: finalize
+        )
     }
 
     private func installViewController(_ viewController: UIViewController, in layoutGuide: UILayoutGuide) {

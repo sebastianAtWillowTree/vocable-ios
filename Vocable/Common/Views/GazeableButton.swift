@@ -105,7 +105,7 @@ class GazeableButton: UIButton {
             UIView.animate(
                 withDuration: 0.2,
                 delay: 0,
-                options: [.beginFromCurrentState, .curveEaseOut],
+                options: [.beginFromCurrentState, .curveEaseOut, .allowUserInteraction],
                 animations: actions,
                 completion: nil
             )

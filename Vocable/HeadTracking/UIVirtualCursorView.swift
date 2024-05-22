@@ -119,7 +119,7 @@ class UIVirtualCursorView: UIView {
                            delay: 0,
                            usingSpringWithDamping: 0.4,
                            initialSpringVelocity: 0.4,
-                           options: .beginFromCurrentState,
+                           options: [.beginFromCurrentState, .allowUserInteraction],
                            animations: actions,
                            completion: nil)
         } else {

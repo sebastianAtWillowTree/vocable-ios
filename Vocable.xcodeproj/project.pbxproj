@@ -238,7 +238,6 @@
 		A98E8A2523F1DBF200BF1F22 /* SettingsFooterCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A98E8A2423F1DBF200BF1F22 /* SettingsFooterCollectionViewCell.xib */; };
 		A99AF23123FC8BF700BE1184 /* TextTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99AF23023FC8BF700BE1184 /* TextTransaction.swift */; };
 		A99AF23323FDA8B600BE1184 /* SuggestionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99AF23223FDA8B600BE1184 /* SuggestionCollectionViewCell.swift */; };
-		A99AF23523FDA8DC00BE1184 /* SuggestionCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A99AF23423FDA8DC00BE1184 /* SuggestionCollectionViewCell.xib */; };
 		A99B5324282C0D5D004FEFDA /* AnalyticsReportable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99B5323282C0D5D004FEFDA /* AnalyticsReportable.swift */; };
 		A99B5326282C0E9D004FEFDA /* TimeInterval+AnalyticsReportable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99B5325282C0E9D004FEFDA /* TimeInterval+AnalyticsReportable.swift */; };
 		A9B32C8C240EB6250084E151 /* KeyboardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B32C8B240EB6250084E151 /* KeyboardModel.swift */; };
@@ -513,7 +512,6 @@
 		A98E8A2423F1DBF200BF1F22 /* SettingsFooterCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsFooterCollectionViewCell.xib; sourceTree = "<group>"; };
 		A99AF23023FC8BF700BE1184 /* TextTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextTransaction.swift; sourceTree = "<group>"; };
 		A99AF23223FDA8B600BE1184 /* SuggestionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionCollectionViewCell.swift; sourceTree = "<group>"; };
-		A99AF23423FDA8DC00BE1184 /* SuggestionCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SuggestionCollectionViewCell.xib; sourceTree = "<group>"; };
 		A99B5323282C0D5D004FEFDA /* AnalyticsReportable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsReportable.swift; sourceTree = "<group>"; };
 		A99B5325282C0E9D004FEFDA /* TimeInterval+AnalyticsReportable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval+AnalyticsReportable.swift"; sourceTree = "<group>"; };
 		A9B32C8B240EB6250084E151 /* KeyboardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardModel.swift; sourceTree = "<group>"; };
@@ -1227,7 +1225,6 @@
 				A94A6CCB2412D33F00625275 /* Models */,
 				6B14DC722419590E0050C287 /* OutputTextView.swift */,
 				A99AF23223FDA8B600BE1184 /* SuggestionCollectionViewCell.swift */,
-				A99AF23423FDA8DC00BE1184 /* SuggestionCollectionViewCell.xib */,
 			);
 			path = Keyboard;
 			sourceTree = "<group>";
@@ -1379,7 +1376,6 @@
 				A9CF2AF5242D4EF1005633A7 /* SensitivityCollectionViewCell.xib in Resources */,
 				71DBE5EB240DE4D000BA8D01 /* WarningView.xib in Resources */,
 				B24F02352BEBEF4E003C6BF9 /* Localizable.xcstrings in Resources */,
-				A99AF23523FDA8DC00BE1184 /* SuggestionCollectionViewCell.xib in Resources */,
 				A96D61D724229F7400577144 /* SettingsCollectionViewCell.xib in Resources */,
 				71B856442416CEB600CB163B /* ToastView.xib in Resources */,
 				A98E8A2523F1DBF200BF1F22 /* SettingsFooterCollectionViewCell.xib in Resources */,

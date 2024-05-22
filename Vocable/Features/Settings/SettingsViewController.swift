@@ -146,7 +146,7 @@ final class SettingsViewController: VocableCollectionViewController, MFMailCompo
             }
         }
         
-        let cellRegistration = CellRegistration { [weak self] cell, indexPath, item in
+        let cellRegistration = CellRegistration { [weak self] cell, _, item in
             if [.privacyPolicy, .contactDevs].contains(item) {
                 cell.contentConfiguration = VocableListContentConfiguration(
                     title: item.title,

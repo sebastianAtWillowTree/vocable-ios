@@ -52,7 +52,7 @@ final class ListeningFeedbackSubmitView: UIView {
         submitButton.setTitle(buttonTitle, for: .normal)
         submitButton.configurationUpdateHandler = { button in
             button.configuration?.contentInsets = .init(top: 10, leading: 16, bottom: 10, trailing: 16)
-            button.configuration?.titleTextAttributesTransformer = .init{ attributes in
+            button.configuration?.titleTextAttributesTransformer = .init { attributes in
                 var attributes = attributes
                 let font: UIFont = button.sizeClass == .hRegular_vRegular
                 ? .systemFont(ofSize: 26, weight: .bold)

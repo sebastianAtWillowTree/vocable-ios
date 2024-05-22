@@ -12,6 +12,7 @@ import UIKit
 
 extension VocableListContentConfiguration {
     
+    @MainActor
     static func voiceProfileItem(
         _ item: VoiceProfileItem,
         controller: VoiceProfilePreviewController,
@@ -39,6 +40,7 @@ extension VocableListContentConfiguration {
         )
     }
     
+    @MainActor
     static func voiceSelectionPreview(
         _ item: VoiceProfileItem,
         controller: VoiceProfilePreviewController

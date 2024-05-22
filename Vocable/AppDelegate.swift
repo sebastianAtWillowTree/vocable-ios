@@ -71,7 +71,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         addObservers()
 
         // Warm up the speech engine to prevent lag on first invocation
-        AVSpeechSynthesizer.shared.speak("", language: "en")
+        _ = VocableSpeechSynthesizer.shared
 
         application.isIdleTimerDisabled = true
 

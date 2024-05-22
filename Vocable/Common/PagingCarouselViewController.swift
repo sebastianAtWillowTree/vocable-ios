@@ -8,6 +8,7 @@
 
 import UIKit
 import Combine
+import AVFoundation
 
 @IBDesignable class PagingCarouselViewController: VocableViewController, UICollectionViewDelegate {
 
@@ -143,5 +144,16 @@ import Combine
         }
         NSLayoutConstraint.activate(constraints)
         volatileConstraints = constraints
+    }
+
+    // Speaking + highlighting consolidation
+
+    func speak(
+        _ string: String,
+        forItemAt indexPath: IndexPath
+    ) {
+        Task {
+            await VocableSpeechSynthesizer.shared.speak(string, language: AppConfig.activePreferredLanguageCode)
+        }
     }
 }

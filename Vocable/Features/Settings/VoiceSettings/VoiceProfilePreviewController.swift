@@ -11,6 +11,7 @@ import Combine
 import AVFoundation
 import UIKit
 
+@MainActor
 final class VoiceProfilePreviewController {
 
     enum PresentationContext {
@@ -24,7 +25,7 @@ final class VoiceProfilePreviewController {
     @Published
     private(set) var items: [VoiceProfileItem] = []
     
-    private let synthesizer = VoiceProfilePreviewSynthesizer()
+    private lazy var synthesizer = VocableSpeechSynthesizer(delegate: self)
     private let dataSource: VoiceProfilePreviewDataSource
     private var cancellables: Set<AnyCancellable> = []
     
@@ -38,9 +39,7 @@ final class VoiceProfilePreviewController {
         case .personalVoice:
             self.dataSource = .init(filter: .personalVoices)
         }
-        
-        synthesizer.delegate = self
-        
+
         if #available(iOS 17.0, *) {
             NotificationCenter.default
                 .publisher(for: AVSpeechSynthesizer.availableVoicesDidChangeNotification)
@@ -71,11 +70,15 @@ final class VoiceProfilePreviewController {
     }
     
     func playPreview(_ item: VoiceProfileItem) {
-        synthesizer.playPreview(item.voice)
+        Task {
+            await synthesizer.playPreview(item.voice)
+        }
     }
     
     func stopPreview() {
-        synthesizer.stopPlaying()
+        Task {
+            await synthesizer.stopPreview()
+        }
     }
     
     private func availableVoicesDidChange() {
@@ -107,12 +110,16 @@ final class VoiceProfilePreviewController {
 
 // MARK: VoiceProfilePreviewSynthesizerDelegate
 
-extension VoiceProfilePreviewController: VoiceProfilePreviewSynthesizerDelegate {
+extension VoiceProfilePreviewController: VocableSpeechSynthesizerDelegate {
     func voiceProfilePreviewDidBegin(_ voice: AVSpeechSynthesisVoice?) {
         updateItems()
     }
     
     func voiceProfilePreviewDidEnd() {
         updateItems()
+    }
+
+    func voiceSpeechSynthesisWillSpeakRange(_: NSRange, utterance: AVSpeechUtterance) {
+
     }
 }

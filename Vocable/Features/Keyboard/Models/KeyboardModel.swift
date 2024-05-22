@@ -56,7 +56,7 @@ struct KeyboardLocale {
     }
 }
 
-enum KeyboardFunctionButton {
+enum KeyboardFunctionKey {
     case clear
     case backspace
     case space
@@ -72,6 +72,15 @@ enum KeyboardFunctionButton {
             return UIImage(systemName: "space")!
         case .speak:
             return UIImage(systemName: "person.wave.2.fill")!
+        }
+    }
+
+    var accessibilityID: String {
+        return switch self {
+        case .clear: "clear"
+        case .backspace: "backspace"
+        case .space: "space"
+        case .speak: "speak"
         }
     }
 }

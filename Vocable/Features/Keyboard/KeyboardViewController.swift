@@ -12,9 +12,17 @@ import Combine
 
 class KeyboardViewController: UICollectionViewController {
 
-    private var dataSource: UICollectionViewDiffableDataSource<Section, ItemWrapper>!
-    
+    private typealias DataSource = UICollectionViewDiffableDataSource<Section, ItemWrapper>
+    private typealias Snapshot = NSDiffableDataSourceSnapshot<Section, ItemWrapper>
+
+    private typealias SuggestionCellRegistration = UICollectionView.CellRegistration<SuggestionCollectionViewCell, TextSuggestion>
+    private typealias KeyCellRegistration = UICollectionView.CellRegistration<KeyboardKeyCollectionViewCell, String>
+    private typealias FunctionKeyCellRegistration = UICollectionView.CellRegistration<KeyboardKeyCollectionViewCell, KeyboardFunctionKey>
+    private typealias SpeakKeyCellRegistration = UICollectionView.CellRegistration<SpeakFunctionKeyboardKeyCollectionViewCell, KeyboardFunctionKey>
+
     private var speechSynthesizer: VocableSpeechSynthesizer!
+    private var dataSource: DataSource!
+
     private var disposables = Set<AnyCancellable>()
     
     private var _textTransaction = TextTransaction(text: "") {
@@ -31,17 +39,25 @@ class KeyboardViewController: UICollectionViewController {
     
     private var suggestions: [TextSuggestion] = [] {
         didSet {
-            updateSnapshot()
+            var snapshot = dataSource.snapshot()
+            let suggestionItems = snapshot.itemIdentifiers(inSection: .suggestions)
+            snapshot.reconfigureItems(suggestionItems)
+            dataSource.apply(snapshot, animatingDifferences: true)
         }
     }
     
     @PublishedValue
     var attributedText: NSAttributedString?
-    
+
+    private var suggestionCellRegistration: SuggestionCellRegistration!
+    private var keyCellRegistration: KeyCellRegistration!
+    private var functionKeyCellRegistration: FunctionKeyCellRegistration!
+    private var speakCellRegistration: SpeakKeyCellRegistration!
+
     private enum ItemWrapper: Hashable {
         case key(String)
-        case keyboardFunctionButton(KeyboardFunctionButton)
-        case suggestionText(TextSuggestion)
+        case functionKey(KeyboardFunctionKey)
+        case suggestionCell(Int)
     }
     
     private enum Section: Int, CaseIterable {
@@ -62,12 +78,19 @@ class KeyboardViewController: UICollectionViewController {
 
         speechSynthesizer = VocableSpeechSynthesizer()
 
-        $attributedText.receive(on: DispatchQueue.main).sink { [weak self] (newAttributedText) in
-            guard let self = self, let newAttributedText = newAttributedText,
-                newAttributedText.string != self._textTransaction.text else { return }
-            self._textTransaction = TextTransaction(text: newAttributedText.string, intent: .lastCharacter)
-        }.store(in: &disposables)
-        
+        $attributedText
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] (newAttributedText) in
+                guard
+                    let self, let newAttributedText,
+                    newAttributedText.string != self._textTransaction.text
+                else {
+                    return
+                }
+                self._textTransaction = TextTransaction(text: newAttributedText.string, intent: .lastCharacter)
+            }
+            .store(in: &disposables)
+
         setupCollectionView()
         configureDataSource()
     }
@@ -80,51 +103,67 @@ class KeyboardViewController: UICollectionViewController {
     private func setupCollectionView() {
         collectionView.delaysContentTouches = false
         collectionView.isScrollEnabled = false
-        
-        collectionView.register(
-            KeyboardKeyCollectionViewCell.self,
-            forCellWithReuseIdentifier: KeyboardKeyCollectionViewCell.reuseIdentifier
-        )
-        collectionView.register(
-            SpeakFunctionKeyboardKeyCollectionViewCell.self,
-            forCellWithReuseIdentifier: SpeakFunctionKeyboardKeyCollectionViewCell.reuseIdentifier
-        )
-        collectionView.register(UINib(nibName: "SuggestionCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: SuggestionCollectionViewCell.reuseIdentifier)
 
         let layout = createLayout()
         collectionView.collectionViewLayout = layout
         collectionView.backgroundColor = UIColor.collectionViewBackgroundColor
         collectionView.allowsMultipleSelection = true
         
-        collectionView.register(PresetPageControlReusableView.self, forSupplementaryViewOfKind: "footerPageIndicator", withReuseIdentifier: "PresetPageControlView")
         collectionView.accessibilityID = .shared.keyboard.collectionView
     }
     
     private func configureDataSource() {
-        dataSource = UICollectionViewDiffableDataSource<Section, ItemWrapper>(collectionView: collectionView, cellProvider: { (collectionView: UICollectionView, indexPath: IndexPath, identifier: ItemWrapper) -> UICollectionViewCell? in
-            
-            switch identifier {
-            case .suggestionText(let predictiveText):
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SuggestionCollectionViewCell.reuseIdentifier, for: indexPath) as! SuggestionCollectionViewCell
-                cell.setup(title: predictiveText.text)
-                return cell
+        let suggestionRegistration = SuggestionCellRegistration { cell, _, itemIdentifier in
+            cell.setup(title: itemIdentifier.text)
+        }
+        let keyCellRegistration = KeyCellRegistration { cell, _, char in
+            cell.setup(title: char)
+            cell.accessibilityID = .shared.keyboard.key(char)
+        }
+        let functionKeyRegistration = FunctionKeyCellRegistration { cell, _, itemIdentifier in
+            cell.setup(with: itemIdentifier.image)
+            cell.accessibilityID = .shared.keyboard.key(itemIdentifier.accessibilityID)
+        }
+        let speakKeyRegistration = SpeakKeyCellRegistration { cell, _, itemIdentifier in
+            cell.setup(with: itemIdentifier.image)
+            cell.accessibilityID = .shared.keyboard.key(itemIdentifier.accessibilityID)
+        }
+
+        dataSource = DataSource(collectionView: collectionView) { [weak self] (collectionView: UICollectionView, indexPath: IndexPath, identifier: ItemWrapper) -> UICollectionViewCell? in
+            guard let self else { return nil }
+            return switch identifier {
+            case .suggestionCell(let index):
+                collectionView.dequeueConfiguredReusableCell(
+                    using: suggestionRegistration,
+                    for: indexPath,
+                    item: suggestions[safe: index] ?? .init(text: "")
+                )
             case .key(let char):
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: KeyboardKeyCollectionViewCell.reuseIdentifier, for: indexPath) as! KeyboardKeyCollectionViewCell
-                cell.setup(title: char)
-                cell.accessibilityID = .shared.keyboard.key(char)
-                return cell
-            case .keyboardFunctionButton(let functionType):
+                collectionView.dequeueConfiguredReusableCell(
+                    using: keyCellRegistration,
+                    for: indexPath,
+                    item: char
+                )
+            case .functionKey(let functionType):
                 if functionType == .speak {
-                    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SpeakFunctionKeyboardKeyCollectionViewCell.reuseIdentifier, for: indexPath) as! SpeakFunctionKeyboardKeyCollectionViewCell
-                    cell.setup(with: functionType.image)
-                    return cell
+                    collectionView.dequeueConfiguredReusableCell(
+                        using: speakKeyRegistration,
+                        for: indexPath,
+                        item: functionType
+                    )
+                } else {
+                    collectionView.dequeueConfiguredReusableCell(
+                        using: functionKeyRegistration,
+                        for: indexPath,
+                        item: functionType
+                    )
                 }
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: KeyboardKeyCollectionViewCell.reuseIdentifier, for: indexPath) as! KeyboardKeyCollectionViewCell
-                cell.setup(with: functionType.image)
-                return cell
             }
-        })
-        
+        }
+        self.keyCellRegistration = keyCellRegistration
+        self.functionKeyCellRegistration = functionKeyRegistration
+        self.speakCellRegistration = speakKeyRegistration
+        self.suggestionCellRegistration = suggestionRegistration
         updateSnapshot()
     }
     
@@ -149,31 +188,20 @@ class KeyboardViewController: UICollectionViewController {
         
         // Snapshot construction
         snapshot.appendSections([.suggestions])
-        
-        if suggestions.isEmpty {
-            snapshot.appendItems([.suggestionText(TextSuggestion(text: "")),
-                                  .suggestionText(TextSuggestion(text: "")),
-                                  .suggestionText(TextSuggestion(text: "")),
-                                  .suggestionText(TextSuggestion(text: ""))])
-        } else {
-            snapshot.appendItems([.suggestionText(TextSuggestion(text: (suggestions[safe: 0]?.text ?? ""))),
-                                  .suggestionText(TextSuggestion(text: (suggestions[safe: 1]?.text ?? ""))),
-                                  .suggestionText(TextSuggestion(text: (suggestions[safe: 2]?.text ?? ""))),
-                                  .suggestionText(TextSuggestion(text: (suggestions[safe: 3]?.text ?? "")))])
-        }
+        snapshot.appendItems((0...3).map { ItemWrapper.suggestionCell($0)})
         
         snapshot.appendSections([.keyboard])
-        if traitCollection.horizontalSizeClass == .compact && traitCollection.verticalSizeClass == .regular && !AppConfig.isCompactQWERTYKeyboardEnabled {
+        if sizeClass == .hCompact_vRegular && !AppConfig.isCompactQWERTYKeyboardEnabled {
             snapshot.appendItems(KeyboardLocale.current.compactPortraitKeyMapping.map { ItemWrapper.key("\($0)") })
         } else {
             snapshot.appendItems(KeyboardLocale.current.landscapeKeyMapping.map { ItemWrapper.key("\($0)") })
         }
         
-        snapshot.appendItems([.keyboardFunctionButton(.clear), .keyboardFunctionButton(.space), .keyboardFunctionButton(.backspace), .keyboardFunctionButton(.speak)])
+        snapshot.appendItems([.functionKey(.clear), .functionKey(.space), .functionKey(.backspace), .functionKey(.speak)])
         
         dataSource.apply(snapshot, animatingDifferences: animated)
     }
-    
+
     // MARK: - Collection View Delegate
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let selectedItem = dataSource.itemIdentifier(for: indexPath) else { return }
@@ -184,7 +212,7 @@ class KeyboardViewController: UICollectionViewController {
         }
         
         switch selectedItem {
-        case .keyboardFunctionButton(let functionType):
+        case .functionKey(let functionType):
             switch functionType {
             case .space:
                 setTextTransaction(textTransaction.appendingCharacter(with: " "))
@@ -206,8 +234,10 @@ class KeyboardViewController: UICollectionViewController {
             }
         case .key(let char):
             setTextTransaction(textTransaction.appendingCharacter(with: char))
-        case .suggestionText(let suggestion):
-            setTextTransaction(textTransaction.insertingSuggestion(with: suggestion.text))
+        case .suggestionCell(let index):
+            if let suggestion = suggestions[safe: index] {
+                setTextTransaction(textTransaction.insertingSuggestion(with: suggestion.text))
+            }
         }
         
         if collectionView.indexPathForGazedItem != indexPath {
@@ -219,10 +249,10 @@ class KeyboardViewController: UICollectionViewController {
         guard let item = dataSource.itemIdentifier(for: indexPath) else { return false }
         
         switch item {
-        case .keyboardFunctionButton, .key:
+        case .functionKey, .key:
             return true
-        case .suggestionText(let suggestion):
-            return !suggestion.text.isEmpty
+        case .suggestionCell(let index):
+            return suggestions.indices.contains(index)
         }
     }
     
@@ -230,10 +260,10 @@ class KeyboardViewController: UICollectionViewController {
         guard let item = dataSource.itemIdentifier(for: indexPath) else { return false }
         
         switch item {
-        case .keyboardFunctionButton, .key:
+        case .functionKey, .key:
             return true
-        case .suggestionText(let suggestion):
-            return !suggestion.text.isEmpty
+        case .suggestionCell(let index):
+            return suggestions.indices.contains(index)
         }
     }
     

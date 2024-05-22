@@ -136,11 +136,13 @@ class VocableCollectionViewCell: UICollectionViewCell {
         }
 
         if UIView.inheritedAnimationDuration == 0 {
-            UIView.animate(withDuration: 0.2,
-                           delay: 0,
-                           options: [.beginFromCurrentState, .curveEaseOut],
-                           animations: actions,
-                           completion: nil)
+            UIView.animate(
+                withDuration: 0.2,
+                delay: 0,
+                options: [.beginFromCurrentState, .curveEaseOut, .allowUserInteraction],
+                animations: actions,
+                completion: nil
+            )
         } else {
             actions()
         }

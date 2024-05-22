@@ -15,6 +15,7 @@ import Combine
 protocol VocableSpeechSynthesizerDelegate: AnyObject {
     func voiceProfilePreviewDidBegin(_: AVSpeechSynthesisVoice?)
     func voiceProfilePreviewDidEnd()
+    func voiceSpeechSynthesisWillSpeakRange(_ range: NSRange, utterance: AVSpeechUtterance)
 }
 
 actor VocableSpeechSynthesizer: NSObject, AVSpeechSynthesizerDelegate {
@@ -160,6 +161,10 @@ actor VocableSpeechSynthesizer: NSObject, AVSpeechSynthesizerDelegate {
             await synthesisOperationWillSpeak(
                 utterance: utterance,
                 range: characterRange
+            )
+            delegate?.voiceSpeechSynthesisWillSpeakRange(
+                characterRange,
+                utterance: utterance
             )
         }
     }

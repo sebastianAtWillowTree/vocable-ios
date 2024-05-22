@@ -8,10 +8,12 @@
 
 import UIKit
 
-class PresetItemCollectionViewCell: VocableCollectionViewCell {
+class PresetItemCollectionViewCell: VocableCollectionViewCell, HighlightableContentCell {
 
     let textLabel = UILabel(frame: .zero)
     
+    private var highlightRange: NSRange?
+
     override func updateContent() {
         super.updateContent()
 
@@ -29,6 +31,12 @@ class PresetItemCollectionViewCell: VocableCollectionViewCell {
         textLabel.backgroundColor = borderedView.fillColor
         textLabel.isOpaque = true
         textLabel.font = UIFont.systemFont(ofSize: 28, weight: .bold)
+
+        if let highlightRange, let attributedString = textLabel.attributedText {
+            let attr = NSMutableAttributedString(attributedString: attributedString)
+            attr.addAttribute(.foregroundColor, value: UIColor.cellBorderHighlightColor, range: highlightRange)
+            textLabel.attributedText = attr
+        }
     }
     
     override init(frame: CGRect) {
@@ -71,6 +79,19 @@ class PresetItemCollectionViewCell: VocableCollectionViewCell {
             textLabel.attributedText = NSAttributedString.imageAttachedString(for: title, with: image)
         } else {
             textLabel.text = title
+        }
+    }
+
+    @MainActor
+    func setHighlightRange(_ range: NSRange?) {
+        highlightRange = range
+        UIView.transition(
+            with: contentView,
+            duration: 0.1,
+            options: .transitionCrossDissolve
+        ) { [weak self] in
+            self?.setNeedsUpdateContent()
+            self?.updateContent()
         }
     }
 }

@@ -186,9 +186,7 @@ class OutputTextView: UITextView {
     }
     
     private func updateFontForTraitCollection() {
-        let sizeClass = (traitCollection.horizontalSizeClass, traitCollection.verticalSizeClass)
-        let fontSize: CGFloat = sizeClass == (.regular, .regular) ? 40 : 28
-        let desiredFont = UIFont.systemFont(ofSize: fontSize, weight: .bold)
+        let desiredFont = UIFont.textEditor(satisfying: traitCollection)
         let attributedFont: UIFont? = {
             guard let len = attributedText?.length, len > 0 else { return nil }
             return attributedText?.attribute(.font, at: 0, effectiveRange: nil) as? UIFont

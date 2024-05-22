@@ -75,6 +75,10 @@ class KeyboardKeyCollectionViewCell: VocableCollectionViewCell {
         textLabel.isHidden = false
         imageView.isHidden = true
         textLabel.text = title
+
+        if #available(iOS 17.0, *) {
+            imageView.removeAllSymbolEffects()
+        }
     }
     
     func setup(with image: UIImage?) {
@@ -82,6 +86,20 @@ class KeyboardKeyCollectionViewCell: VocableCollectionViewCell {
         imageView.isHidden = false
         imageView.image = image?.withRenderingMode(.alwaysTemplate)
         imageView.contentMode = .center
+
+        if #available(iOS 17.0, *) {
+            imageView.removeAllSymbolEffects()
+        }
+    }
+
+    @available(iOS 17.0, *)
+    func setup(
+        with image: UIImage?,
+        effect: some DiscreteSymbolEffect & SymbolEffect,
+        options: SymbolEffectOptions = .default
+    ) {
+        setup(with: image)
+        imageView.addSymbolEffect(effect, options: options, animated: true)
     }
 }
 

@@ -71,6 +71,12 @@ struct SizeClass: OptionSet {
     }
 }
 
+extension UITraitCollection {
+    var sizeClass: SizeClass {
+        SizeClass(self)
+    }
+}
+
 protocol TraitCollectionProvider {
 
     var traitCollection: UITraitCollection { get }
@@ -79,7 +85,7 @@ protocol TraitCollectionProvider {
 extension TraitCollectionProvider {
 
     var sizeClass: SizeClass {
-        return .init(traitCollection)
+        SizeClass(traitCollection)
     }
 }
 

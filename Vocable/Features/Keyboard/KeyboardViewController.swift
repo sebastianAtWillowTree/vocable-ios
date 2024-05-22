@@ -10,7 +10,7 @@ import UIKit
 import AVKit
 import Combine
 
-class KeyboardViewController: UICollectionViewController {
+class KeyboardViewController: UICollectionViewController, VocableSpeechSynthesizerDelegate {
 
     private typealias DataSource = UICollectionViewDiffableDataSource<Section, ItemWrapper>
     private typealias Snapshot = NSDiffableDataSourceSnapshot<Section, ItemWrapper>
@@ -46,6 +46,21 @@ class KeyboardViewController: UICollectionViewController {
         }
     }
     
+    private var isSpeaking: Bool = false {
+        didSet {
+            var snapshot = dataSource.snapshot()
+            snapshot.reconfigureItems([.functionKey(.speak)])
+            dataSource.apply(snapshot)
+        }
+    }
+
+    private var speakingRange: NSRange? {
+        didSet {
+            guard oldValue != speakingRange else { return }
+            self.setTextTransaction(self.textTransaction.withSpeakingRange(speakingRange))
+        }
+    }
+
     @PublishedValue
     var attributedText: NSAttributedString?
 
@@ -76,7 +91,7 @@ class KeyboardViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        speechSynthesizer = VocableSpeechSynthesizer()
+        speechSynthesizer = VocableSpeechSynthesizer(delegate: self)
 
         $attributedText
             .receive(on: DispatchQueue.main)
@@ -125,7 +140,11 @@ class KeyboardViewController: UICollectionViewController {
             cell.accessibilityID = .shared.keyboard.key(itemIdentifier.accessibilityID)
         }
         let speakKeyRegistration = SpeakKeyCellRegistration { cell, _, itemIdentifier in
-            cell.setup(with: itemIdentifier.image)
+            if #available(iOS 17.0, *), self.isSpeaking {
+                cell.setup(with: itemIdentifier.image, effect: .variableColor.iterative.dimInactiveLayers.reversing, options: .repeating)
+            } else {
+                cell.setup(with: itemIdentifier.image)
+            }
             cell.accessibilityID = .shared.keyboard.key(itemIdentifier.accessibilityID)
         }
 
@@ -291,5 +310,19 @@ class KeyboardViewController: UICollectionViewController {
             self?.updateSnapshot()
         }
     }
+
+    // MARK: VocableSpeechSynthesizerDelegate
+
+    func voiceProfilePreviewDidBegin(_: AVSpeechSynthesisVoice?) {
+        isSpeaking = true
+    }
+
+    func voiceProfilePreviewDidEnd() {
+        isSpeaking = false
+        speakingRange = nil
+    }
     
+    func voiceSpeechSynthesisWillSpeakRange(_ range: NSRange, utterance: AVSpeechUtterance) {
+        speakingRange = range
+    }
 }

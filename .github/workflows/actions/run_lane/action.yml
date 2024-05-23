@@ -9,7 +9,8 @@ runs:
   steps:
     - name: 'Run fastlane'
       uses: actions/checkout@v4
-      run: bundle exec fastlane ${{ inputs.lane }}
+    - run: bundle exec fastlane ${{ inputs.lane }}
+      shell: sh
 
     - name: 'Upload artifacts'
       if: ${{ !cancelled() }}

@@ -1,6 +1,4 @@
-
 name: Run fastlane with artifacts
-
 on:
   workflow_call:
     inputs:
@@ -21,4 +19,3 @@ jobs:
         with: 
           name: test-output
           path: artifacts
-  

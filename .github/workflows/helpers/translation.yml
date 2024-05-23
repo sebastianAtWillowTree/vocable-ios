@@ -1,0 +1,30 @@
+name: Translation
+on:
+  workflow_call
+jobs:
+  fastlane_xliff_import:
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+      - name: "Pull latest develop"
+        run: "git pull --no-commit -q origin develop --no-rebase"
+      - name: "Run lane `xliff_import`"
+        uses: ./.github/workflows/helpers/run_lane.yml
+        with:
+          lane: "xliff_import"
+
+  fastlane_xliff_export:
+    runs-on: macos-14
+    steps:
+      - name: "Run lane `xliff_export`"
+        uses: ./.github/workflows/helpers/run_lane.yml
+        with:
+          lane: "xliff_export"
+      - uses: actions/checkout@v4
+      - name: "Diff xliff and commit if changed"
+        run: |
+          git config user.name "Localization Bot"
+          git config user.email "localization_bot@willowtreeapps.com"
+          git add -A
+          git diff-index --quiet HEAD || git commit -m "Updated app localizations for Crowdin Export [ci skip]"
+          git push --quiet

@@ -1,4 +1,4 @@
-name: "On release push"
+name: 'On release push'
 on:
   push:
     branches:
@@ -7,17 +7,17 @@ jobs:
   on_release_push:
     runs-on: macos-14
     steps:
-      - name: "test_unit_ui"
+      - name: 'test_unit_ui'
         uses: ./.github/workflows/helpers/run_lane.yml
         with:
-          lane: "test_unit_ui"
+          lane: 'test_unit_ui'
 
-      - name: "xliff_export"
+      - name: 'xliff_export'
         uses: ./.github/workflows/helpers/run_lane.yml
         with:
-          lane: "xliff_export"
+          lane: 'xliff_export'
 
-      - name: "build_deploy_testflight"
+      - name: 'build_deploy_testflight'
         uses: ./.github/workflows/helpers/run_lane.yml
         with:
-          lane: "build_deploy_testflight"
+          lane: 'build_deploy_testflight'

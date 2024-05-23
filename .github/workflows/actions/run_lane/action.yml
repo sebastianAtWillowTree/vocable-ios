@@ -1,0 +1,19 @@
+name: 'Run Lane'
+description: 'Run a fastane lane and upload artifacts'
+inputs:
+  lane:
+    description: 'Name of fastlane lane to run'
+    required: true
+runs:
+  using: 'composite'
+  steps:
+    - name: 'Run fastlane'
+      uses: actions/checkout@v4
+      run: bundle exec fastlane ${{ inputs.lane }}
+
+    - name: 'Upload artifacts'
+      if: ${{ !cancelled() }}
+      uses: actions/upload-artifact@v4
+      with:
+        name: test-output
+        path: artifacts

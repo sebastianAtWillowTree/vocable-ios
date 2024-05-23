@@ -1,6 +1,6 @@
-name: On crowdin push
+name: 'On crowdin push'
 on:
-  pull_request:
+  push:
     branches:
       - 'crowdin.**'
 jobs:
@@ -8,11 +8,9 @@ jobs:
     runs-on: macos-14
     steps:
       - name: 'xliff_import'
-        uses: ./.github/workflows/helpers/run_lane.yml
-        with:
-          lane: 'xliff_import'
+        uses: ./.github/workflows/actions/xliff_import
 
       - name: 'test_unit_ui'
-        uses: ./.github/workflows/helpers/run_lane.yml
+        uses: ./.github/workflows/actions/run_lane
         with:
           lane: 'test_unit_ui'

@@ -8,11 +8,9 @@ jobs:
     runs-on: macos-14
     steps:
       - name: 'test_unit_ui'
-        uses: ./.github/workflows/helpers/run_lane.yml
+        uses: ./.github/workflows/actions/run_lane
         with:
           lane: 'test_unit_ui'
 
       - name: 'xliff_export'
-        uses: ./.github/workflows/helpers/run_lane.yml
-        with:
-          lane: 'xliff_export'
+        uses: ./.github/workflows/actions/xliff_export

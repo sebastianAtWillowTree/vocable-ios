@@ -9,12 +9,9 @@ runs:
   steps:
     - name: 'Run fastlane'
       uses: actions/checkout@v4
-    - run: bundle exec fastlane ${{ inputs.lane }}
+    - run: fastlane ${{ inputs.lane }}
       shell: sh
+      env:
+        MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
 
-    - name: 'Upload artifacts'
-      if: ${{ !cancelled() }}
-      uses: actions/upload-artifact@v4
-      with:
-        name: test-output
-        path: artifacts
+  # TODO: Artifacts

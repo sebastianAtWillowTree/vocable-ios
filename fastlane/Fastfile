@@ -3,20 +3,13 @@ default_platform :ios
 platform :ios do
   before_all do
     ENV["FASTLANE_XCODEBUILD_SETTINGS_TIMEOUT"] = "60"
-    setup_circle_ci
-    if is_ci
-      sh "defaults write com.apple.dt.Xcode IDESkipPackagePluginFingerprintValidation -bool YES"
-      sh "defaults write com.apple.dt.Xcode IDESkipMacroFingerprintValidation -bool YES"
-    end
   end
 
-  desc "Runs all the tests"
-  lane :test do
-    
+  desc "Runs Unit and UI tests"
+  lane :test_unit_ui do
     scan(
       scheme: "Development",
-      devices: ["iPhone 15"],
-      xcargs: "-skipPackagePluginValidation -skipMacroValidation"
+      devices: ["iPhone 15"]
     )
     # in the meantime, build the app for PRs
     match(type: "development", readonly: true)
@@ -42,7 +35,7 @@ platform :ios do
   end
 
   desc "AppStore build and upload to TestFlight"
-  lane :buildanddeploytotestflight do
+  lane :build_deploy_testflight do
     
     app_store_connect_api_key(
       key_id: ENV['APP_STORE_KEY_ID'],
@@ -105,7 +98,7 @@ platform :ios do
   end
 
   desc "Integrate latest XLIFF files with project"
-  lane :xliffimport do
+  lane :xliff_import do
     sh "git pull --no-commit -q origin develop --no-rebase"
     Dir.glob('./../CrowdinImports/*.xliff') do |xliff|
       sh "xcodebuild -importLocalizations -localizationPath #{xliff} -project ./../Vocable.xcodeproj"
@@ -113,7 +106,7 @@ platform :ios do
   end
   
   desc "Export current XLIFF file from project"
-  lane :xliffexport do
+  lane :xliff_export do
     sh "rm -rf ./../CrowdinExport/*"
     sh "xcodebuild -exportLocalizations -localizationPath ./../CrowdinExport/ -project ./../Vocable.xcodeproj"
     sh "mv './../CrowdinExport/en.xcloc/Localized Contents/en.xliff' './../CrowdinExport/en.xliff'"

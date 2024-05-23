@@ -15,21 +15,13 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 ## iOS
 
-### ios test
+### ios test_unit_ui
 
 ```sh
-[bundle exec] fastlane ios test
+[bundle exec] fastlane ios test_unit_ui
 ```
 
-Runs all the tests
-
-### ios lint
-
-```sh
-[bundle exec] fastlane ios lint
-```
-
-Run swiftlint
+Runs Unit and UI tests
 
 ### ios adhoc
 
@@ -39,10 +31,10 @@ Run swiftlint
 
 Ad-hoc build
 
-### ios buildanddeploytotestflight
+### ios build_deploy_testflight
 
 ```sh
-[bundle exec] fastlane ios buildanddeploytotestflight
+[bundle exec] fastlane ios build_deploy_testflight
 ```
 
 AppStore build and upload to TestFlight
@@ -63,18 +55,18 @@ Add devices via the command line to the device portal and regenerate the develop
 
 Setup local development environment (WillowTree Internal)
 
-### ios xliffimport
+### ios xliff_import
 
 ```sh
-[bundle exec] fastlane ios xliffimport
+[bundle exec] fastlane ios xliff_import
 ```
 
 Integrate latest XLIFF files with project
 
-### ios xliffexport
+### ios xliff_export
 
 ```sh
-[bundle exec] fastlane ios xliffexport
+[bundle exec] fastlane ios xliff_export
 ```
 
 Export current XLIFF file from project

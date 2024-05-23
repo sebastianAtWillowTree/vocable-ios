@@ -7,6 +7,8 @@ jobs:
   on_pull_request:
     runs-on: macos-14
     steps:
+      - uses: actions/checkout@v4
+
       - name: 'test_unit_ui'
         uses: ./.github/workflows/actions/run_lane
         with:

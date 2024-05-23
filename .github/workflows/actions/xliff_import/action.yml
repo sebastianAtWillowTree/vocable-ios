@@ -9,6 +9,6 @@ runs:
         shell: sh
 
       - name: 'Run lane xliff_import'
-        uses: ./.github/workflows/helpers/run_lane
+        uses: ./.github/workflows/actions/run_lane
         with:
           lane: "xliff_import"

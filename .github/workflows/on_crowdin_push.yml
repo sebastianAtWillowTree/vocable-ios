@@ -16,3 +16,4 @@ jobs:
         uses: ./.github/workflows/actions/run_lane
         with:
           lane: 'test_unit_ui'
+          match_password: ${{ secrets.MATCH_PASSWORD }}

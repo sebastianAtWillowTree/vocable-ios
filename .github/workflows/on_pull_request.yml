@@ -13,6 +13,7 @@ jobs:
         uses: ./.github/workflows/actions/run_lane
         with:
           lane: 'test_unit_ui'
+          match_password: ${{ secrets.MATCH_PASSWORD }}
 
       - name: 'xliff_export'
         uses: ./.github/workflows/actions/xliff_export

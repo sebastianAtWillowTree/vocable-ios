@@ -11,8 +11,7 @@ runs:
   using: composite
   steps:
     - name: Run fastlane
-      uses: actions/checkout@v4
-    - run: fastlane ${{ inputs.lane }}
+      run: bundle exec fastlane ${{ inputs.lane }}
       shell: sh
       env:
         MATCH_PASSWORD: ${{ inputs.match_password }}

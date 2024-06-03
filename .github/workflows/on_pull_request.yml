@@ -1,19 +1,19 @@
-name: 'On pull request'
+name: On pull request
 on:
   pull_request:
     branches:
-      - 'develop'
+      - develop
 jobs:
   on_pull_request:
     runs-on: macos-14
     steps:
       - uses: actions/checkout@v4
 
-      - name: 'test_unit_ui'
+      - name: test_unit_ui
         uses: ./.github/workflows/actions/run_lane
         with:
-          lane: 'test_unit_ui'
+          lane: test_unit_ui
           match_password: ${{ secrets.MATCH_PASSWORD }}
 
-      - name: 'xliff_export'
+      - name: xliff_export
         uses: ./.github/workflows/actions/xliff_export

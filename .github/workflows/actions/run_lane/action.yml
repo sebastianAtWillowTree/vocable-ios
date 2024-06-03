@@ -1,16 +1,16 @@
-name: 'Run Lane'
-description: 'Run a fastane lane and upload artifacts'
+name: Run Lane
+description: Run a fastane lane and upload artifacts
 inputs:
   lane:
-    description: 'Name of fastlane lane to run'
+    description: Name of fastlane lane to run
     required: true
   match_password:
-    description: 'Match password, ideally in secrets.MATCH_PASSWORD'
+    description: Match password, ideally in secrets.MATCH_PASSWORD
     required: false
 runs:
-  using: 'composite'
+  using: composite
   steps:
-    - name: 'Run fastlane'
+    - name: Run fastlane
       uses: actions/checkout@v4
     - run: fastlane ${{ inputs.lane }}
       shell: sh

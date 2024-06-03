@@ -1,19 +1,19 @@
-name: 'On crowdin push'
+name: On crowdin push
 on:
   push:
     branches:
-      - 'crowdin.**'
+      - crowdin.**
 jobs:
   on_crowdin_push:
     runs-on: macos-14
     steps:
       - uses: actions/checkout@v4
 
-      - name: 'xliff_import'
+      - name: xliff_import
         uses: ./.github/workflows/actions/xliff_import
 
-      - name: 'test_unit_ui'
+      - name: test_unit_ui
         uses: ./.github/workflows/actions/run_lane
         with:
-          lane: 'test_unit_ui'
+          lane: test_unit_ui
           match_password: ${{ secrets.MATCH_PASSWORD }}

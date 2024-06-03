@@ -9,10 +9,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: xliff_import
+      - name: Integrate latest XLIFF files with project
         uses: ./.github/workflows/actions/xliff_import
 
-      - name: test_unit_ui
+      - name: Run Unit and UI tests
         uses: ./.github/workflows/actions/run_lane
         with:
           lane: test_unit_ui

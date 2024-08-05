@@ -4,6 +4,11 @@ on:
     branches:
       - develop
   workflow_dispatch:
+    inputs:
+      test:
+        description: Just to force the manual trigger 
+        required: false
+        default: 'trigger'
 
 jobs:
   on_pull_request:
@@ -22,6 +27,9 @@ jobs:
       - name: Install dependencies
         run: bundle install
 
+      - name: Install SwiftLint
+        run: brew install swiftlint
+        
       - name: Run Unit and UI tests
         uses: ./.github/workflows/actions/run_lane
         with:

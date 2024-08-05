@@ -3,11 +3,24 @@ on:
   pull_request:
     branches:
       - develop
+  workflow_dispatch:
+
 jobs:
   on_pull_request:
     runs-on: macos-14
     steps:
       - uses: actions/checkout@v4
+
+      - name: Set up Ruby environment
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.0
+      
+      - name: Install bundler
+        run: gem install bundler
+        
+      - name: Install dependencies
+        run: bundle install
 
       - name: Run Unit and UI tests
         uses: ./.github/workflows/actions/run_lane

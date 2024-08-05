@@ -13,7 +13,8 @@ platform :ios do
   lane :test_unit_ui do
     scan(
       scheme: "Development",
-      devices: ["iPhone 15"]
+      devices: ["iPhone 15"],
+      xcargs: "-skipPackagePluginValidation -skipMacroValidation"
     )
     # in the meantime, build the app for PRs
     match(type: "development", readonly: true)

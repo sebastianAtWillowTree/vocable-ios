@@ -4,20 +4,21 @@ platform :ios do
   before_all do
     ENV["FASTLANE_XCODEBUILD_SETTINGS_TIMEOUT"] = "60"
     if is_ci
-      # Creates temp keychain, build could hang if this is not specified
+      ENV["MATCH_GIT_PRIVATE_KEY"] = "/Users/runner/.ssh/id_rsa_match"
       setup_ci
     end
   end
 
   desc "Runs Unit and UI tests"
   lane :test_unit_ui do
+    match(type: "development", readonly: true)
+    
     scan(
       scheme: "Development",
       devices: ["iPhone 15"],
       xcargs: "-skipPackagePluginValidation -skipMacroValidation"
     )
-    # in the meantime, build the app for PRs
-    match(type: "development", readonly: true)
+    
     gym(
       scheme: "Development",
       skip_archive: true,

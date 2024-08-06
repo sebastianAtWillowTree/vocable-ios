@@ -15,7 +15,13 @@ jobs:
     runs-on: macos-14
     steps:
       - uses: actions/checkout@v4
-
+      
+      - name: Install SSH key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.FASTLANE_MATCH_GIT_PRIVATE_KEY }}
+          known_hosts: ${{ secrets.MATCH_SSH_KNOWN_HOSTS }}
+          
       - name: Set up Ruby environment
         uses: ruby/setup-ruby@v1
         with:

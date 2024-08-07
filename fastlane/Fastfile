@@ -16,12 +16,14 @@ platform :ios do
     scan(
       scheme: "Development",
       devices: ["iPhone 15"],
+      testplan: "UnitTests",
       xcargs: "-skipPackagePluginValidation -skipMacroValidation"
     )
     
-    gym(
+    scan(
       scheme: "Development",
-      skip_archive: true,
+      devices: ["iPhone 15"],
+      testplan: "UITests",
       xcargs: "-skipPackagePluginValidation -skipMacroValidation"
     )
   end

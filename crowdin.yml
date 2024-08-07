@@ -3,3 +3,5 @@ files:
     ignore:
       - CrowdinExport
     translation: /CrowdinExport/%osx_locale%/%file_name%.xliff
+bundles:
+  - 6

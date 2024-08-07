@@ -2,4 +2,4 @@ files:
   - source: /Vocable/**/*.xcstrings
     ignore:
       - CrowdinExport
-    translation: /CrowdinImports/%osx_locale%.xliff
+    translation: /CrowdinImports/%osx_locale%.xcstrings

@@ -1,0 +1,86 @@
+//
+//  MainScreenPaginationTests.swift
+//  VocableUITests
+//
+//  Created by Rudy Salas on 4/8/22.
+//  Copyright © 2022 WillowTree. All rights reserved.
+//
+
+import XCTest
+
+class MainScreenPaginationTests: PaginationBaseTest {
+    
+    func testDeletingPhrasesAdjustsPagination() throws {
+        // Navigate to main screen to verify page numbers; expected to be "Page 1 of 2"
+        VTAssertPaginationEquals(1, of: 2)
+        
+        // Delete one of the phrases to reduce the total number of pages to 1.
+        try MainScreen.navigateToSettingsAndOpenCategory(name: eightPhrasesCategory.presetCategory.utterance)
+        try CustomCategoriesScreen.editCategoryPhrasesButton.tapWhenExists()
+        CustomCategoriesScreen.categoriesPageDeletePhraseButton.firstMatch.tap()
+        try SettingsScreen.alertDeleteButton.tapWhenExists()
+        
+        // Navigate back to the home screen to verify that the total pages reduced from 2 to 1.
+        try CustomCategoriesScreen.returnToMainScreenFromEditPhrases()
+        VTAssertPaginationEquals(1, of: 1, enabledArrows: .none)
+    }
+    
+    func testAddingPhrasesAdjustsPagination() throws {
+        // Navigate to our test category to verify initial page numbers; expected to be "Page 1 of 1"
+        MainScreen.locateAndSelectDestinationCategory(CategoryIdentifier(sevenPhrasesCategory.presetCategory.id))
+        VTAssertPaginationEquals(1, of: 1, enabledArrows: .none)
+        
+        // Use the '+ Add Phrase' button to add a new phrase
+        try MainScreen.addPhraseButton.tapWhenExists()
+        try KeyboardScreen.typeText("A")
+        try KeyboardScreen.checkmarkAddButton.tapWhenExists()
+        
+        // Verify that the pagination adjusts as expected
+        VTAssertPaginationEquals(1, of: 2, enabledArrows: .both)
+    }
+    
+    func testCanScrollPagesWithPaginationArrows() {
+        // Navigate to the test category
+        MainScreen.locateAndSelectDestinationCategory(CategoryIdentifier(ninePhrasesCategory.presetCategory.id))
+        
+        // Verify that the category's pagination is "Page 1 of 2"; page next buttons are enabled
+        VTAssertPaginationEquals(1, of: 2)
+        
+        // Tap right arrow; expected "Page 2 of 2"
+        MainScreen.paginationRightButton.tap()
+        VTAssertPaginationEquals(2, of: 2)
+        
+        // Tap right arrow; expected "Page 1 of 2"
+        MainScreen.paginationRightButton.tap()
+        VTAssertPaginationEquals(1, of: 2)
+        
+        // Tap left arrow; expected "Page 2 of 2"
+        MainScreen.paginationLeftButton.tap()
+        VTAssertPaginationEquals(2, of: 2)
+        
+        // Tap left arrow; expected "Page 1 of 2"
+        MainScreen.paginationLeftButton.tap()
+        VTAssertPaginationEquals(1, of: 2)
+    }
+    
+    func testPaginationAdjustsToDeviceOrientation() throws {
+        // Verify we're on the first page
+        MainScreen.locateAndSelectDestinationCategory(CategoryIdentifier(sevenPhrasesCategory.presetCategory.id))
+        VTAssertPaginationEquals(1, of: 1, enabledArrows: .none)
+        
+        // Rotate the device
+        XCUIDevice.shared.orientation = .landscapeLeft
+        try MainScreen.settingsButton.assertExistence(timeout: 1) // Wait for rotation to complete
+        
+        // Ensure that the total number of pages increases and the current page stays the same
+        VTAssertPaginationEquals(1, of: 2, enabledArrows: .both)
+        
+        // Rotate back to Portrait
+        XCUIDevice.shared.orientation = .portrait
+        try MainScreen.settingsButton.assertExistence(timeout: 1) // Wait for rotation to complete
+        
+        // Verify that the pagination returns to initial state
+        VTAssertPaginationEquals(1, of: 1, enabledArrows: .none)
+    }
+    
+}

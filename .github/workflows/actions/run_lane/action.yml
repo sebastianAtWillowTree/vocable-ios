@@ -1,0 +1,19 @@
+name: Run Lane
+description: Run a fastane lane and upload artifacts
+inputs:
+  lane:
+    description: Name of fastlane lane to run
+    required: true
+  match_password:
+    description: Match password, ideally in secrets.MATCH_PASSWORD
+    required: false
+runs:
+  using: composite
+  steps:
+    - name: Run fastlane
+      run: bundle exec fastlane ${{ inputs.lane }}
+      shell: sh
+      env:
+        MATCH_PASSWORD: ${{ inputs.match_password }}
+
+  # TODO: Artifacts

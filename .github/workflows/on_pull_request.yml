@@ -1,0 +1,39 @@
+name: On pull request
+on:
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - develop
+
+jobs:
+  on_pull_request:
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Install SSH key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.FASTLANE_MATCH_GIT_PRIVATE_KEY }}
+          known_hosts: ${{ secrets.MATCH_SSH_KNOWN_HOSTS }}
+          name: id_rsa_match
+          
+      - name: Set up Ruby environment
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.0
+      
+      - name: Install bundler
+        run: gem install bundler
+        
+      - name: Install dependencies
+        run: bundle install
+
+      - name: Install SwiftLint
+        run: brew install swiftlint
+        
+      - name: Run Unit and UI tests
+        uses: ./.github/workflows/actions/run_lane
+        with:
+          lane: test_unit_ui
+          match_password: ${{ secrets.MATCH_PASSWORD }}

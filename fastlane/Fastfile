@@ -1,28 +1,31 @@
+require 'fileutils'
+
 default_platform :ios
 
 platform :ios do
   before_all do
     ENV["FASTLANE_XCODEBUILD_SETTINGS_TIMEOUT"] = "60"
-    setup_circle_ci
     if is_ci
-      sh "defaults write com.apple.dt.Xcode IDESkipPackagePluginFingerprintValidation -bool YES"
-      sh "defaults write com.apple.dt.Xcode IDESkipMacroFingerprintValidation -bool YES"
+      ENV["MATCH_GIT_PRIVATE_KEY"] = "/Users/runner/.ssh/id_rsa_match"
+      setup_ci
     end
   end
 
-  desc "Runs all the tests"
-  lane :test do
+  desc "Runs Unit and UI tests"
+  lane :test_unit_ui do
+    match(type: "development", readonly: true)
     
     scan(
       scheme: "Development",
       devices: ["iPhone 15"],
+      testplan: "UnitTests",
       xcargs: "-skipPackagePluginValidation -skipMacroValidation"
     )
-    # in the meantime, build the app for PRs
-    match(type: "development", readonly: true)
-    gym(
+    
+    scan(
       scheme: "Development",
-      skip_archive: true,
+      devices: ["iPhone 15"],
+      testplan: "UITests",
       xcargs: "-skipPackagePluginValidation -skipMacroValidation"
     )
   end
@@ -42,7 +45,7 @@ platform :ios do
   end
 
   desc "AppStore build and upload to TestFlight"
-  lane :buildanddeploytotestflight do
+  lane :build_deploy_testflight do
     
     app_store_connect_api_key(
       key_id: ENV['APP_STORE_KEY_ID'],
@@ -105,19 +108,38 @@ platform :ios do
   end
 
   desc "Integrate latest XLIFF files with project"
-  lane :xliffimport do
-    sh "git pull --no-commit -q origin develop --no-rebase"
-    Dir.glob('./../CrowdinImports/*.xliff') do |xliff|
-      sh "xcodebuild -importLocalizations -localizationPath #{xliff} -project ./../Vocable.xcodeproj"
+  lane :xliff_import do
+    Dir.glob('./../CrowdinExport/**/*.xliff') do |xliff|
+      text = File.read(xliff)
+      text = text.gsub('original="/[willowtreeapps.vocable-ios] develop/Vocable/', 'original="Vocable/')
+      text = text.gsub(/<trans-unit id=".*?" resname="(.*?)"/, '<trans-unit id="\1"')
+      File.open(xliff, "w") {|file| file.puts text }
+      run_with_retries(3, "xcodebuild -importLocalizations -localizationPath '#{xliff}' -project ./../Vocable.xcodeproj")
     end
   end
   
   desc "Export current XLIFF file from project"
-  lane :xliffexport do
+  lane :xliff_export do
     sh "rm -rf ./../CrowdinExport/*"
     sh "xcodebuild -exportLocalizations -localizationPath ./../CrowdinExport/ -project ./../Vocable.xcodeproj"
     sh "mv './../CrowdinExport/en.xcloc/Localized Contents/en.xliff' './../CrowdinExport/en.xliff'"
     sh "rm -rf ./../CrowdinExport/*.xcloc"
   end
   
+end
+
+def run_with_retries(retry_limit = 3, command)
+  retries = 0
+  begin
+    sh command
+  rescue
+    retries += 1
+    if retries <= retry_limit
+      puts "Command failed, retrying... (##{retries})"
+      retry
+    else
+      puts "Command failed after #{retry_limit} attempts"
+      raise
+    end
+  end
 end

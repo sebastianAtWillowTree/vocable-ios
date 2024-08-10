@@ -1,0 +1,47 @@
+{
+  "configurations" : [
+    {
+      "id" : "77005B39-8254-403F-B2F5-DC55FF074BF6",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : false,
+    "commandLineArgumentEntries" : [
+
+    ],
+    "environmentVariableEntries" : [
+      {
+        "enabled" : false,
+        "key" : "mixpanelToken",
+        "value" : "Do not commit a real token"
+      },
+      {
+        "key" : "IDEPreferLogStreaming",
+        "value" : "YES"
+      }
+    ],
+    "repeatInNewRunnerProcess" : true,
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:Vocable.xcodeproj",
+      "identifier" : "130C00B320D2AD2A007C3163",
+      "name" : "Vocable"
+    },
+    "testExecutionOrdering" : "random",
+    "testRepetitionMode" : "retryOnFailure",
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:Vocable.xcodeproj",
+        "identifier" : "17191A2E245089270079F9BE",
+        "name" : "VocableUITests"
+      }
+    }
+  ],
+  "version" : 1
+}

@@ -17,6 +17,7 @@ jobs:
           key: ${{ secrets.FASTLANE_MATCH_GIT_PRIVATE_KEY }}
           known_hosts: ${{ secrets.MATCH_SSH_KNOWN_HOSTS }}
           name: id_rsa_match
+          if_key_exists: replace
           
       - name: Set up Ruby environment
         uses: ruby/setup-ruby@v1

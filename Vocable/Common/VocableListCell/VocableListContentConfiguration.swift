@@ -48,7 +48,7 @@ struct VocableListContentConfiguration: UIContentConfiguration, Equatable {
     var actionsConfiguration: ActionsConfiguration
     var accessibilityIdentifier: String?
     var accessibilityLabel: String?
-    var primaryBackgroundColor: UIColor = .defaultCellBackgroundColor
+    var primaryBackgroundColor: UIColor = .defaultCellBackground
     var primaryContentHorizontalAlignment: UIControl.ContentHorizontalAlignment = .leading
 
     var traitCollectionChangeHandler: TraitCollectionChangeHandler?
@@ -164,7 +164,7 @@ struct VocableListContentConfiguration: UIContentConfiguration, Equatable {
         var updatedSelf = self
         
         if let state = state as? UICellConfigurationState {
-            updatedSelf.primaryBackgroundColor = state.isSelected ? .cellSelectionColor : .defaultCellBackgroundColor
+            updatedSelf.primaryBackgroundColor = state.isSelected ? .cellSelectionColor : .defaultCellBackground
             let color = state.isSelected ? UIColor.selectedTextColor : UIColor.defaultTextColor
             
             let updatedAttributedTitle = NSMutableAttributedString(attributedString: updatedSelf.attributedTitle)

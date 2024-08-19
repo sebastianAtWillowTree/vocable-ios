@@ -33,8 +33,8 @@ class KeyboardScreen: BaseScreen {
         // The entire keyboard is visible by design, so it is okay to
         // not wait for the existence of each cell before tapping. It's
         // a minor optimization, but the savings add up.
-        for char in textToType {
-            keyboardView.buttons[.shared.keyboard.key("\(char)")].tap()
+        for char in textToType.uppercased() {
+            keyboardView.buttons[.shared.keyboard.key(.insertCharacter(char))].tap()
         }
     }
     

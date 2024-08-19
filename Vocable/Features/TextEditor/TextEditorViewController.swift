@@ -25,30 +25,28 @@ class TextEditorViewController: VocableViewController, UICollectionViewDelegate,
         var rightItemConfiguration: TextEditorNavigationButton.Configuration?
     }
 
-    let textView = OutputTextView(frame: .zero)
-
-    let leftButton = TextEditorNavigationButton()
-    let rightButton = TextEditorNavigationButton()
-
     var delegate: TextEditorConfigurationProviding?
 
+    private let textView = OutputTextView(frame: .zero)
+    private let leftButton = TextEditorNavigationButton()
+    private let rightButton = TextEditorNavigationButton()
+    private let keyboardView = KeyboardView()
     private var needsConfigurationUpdate = true
-
-    @PublishedValue private(set) var text: String?
-
-    private var disposables = Set<AnyCancellable>()
     private var volatileConstraints = [NSLayoutConstraint]()
 
-    private var speechSynthesizer: VocableSpeechSynthesizer!
+    // MARK: Text Properties
 
-    private var _textTransaction = TextTransaction(text: "") {
-        didSet {
-            attributedText = _textTransaction.attributedText
-        }
+    var text: String? {
+        textView.attributedText?.string
     }
 
-    private var textTransaction: TextTransaction {
-        return _textTransaction
+    // Single source of truth for the state of edited text
+    private var textTransaction = TextTransaction(text: "") {
+        didSet {
+            textView.attributedText = textTransaction.attributedText
+            updateSuggestions(textTransaction)
+            delegate?.textEditorViewController(self, textDidChange: self.text)
+        }
     }
 
     private let textExpression = TextExpression()
@@ -62,7 +60,10 @@ class TextEditorViewController: VocableViewController, UICollectionViewDelegate,
         }
     }
 
-    private let keyboardView = KeyboardView()
+    // MARK: Speech Properties
+
+    private var speechSynthesizer: VocableSpeechSynthesizer!
+
     private var isSpeaking: Bool = false {
         didSet {
             if #available(iOS 17.0, *) {
@@ -74,12 +75,11 @@ class TextEditorViewController: VocableViewController, UICollectionViewDelegate,
     private var speakingRange: NSRange? {
         didSet {
             guard oldValue != speakingRange else { return }
-            self.setTextTransaction(self.textTransaction.withSpeakingRange(speakingRange))
+            textTransaction.setSpeakingRange(speakingRange)
         }
     }
 
-    @PublishedValue
-    var attributedText: NSAttributedString?
+    // MARK: Initializers
 
     convenience init() {
         self.init(nibName: nil, bundle: nil)
@@ -100,6 +100,8 @@ class TextEditorViewController: VocableViewController, UICollectionViewDelegate,
         modalPresentationStyle = .fullScreen
     }
 
+    // MARK: View Lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -109,9 +111,6 @@ class TextEditorViewController: VocableViewController, UICollectionViewDelegate,
         keyboardView.frame.size.width = view.bounds.width
         view.addSubview(keyboardView)
 
-        let initialAttributedText = NSAttributedString(string: delegate?.textEditorViewControllerInitialValue(self) ?? "")
-        attributedText = initialAttributedText
-
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.accessibilityID = .shared.keyboard.outputTextView
         textView.textAlignment = .natural
@@ -119,43 +118,17 @@ class TextEditorViewController: VocableViewController, UICollectionViewDelegate,
         navigationBar.leftButton = leftButton
         navigationBar.rightButton = rightButton
 
-        handleTextChange()
         setNeedsUpdateConfiguration()
     }
 
-    private func handleTextChange() {
-        $attributedText
-            .dropFirst()
-            .map { [weak self] attributedText -> NSAttributedString? in
-                guard let self else { return attributedText }
-                textView.attributedText = attributedText
-                if let attributedText, attributedText.string != self._textTransaction.text {
-                    self._textTransaction = TextTransaction(text: attributedText.string, intent: .lastCharacter)
-                }
-                return attributedText
-            }
-            .map { $0?.string }
-            .removeDuplicates()
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] text in
-                guard let self = self else { return }
-                self.text = text
-                self.delegate?.textEditorViewController(self, textDidChange: text)
-            }
-            .store(in: &disposables)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        textTransaction = TextTransaction(text: delegate?.textEditorViewControllerInitialValue(self) ?? "", intent: .lastCharacter)
     }
 
-    private func updateForConfiguration() {
-        guard let configuration = delegate?.textEditorViewControllerConfiguration(self) else { return }
-
-        leftButton.configure(with: configuration.leftItemConfiguraton)
-        rightButton.configure(with: configuration.rightItemConfiguration)
-        needsConfigurationUpdate = false
-    }
-
-    func setNeedsUpdateConfiguration() {
-        needsConfigurationUpdate = true
-        view.setNeedsLayout()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        (view.window as? HeadGazeWindow)?.cancelActiveGazeTarget()
     }
 
     override func viewDidLayoutSubviews() {
@@ -211,22 +184,30 @@ class TextEditorViewController: VocableViewController, UICollectionViewDelegate,
         volatileConstraints = constraints
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        (view.window as? HeadGazeWindow)?.cancelActiveGazeTarget()
+    // MARK: External configuration
+
+    private func updateForConfiguration() {
+        guard let configuration = delegate?.textEditorViewControllerConfiguration(self) else { return }
+
+        leftButton.configure(with: configuration.leftItemConfiguraton)
+        rightButton.configure(with: configuration.rightItemConfiguration)
+        needsConfigurationUpdate = false
     }
 
-    private func setTextTransaction(_ transaction: TextTransaction) {
-        _textTransaction = transaction
+    func setNeedsUpdateConfiguration() {
+        needsConfigurationUpdate = true
+        view.setNeedsLayout()
+    }
 
-        // Update suggestions
-        if textTransaction.isHint || textTransaction.text.last == " " {
+    // MARK: Suggestions
+
+    private func updateSuggestions(_ transaction: TextTransaction) {
+        if transaction.isHint || transaction.text.last == " " {
             suggestions = []
         } else {
-            textExpression.replace(text: textTransaction.text)
+            textExpression.replace(text: transaction.text)
             suggestions = textExpression.suggestions()
         }
-
     }
 
     // MARK: VocableSpeechSynthesizerDelegate
@@ -245,34 +226,31 @@ class TextEditorViewController: VocableViewController, UICollectionViewDelegate,
     }
 
     func keyboardViewDidSelectSuggestion(_ suggestion: String) {
-        setTextTransaction(textTransaction.insertingSuggestion(with: suggestion))
+        textTransaction.insert(suggestion)
     }
 
     func keyboardViewDidSelectKey(_ value: KeyboardLayoutKey) {
-        switch value.content {
-        case .string(let character):
-            setTextTransaction(textTransaction.appendingCharacter(with: String(character)))
-        case .function(let keyboardFunctionKey):
-            switch keyboardFunctionKey {
-            case .clear:
-                setTextTransaction(TextTransaction(text: "", intent: .none))
-            case .backspace:
-                setTextTransaction(textTransaction.deletingLastToken())
-            case .space:
-                setTextTransaction(textTransaction.appendingCharacter(with: " "))
-            case .speak:
-                guard !textTransaction.isHint else {
-                    break
-                }
-
-                Analytics.shared.track(.keyboardPhraseSpoken)
-                let utterance = textTransaction.text
-                Task { [weak self] in
-                    await self?.speechSynthesizer.speak(utterance)
-                }
-            case .numberPad, .alphabet, .openModifierPicker, .closeModifierPicker, .beginModifier, .endModifier:
+        switch value.action {
+        case .insertCharacter(let character):
+            textTransaction.append(String(character))
+        case .clear:
+            textTransaction.clear()
+        case .backspace:
+            textTransaction.deleteLastToken()
+        case .space:
+            textTransaction.append(" ")
+        case .speak:
+            guard !textTransaction.isHint else {
                 break
             }
+
+            Analytics.shared.track(.keyboardPhraseSpoken)
+            let utterance = textTransaction.text
+            Task { [weak self] in
+                await self?.speechSynthesizer.speak(utterance)
+            }
+        case .numberPad, .alphabet, .openModifierPicker, .closeModifierPicker, .beginModifier, .endModifier:
+            break
         }
     }
 }

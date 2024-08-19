@@ -21,18 +21,18 @@ struct StandardKeyboardLayoutEN: KeyboardLayout {
             KeyboardLayoutGroup {
                 KeyboardLayoutRow(debugID: "top") {
                     for key in "QWERTYUIOP" {
-                        KeyboardLayoutKey(value: key)
+                        KeyboardLayoutKey(key)
                     }
                 }
                 KeyboardLayoutRow(debugID: "middle") {
                     for key in "ASDFGHJKL" {
-                        KeyboardLayoutKey(value: key)
+                        KeyboardLayoutKey(key)
                     }
                 }
                 KeyboardLayoutRow(debugID: "bottom") {
                     KeyboardLayoutGroup {
                         for key in "ZXCVBNM" {
-                            KeyboardLayoutKey(value: key)
+                            KeyboardLayoutKey(key)
                         }
                     }
                     .padding(
@@ -48,19 +48,19 @@ struct StandardKeyboardLayoutEN: KeyboardLayout {
         case .numerical:
             KeyboardLayoutRow {
                 for key in "1234567890" {
-                    KeyboardLayoutKey(value: key)
+                    KeyboardLayoutKey(key)
                         .keyWidth(count: 10)
                 }
             }
             KeyboardLayoutRow {
                 for key in "-/:;()$&@\"" {
-                    KeyboardLayoutKey(value: key)
+                    KeyboardLayoutKey(key)
                         .keyWidth(count: 10)
                 }
             }
             KeyboardLayoutRow {
                 for key in ".,?!'" {
-                    KeyboardLayoutKey(value: key)
+                    KeyboardLayoutKey(key)
                         .keyWidth(count: 80, span: 11)
                 }
                 backspaceKey()
@@ -75,16 +75,16 @@ struct StandardKeyboardLayoutEN: KeyboardLayout {
             KeyboardLayoutGroup { }
         }
         KeyboardLayoutRow(debugID: "function bottom") {
-            KeyboardLayoutKey(function: configuration.mode == .alphabetical ? .numberPad : .alphabet)
-            KeyboardLayoutKey(function: .space)
+            KeyboardLayoutKey(configuration.mode == .alphabetical ? .numberPad : .alphabet)
+            KeyboardLayoutKey(.space)
                 .keyWidth(count: 4, span: 2)
-            KeyboardLayoutKey(function: .speak)
+            KeyboardLayoutKey(.speak)
         }
         .keyWidth(count: 4)
     }
 
     private func backspaceKey() -> some KeyboardLayoutElement {
-        KeyboardLayoutKey(function: .backspace)
+        KeyboardLayoutKey(.backspace)
             .keyWidth(count: 60, span: 8)
     }
 }

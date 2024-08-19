@@ -10,6 +10,8 @@ import Foundation
 
 struct KeyboardLayoutKey: Hashable, KeyboardLayoutElement {
 
+    typealias Action = KeyboardKeyAction
+
     private(set) var environment: KeyboardLayoutEnvironment = .init()
 
     var children: [any KeyboardLayoutElement] {
@@ -28,23 +30,14 @@ struct KeyboardLayoutKey: Hashable, KeyboardLayoutElement {
         return [result]
     }
 
-    enum Content: Hashable {
-        case string(Character)
-        case function(KeyboardKeyFunction)
+    private(set) var action: Action
+
+    init(_ value: Character) {
+        self.init(.insertCharacter(value))
     }
 
-    private(set) var content: Content
-
-    init(function: KeyboardKeyFunction) {
-        self.init(content: .function(function))
-    }
-
-    init(value: Character) {
-        self.init(content: .string(value))
-    }
-
-    private init(content: Content) {
-        self.content = content
+    init(_ action: Action) {
+        self.action = action
     }
 
     func withModifier(modifier: Character?) -> KeyboardLayoutKey {
@@ -52,11 +45,11 @@ struct KeyboardLayoutKey: Hashable, KeyboardLayoutElement {
             return self
         }
         var result = self
-        if case .string(let character) = result.content {
+        if case .insertCharacter(let character) = result.action {
             var unicodeScalars = character.unicodeScalars
             unicodeScalars.append(contentsOf: modifier.unicodeScalars)
             if let newValue = String(unicodeScalars).first {
-                result.content = .string(newValue)
+                result.action = .insertCharacter(newValue)
             }
         }
         return result

@@ -21,20 +21,20 @@ struct StandardKeyboardLayoutDE: KeyboardLayout {
         case .alphabetical:
             KeyboardLayoutRow {
                 for key in "QWERTYUIOPÅ" {
-                    KeyboardLayoutKey(value: key)
+                    KeyboardLayoutKey(key)
                         .keyWidth(count: 11)
                 }
             }
             KeyboardLayoutRow {
                 for key in "ASDFGHJKLÆØ" {
-                    KeyboardLayoutKey(value: key)
+                    KeyboardLayoutKey(key)
                         .keyWidth(count: 11)
                 }
             }
             KeyboardLayoutRow {
                 KeyboardLayoutGroup {
                     for key in "ZXCVBNM" {
-                        KeyboardLayoutKey(value: key)
+                        KeyboardLayoutKey(key)
                             .keyWidth(count: 11)
                     }
                 }
@@ -48,26 +48,26 @@ struct StandardKeyboardLayoutDE: KeyboardLayout {
             )
         case .modifierPicker:
             KeyboardLayoutRow {
-                KeyboardLayoutKey(function: .beginModifier("\u{0300}"))
-                KeyboardLayoutKey(function: .beginModifier("\u{0301}"))
-                KeyboardLayoutKey(function: .beginModifier("\u{0302}"))
-                KeyboardLayoutKey(function: .beginModifier("\u{0303}"))
-                KeyboardLayoutKey(function: .beginModifier("\u{0306}"))
-                KeyboardLayoutKey(function: .beginModifier("\u{0307}"))
+                KeyboardLayoutKey(.beginModifier("\u{0300}"))
+                KeyboardLayoutKey(.beginModifier("\u{0301}"))
+                KeyboardLayoutKey(.beginModifier("\u{0302}"))
+                KeyboardLayoutKey(.beginModifier("\u{0303}"))
+                KeyboardLayoutKey(.beginModifier("\u{0306}"))
+                KeyboardLayoutKey(.beginModifier("\u{0307}"))
             }
             .keyWidth(count: 6)
             KeyboardLayoutRow {
-                KeyboardLayoutKey(function: .beginModifier("\u{0308}"))
-                KeyboardLayoutKey(function: .beginModifier("\u{0309}"))
-                KeyboardLayoutKey(function: .beginModifier("\u{030A}"))
-                KeyboardLayoutKey(function: .beginModifier("\u{030B}"))
-                KeyboardLayoutKey(function: .beginModifier("\u{0311}"))
-                KeyboardLayoutKey(function: .beginModifier("\u{0313}"))
+                KeyboardLayoutKey(.beginModifier("\u{0308}"))
+                KeyboardLayoutKey(.beginModifier("\u{0309}"))
+                KeyboardLayoutKey(.beginModifier("\u{030A}"))
+                KeyboardLayoutKey(.beginModifier("\u{030B}"))
+                KeyboardLayoutKey(.beginModifier("\u{0311}"))
+                KeyboardLayoutKey(.beginModifier("\u{0313}"))
             }
             .keyWidth(count: 6)
             KeyboardLayoutRow {
                 KeyboardLayoutKey(
-                    function: leadingFunctionKeyFunction(configuration: configuration)
+                    leadingFunctionKeyFunction(configuration: configuration)
                 )
                 .padding(
                     trailing: .columns(50, span: 6, spacing: 6.0)
@@ -81,19 +81,19 @@ struct StandardKeyboardLayoutDE: KeyboardLayout {
         case .numerical:
             KeyboardLayoutRow {
                 for key in "1234567890" {
-                    KeyboardLayoutKey(value: key)
+                    KeyboardLayoutKey(key)
                 }
             }
             .keyWidth(count: 10)
             KeyboardLayoutRow {
                 for key in "-/:;()$&@\"" {
-                    KeyboardLayoutKey(value: key)
+                    KeyboardLayoutKey(key)
                 }
             }
             .keyWidth(count: 10)
             KeyboardLayoutRow {
                 for key in ".,?!'" {
-                    KeyboardLayoutKey(value: key)
+                    KeyboardLayoutKey(key)
                         .keyWidth(count: 100, span: 14)
                 }
                 backspaceButton
@@ -107,11 +107,11 @@ struct StandardKeyboardLayoutDE: KeyboardLayout {
         }
 
         KeyboardLayoutRow {
-            KeyboardLayoutKey(function: configuration.mode == .alphabetical ? .numberPad : .alphabet)
+            KeyboardLayoutKey(configuration.mode == .alphabetical ? .numberPad : .alphabet)
                 .keyWidth(span: 10)
-            KeyboardLayoutKey(function: .space)
+            KeyboardLayoutKey(.space)
                 .keyWidth(span: 20)
-            KeyboardLayoutKey(function: .speak)
+            KeyboardLayoutKey(.speak)
                 .keyWidth(span: 10)
         }
         .keyWidth(count: 40)
@@ -119,7 +119,7 @@ struct StandardKeyboardLayoutDE: KeyboardLayout {
 
     private func leadingFunctionKeyFunction(
         configuration: KeyboardLayoutConfiguration
-    ) -> KeyboardKeyFunction {
+    ) -> KeyboardKeyAction {
         return if let modifierGrapheme = configuration.modifierGrapheme {
             .endModifier(modifierGrapheme)
         } else if configuration.mode == .alphabetical {
@@ -130,10 +130,8 @@ struct StandardKeyboardLayoutDE: KeyboardLayout {
     }
 
     private var backspaceButton: some KeyboardLayoutElement {
-        KeyboardLayoutKey(
-            function: .backspace
-        )
-        .keyWidth(count: 7)
+        KeyboardLayoutKey(.backspace)
+            .keyWidth(count: 7)
     }
 }
 

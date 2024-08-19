@@ -18,16 +18,11 @@ extension KeyboardView {
             self.identifier = identifier
             super.init(frame: .zero)
 
-            switch identifier.content {
+            switch identifier.action.representation {
+            case .image(let uIImage):
+                self.setImage(uIImage, for: .normal)
             case .string(let string):
                 self.setTitle(String(string), for: .normal)
-            case .function(let keyboardFunctionKey):
-                switch keyboardFunctionKey.representation {
-                case .image(let uIImage):
-                    self.setImage(uIImage, for: .normal)
-                case .string(let string):
-                    self.setTitle(String(string), for: .normal)
-                }
             }
         }
 
@@ -36,6 +31,7 @@ extension KeyboardView {
         }
 
         override func updateConfiguration() {
+            accessibilityID = .shared.keyboard.key(identifier.action)
             font = .keyboardKey(satisfying: traitCollection)
             updateConfigurationForKeyFunction()
 
@@ -45,8 +41,8 @@ extension KeyboardView {
             self.contentVerticalAlignment = .fill
         }
 
-        private func isHighlightedFunction(_ function: KeyboardKeyFunction) -> Bool {
-            switch function {
+        private func isHighlightedAction(_ action: KeyboardKeyAction) -> Bool {
+            switch action {
             case .speak, .closeModifierPicker, .endModifier:
                 true
             default:
@@ -56,13 +52,13 @@ extension KeyboardView {
         
         private func updateConfigurationForKeyFunction() {
             
-            guard case let .function(functionType) = identifier.content else {
+            guard !identifier.action.isStandardKey else {
                 fillColor = .defaultCellBackgroundColor
                 foregroundColor = .defaultTextColor
                 return
             }
 
-            if isHighlightedFunction(functionType) {
+            if isHighlightedAction(identifier.action) {
                 // Makes the key a bright blue color for more prominence
                 fillColor = .highlightedTextColor ?? self.fillColor
                 foregroundColor = .collectionViewBackgroundColor
@@ -73,7 +69,7 @@ extension KeyboardView {
                 foregroundColor = .defaultTextColor
             }
 
-            if functionType == .speak {
+            if identifier.action == .speak {
                 updateSpeakFunctionSymbolEffect()
             }
         }

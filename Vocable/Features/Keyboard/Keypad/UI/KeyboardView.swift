@@ -68,6 +68,9 @@ final class KeyboardView: UIView {
     }
 
     private func commonInit() {
+
+        accessibilityID = AccessibilityID.shared.keyboard.view
+
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
@@ -145,7 +148,6 @@ final class KeyboardView: UIView {
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         if previousTraitCollection?.sizeClass != traitCollection.sizeClass {
-            print("[INFO] Size class changed, updating keyboard content")
             updateContent()
         }
     }
@@ -198,29 +200,25 @@ final class KeyboardView: UIView {
 
     @objc
     private func handleKeyAction(_ sender: KeyButton) {
-
         var nextMode: KeyboardLayoutMode?
-
-        if case .function(let function) = sender.identifier.content {
-            switch function {
-            case .alphabet:
-                nextMode = .alphabetical
-            case .numberPad:
-                nextMode = .numerical
-                activeModifier = nil
-            case .closeModifierPicker:
-                nextMode = .alphabetical
-            case .openModifierPicker:
-                nextMode = .modifierPicker
-            case .beginModifier(let value):
-                nextMode = .alphabetical
-                activeModifier = value
-            case .endModifier:
-                nextMode = .alphabetical
-                activeModifier = nil
-            default:
-                break
-            }
+        switch sender.identifier.action {
+        case .alphabet:
+            nextMode = .alphabetical
+        case .numberPad:
+            nextMode = .numerical
+            activeModifier = nil
+        case .closeModifierPicker:
+            nextMode = .alphabetical
+        case .openModifierPicker:
+            nextMode = .modifierPicker
+        case .beginModifier(let value):
+            nextMode = .alphabetical
+            activeModifier = value
+        case .endModifier:
+            nextMode = .alphabetical
+            activeModifier = nil
+        default:
+            break
         }
 
         if let nextMode {
@@ -230,7 +228,7 @@ final class KeyboardView: UIView {
         }
 
         // Unset the modifier if it was just used to enter text
-        if case .string = sender.identifier.content, activeModifier != nil {
+        if case .insertCharacter = sender.identifier.action, activeModifier != nil {
             activeModifier = nil
         }
     }

@@ -11,7 +11,7 @@ import XCTest
 class KeyboardScreen: BaseScreen {
     private static let app = XCUIApplication()
     
-    static let keyboardCollectionView = XCUIApplication().collectionViews[.shared.keyboard.collectionView]
+    static let keyboardView = XCUIApplication().otherElements[.shared.keyboard.view]
     static let keyboardTextView = XCUIApplication().textViews[.shared.keyboard.outputTextView]
     static let favoriteButton = XCUIApplication().buttons[.shared.keyboard.favoriteButton]
     static let checkmarkAddButton = XCUIApplication().buttons[.shared.keyboard.saveButton]
@@ -23,7 +23,7 @@ class KeyboardScreen: BaseScreen {
         line: UInt = #line
     ) throws {
         // Ensure the keyboard is visible on screen before tapping any cells
-        try keyboardCollectionView.assertExistence(
+        try keyboardView.assertExistence(
             timeout: 0.5,
             "Failed to locate keyboard",
             file: file,
@@ -34,7 +34,7 @@ class KeyboardScreen: BaseScreen {
         // not wait for the existence of each cell before tapping. It's
         // a minor optimization, but the savings add up.
         for char in textToType {
-            keyboardCollectionView.cells[.shared.keyboard.key("\(char)")].tap()
+            keyboardView.buttons[.shared.keyboard.key("\(char)")].tap()
         }
     }
     

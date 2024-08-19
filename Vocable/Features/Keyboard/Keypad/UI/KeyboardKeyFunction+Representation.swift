@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-extension KeyboardKeyFunction {
+extension KeyboardKeyAction {
 
     enum Representation: Hashable {
         case image(UIImage)
@@ -18,6 +18,8 @@ extension KeyboardKeyFunction {
 
     var representation: Representation {
         return switch self {
+        case .insertCharacter(let value):
+            .string(String(value))
         case .clear:
             .image(UIImage(systemName: "trash")!)
         case .backspace:
@@ -34,20 +36,6 @@ extension KeyboardKeyFunction {
             .image(UIImage(systemName: "ellipsis")!)
         case .beginModifier(let value), .endModifier(let value):
             .string("\u{25CC}\(value)")
-        }
-    }
-
-    var accessibilityID: String {
-        return switch self {
-        case .clear: "clear"
-        case .backspace: "backspace"
-        case .space: "space"
-        case .speak: "speak"
-        case .numberPad: "numpad"
-        case .alphabet: "alphabet"
-        case .openModifierPicker, .closeModifierPicker: "extended-alphabet-toggle"
-        case .beginModifier(let value): "begin-modifier-\(value)"
-        case .endModifier(let value): "end-modifier-\(value)"
         }
     }
 }

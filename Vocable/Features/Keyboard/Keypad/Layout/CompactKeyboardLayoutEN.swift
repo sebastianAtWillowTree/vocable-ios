@@ -24,15 +24,15 @@ struct CompactKeyboardLayoutEN: KeyboardLayout {
                 for row in values.chunks(ofCount: 6) {
                     KeyboardLayoutRow {
                         for key in row {
-                            KeyboardLayoutKey(value: key)
+                            KeyboardLayoutKey(key)
                         }
                     }
                 }
                 KeyboardLayoutRow {
                     for key in "()!\"" {
-                        KeyboardLayoutKey(value: key)
+                        KeyboardLayoutKey(key)
                     }
-                    KeyboardLayoutKey(function: .backspace)
+                    KeyboardLayoutKey(.backspace)
                         .keyWidth(span: 2)
                 }
             }
@@ -42,15 +42,15 @@ struct CompactKeyboardLayoutEN: KeyboardLayout {
             for row in values.chunks(ofCount: 3) {
                 KeyboardLayoutRow {
                     for key in row {
-                        KeyboardLayoutKey(value: key)
+                        KeyboardLayoutKey(key)
                             .keyWidth(count: 3)
                     }
                 }
             }
             KeyboardLayoutRow {
-                KeyboardLayoutKey(value: ".")
-                KeyboardLayoutKey(value: "0")
-                KeyboardLayoutKey(function: .backspace)
+                KeyboardLayoutKey(".")
+                KeyboardLayoutKey("0")
+                KeyboardLayoutKey(.backspace)
             }
             .keyWidth(count: 3)
         case .modifierPicker:
@@ -58,12 +58,12 @@ struct CompactKeyboardLayoutEN: KeyboardLayout {
         }
         KeyboardLayoutRow {
             KeyboardLayoutKey(
-                function: configuration.mode == .alphabetical ? .numberPad : .alphabet
+                configuration.mode == .alphabetical ? .numberPad : .alphabet
             )
             .keyWidth(span: 3)
-            KeyboardLayoutKey(function: .space)
+            KeyboardLayoutKey(.space)
                 .keyWidth(span: 6)
-            KeyboardLayoutKey(function: .speak)
+            KeyboardLayoutKey(.speak)
                 .keyWidth(span: 3)
         }
         .keyWidth(count: 12)

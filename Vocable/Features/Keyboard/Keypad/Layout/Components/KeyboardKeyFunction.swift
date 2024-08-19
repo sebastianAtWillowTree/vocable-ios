@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum KeyboardKeyFunction: Hashable {
+public enum KeyboardKeyAction: Hashable {
     case clear
     case backspace
     case space
@@ -19,4 +19,12 @@ enum KeyboardKeyFunction: Hashable {
     case closeModifierPicker
     case beginModifier(Character)
     case endModifier(Character)
+    case insertCharacter(Character)
+
+    var isStandardKey: Bool {
+        if case .insertCharacter = self {
+            return true
+        }
+        return false
+    }
 }

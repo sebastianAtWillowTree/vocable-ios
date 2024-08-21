@@ -21,11 +21,15 @@ extension VocableListContentConfiguration {
         
         let sampleAction: VocableListCellAction
         if item.isPlaying {
-            sampleAction = VocableListCellAction.stopAudio {
+            sampleAction = VocableListCellAction.stopAudio(
+                accessibilityIdentifier: .settings.voiceSettings.audioPlaying
+            ) {
                 controller.stopPreview()
             }
         } else {
-            sampleAction = VocableListCellAction.startAudio {
+            sampleAction = VocableListCellAction.startAudio(
+                accessibilityIdentifier: .settings.voiceSettings.playButton
+            ) {
                 controller.playPreview(item)
             }
         }
@@ -35,7 +39,7 @@ extension VocableListContentConfiguration {
             actions: [sampleAction],
             trailingAccessory: (voiceSelectedAction != nil && item.isSelected) ? .checkmark : nil,
             isPrimaryActionEnabled: voiceSelectedAction != nil,
-            accessibilityIdentifier: AccessibilityID.settings.voiceSettings.previewVoiceCell.id,
+            accessibilityIdentifier: .settings.voiceSettings.previewVoiceCell,
             primaryAction: voiceSelectedAction ?? {}
         )
     }
@@ -56,7 +60,7 @@ extension VocableListContentConfiguration {
         return VocableListContentConfiguration(
             title: item.voice.name,
             leadingAccessory: accessory,
-            accessibilityIdentifier: AccessibilityID.settings.voiceSettings.previewVoiceCell.id
+            accessibilityIdentifier: AccessibilityID.settings.voiceSettings.previewVoiceCell
         ) {
             if item.isPlaying {
                 controller.stopPreview()

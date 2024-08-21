@@ -81,18 +81,26 @@ final class EditCategoriesViewController: PagingCarouselViewController, NSFetche
     private func updateContentConfiguration(for cell: VocableListCell, at indexPath: IndexPath, category: Category) {
         let categoryID = category.objectID
 
-        let upAction = VocableListCellAction.reorderUp(isEnabled: category.canMoveToLowerOrdinal) { [weak self] in
+        let upAction = VocableListCellAction.reorderUp(
+            isEnabled: category.canMoveToLowerOrdinal,
+            accessibilityIdentifier: .settings.editCategories.moveUpButton
+        ) { [weak self] in
             self?.handleMoveUpForCategory(withObjectID: categoryID)
         }
 
-        let downAction = VocableListCellAction.reorderDown(isEnabled: category.canMoveToHigherOrdinal) { [weak self] in
+        let downAction = VocableListCellAction.reorderDown(
+            isEnabled: category.canMoveToHigherOrdinal,
+            accessibilityIdentifier: .settings.editCategories.moveDownButton
+        ) { [weak self] in
             self?.handleMoveDownForCategory(withObjectID: categoryID)
         }
 
-        var config = VocableListContentConfiguration(title: category.name ?? "",
-                                                     actions: [upAction, downAction],
-                                                     accessory: .disclosureIndicator(),
-                                                     accessibilityIdentifier: AccessibilityID.settings.editCategories.categoryButton.id) { [weak self] in
+        var config = VocableListContentConfiguration(
+            title: category.name ?? "",
+            actions: [upAction, downAction],
+            accessory: .disclosureIndicator(),
+            accessibilityIdentifier: .settings.editCategories.categoryButton
+        ) { [weak self] in
             self?.showEditForCategory(withObjectID: categoryID)
         }
 

@@ -15,13 +15,13 @@ struct VocableListCellAction: Equatable {
     let image: UIImage
     let action: Action?
     let isEnabled: Bool
-    let accessibilityIdentifier: String?
+    let accessibilityIdentifier: AccessibilityID?
     let accessibilityLabel: String?
 
     private init(
         image: UIImage,
         isEnabled: Bool = true,
-        accessibilityIdentifier: String? = nil,
+        accessibilityIdentifier: AccessibilityID? = nil,
         accessibilityLabel: String? = nil,
         action: Action? = nil
     ) {
@@ -36,15 +36,21 @@ struct VocableListCellAction: Equatable {
         systemImage imageName: String,
         symbolConfiguration: UIImage.SymbolConfiguration? = nil,
         isEnabled: Bool = true,
-        accessibilityIdentifier: String? = nil,
+        accessibilityIdentifier: AccessibilityID? = nil,
         accessibilityLabel: String? = nil,
         action: Action? = nil
     ) {
-        let image = UIImage(systemName: imageName, withConfiguration: symbolConfiguration)!
-        self.init(image: image,
-                  isEnabled: isEnabled,
-                  accessibilityIdentifier: accessibilityIdentifier ?? imageName,
-                  action: action)
+        let image = UIImage(
+            systemName: imageName,
+            withConfiguration: symbolConfiguration
+        )!
+        self.init(
+            image: image,
+            isEnabled: isEnabled,
+            accessibilityIdentifier: accessibilityIdentifier,
+            accessibilityLabel: accessibilityLabel ?? imageName,
+            action: action
+        )
     }
 
     private static var defaultSymbolConfiguration: UIImage.SymbolConfiguration {
@@ -55,40 +61,54 @@ struct VocableListCellAction: Equatable {
         UIImage.SymbolConfiguration(pointSize: 28, weight: .bold)
     }
 
-    static func delete(isEnabled: Bool = true,
-                       accessibilityIdentifier: String = AccessibilityID.settings.editPhrases.deletePhraseButton.id,
-                       accessibilityLabel: String = "delete",
-                       action: Action?) -> VocableListCellAction {
-        VocableListCellAction(systemImage: "trash",
-                              isEnabled: isEnabled,
-                              accessibilityIdentifier: accessibilityIdentifier,
-                              accessibilityLabel: accessibilityLabel,
-                              action: action)
+    static func delete(
+        isEnabled: Bool = true,
+        accessibilityIdentifier: AccessibilityID? = nil,
+        accessibilityLabel: String = "delete",
+        action: Action?
+    ) -> VocableListCellAction {
+        VocableListCellAction(
+            systemImage: "trash",
+            isEnabled: isEnabled,
+            accessibilityIdentifier: accessibilityIdentifier,
+            accessibilityLabel: accessibilityLabel,
+            action: action
+        )
     }
 
-    static func reorderUp(isEnabled: Bool = true,
-                          accessibilityIdentifier: String = AccessibilityID.settings.editCategories.moveUpButton.id,
-                          accessibilityLabel: String = "reorder up", action: Action?) -> VocableListCellAction {
-        VocableListCellAction(systemImage: "chevron.up",
-                              isEnabled: isEnabled,
-                              accessibilityIdentifier: accessibilityIdentifier,
-                              accessibilityLabel: accessibilityLabel,
-                              action: action)
+    static func reorderUp(
+        isEnabled: Bool = true,
+        accessibilityIdentifier: AccessibilityID? = nil,
+        accessibilityLabel: String = "reorder up",
+        action: Action?
+    ) -> VocableListCellAction {
+        VocableListCellAction(
+            systemImage: "chevron.up",
+            isEnabled: isEnabled,
+            accessibilityIdentifier: accessibilityIdentifier,
+            accessibilityLabel: accessibilityLabel,
+            action: action
+        )
     }
     
-    static func reorderDown(isEnabled: Bool = true,
-                            accessibilityIdentifier: String = AccessibilityID.settings.editCategories.moveDownButton.id,
-                            accessibilityLabel: String = "reorder down", action: Action?) -> VocableListCellAction {
-        VocableListCellAction(systemImage: "chevron.down",
-                              isEnabled: isEnabled,
-                              accessibilityIdentifier: accessibilityIdentifier,
-                              accessibilityLabel: accessibilityLabel,
-                              action: action)
+    static func reorderDown(
+        isEnabled: Bool = true,
+        accessibilityIdentifier: AccessibilityID? = nil,
+        accessibilityLabel: String = "reorder down",
+        action: Action?
+    ) -> VocableListCellAction {
+        VocableListCellAction(
+            systemImage: "chevron.down",
+            isEnabled: isEnabled,
+            accessibilityIdentifier: accessibilityIdentifier,
+            accessibilityLabel: accessibilityLabel,
+            action: action
+        )
     }
 
     static func startAudio(
         isEnabled: Bool = true,
-        accessibilityIdentifier: String = AccessibilityID.settings.voiceSettings.playButton.id,
+        accessibilityIdentifier: AccessibilityID? = nil,
         accessibilityLabel: String = "play sample",
         action: Action?
     ) -> VocableListCellAction {
@@ -103,7 +123,7 @@ struct VocableListCellAction: Equatable {
 
     static func stopAudio(
         isEnabled: Bool = true,
-        accessibilityIdentifier: String = AccessibilityID.settings.voiceSettings.audioPlaying.id,
+        accessibilityIdentifier: AccessibilityID? = nil,
         accessibilityLabel: String = "audio is playing",
         action: Action?
     ) -> VocableListCellAction {

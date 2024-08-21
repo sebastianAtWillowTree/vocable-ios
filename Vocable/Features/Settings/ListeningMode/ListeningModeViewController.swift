@@ -34,14 +34,11 @@ final class ListeningModeViewController: VocableCollectionViewController {
             }
         }
 
-        var accessibilityID: String {
-            switch self {
-            case .listeningModeEnabled:
-                return "listening_mode_toggle"
-            case .hotWordEnabled:
-                return "hot_word_toggle"
-            case .smartAssistEnabled:
-                return "use_gpt_toggle"
+        var accessibilityID: AccessibilityID {
+            return switch self {
+            case .listeningModeEnabled: .settings.listeningMode.listeningModeToggle
+            case .hotWordEnabled: .settings.listeningMode.hotWordEnabledToggle
+            case .smartAssistEnabled: .settings.listeningMode.smartAssistEnabledToggle
             }
         }
 
@@ -107,7 +104,7 @@ final class ListeningModeViewController: VocableCollectionViewController {
         var snapshot = Snapshot()
         if let state = authorizationController.state {
             if !ListenModeFeatureConfiguration.deviceSupportsListeningMode {
-                collectionView.backgroundView  = EmptyStateView(type: ListeningEmptyState.listeningModeUnsupported)
+                collectionView.backgroundView = EmptyStateView(type: ListeningEmptyState.listeningModeUnsupported)
             } else {
                 collectionView.backgroundView = EmptyStateView.listening(state.state, action: state.action)
             }
@@ -275,17 +272,5 @@ final class ListeningModeViewController: VocableCollectionViewController {
 
     func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
         return false
-    }
-
-    @available(iOS, obsoleted: 15, message: "Use snapshot-based reconfiguring instead")
-    private func updateVisibleCellConfigurations() {
-        for indexPath in self.collectionView.indexPathsForVisibleItems {
-            if let cell = self.collectionView.cellForItem(at: indexPath) as? VocableListCell {
-                guard let item = self.dataSource.itemIdentifier(for: indexPath) else {
-                    continue
-                }
-                self.updateContentConfiguration(for: cell, at: indexPath, item: item)
-            }
-        }
     }
 }

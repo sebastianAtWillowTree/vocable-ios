@@ -46,7 +46,7 @@ struct VocableListContentConfiguration: UIContentConfiguration, Equatable {
     var trailingAccessory: VocableListCellAccessory?
     var primaryAction: (() -> Void)?
     var actionsConfiguration: ActionsConfiguration
-    var accessibilityIdentifier: String?
+    var accessibilityIdentifier: AccessibilityID?
     var accessibilityLabel: String?
     var primaryBackgroundColor: UIColor = .defaultCellBackgroundColor
     var primaryContentHorizontalAlignment: UIControl.ContentHorizontalAlignment = .leading
@@ -59,7 +59,7 @@ struct VocableListContentConfiguration: UIContentConfiguration, Equatable {
         actionsConfiguration: ActionsConfiguration = .default,
         accessory: VocableListCellAccessory? = nil,
         isPrimaryActionEnabled: Bool = true,
-        accessibilityIdentifier: String? = nil,
+        accessibilityIdentifier: AccessibilityID? = nil,
         accessibilityLabel: String? = nil,
         primaryAction: @escaping () -> Void
     ) {
@@ -83,7 +83,7 @@ struct VocableListContentConfiguration: UIContentConfiguration, Equatable {
         leadingAccessory: VocableListCellAccessory? = nil,
         trailingAccessory: VocableListCellAccessory? = nil,
         isPrimaryActionEnabled: Bool = true,
-        accessibilityIdentifier: String? = nil,
+        accessibilityIdentifier: AccessibilityID? = nil,
         accessibilityLabel: String? = nil,
         primaryAction: @escaping () -> Void
     ) {
@@ -109,7 +109,7 @@ struct VocableListContentConfiguration: UIContentConfiguration, Equatable {
         actionsConfiguration: ActionsConfiguration = .default,
         accessory: VocableListCellAccessory? = nil,
         isPrimaryActionEnabled: Bool = true,
-        accessibilityIdentifier: String? = nil,
+        accessibilityIdentifier: AccessibilityID? = nil,
         accessibilityLabel: String? = nil,
         primaryAction: @escaping () -> Void
     ) {
@@ -133,7 +133,7 @@ struct VocableListContentConfiguration: UIContentConfiguration, Equatable {
         leadingAccessory: VocableListCellAccessory? = nil,
         trailingAccessory: VocableListCellAccessory? = nil,
         isPrimaryActionEnabled: Bool = true,
-        accessibilityIdentifier: String? = nil,
+        accessibilityIdentifier: AccessibilityID? = nil,
         accessibilityLabel: String? = nil,
         primaryAction: @escaping () -> Void
     ) {
@@ -148,12 +148,39 @@ struct VocableListContentConfiguration: UIContentConfiguration, Equatable {
         self.accessibilityIdentifier = accessibilityIdentifier
     }
 
-    static func disclosureCellConfiguration(withTitle title: String, action: @escaping () -> Void) -> VocableListContentConfiguration {
-        .init(title: title, accessory: .disclosureIndicator(), primaryAction: action)
+    static func disclosureCell(
+        title: String,
+        isPrimaryActionEnabled: Bool = true,
+        accessibilityIdentifier: AccessibilityID? = nil,
+        accessibilityLabel: String? = nil,
+        action: @escaping () -> Void
+    ) -> VocableListContentConfiguration {
+        .init(
+            title: title,
+            accessory: .disclosureIndicator(),
+            isPrimaryActionEnabled: isPrimaryActionEnabled,
+            accessibilityIdentifier: accessibilityIdentifier,
+            accessibilityLabel: accessibilityLabel,
+            primaryAction: action
+        )
     }
 
-    static func toggleCellConfiguration(withTitle title: String, isOn: Bool, action: @escaping () -> Void) -> VocableListContentConfiguration {
-        .init(title: title, accessory: .toggle(isOn: isOn), primaryAction: action)
+    static func toggleCell(
+        title: String,
+        isOn: Bool,
+        isPrimaryActionEnabled: Bool = true,
+        accessibilityIdentifier: AccessibilityID? = nil,
+        accessibilityLabel: String? = nil,
+        action: @escaping () -> Void
+    ) -> VocableListContentConfiguration {
+        .init(
+            title: title,
+            accessory: .toggle(isOn: isOn),
+            isPrimaryActionEnabled: isPrimaryActionEnabled,
+            accessibilityIdentifier: accessibilityIdentifier,
+            accessibilityLabel: accessibilityLabel,
+            primaryAction: action
+        )
     }
 
     func makeContentView() -> UIView & UIContentView {

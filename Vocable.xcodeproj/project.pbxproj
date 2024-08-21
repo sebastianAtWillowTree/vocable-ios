@@ -265,6 +265,8 @@
 		B24F02372BEBEF4E003C6BF9 /* Presets.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = B24F02362BEBEF4E003C6BF9 /* Presets.xcstrings */; };
 		B24F02392BEBEF4E003C6BF9 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = B24F02382BEBEF4E003C6BF9 /* InfoPlist.xcstrings */; };
 		B277CDC02BF7AF55003BFACE /* UIFont+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B277CDBF2BF7AF55003BFACE /* UIFont+Helpers.swift */; };
+        B2971A152C762C8F006801F8 /* UICollectionDiffableDatasource+Mutations.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2971A142C762C8F006801F8 /* UICollectionDiffableDatasource+Mutations.swift */; };
+		B2971A172C7636FF006801F8 /* AccessibilityID+Settings+ListeningMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2971A162C7636FF006801F8 /* AccessibilityID+Settings+ListeningMode.swift */; };
 		B2BC6CA92BD94F5A00D459F6 /* VocableListContentConfiguration+VoiceProfileItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BC6CA82BD94F5A00D459F6 /* VocableListContentConfiguration+VoiceProfileItem.swift */; };
 		B2BC6CAB2BD94FB500D459F6 /* VocableSpeechSynthesizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BC6CAA2BD94FB500D459F6 /* VocableSpeechSynthesizer.swift */; };
 		B2BC6CAD2BD96CD000D459F6 /* VoiceProfilePreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BC6CAC2BD96CD000D459F6 /* VoiceProfilePreviewController.swift */; };
@@ -541,6 +543,8 @@
 		B26B3EB42C63ACEB002BCBF9 /* UITests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = UITests.xctestplan; sourceTree = "<group>"; };
 		B26B3EB52C63AD6E002BCBF9 /* UnitTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = UnitTests.xctestplan; sourceTree = "<group>"; };
 		B277CDBF2BF7AF55003BFACE /* UIFont+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Helpers.swift"; sourceTree = "<group>"; };
+		B2971A142C762C8F006801F8 /* UICollectionDiffableDatasource+Mutations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionDiffableDatasource+Mutations.swift"; sourceTree = "<group>"; };
+		B2971A162C7636FF006801F8 /* AccessibilityID+Settings+ListeningMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AccessibilityID+Settings+ListeningMode.swift"; sourceTree = "<group>"; };
 		B2BC6CA82BD94F5A00D459F6 /* VocableListContentConfiguration+VoiceProfileItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VocableListContentConfiguration+VoiceProfileItem.swift"; sourceTree = "<group>"; };
 		B2BC6CAA2BD94FB500D459F6 /* VocableSpeechSynthesizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocableSpeechSynthesizer.swift; sourceTree = "<group>"; };
 		B2BC6CAC2BD96CD000D459F6 /* VoiceProfilePreviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceProfilePreviewController.swift; sourceTree = "<group>"; };
@@ -931,6 +935,7 @@
 				6B8D3C0F282C238000DDB9B7 /* AccessibilityID+Settings+EditPhrases.swift */,
 				6B8D3C11282C23AB00DDB9B7 /* AccessibilityID+Settings+TimingSensitivity.swift */,
 				6B8D3C13282C23CA00DDB9B7 /* AccessibilityID+Settings+SelectionMode.swift */,
+				B2971A162C7636FF006801F8 /* AccessibilityID+Settings+ListeningMode.swift */,
 				6B8D3C2E282C2B8600DDB9B7 /* Extensions */,
 			);
 			path = AXIdentifier;
@@ -1207,6 +1212,7 @@
 				A9DE170123F492B20094DB64 /* Array+Split.swift */,
 				B277CDBF2BF7AF55003BFACE /* UIFont+Helpers.swift */,
 				714407EC243CEEA1009D077B /* Category+Helpers.swift */,
+				B2971A142C762C8F006801F8 /* UICollectionDiffableDatasource+Mutations.swift */,
 				B8DA9DF123F30BAF00FEBE19 /* Cell+NibLoading.swift */,
 				6B8440DE2448C391007A4DC6 /* CGSize+Helpers.swift */,
 				A9C32CFE242271F3000EC6F7 /* Phrase+Helpers.swift */,
@@ -1428,6 +1434,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B2BC6CA92BD94F5A00D459F6 /* VocableListContentConfiguration+VoiceProfileItem.swift in Sources */,
+				B2971A152C762C8F006801F8 /* UICollectionDiffableDatasource+Mutations.swift in Sources */,
 				B2BC6CB52BDAD1B500D459F6 /* VoiceProfileItem.swift in Sources */,
 				4E70DA6A27FE859F0027B40B /* ContentHuggingPriority.swift in Sources */,
 				B2458E602BFE4C35007AF53D /* HighlightableContentCell.swift in Sources */,
@@ -1555,6 +1562,7 @@
 				A91030B627E3C31700281C97 /* VocableListCell.swift in Sources */,
 				6B05020727F351A1000CFE5A /* CategoryReordering.swift in Sources */,
 				220A558D2A8DD90900612581 /* Query.swift in Sources */,
+				B2971A172C7636FF006801F8 /* AccessibilityID+Settings+ListeningMode.swift in Sources */,
 				4E18DBF227FF49FA0043A019 /* GazeButtonStyleConfiguration.swift in Sources */,
 				A91030B427E3BF9300281C97 /* VocableListContentConfiguration.swift in Sources */,
 				9DB58D4922666BC200E99C3B /* UIColor+AppExtensions.swift in Sources */,

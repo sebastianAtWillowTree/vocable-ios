@@ -149,7 +149,7 @@ final class VocableListCellContentView: UIView, UIContentView {
         primaryLabelButton.setTrailingAccessory(configuration?.trailingAccessory)
         primaryLabelButton.setAttributedTitle(configuration?.attributedTitle, for: .normal)
         primaryLabelButton.accessibilityLabel = configuration?.accessibilityLabel
-        primaryLabelButton.accessibilityIdentifier = configuration?.accessibilityIdentifier
+        primaryLabelButton.accessibilityID = configuration?.accessibilityIdentifier
         primaryLabelButton.addTarget(self, action: #selector(handlePrimaryActionSelection(_:)), for: .primaryActionTriggered)
         primaryLabelButton.isEnabled = configuration?.isPrimaryActionEnabled ?? true
     }
@@ -172,7 +172,7 @@ final class VocableListCellContentView: UIView, UIContentView {
             button.setImage(action.image, for: .normal)
             button.isEnabled = action.isEnabled
             button.accessibilityLabel = action.accessibilityLabel
-            button.accessibilityIdentifier = action.accessibilityIdentifier
+            button.accessibilityID = action.accessibilityIdentifier
             // Using UIControlEvent to avoid having to de-duplicate UIAction invocations
             button.addTarget(self,
                              action: #selector(handleLeadingAccessoryActionSelection(_:)),

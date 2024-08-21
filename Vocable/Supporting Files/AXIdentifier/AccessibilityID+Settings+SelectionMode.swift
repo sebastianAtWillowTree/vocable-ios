@@ -11,6 +11,7 @@ import Foundation
 extension AccessibilityID.settings {
     public struct selectionMode {
         public static let headTrackingToggle: AccessibilityID = "selection-mode-head-tracking-toggle"
+        public static let compactQwertyToggle: AccessibilityID = "selection-mode-compact-qwerty-toggle"
         private init() {}
     }
 }

@@ -29,7 +29,6 @@ final class SettingsViewController: VocableCollectionViewController, MFMailCompo
         case timingSensitivity
         case resetAppSettings
         case selectionMode
-        case keyboardLayout
         case privacyPolicy
         case contactDevs
         case pidTuner
@@ -42,8 +41,6 @@ final class SettingsViewController: VocableCollectionViewController, MFMailCompo
                 return String(localized: "settings.cell.categories.title")
             case .timingSensitivity:
                 return String(localized: "settings.cell.timing_sensitivity.title")
-            case .keyboardLayout:
-                return String(localized: "settings.cell.keyboard_layout.title")
             case .resetAppSettings:
                 return String(localized: "settings.cell.reset_all.title")
             case .selectionMode:
@@ -79,8 +76,6 @@ final class SettingsViewController: VocableCollectionViewController, MFMailCompo
                 return .settings.listeningModeCell
             case .voiceConfiguration:
                 return .settings.voiceSettingsCell
-            case .keyboardLayout:
-                return .settings.keyboardLayoutCell
             case .pidTuner:
                 return ""
             }
@@ -105,7 +100,13 @@ final class SettingsViewController: VocableCollectionViewController, MFMailCompo
     private var versionAndBuildNumber: String {
         let versionNumber = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0.0"
         let buildNumber = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "1"
-        return "Version \(versionNumber)-\(buildNumber)"
+        let formattedVersion = versionNumber + " (\(buildNumber))"
+        let format = String(
+            localized: "settings.version_format",
+            defaultValue: "Version %1$@",
+            comment: "Version information displayed at the bottom of the Settings screen. Argument is the application version."
+        )
+        return String(format: format, formattedVersion)
     }
 
     override func viewDidLoad() {
@@ -156,7 +157,7 @@ final class SettingsViewController: VocableCollectionViewController, MFMailCompo
                 }
                 cell.accessibilityID = item.accessibiltyId
             } else {
-                cell.contentConfiguration = VocableListContentConfiguration.disclosureCellConfiguration(withTitle: item.title) {
+                cell.contentConfiguration = VocableListContentConfiguration.disclosureCell(title: item.title) {
                     self?.handleItemSelection(item)
                 }
                 cell.accessibilityID = item.accessibiltyId
@@ -195,7 +196,6 @@ final class SettingsViewController: VocableCollectionViewController, MFMailCompo
         snapshot.appendItems([.voiceConfiguration,
                               .categories,
                               .timingSensitivity,
-                              .keyboardLayout,
                               .listeningMode,
                               .selectionMode,
                               .resetAppSettings].filter(\.isFeatureEnabled))
@@ -295,9 +295,6 @@ final class SettingsViewController: VocableCollectionViewController, MFMailCompo
             presentPidTuner()
         case .resetAppSettings:
             presentAppResetPrompt()
-        case .keyboardLayout:
-            let viewController = KeyboardLayoutViewController()
-            show(viewController, sender: nil)
         }
     }
     

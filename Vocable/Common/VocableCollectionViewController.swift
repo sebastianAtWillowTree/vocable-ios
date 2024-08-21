@@ -39,6 +39,7 @@ class VocableCollectionViewController: VocableViewController, UICollectionViewDe
         view.backgroundColor = .collectionViewBackgroundColor
 
         collectionView.delegate = self
+        collectionView.delaysContentTouches = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(collectionView)
     }

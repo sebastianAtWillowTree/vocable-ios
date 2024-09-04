@@ -81,7 +81,15 @@ struct TextTransaction: CustomDebugStringConvertible {
         }
         return TextTransaction(text: newText, intent: .lastCharacter)
     }
-    
+
+    mutating func deleteLastToken() {
+        self = self.deletingLastToken()
+    }
+
+    mutating func clear() {
+        self = .init(text: "", intent: .none)
+    }
+
     func appendingCharacter(with character: String) -> TextTransaction {
         if isHint {
             return TextTransaction(text: character, intent: .lastCharacter)
@@ -90,13 +98,21 @@ struct TextTransaction: CustomDebugStringConvertible {
         let newText = handleGrammar(with: character)
         return TextTransaction(text: newText, intent: .lastCharacter)
     }
-    
+
+    mutating func append(_ str: String) {
+        self = self.appendingCharacter(with: str)
+    }
+
     func insertingSuggestion(with suggestion: String) -> TextTransaction {
         let newText: String
         newText = NSString(string: text + " ").replacingCharacters(in: lastTokenRange, with: suggestion)
         return TextTransaction(text: newText, intent: .fullWord)
     }
-    
+
+    mutating func insert(_ suggestion: String) {
+        self = self.insertingSuggestion(with: suggestion)
+    }
+
     func handleGrammar(with character: String) -> String {
         var newText = text
         var char = character.lowercased()
@@ -127,6 +143,10 @@ struct TextTransaction: CustomDebugStringConvertible {
     
     func withSpeakingRange(_ range: NSRange?) -> TextTransaction {
         .init(text: self.text, intent: self.intent, isHint: self.isHint, speakingRange: range)
+    }
+
+    mutating func setSpeakingRange(_ range: NSRange?) {
+        self = self.withSpeakingRange(range)
     }
 
     // To keep track of when to delete the last word or the full word (after selecting a text suggestion) when pressing backspace

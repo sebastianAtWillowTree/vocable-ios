@@ -46,6 +46,8 @@ extension UIColor {
 
     // MARK: New Branded Colors
 
+    // TODO: Switch to compile-time generated symbols
+    
     // Workaround for https://openradar.appspot.com/47113341. Prevent crashing the IBDesignables agent when using a color from the asset catalog.
     private convenience init?(safelyNamed name: String) {
         self.init(named: name,
@@ -53,7 +55,6 @@ extension UIColor {
                   compatibleWith: nil)
     }
 
-    static let primaryColor = UIColor(safelyNamed: "Primary")!
     static let primaryBackgroundColor = UIColor(safelyNamed: "Background")!
 
     static let defaultTextColor = UIColor(safelyNamed: "DefaultFontColor")!
@@ -71,7 +72,4 @@ extension UIColor {
     static let cellBorderHighlightColor = UIColor(safelyNamed: "BorderHighlight")!
     static let alertBackgroundColor = UIColor(safelyNamed: "AlertBackground")!
     static let alertNormalText = UIColor(safelyNamed: "CategoryBackground")!
-
-    static let grayDivider = UIColor(safelyNamed: "GrayDivider")!
-    static let errorRed = UIColor(safelyNamed: "ErrorRed")!
 }

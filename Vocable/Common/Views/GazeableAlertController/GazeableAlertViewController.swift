@@ -190,7 +190,7 @@ private final class GazeableAlertButton: GazeableButton {
     
         if state.contains(.selected) {
             foregroundColor = .white
-            backgroundColor = .primaryColor
+            backgroundColor = .selectedCellBackground
         } else if case .destructive = actionStyle {
             foregroundColor = .errorRed
             backgroundColor = .clear

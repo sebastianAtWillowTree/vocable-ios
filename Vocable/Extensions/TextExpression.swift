@@ -8,10 +8,14 @@
 import Foundation
 
 class TextExpression {
-    private(set) var value: String = ""
+    private(set) var value: String
     
     private let textSuggestionController = TextSuggestionController()
 
+    init(value: String = "") {
+        self.value = value
+    }
+    
     var wordCount: Int {
         return value.split(separator: " ").count
     }

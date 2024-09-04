@@ -28,7 +28,28 @@ class GazeableButton: UIButton {
             updateSelectionAppearance()
         }
     }
-    
+
+    var fillColor: UIColor = .defaultCellBackgroundColor {
+        didSet {
+            guard oldValue != fillColor else { return }
+            setNeedsUpdateConfiguration()
+        }
+    }
+
+    var foregroundColor: UIColor = .defaultTextColor {
+        didSet {
+            guard oldValue != foregroundColor else { return }
+            setNeedsUpdateConfiguration()
+        }
+    }
+
+    var font: UIFont = .settingsCellTitle() {
+        didSet {
+            guard oldValue != font else { return }
+            setNeedsUpdateConfiguration()
+        }
+    }
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -47,9 +68,9 @@ class GazeableButton: UIButton {
         
         var configuration = configuration ?? .plain()
         
-        var fillColor = UIColor.defaultCellBackgroundColor
-        var titleColor = UIColor.defaultTextColor
-        
+        var fillColor = self.fillColor
+        var titleColor = self.foregroundColor
+
         if self.state.contains(.selected) {
             fillColor = .cellSelectionColor
             titleColor = .collectionViewBackgroundColor
@@ -73,9 +94,10 @@ class GazeableButton: UIButton {
         configuration.background.backgroundColor = fillColor
         configuration.baseForegroundColor = titleColor
         
-        configuration.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { incoming in
+        configuration.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { [weak self] incoming in
             var outgoing = incoming
             outgoing.foregroundColor = titleColor
+            outgoing.font = self?.font
             return outgoing
         }
         
@@ -84,7 +106,7 @@ class GazeableButton: UIButton {
         }
         
         configuration.contentInsets = NSDirectionalEdgeInsets(uniform: 8)
-        configuration.preferredSymbolConfigurationForImage = UIImage.SymbolConfiguration(pointSize: 24, weight: .bold)
+        configuration.preferredSymbolConfigurationForImage = UIImage.SymbolConfiguration(font: font)
 
         configuration.background.strokeColor = strokeColor
         configuration.background.strokeWidth = 4.0

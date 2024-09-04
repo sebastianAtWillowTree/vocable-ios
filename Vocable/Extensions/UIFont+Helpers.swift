@@ -23,4 +23,16 @@ extension UIFont {
         return desiredFont
     }
 
-}
+    static func keyboardKey(
+        satisfying traitCollection: UITraitCollection = .current
+    ) -> UIFont {
+        return switch traitCollection.sizeClass {
+        case .hCompact_vCompact, .hRegular_vCompact:
+            .boldSystemFont(ofSize: 28)
+        case .hCompact_vRegular:
+            .boldSystemFont(ofSize: 22)
+        default:
+            .boldSystemFont(ofSize: 48)
+        }
+    }
+ }

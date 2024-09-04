@@ -12,13 +12,20 @@ final class SelectionModeViewController: VocableCollectionViewController {
 
     private enum SelectionModeItem: Int {
         case headTrackingToggle
+        case compactQWERTY
     }
 
     private enum SupplementaryKind: String {
         case headTrackingUnsupportedFooter
+        case compactQwertyDescriptionFooter
     }
 
-    private typealias DataSource = UICollectionViewDiffableDataSource<Int, SelectionModeItem>
+    private enum SectionIdentifier: Int {
+        case headTracking
+    }
+
+    private typealias DataSource = UICollectionViewDiffableDataSource<SectionIdentifier, SelectionModeItem>
+    private typealias Snapshot = NSDiffableDataSourceSnapshot<SectionIdentifier, SelectionModeItem>
     private typealias CellRegistration = UICollectionView.CellRegistration<VocableListCell, SelectionModeItem>
     
     private var dataSource: DataSource!
@@ -43,28 +50,49 @@ final class SelectionModeViewController: VocableCollectionViewController {
     
     // MARK: UICollectionViewDataSource
 
-    private func updateDataSource() {
-        var snapshot = NSDiffableDataSourceSnapshot<Int, SelectionModeItem>()
-        snapshot.appendSections([0])
+    private func updateDataSource(animated: Bool = false) {
+        var snapshot = Snapshot()
+        snapshot.appendSections([.headTracking])
         snapshot.appendItems([.headTrackingToggle])
-        dataSource.apply(snapshot, animatingDifferences: false)
+        if AppConfig.isHeadTrackingEnabled {
+            snapshot.appendItems([.compactQWERTY])
+        }
+        dataSource.apply(snapshot, animatingDifferences: animated)
+    }
+
+    private func registerSupplementaryFooter(_ item: SupplementaryKind) {
+        collectionView.register(
+            UINib(nibName: "SettingsFooterTextSupplementaryView", bundle: nil),
+            forSupplementaryViewOfKind: item.rawValue,
+            withReuseIdentifier: item.rawValue
+        )
     }
 
     private func setupCollectionView() {
-        collectionView.backgroundColor = .collectionViewBackgroundColor
-        collectionView.register(UINib(nibName: "SettingsFooterTextSupplementaryView", bundle: nil),
-                                forSupplementaryViewOfKind: SupplementaryKind.headTrackingUnsupportedFooter.rawValue,
-                                withReuseIdentifier: SupplementaryKind.headTrackingUnsupportedFooter.rawValue)
+        collectionView.delaysContentTouches = false
         
+        collectionView.backgroundColor = .collectionViewBackgroundColor
+        registerSupplementaryFooter(.headTrackingUnsupportedFooter)
+        registerSupplementaryFooter(.compactQwertyDescriptionFooter)
+
         let cellRegistration = CellRegistration { cell, _, item in
             switch item {
             case .headTrackingToggle:
-                let title = String(localized: "settings.cell.head_tracking.title")
-                cell.contentConfiguration = VocableListContentConfiguration.toggleCellConfiguration(
-                    withTitle: title,
-                    isOn: AppConfig.isHeadTrackingEnabled
-                ) {
-                    AppConfig.isHeadTrackingEnabled.toggle()
+                cell.contentConfiguration = VocableListContentConfiguration.toggleCell(
+                    title: String(localized: "settings.cell.head_tracking.title"),
+                    isOn: AppConfig.isHeadTrackingEnabled,
+                    isPrimaryActionEnabled: AppConfig.isHeadTrackingSupported,
+                    accessibilityIdentifier: .settings.selectionMode.headTrackingToggle
+                ) { [weak self] in
+                    self?.toggleHeadTracking()
+                }
+            case .compactQWERTY:
+                cell.contentConfiguration = VocableListContentConfiguration.toggleCell(
+                    title: String(localized: "settings.cell.qwerty_layout.title"),
+                    isOn: AppConfig.isCompactQWERTYKeyboardEnabled,
+                    accessibilityIdentifier: .settings.selectionMode.compactQwertyToggle
+                ) { [weak self] in
+                    self?.toggleCompactQwerty()
                 }
             }
         }
@@ -80,9 +108,20 @@ final class SelectionModeViewController: VocableCollectionViewController {
             case .none:
                 return nil
             case .headTrackingUnsupportedFooter:
-
-                let footer = collectionView.dequeueReusableSupplementaryView(ofKind: elementKind, withReuseIdentifier: elementKind, for: indexPath) as! SettingsFooterTextSupplementaryView
+                let footer = collectionView.dequeueReusableSupplementaryView(
+                    ofKind: elementKind,
+                    withReuseIdentifier: elementKind,
+                    for: indexPath
+                ) as! SettingsFooterTextSupplementaryView
                 footer.textLabel.text = SelectionModeViewController.headTrackingUnsupportedLocalizedString
+                return footer
+            case .compactQwertyDescriptionFooter:
+                let footer = collectionView.dequeueReusableSupplementaryView(
+                    ofKind: elementKind,
+                    withReuseIdentifier: elementKind,
+                    for: indexPath
+                ) as! SettingsFooterTextSupplementaryView
+                footer.textLabel.text = String(localized: "settings.keyboard_layout.qwerty_layout.explanation_footer")
                 return footer
             }
         }
@@ -115,12 +154,21 @@ final class SelectionModeViewController: VocableCollectionViewController {
         section.contentInsets = sectionInsets(for: environment)
         section.contentInsets.top = 16
         section.contentInsets.bottom = 32
-        if !AppConfig.isHeadTrackingSupported {
 
-            let footerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(200))
-            let footer = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: footerSize,
-                                                                     elementKind: SupplementaryKind.headTrackingUnsupportedFooter.rawValue,
-                                                                     alignment: .bottom)
+        let footerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(200))
+        if !AppConfig.isHeadTrackingSupported {
+            let footer = NSCollectionLayoutBoundarySupplementaryItem(
+                layoutSize: footerSize,
+                elementKind: SupplementaryKind.headTrackingUnsupportedFooter.rawValue,
+                alignment: .bottom
+            )
+            section.boundarySupplementaryItems = [footer]
+        } else if AppConfig.isHeadTrackingEnabled {
+            let footer = NSCollectionLayoutBoundarySupplementaryItem(
+                layoutSize: footerSize,
+                elementKind: SupplementaryKind.compactQwertyDescriptionFooter.rawValue,
+                alignment: .bottom
+            )
             section.boundarySupplementaryItems = [footer]
         }
         return section
@@ -136,45 +184,60 @@ final class SelectionModeViewController: VocableCollectionViewController {
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
         if collectionView.indexPathForGazedItem != indexPath {
             collectionView.deselectItem(at: indexPath, animated: true)
         }
+    }
 
+    func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
+            guard let item = dataSource.itemIdentifier(for: indexPath) else { return false }
+            return switch item {
+            case .compactQWERTY: true
+            case .headTrackingToggle: AppConfig.isHeadTrackingSupported
+            }
+        }
+
+    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+        guard let item = dataSource.itemIdentifier(for: indexPath) else { return false }
+        return switch item {
+        case .compactQWERTY: true
+        case .headTrackingToggle: AppConfig.isHeadTrackingSupported
+        }
+    }
+
+    // MARK: Helpers
+
+    private func toggleCompactQwerty() {
+        AppConfig.isCompactQWERTYKeyboardEnabled.toggle()
+        dataSource.reloadItem(.compactQWERTY, animated: false)
+    }
+
+    private func toggleHeadTracking() {
         if AppConfig.isHeadTrackingEnabled {
             let title = String(localized: "gaze_settings.alert.disable_head_tracking_confirmation.title")
             let cancelButtonTitle = String(localized: "gaze_settings.alert.disable_head_tracking_confirmation.button.cancel.title")
             let confirmButtonTitle = String(localized: "gaze_settings.alert.disable_head_tracking_confirmation.button.confirm.title")
             let alertViewController = GazeableAlertViewController.init(alertTitle: title)
             alertViewController.addAction(GazeableAlertAction(title: cancelButtonTitle))
-            alertViewController.addAction(GazeableAlertAction(title: confirmButtonTitle, style: .bold, handler: self.toggleHeadTracking))
+            alertViewController.addAction(GazeableAlertAction(title: confirmButtonTitle, style: .bold) { [weak self] in
+                AppConfig.isHeadTrackingEnabled.toggle()
+                self?.headTrackingDidChange()
+            })
             present(alertViewController, animated: true)
         } else {
             AppConfig.isHeadTrackingEnabled.toggle()
+            headTrackingDidChange()
             Analytics.shared.track(.headingTrackingChanged)
         }
     }
 
-    func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        guard let item = dataSource.itemIdentifier(for: indexPath) else { return false }
-        switch item {
-        case .headTrackingToggle:
-            return AppConfig.isHeadTrackingSupported
+    private func headTrackingDidChange() {
+        dataSource.reloadItem(.headTrackingToggle, animated: false)
+        if AppConfig.isHeadTrackingEnabled {
+            dataSource.appendItem(.compactQWERTY, in: .headTracking)
+        } else {
+            dataSource.removeItem(.compactQWERTY)
         }
-    }
-
-    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        guard let item = dataSource.itemIdentifier(for: indexPath) else { return false }
-        switch item {
-        case .headTrackingToggle:
-            return AppConfig.isHeadTrackingSupported
-        }
-    }
-
-    // MARK: Helpers
-
-    private func toggleHeadTracking() {
-        AppConfig.isHeadTrackingEnabled.toggle()
     }
 
     private static var headTrackingUnsupportedLocalizedString: String {

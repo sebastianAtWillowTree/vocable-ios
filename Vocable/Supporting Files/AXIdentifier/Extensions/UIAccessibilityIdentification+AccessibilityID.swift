@@ -10,12 +10,14 @@ import Foundation
 import UIKit
 
 extension UIAccessibilityIdentification {
-    var accessibilityID: AccessibilityID {
+    var accessibilityID: AccessibilityID? {
         get {
-            AccessibilityID(stringLiteral: self.accessibilityIdentifier ?? "")
+            accessibilityIdentifier.map { value in
+                AccessibilityID(stringLiteral: value)
+            }
         }
         set {
-            self.accessibilityIdentifier = newValue.id
+            self.accessibilityIdentifier = newValue?.id
         }
     }
 }

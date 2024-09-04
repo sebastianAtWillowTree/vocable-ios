@@ -129,16 +129,12 @@ final class EditCategoryDetailViewController: VocableCollectionViewController {
                 return assertionFailure("This cell registration is for the Rename Category cell.")
             }
 
-            var config: VocableListContentConfiguration = .disclosureCellConfiguration(
-                withTitle: String(localized:
-                    "category_editor.detail.button.rename_category.title")
+            cell.contentConfiguration = VocableListContentConfiguration.disclosureCell(
+                title: String(localized: "category_editor.detail.button.rename_category.title"),
+                accessibilityIdentifier: .settings.editCategoryDetails.renameCategoryButton
             ) { [weak self] in
                 self?.handleRenameCategory()
             }
-
-            config.accessibilityIdentifier = AccessibilityID.settings.editCategoryDetails.renameCategoryButton.id
-
-            cell.contentConfiguration = config
         }
     }
 
@@ -148,18 +144,14 @@ final class EditCategoryDetailViewController: VocableCollectionViewController {
                 return assertionFailure("This cell registration is for the Show Category cell.")
             }
 
-            var config: VocableListContentConfiguration = .toggleCellConfiguration(
-                withTitle: String(localized:
-                    "category_editor.detail.button.show_category.title"),
-                isOn: !category.isHidden
+            cell.contentConfiguration = VocableListContentConfiguration.toggleCell(
+                title: String(localized: "category_editor.detail.button.show_category.title"),
+                isOn: !category.isHidden,
+                isPrimaryActionEnabled: category.identifier != .userFavorites,
+                accessibilityIdentifier: .settings.editCategoryDetails.showCategoryToggle
             ) { [weak self] in
                 self?.handleToggle(at: indexPath)
             }
-
-            config.isPrimaryActionEnabled = category.identifier != .userFavorites
-            config.accessibilityIdentifier = AccessibilityID.settings.editCategoryDetails.showCategoryToggle.id
-
-            cell.contentConfiguration = config
         }
     }
 
@@ -169,17 +161,13 @@ final class EditCategoryDetailViewController: VocableCollectionViewController {
                 return assertionFailure("This cell registration is for the Edit Phrases cell.")
             }
 
-            var config: VocableListContentConfiguration = .disclosureCellConfiguration(
-                withTitle: String(localized:
-                    "category_editor.detail.button.edit_phrases.title")
+            cell.contentConfiguration = VocableListContentConfiguration.disclosureCell(
+                title: String(localized: "category_editor.detail.button.edit_phrases.title"),
+                isPrimaryActionEnabled: category.allowsCustomPhrases,
+                accessibilityIdentifier: .settings.editCategoryDetails.editPhrasesButton
             ) { [weak self] in
                 self?.displayEditPhrasesViewController()
             }
-
-            config.isPrimaryActionEnabled = category.allowsCustomPhrases
-            config.accessibilityIdentifier = AccessibilityID.settings.editCategoryDetails.editPhrasesButton.id
-
-            cell.contentConfiguration = config
         }
     }
 
@@ -194,7 +182,7 @@ final class EditCategoryDetailViewController: VocableCollectionViewController {
             }
 
             config.isPrimaryActionEnabled = category.identifier != .userFavorites
-            config.accessibilityIdentifier = AccessibilityID.settings.editCategoryDetails.removeCategoryButton.id
+            config.accessibilityIdentifier = AccessibilityID.settings.editCategoryDetails.removeCategoryButton
             config.primaryBackgroundColor = .errorRed
             config.primaryContentHorizontalAlignment = .center
             config.traitCollectionChangeHandler = { _, updatedConfig in

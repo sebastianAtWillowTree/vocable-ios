@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct AccessibilityID: ExpressibleByStringLiteral {
+public struct AccessibilityID: ExpressibleByStringLiteral, Hashable {
     let id: String
     public init(stringLiteral value: StringLiteralType) {
         self.id = value

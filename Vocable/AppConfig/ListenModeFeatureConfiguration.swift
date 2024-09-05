@@ -47,7 +47,7 @@ final class ListenModeFeatureConfiguration: ObservableObject {
     var smartAssistEnabledPreference: Bool = false
     
     var smartAssistAvailable: Bool {
-        false
+        true
     }
     
     private var cancellables = Set<AnyCancellable>()

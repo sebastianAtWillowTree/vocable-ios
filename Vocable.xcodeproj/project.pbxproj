@@ -225,7 +225,6 @@
 		A961605027F6383B00CE2F72 /* FreeResponseTextEditorConfigurationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A961604F27F6383B00CE2F72 /* FreeResponseTextEditorConfigurationProvider.swift */; };
 		A96D61D524229F6400577144 /* SettingsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96D61D424229F6400577144 /* SettingsCollectionViewCell.swift */; };
 		A96D61D724229F7400577144 /* SettingsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A96D61D624229F7400577144 /* SettingsCollectionViewCell.xib */; };
-		A982D11E2A2690B5004190D8 /* KeyboardLayoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A982D11D2A2690B5004190D8 /* KeyboardLayoutViewController.swift */; };
 		A987416C280DADA40011C359 /* ListeningResponseFeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A987416B280DADA40011C359 /* ListeningResponseFeedbackViewController.swift */; };
 		A987416E280DB20A0011C359 /* ListeningFeedbackSubmitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A987416D280DB20A0011C359 /* ListeningFeedbackSubmitView.swift */; };
 		A9874170280DFD0B0011C359 /* ListeningFeedbackSuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A987416F280DFD0B0011C359 /* ListeningFeedbackSuccessView.swift */; };
@@ -262,8 +261,6 @@
 		B24F02372BEBEF4E003C6BF9 /* Presets.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = B24F02362BEBEF4E003C6BF9 /* Presets.xcstrings */; };
 		B24F02392BEBEF4E003C6BF9 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = B24F02382BEBEF4E003C6BF9 /* InfoPlist.xcstrings */; };
 		B277CDC02BF7AF55003BFACE /* UIFont+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B277CDBF2BF7AF55003BFACE /* UIFont+Helpers.swift */; };
-		B2971A152C762C8F006801F8 /* UICollectionDiffableDatasource+Mutations.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2971A142C762C8F006801F8 /* UICollectionDiffableDatasource+Mutations.swift */; };
-		B2971A172C7636FF006801F8 /* AccessibilityID+Settings+ListeningMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2971A162C7636FF006801F8 /* AccessibilityID+Settings+ListeningMode.swift */; };
 		B285045B2C20A6E600617C5E /* KeyboardLayoutRelativeWidth.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28504582C20A6E600617C5E /* KeyboardLayoutRelativeWidth.swift */; };
 		B285045C2C20A6E600617C5E /* KeyboardLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28504592C20A6E600617C5E /* KeyboardLayout.swift */; };
 		B285045D2C20A6E600617C5E /* KeyboardLayoutBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B285045A2C20A6E600617C5E /* KeyboardLayoutBuilder.swift */; };
@@ -295,6 +292,8 @@
 		B291D12C2C5AE7B3006E9FA6 /* KeyboardSuggestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B291D12B2C5AE7B3006E9FA6 /* KeyboardSuggestionView.swift */; };
 		B291D12E2C5AE80E006E9FA6 /* KeyboardViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B291D12D2C5AE80E006E9FA6 /* KeyboardViewDelegate.swift */; };
 		B291D1302C5B00C5006E9FA6 /* KeyboardKeyAction+Representation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B291D12F2C5B00C5006E9FA6 /* KeyboardKeyAction+Representation.swift */; };
+		B2971A152C762C8F006801F8 /* UICollectionDiffableDatasource+Mutations.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2971A142C762C8F006801F8 /* UICollectionDiffableDatasource+Mutations.swift */; };
+		B2971A172C7636FF006801F8 /* AccessibilityID+Settings+ListeningMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2971A162C7636FF006801F8 /* AccessibilityID+Settings+ListeningMode.swift */; };
 		B2B947632C5D2D0800FEAEA5 /* KeyboardKeyAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B947622C5D2D0800FEAEA5 /* KeyboardKeyAction.swift */; };
 		B2B947682C5D2F9200FEAEA5 /* TextCursorBeamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B947672C5D2F9200FEAEA5 /* TextCursorBeamView.swift */; };
 		B2BC6CA92BD94F5A00D459F6 /* VocableListContentConfiguration+VoiceProfileItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BC6CA82BD94F5A00D459F6 /* VocableListContentConfiguration+VoiceProfileItem.swift */; };
@@ -574,8 +573,6 @@
 		B26B3EB42C63ACEB002BCBF9 /* UITests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = UITests.xctestplan; sourceTree = "<group>"; };
 		B26B3EB52C63AD6E002BCBF9 /* UnitTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = UnitTests.xctestplan; sourceTree = "<group>"; };
 		B277CDBF2BF7AF55003BFACE /* UIFont+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Helpers.swift"; sourceTree = "<group>"; };
-		B2971A142C762C8F006801F8 /* UICollectionDiffableDatasource+Mutations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionDiffableDatasource+Mutations.swift"; sourceTree = "<group>"; };
-		B2971A162C7636FF006801F8 /* AccessibilityID+Settings+ListeningMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AccessibilityID+Settings+ListeningMode.swift"; sourceTree = "<group>"; };
 		B28504582C20A6E600617C5E /* KeyboardLayoutRelativeWidth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardLayoutRelativeWidth.swift; sourceTree = "<group>"; };
 		B28504592C20A6E600617C5E /* KeyboardLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardLayout.swift; sourceTree = "<group>"; };
 		B285045A2C20A6E600617C5E /* KeyboardLayoutBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardLayoutBuilder.swift; sourceTree = "<group>"; };
@@ -607,6 +604,8 @@
 		B291D12B2C5AE7B3006E9FA6 /* KeyboardSuggestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardSuggestionView.swift; sourceTree = "<group>"; };
 		B291D12D2C5AE80E006E9FA6 /* KeyboardViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewDelegate.swift; sourceTree = "<group>"; };
 		B291D12F2C5B00C5006E9FA6 /* KeyboardKeyAction+Representation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyboardKeyAction+Representation.swift"; sourceTree = "<group>"; };
+		B2971A142C762C8F006801F8 /* UICollectionDiffableDatasource+Mutations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionDiffableDatasource+Mutations.swift"; sourceTree = "<group>"; };
+		B2971A162C7636FF006801F8 /* AccessibilityID+Settings+ListeningMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AccessibilityID+Settings+ListeningMode.swift"; sourceTree = "<group>"; };
 		B2B947622C5D2D0800FEAEA5 /* KeyboardKeyAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardKeyAction.swift; sourceTree = "<group>"; };
 		B2B947672C5D2F9200FEAEA5 /* TextCursorBeamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextCursorBeamView.swift; sourceTree = "<group>"; };
 		B2BC6CA82BD94F5A00D459F6 /* VocableListContentConfiguration+VoiceProfileItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VocableListContentConfiguration+VoiceProfileItem.swift"; sourceTree = "<group>"; };

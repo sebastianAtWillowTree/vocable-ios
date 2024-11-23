@@ -1,11 +1,3 @@
-//
-//  SettingsViewController.swift
-//  Vocable AAC
-//
-//  Created by Jesse Morgan on 2/6/20.
-//  Copyright © 2020 WillowTree. All rights reserved.
-//
-
 import UIKit
 import MessageUI
 
@@ -390,6 +382,20 @@ final class SettingsViewController: VocableCollectionViewController, MFMailCompo
         let alertString = String(localized: "settings.alert.reset_app_settings_confirmation.body")
         let cancelTitle = String(localized: "settings.alert.reset_app_settings_confirmation.button.cancel.title")
         let confirmationTitle = String(localized: "settings.alert.reset_app_settings_confirmation.button.confirm.title")
+
+        let alertViewController = GazeableAlertViewController(alertTitle: alertString)
+
+        alertViewController.addAction(GazeableAlertAction(title: cancelTitle))
+        alertViewController.addAction(GazeableAlertAction(title: confirmationTitle, style: .destructive, handler: { [weak self] in
+            self?.presentSecondaryResetConfirmationAlert()
+        }))
+        present(alertViewController, animated: true)
+    }
+
+    private func presentSecondaryResetConfirmationAlert() {
+        let alertString = String(localized: "settings.alert.secondary_reset_app_settings_confirmation.body")
+        let cancelTitle = String(localized: "settings.alert.secondary_reset_app_settings_confirmation.button.cancel.title")
+        let confirmationTitle = String(localized: "settings.alert.secondary_reset_app_settings_confirmation.button.confirm.title")
 
         let alertViewController = GazeableAlertViewController(alertTitle: alertString)
 

@@ -1,12 +1,3 @@
-//
-//  SettingsScreenTests.swift
-//  VocableUITests
-//
-//  Created by Sashank Patel on 8/24/20.
-//  Updated by Canan Arikan and Rudy Salas on 03/28/22.
-//  Copyright © 2022 WillowTree. All rights reserved.
-//
-
 import XCTest
 
 class SettingsScreenTests: BaseTest {
@@ -67,5 +58,11 @@ class SettingsScreenTests: BaseTest {
         
         // Using the query for the second category (i.e. second most cell in list) confirm the category name matches expectations
         XCTAssertEqual(currentSecondCategory.label, originalSecondCategoryName)
+    }
+
+    func testHotDogStandThemeToggle() throws {
+        try SettingsScreen.navigateToSettingsCategoryScreen()
+        try SettingsScreen.hotDogStandThemeCell.tapWhenExists()
+        XCTAssertTrue(SettingsScreen.hotDogStandThemeCell.isSelected)
     }
 }

@@ -1,11 +1,3 @@
-//
-//  SettingsViewController.swift
-//  Vocable AAC
-//
-//  Created by Jesse Morgan on 2/6/20.
-//  Copyright © 2020 WillowTree. All rights reserved.
-//
-
 import UIKit
 import MessageUI
 
@@ -34,6 +26,7 @@ final class SettingsViewController: VocableCollectionViewController, MFMailCompo
         case pidTuner
         case listeningMode
         case voiceConfiguration
+        case hotDogStandTheme // P206b
 
         var title: String {
             switch self {
@@ -55,6 +48,8 @@ final class SettingsViewController: VocableCollectionViewController, MFMailCompo
                 return String(localized: "settings.cell.listening_mode.title")
             case .voiceConfiguration:
                 return String(localized: "settings.cell.voice_configuration.title")
+            case .hotDogStandTheme:
+                return "HotDog Stand Theme" // P206b
             }
         }
         
@@ -78,6 +73,8 @@ final class SettingsViewController: VocableCollectionViewController, MFMailCompo
                 return .settings.voiceSettingsCell
             case .pidTuner:
                 return ""
+            case .hotDogStandTheme:
+                return .settings.hotDogStandThemeCell // P206b
             }
         }
 
@@ -156,6 +153,14 @@ final class SettingsViewController: VocableCollectionViewController, MFMailCompo
                     self?.handleItemSelection(item)
                 }
                 cell.accessibilityID = item.accessibiltyId
+            } else if item == .hotDogStandTheme { // Pa7d2
+                cell.contentConfiguration = VocableListContentConfiguration.toggleCell(
+                    title: item.title,
+                    isOn: AppConfig.isHotDogStandThemeEnabled,
+                    accessibilityIdentifier: item.accessibiltyId
+                ) { [weak self] in
+                    self?.handleHotDogStandThemeToggle()
+                }
             } else {
                 cell.contentConfiguration = VocableListContentConfiguration.disclosureCell(title: item.title) {
                     self?.handleItemSelection(item)
@@ -198,7 +203,8 @@ final class SettingsViewController: VocableCollectionViewController, MFMailCompo
                               .timingSensitivity,
                               .listeningMode,
                               .selectionMode,
-                              .resetAppSettings].filter(\.isFeatureEnabled))
+                              .resetAppSettings,
+                              .hotDogStandTheme].filter(\.isFeatureEnabled)) // Pa8f8
         snapshot.appendSections([.externalURL])
         snapshot.appendItems([.privacyPolicy,
                               .contactDevs].filter(\.isFeatureEnabled))
@@ -295,6 +301,8 @@ final class SettingsViewController: VocableCollectionViewController, MFMailCompo
             presentPidTuner()
         case .resetAppSettings:
             presentAppResetPrompt()
+        case .hotDogStandTheme:
+            handleHotDogStandThemeToggle() // P910c
         }
     }
     
@@ -431,4 +439,24 @@ final class SettingsViewController: VocableCollectionViewController, MFMailCompo
         controller.dismiss(animated: true)
     }
 
+    // P910c
+    private func handleHotDogStandThemeToggle() {
+        AppConfig.isHotDogStandThemeEnabled.toggle()
+        updateTheme()
+    }
+
+    private func updateTheme() {
+        let theme = AppConfig.isHotDogStandThemeEnabled ? Theme.hotDogStand : Theme.default
+        applyTheme(theme)
+    }
+
+    private func applyTheme(_ theme: Theme) {
+        // Update the colors of the app's windows and views
+        // This is a placeholder implementation, you should update the actual implementation based on your app's structure
+        UIApplication.shared.windows.forEach { window in
+            window.tintColor = theme.tintColor
+            window.backgroundColor = theme.backgroundColor
+            window.rootViewController?.view.setNeedsLayout()
+        }
+    }
 }

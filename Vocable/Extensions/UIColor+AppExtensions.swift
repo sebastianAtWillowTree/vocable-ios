@@ -1,11 +1,3 @@
-//
-//  UIColor+AppExtensions.swift
-//  Vocable AAC
-//
-//  Created by Kyle Ohanian on 4/16/19.
-//  Copyright © 2019 WillowTree. All rights reserved.
-//
-
 import UIKit
 
 extension UIColor {
@@ -72,4 +64,8 @@ extension UIColor {
     static let cellBorderHighlightColor = UIColor(safelyNamed: "BorderHighlight")!
     static let alertBackgroundColor = UIColor(safelyNamed: "AlertBackground")!
     static let alertNormalText = UIColor(safelyNamed: "CategoryBackground")!
+
+    // HotDog Stand theme colors
+    static let hotDogStandBackgroundColor = UIColor(safelyNamed: "HotDogStandBackground")!
+    static let hotDogStandTextColor = UIColor(safelyNamed: "HotDogStandText")!
 }

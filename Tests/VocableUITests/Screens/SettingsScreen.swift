@@ -1,12 +1,3 @@
-//
-//  SettingsScreen.swift
-//  VocableUITests
-//
-//  Created by Kevin Stechler on 5/19/20.
-//  Updated by Canan Arikan and Rudy Salas on 05/27/22.
-//  Copyright © 2022 WillowTree. All rights reserved.
-//
-
 import XCTest
 
 class SettingsScreen: BaseScreen {
@@ -23,6 +14,7 @@ class SettingsScreen: BaseScreen {
     static let selectionModeCell = XCUIApplication().cells[.settings.selectionModeCell]
     static let privacyPolicyCell = XCUIApplication().cells[.settings.privacyPolicyCell]
     static let contactDevelopersCell = XCUIApplication().cells[.settings.contactDevelopersCell]
+    static let hotDogStandThemeCell = XCUIApplication().cells[.settings.hotDogStandThemeCell] // Pd3e5
     
     // Categories and Phrases
     static let addCategoryButton = XCUIApplication().buttons[.settings.editCategories.addCategoryButton]

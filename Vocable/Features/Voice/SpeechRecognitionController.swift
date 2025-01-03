@@ -320,19 +320,10 @@ class SpeechRecognitionController: NSObject, SFSpeechRecognitionTaskDelegate, SF
         recognitionTasks.removeAll()
     }
 
-    private func prepareSpeechBuffer() {
-
-        guard bufferCancellable == nil else {
-            return
+    func audioBufferDidPopulate(_ buffer: AVAudioPCMBuffer, timestamp: AVAudioTime) {
+        for recognitionBuffer in recognitionBuffers.values {
+            recognitionBuffer.append(buffer)
         }
-        bufferCancellable = audioController.$audioBuffer
-            .compactMap { $0 }
-            .sink { [weak self] in
-                guard let self = self else { return }
-                for buffer in self.recognitionBuffers.values {
-                    buffer.append($0.buffer)
-                }
-            }
     }
 
     private func requestTranscription() {
@@ -341,8 +332,6 @@ class SpeechRecognitionController: NSObject, SFSpeechRecognitionTaskDelegate, SF
             return
         }
 
-        prepareSpeechBuffer()
-        
         let request = SFSpeechAudioBufferRecognitionRequest()
         request.shouldReportPartialResults = true
         request.requiresOnDeviceRecognition = false

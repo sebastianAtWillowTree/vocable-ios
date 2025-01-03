@@ -14,8 +14,6 @@ class AudioEngineController: NSObject, AVAudioPlayerDelegate {
 
     static let shared = AudioEngineController()
 
-    @Published private(set) var audioBuffer: (buffer: AVAudioPCMBuffer, timestamp: AVAudioTime)?
-
     private let audioEngine = AVAudioEngine()
     private let audioSession = AVAudioSession.sharedInstance()
     private let conversionQueue = DispatchQueue(label: "SpeechConversion")
@@ -68,10 +66,12 @@ class AudioEngineController: NSObject, AVAudioPlayerDelegate {
 
     private func setupRouteChangeNotifications() {
         let nc = NotificationCenter.default
-        nc.addObserver(self,
-                       selector: #selector(handleRouteChange),
-                       name: .AVAudioEngineConfigurationChange,
-                       object: nil)
+        nc.addObserver(
+            self,
+            selector: #selector(handleRouteChange),
+            name: .AVAudioEngineConfigurationChange,
+            object: nil
+        )
     }
 
     @discardableResult
@@ -82,7 +82,19 @@ class AudioEngineController: NSObject, AVAudioPlayerDelegate {
             return false
         }
 
+        do {
+            // This is now necessary for iOS 17+ to provide a valid
+            // audio route for the input node. Not entirely sure this
+            // won't break established behavior, but we may not have
+            // a choice.
+            try audioSession.setActive(true)
+        } catch {
+            print("Failed to activate audio session: \(error)")
+            return false
+        }
+
         let node = audioEngine.inputNode
+
         let bus = 0
         let micInputFormat = node.inputFormat(forBus: bus)
 
@@ -91,26 +103,34 @@ class AudioEngineController: NSObject, AVAudioPlayerDelegate {
             return false
         }
 
-        if let installedFormat = installedTapFormat, installedFormat == micInputFormat {
+        if let installedTapFormat, installedTapFormat == micInputFormat {
             return true
         }
 
-        let speechInputFormat = SFSpeechAudioBufferRecognitionRequest().nativeAudioFormat
-        let formatConverter = AVAudioConverter(from: micInputFormat, to: speechInputFormat)!
-
         node.removeTap(onBus: bus)
-        node.installTap(onBus: bus, bufferSize: 1024, format: micInputFormat) { [weak self] buffer, timestamp in
+        node.installTap(
+            onBus: bus,
+            bufferSize: 1024,
+            format: micInputFormat
+        ) { [weak self] (buffer, timestamp) in
             self?.conversionQueue.async {
                 Task { [weak self] in
+                    guard let self else { return }
                     guard await !VocableSpeechSynthesizer.shared.isSpeaking else {
                         return
                     }
                     let frameCapacity = AVAudioFrameCount(micInputFormat.sampleRate * 2.0)
-                    guard let convertedBuffer = AVAudioPCMBuffer(pcmFormat: speechInputFormat, frameCapacity: frameCapacity) else {
+
+                    let speechInputFormat = SFSpeechAudioBufferRecognitionRequest().nativeAudioFormat
+                    guard
+                        let formatConverter = AVAudioConverter(from: micInputFormat, to: speechInputFormat),
+                        let convertedBuffer = AVAudioPCMBuffer(pcmFormat: speechInputFormat, frameCapacity: frameCapacity)
+                    else {
                         return
                     }
+                    
                     var error: NSError?
-
+                    
                     var haveData = false
                     let inputBlock: AVAudioConverterInputBlock = { _, outStatus in
                         if haveData {
@@ -121,13 +141,19 @@ class AudioEngineController: NSObject, AVAudioPlayerDelegate {
                         haveData = true
                         return buffer
                     }
-
-                    formatConverter.convert(to: convertedBuffer, error: &error, withInputFrom: inputBlock)
+                    
+                    formatConverter.convert(
+                        to: convertedBuffer,
+                        error: &error,
+                        withInputFrom: inputBlock
+                    )
 
                     if let error = error {
                         assertionFailure(error.localizedDescription)
                     } else {
-                        self?.audioBuffer = (buffer: convertedBuffer, timestamp: timestamp)
+                        for controller in self.registeredSpeechControllers {
+                            controller.audioBufferDidPopulate(convertedBuffer, timestamp: timestamp)
+                        }
                     }
                 }
             }

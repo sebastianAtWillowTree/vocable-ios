@@ -24,11 +24,8 @@ jobs:
         with:
           ruby-version: 3.0
       
-      - name: Install bundler
-        run: gem install bundler
-        
-      - name: Install dependencies
-        run: bundle install --redownload
+      - name: Install Bundler + Dependencies
+        run: rm -rf ~/.gems & gem install bundler & bundle install
 
       - name: Install SwiftLint
         run: brew install swiftlint

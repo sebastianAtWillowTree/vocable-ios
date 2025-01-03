@@ -22,10 +22,13 @@ jobs:
       - name: Set up Ruby environment
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.0
+          ruby-version: 3.3.1
       
-      - name: Install Bundler + Dependencies
-        run: rm -rf ~/.gems & gem install bundler & bundle install
+      - name: Install bundler
+        run: gem install bundler
+        
+      - name: Install dependencies
+        run: bundle install
 
       - name: Install SwiftLint
         run: brew install swiftlint

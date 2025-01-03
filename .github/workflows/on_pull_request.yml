@@ -28,7 +28,7 @@ jobs:
         run: gem install bundler
         
       - name: Install dependencies
-        run: bundle install
+        run: bundle install --redownload
 
       - name: Install SwiftLint
         run: brew install swiftlint

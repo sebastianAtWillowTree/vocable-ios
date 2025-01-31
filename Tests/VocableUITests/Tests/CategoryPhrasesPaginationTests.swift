@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import SnapshotTesting
 
 class CategoryPhrasesPaginationTests: PaginationBaseTest {
     
@@ -65,9 +66,13 @@ class CategoryPhrasesPaginationTests: PaginationBaseTest {
         // Navigate to our test category and open the 'Edit Phrases' screen
         try MainScreen.navigateToSettingsAndOpenCategory(name: twoPhrasesCategory.presetCategory.utterance)
         try CustomCategoriesScreen.editCategoryPhrasesButton.tapWhenExists()
-        
-        // Verify the page counts and that buttons appear; both buttons are disabled.
+    // Verify the page counts and that buttons appear; both buttons are disabled.
         VTAssertPaginationEquals(1, of: 1, enabledArrows: .none)
     }
     
+    func testMyViewController() {
+        let vc = UIViewController()
+
+        assertSnapshot(of: vc, as: .image)
+      }
 }

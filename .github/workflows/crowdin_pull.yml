@@ -1,8 +1,10 @@
 name: Pull Translations From Crowdin
+
 on:
-  workflow_dispatch:
-  schedule:
-    - cron: "0 */3 * * *" # Run every 3 hours
+  push:
+    branches:
+      - develop
+  workflow_dispatch:  # Keeping this for manual triggers when needed
 
 jobs:
   synchronize-with-crowdin:
@@ -10,56 +12,46 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        
-      - name: Install Crowdin CLI
-        run: brew install crowdin
-        shell: sh
-        
-      - name: Download Translations
-        run: crowdin bundle download 6
-        shell: sh
-        env:
-            GITHUB_TOKEN: ${{ secrets.CROWDIN_GITHUB_TOKEN }}
-            CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
-            CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
 
-      - name: Set up Ruby environment
-        uses: ruby/setup-ruby@v1
+      - name: Crowdin Action
+        uses: crowdin/github-action@v1
         with:
-          ruby-version: 3.0
-          
-      - name: Install bundler
-        run: gem install bundler
-            
-      - name: Install dependencies
-        run: bundle install
-    
-      - name: Install SwiftLint
-        run: brew install swiftlint
+          upload_sources: true  # Upload new source strings to Crowdin
+          upload_translations: false
+          download_translations: true
+          download_language: all
+          export_only_approved: true
+          localization_branch_name: crowdin/update-translations-bot
+          create_pull_request: false
+          push_translations: false
+          crowdin_branch_name: develop
+          config: 'crowdin.yml'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
+          CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
 
       - name: Import XLIFFs to project
         uses: ./.github/workflows/actions/run_lane
         with:
           lane: xliff_import
 
+      - name: Check for changes
+        id: git-check
+        run: |
+          git diff --exit-code || echo "changes=true" >> $GITHUB_OUTPUT
+
       - name: Create Pull Request
+        if: steps.git-check.outputs.changes == 'true'
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.CROWDIN_PR_BOT_TOKEN }}
           commit-message: Update Localizations
-          committer: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
-          author: ${{ github.actor }} <${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com>
-          signoff: false
           branch: crowdin/update-translations-bot
           base: develop
           delete-branch: true
-          add-paths: |
-            Vocable/**/*.xcstrings
-            Vocable/**/*.strings
           title: '[CI] Update Localizations'
-          body: |
-            Automated localization update from Crowdin.
+          body: 'Automated localization update from Crowdin'
           labels: |
             localization
             automated
-          draft: false

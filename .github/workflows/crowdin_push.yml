@@ -1,14 +1,14 @@
-name: Push Strings to Crowdin
+name: Push Strings to Crowdin (Disabled)
 
 on:
-  push:
-    branches: [ develop ]
+#  push:
+#    branches: [ develop ]
   workflow_dispatch:
-    inputs:
-      test:
-        description: Just to force the manual trigger 
-        required: false
-        default: 'trigger'
+#    inputs:
+ #     test:
+  #      description: Just to force the manual trigger 
+   #     required: false
+    #    default: 'trigger'
 jobs:
   synchronize-with-crowdin:
     runs-on: macos-14

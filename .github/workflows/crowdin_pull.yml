@@ -4,11 +4,11 @@ on:
   push:
     branches:
       - develop
-  workflow_dispatch:  # Keeping this for manual triggers when needed
+  workflow_dispatch:
 
 jobs:
-  synchronize-with-crowdin:
-    runs-on: macos-14
+  download-translations:
+    runs-on: ubuntu-latest  # Changed from macos-14 to ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -16,7 +16,7 @@ jobs:
       - name: Crowdin Action
         uses: crowdin/github-action@v1
         with:
-          upload_sources: true  # Upload new source strings to Crowdin
+          upload_sources: true
           upload_translations: false
           download_translations: true
           download_language: all
@@ -31,18 +31,36 @@ jobs:
           CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
           CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
 
-      - name: Import XLIFFs to project
-        uses: ./.github/workflows/actions/run_lane
-        with:
-          lane: xliff_import
-
       - name: Check for changes
         id: git-check
         run: |
           git diff --exit-code || echo "changes=true" >> $GITHUB_OUTPUT
 
+  process-translations:
+    needs: download-translations
+    runs-on: macos-14  # Keep macOS runner for iOS-specific tasks
+    if: needs.download-translations.outputs.changes == 'true'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: Set up Ruby environment
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.3.1
+          
+      - name: Install bundler
+        run: gem install bundler
+            
+      - name: Install dependencies
+        run: bundle install
+
+      - name: Import XLIFFs to project
+        uses: ./.github/workflows/actions/run_lane
+        with:
+          lane: xliff_import
+
       - name: Create Pull Request
-        if: steps.git-check.outputs.changes == 'true'
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.CROWDIN_PR_BOT_TOKEN }}

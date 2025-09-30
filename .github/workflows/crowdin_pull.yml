@@ -28,6 +28,15 @@ jobs:
             echo "API Connection Failed!"
             exit 1
           fi
+      - name: Install yq
+        run: |
+          sudo wget -qO /usr/local/bin/yq https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64
+          sudo chmod a+x /usr/local/bin/yq
+
+      - name: Transform crowdin.yml
+        run: |
+          yq eval '.project_id_env = "!!int \(.project_id_env)"' crowdin.yml > crowdin_updated.yml
+          mv crowdin_updated.yml crowdin.yml
 
       - name: Crowdin Action
         uses: crowdin/github-action@v2

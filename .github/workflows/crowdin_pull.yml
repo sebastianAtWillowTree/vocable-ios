@@ -35,7 +35,7 @@ jobs:
 
       - name: Transform crowdin.yml
         run: |
-          yq eval '.project_id_env = "!!int \(.project_id_env)"' crowdin.yml > crowdin_updated.yml
+          yq eval '.project_id_env = "!!int \(.project_id)"' crowdin.yml > crowdin_updated.yml
           mv crowdin_updated.yml crowdin.yml
 
       - name: Crowdin Action

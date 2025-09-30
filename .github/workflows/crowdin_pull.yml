@@ -9,6 +9,7 @@ on:
 jobs:
   download-translations:
     runs-on: ubuntu-latest  # Changed from macos-14 to ubuntu-latest
+    environment: CrowdinAction
     steps:
       - name: Checkout
         uses: actions/checkout@v4

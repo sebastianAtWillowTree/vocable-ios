@@ -17,7 +17,7 @@ jobs:
       - name: Test Crowdin API Connection
         run: |
           echo "Testing Crowdin API Connection..."
-          response=$(curl -s -o /dev/null -w "%{http_code}" -X GET "https://api.crowdin.com/api/v2/projects/834156" \
+          response=$(curl -s -o /dev/null -w "%{http_code}" -X GET "https://api.crowdin.com/api/v2/projects/${{ vars.CROWDIN_PROJECT_ID }}" \
           -H "Authorization: Bearer ${{ vars.CROWDIN_PERSONAL_TOKEN }}" \
           -H "Content-Type: application/json")
           echo "HTTP Response Code: $response"

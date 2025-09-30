@@ -13,6 +13,20 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Test Crowdin API Connection
+        run: |
+          echo "Testing Crowdin API Connection..."
+          response=$(curl -s -o /dev/null -w "%{http_code}" -X GET "https://api.crowdin.com/api/v2/projects/${{ env.CROWDIN_PROJECT_ID }}" \
+          -H "Authorization: Bearer ${{ env.CROWDIN_PERSONAL_TOKEN }}" \
+          -H "Content-Type: application/json")
+          echo "HTTP Response Code: $response"
+          if [ "$response" = "200" ]; then
+            echo "API Connection Successful!"
+          else
+            echo "API Connection Failed!"
+            exit 1
+          fi
+
       - name: Crowdin Action
         uses: crowdin/github-action@v2
         with:

@@ -14,10 +14,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Set Project ID as Integer
+        run: |
+          echo "CROWDIN_PROJECT_ID=$((CROWDIN_PROJECT_ID))" >> $GITHUB_ENV
+        env:
+          CROWDIN_PROJECT_ID: ${{ vars.CROWDIN_PROJECT_ID }}
+
       - name: Test Crowdin API Connection
         run: |
           echo "Testing Crowdin API Connection..."
-          response=$(curl -s -o /dev/null -w "%{http_code}" -X GET "https://api.crowdin.com/api/v2/projects/${{ vars.CROWDIN_PROJECT_ID }}" \
+          echo "Project ID: ${{ env.CROWDIN_PROJECT_ID }}"
+          response=$(curl -s -o /dev/null -w "%{http_code}" -X GET "https://api.crowdin.com/api/v2/projects/${{ env.CROWDIN_PROJECT_ID }}" \
           -H "Authorization: Bearer ${{ secrets.CROWDIN_PERSONAL_TOKEN }}" \
           -H "Content-Type: application/json")
           echo "HTTP Response Code: $response"
@@ -28,16 +35,7 @@ jobs:
             echo "API Connection Failed!"
             exit 1
           fi
-      - name: Install yq
-        run: |
-          sudo wget -qO /usr/local/bin/yq https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64
-          sudo chmod a+x /usr/local/bin/yq
-
-      - name: Transform crowdin.yml
-        run: |
-          yq eval '.project_id = "!!int \(.project_id)"' crowdin.yml > crowdin_updated.yml
-          mv crowdin_updated.yml crowdin.yml
-
+          
       - name: Crowdin Action
         uses: crowdin/github-action@v2
         with:
@@ -52,7 +50,7 @@ jobs:
           config: 'crowdin.yml'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          CROWDIN_PROJECT_ID: ${{ fromJSON(vars.CROWDIN_PROJECT_ID) }}
+          CROWDIN_PROJECT_ID: ${{ env.CROWDIN_PROJECT_ID) }}
           CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
 
       - name: Check for changes

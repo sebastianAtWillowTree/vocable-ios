@@ -18,10 +18,10 @@ jobs:
         run: |
           echo "Testing Crowdin API Connection..."
           response=$(curl -s -o /dev/null -w "%{http_code}" -X GET "https://api.crowdin.com/api/v2/projects/834156" \
-          -H "Authorization: Bearer ${{ env.CROWDIN_PERSONAL_TOKEN }}" \
+          -H "Authorization: Bearer ${{ vars.CROWDIN_PERSONAL_TOKEN }}" \
           -H "Content-Type: application/json")
           echo "HTTP Response Code: $response"
-          echo "token used: ${{ env.CROWDIN_PERSONAL_TOKEN }}"
+          echo "token used: ${{ vars.CROWDIN_PERSONAL_TOKEN }}"
           if [ "$response" = "200" ]; then
             echo "API Connection Successful!"
           else

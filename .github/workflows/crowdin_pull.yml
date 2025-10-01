@@ -27,7 +27,7 @@ jobs:
           echo "Testing Crowdin API Connection..."
           echo "Project ID: ${{ env.CROWDIN_PROJECT_ID }}"
           response=$(curl -s -o /dev/null -w "%{http_code}" -X GET "https://api.crowdin.com/api/v2/projects/${{ env.CROWDIN_PROJECT_ID }}" \
-          -H "Authorization: Bearer ${{ vars.CROWDIN_PERSONAL_TOKEN }}" \
+          -H "Authorization: Bearer ${{ secrets.CROWDIN_PERSONAL_TOKEN }}" \
           -H "Content-Type: application/json")
           echo "HTTP Response Code: $response"
           if [ "$response" = "200" ]; then
@@ -51,7 +51,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CROWDIN_PROJECT_ID: ${{ env.CROWDIN_PROJECT_ID }}
-          CROWDIN_PERSONAL_TOKEN: ${{ vars.CROWDIN_PERSONAL_TOKEN }}
+          CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
 
       - name: Check for changes
         id: git-check

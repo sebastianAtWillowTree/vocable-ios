@@ -58,6 +58,16 @@ jobs:
         run: |
           git diff --exit-code || echo "changes=true" >> $GITHUB_OUTPUT
 
+      - name: Upload artifacts
+        if: steps.git-check.outputs.changes == 'true'
+        uses: actions/upload-artifact@v3
+        with:
+          name: translations
+          path: |
+            CrowdinExport/
+            Vocable/**/*.xcstrings
+            Vocable/**/*.strings
+
   process-translations:
     needs: download-translations
     runs-on: macos-14  # Keep macOS runner for iOS-specific tasks
@@ -65,6 +75,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Download artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: translations
         
       - name: Set up Ruby environment
         uses: ruby/setup-ruby@v1

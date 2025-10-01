@@ -58,16 +58,16 @@ jobs:
         run: |
           echo "=== Checking for changes ==="
           git status
-          echo "=== Files changed ==="
-          git diff --name-only
-          echo "=== Checking if there are changes ==="
-          if git diff --quiet; then
+          echo "=== Checking if there are changes (tracked or untracked) ==="
+          
+          # Check for both modified tracked files and new untracked files
+          if [[ -n $(git status --porcelain) ]]; then
+            echo "Changes detected!"
+            git status --porcelain
+            echo "changes=true" >> $GITHUB_OUTPUT
+          else
             echo "No changes detected"
             echo "changes=false" >> $GITHUB_OUTPUT
-          else
-            echo "Changes detected!"
-            git diff --stat
-            echo "changes=true" >> $GITHUB_OUTPUT
           fi
 
       - name: Upload artifacts

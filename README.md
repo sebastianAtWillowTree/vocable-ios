@@ -62,7 +62,7 @@ Internal/WillowTree contributors can follow the steps outlined in the [Technical
 Matt Kubota, Kyle Ohanian, Duncan Lewis, Ameir Al-Zoubi, and many more from [WillowTree](https://willowtreeapps.com/) 💙.
 
 ## License
-vocable-ios is released under the MIT license. See [LICENSE](LICENSE) for details
+vocable-ios is released under the MIT license. See [LICENSE](LICENSE) for details.
 
 ## Other Variants
 vocable-android is available on [Google Play](https://play.google.com/store/apps/details?id=com.willowtree.vocable) and is also [open-source](https://github.com/willowtreeapps/vocable-android). 

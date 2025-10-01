@@ -82,7 +82,7 @@ jobs:
 
   process-translations:
     needs: download-translations
-    runs-on: macos-14
+    runs-on: macos-latest
     if: needs.download-translations.outputs.changes == 'true'
     steps:
       - name: Checkout

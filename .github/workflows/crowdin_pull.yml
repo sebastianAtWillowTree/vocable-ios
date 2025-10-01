@@ -8,11 +8,13 @@ on:
 
 jobs:
   download-translations:
-    runs-on: ubuntu-latest  # Changed from macos-14 to ubuntu-latest
+    runs-on: ubuntu-latest
     environment: CrowdinAction
+    outputs:
+      changes: ${{ steps.git-check.outputs.changes }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4  # Latest version
 
       - name: Set Project ID as Integer
         run: |
@@ -25,33 +27,31 @@ jobs:
           echo "Testing Crowdin API Connection..."
           echo "Project ID: ${{ env.CROWDIN_PROJECT_ID }}"
           response=$(curl -s -o /dev/null -w "%{http_code}" -X GET "https://api.crowdin.com/api/v2/projects/${{ env.CROWDIN_PROJECT_ID }}" \
-          -H "Authorization: Bearer ${{ secrets.CROWDIN_PERSONAL_TOKEN }}" \
+          -H "Authorization: Bearer ${{ vars.CROWDIN_PERSONAL_TOKEN }}" \
           -H "Content-Type: application/json")
           echo "HTTP Response Code: $response"
-          echo "token used: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}"
           if [ "$response" = "200" ]; then
             echo "API Connection Successful!"
           else
             echo "API Connection Failed!"
             exit 1
           fi
-          
+
       - name: Crowdin Action
-        uses: crowdin/github-action@v2
+        uses: crowdin/github-action@v2  # Updated to v2 (latest)
         with:
           upload_sources: true
           upload_translations: false
           download_translations: true
-          export_only_approved: true
           localization_branch_name: crowdin/update-translations-bot
-          create_pull_request: true
+          create_pull_request: false
           push_translations: false
           crowdin_branch_name: develop
           config: 'crowdin.yml'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CROWDIN_PROJECT_ID: ${{ env.CROWDIN_PROJECT_ID }}
-          CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
+          CROWDIN_PERSONAL_TOKEN: ${{ vars.CROWDIN_PERSONAL_TOKEN }}
 
       - name: Check for changes
         id: git-check
@@ -60,7 +60,7 @@ jobs:
 
       - name: Upload artifacts
         if: steps.git-check.outputs.changes == 'true'
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4  # Updated from v3 to v4
         with:
           name: translations
           path: |
@@ -70,25 +70,23 @@ jobs:
 
   process-translations:
     needs: download-translations
-    runs-on: macos-14  # Keep macOS runner for iOS-specific tasks
+    runs-on: macos-14
     if: needs.download-translations.outputs.changes == 'true'
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4  # Latest version
 
       - name: Download artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4  # Updated from v3 to v4
         with:
           name: translations
-        
+
       - name: Set up Ruby environment
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.3.1
+          bundler-cache: true  # Added for better caching
           
-      - name: Install bundler
-        run: gem install bundler
-            
       - name: Install dependencies
         run: bundle install
 
@@ -98,7 +96,7 @@ jobs:
           lane: xliff_import
 
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v6
+        uses: peter-evans/create-pull-request@v7  # Updated to v7 (latest)
         with:
           token: ${{ secrets.CROWDIN_PR_BOT_TOKEN }}
           commit-message: Update Localizations

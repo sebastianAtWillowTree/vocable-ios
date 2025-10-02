@@ -216,7 +216,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bundler (= 2.6.2)
   fastlane (= 2.226.0)
   rb-readline
 

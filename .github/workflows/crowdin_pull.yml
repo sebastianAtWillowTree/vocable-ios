@@ -82,7 +82,7 @@ jobs:
 
   process-translations:
     needs: download-translations
-    runs-on: macos-14
+    runs-on: macos-latest
     if: needs.download-translations.outputs.changes == 'true'
     steps:
       - name: Checkout
@@ -103,7 +103,7 @@ jobs:
         run: bundle install
 
       - name: Import XLIFFs to project
-        uses: ./.github/workflows/actions/run_lane
+        uses: ./.github/actions/run_lane
         with:
           lane: xliff_import
 

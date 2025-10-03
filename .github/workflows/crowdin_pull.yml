@@ -1,8 +1,9 @@
 name: Pull Translations From Crowdin
 on:
+  push:
+    branches:
+      - develop
   workflow_dispatch:
-  schedule:
-    - cron: "0 */3 * * *" # Run every 3 hours
 
 jobs:
   synchronize-with-crowdin:

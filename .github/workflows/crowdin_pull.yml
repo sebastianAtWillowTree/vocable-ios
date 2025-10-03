@@ -23,7 +23,7 @@ jobs:
           CROWDIN_PROJECT_ID: ${{ vars.CROWDIN_PROJECT_ID }}
         
       - name: Download Translations
-        run: crowdin bundle download 6
+        run: crowdin bundle download 13
         shell: sh
         env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

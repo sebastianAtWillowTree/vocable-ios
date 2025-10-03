@@ -15,13 +15,19 @@ jobs:
       - name: Install Crowdin CLI
         run: brew install crowdin
         shell: sh
+
+      - name: Set Project ID as Integer
+        run: |
+          echo "CROWDIN_PROJECT_ID=$((CROWDIN_PROJECT_ID))" >> $GITHUB_ENV
+        env:
+          CROWDIN_PROJECT_ID: ${{ vars.CROWDIN_PROJECT_ID }}
         
       - name: Download Translations
         run: crowdin bundle download 6
         shell: sh
         env:
             GITHUB_TOKEN: ${{ secrets.CROWDIN_GITHUB_TOKEN }}
-            CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
+            CROWDIN_PROJECT_ID: ${{ env.CROWDIN_PROJECT_ID }}
             CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
 
       - name: Set up Ruby environment

@@ -1,106 +1,41 @@
 name: Pull Translations From Crowdin
-
 on:
-  push:
-    branches:
-      - develop
   workflow_dispatch:
+  schedule:
+    - cron: "0 */3 * * *" # Run every 3 hours
 
 jobs:
-  download-translations:
-    runs-on: ubuntu-latest
-    environment: CrowdinAction
-    outputs:
-      changes: ${{ steps.git-check.outputs.changes }}
+  synchronize-with-crowdin:
+    runs-on: macos-14
     steps:
       - name: Checkout
-        uses: actions/checkout@v4  # Latest version
-
-      - name: Set Project ID as Integer
-        run: |
-          echo "CROWDIN_PROJECT_ID=$((CROWDIN_PROJECT_ID))" >> $GITHUB_ENV
+        uses: actions/checkout@v4
+        
+      - name: Install Crowdin CLI
+        run: brew install crowdin
+        shell: sh
+        
+      - name: Download Translations
+        run: crowdin bundle download 6
+        shell: sh
         env:
-          CROWDIN_PROJECT_ID: ${{ vars.CROWDIN_PROJECT_ID }}
-
-      - name: Test Crowdin API Connection
-        run: |
-          echo "Testing Crowdin API Connection..."
-          echo "Project ID: ${{ env.CROWDIN_PROJECT_ID }}"
-          response=$(curl -s -o /dev/null -w "%{http_code}" -X GET "https://api.crowdin.com/api/v2/projects/${{ env.CROWDIN_PROJECT_ID }}" \
-          -H "Authorization: Bearer ${{ secrets.CROWDIN_PERSONAL_TOKEN }}" \
-          -H "Content-Type: application/json")
-          echo "HTTP Response Code: $response"
-          if [ "$response" = "200" ]; then
-            echo "API Connection Successful!"
-          else
-            echo "API Connection Failed!"
-            exit 1
-          fi
-
-      - name: Crowdin Action
-        uses: crowdin/github-action@v2  # Updated to v2 (latest)
-        with:
-          upload_sources: true
-          upload_translations: false
-          download_translations: true
-          localization_branch_name: crowdin/update-translations-bot
-          create_pull_request: false
-          push_translations: false
-          crowdin_branch_name: develop
-          config: 'crowdin.yml'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          CROWDIN_PROJECT_ID: ${{ env.CROWDIN_PROJECT_ID }}
-          CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
-
-      - name: Check for changes
-        id: git-check
-        run: |
-          echo "=== Checking for changes ==="
-          git status
-          echo "=== Checking if there are changes (tracked or untracked) ==="
-          
-          # Check for both modified tracked files and new untracked files
-          if [[ -n $(git status --porcelain) ]]; then
-            echo "Changes detected!"
-            git status --porcelain
-            echo "changes=true" >> $GITHUB_OUTPUT
-          else
-            echo "No changes detected"
-            echo "changes=false" >> $GITHUB_OUTPUT
-          fi
-
-      - name: Upload artifacts
-        if: steps.git-check.outputs.changes == 'true'
-        uses: actions/upload-artifact@v4  # Updated from v3 to v4
-        with:
-          name: translations
-          path: |
-            CrowdinExport/
-            Vocable/**/*.xcstrings
-            Vocable/**/*.strings
-
-  process-translations:
-    needs: download-translations
-    runs-on: macos-latest
-    if: needs.download-translations.outputs.changes == 'true'
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4  # Latest version
-
-      - name: Download artifacts
-        uses: actions/download-artifact@v4  # Updated from v3 to v4
-        with:
-          name: translations
+            GITHUB_TOKEN: ${{ secrets.CROWDIN_GITHUB_TOKEN }}
+            CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
+            CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
 
       - name: Set up Ruby environment
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.3.1
-          bundler-cache: true  # Added for better caching
+          ruby-version: 3.0
           
+      - name: Install bundler
+        run: gem install bundler
+            
       - name: Install dependencies
         run: bundle install
+    
+      - name: Install SwiftLint
+        run: brew install swiftlint
 
       - name: Import XLIFFs to project
         uses: ./.github/workflows/actions/run_lane
@@ -108,15 +43,23 @@ jobs:
           lane: xliff_import
 
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v7  # Updated to v7 (latest)
+        uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.CROWDIN_PR_BOT_TOKEN }}
           commit-message: Update Localizations
+          committer: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+          author: ${{ github.actor }} <${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com>
+          signoff: false
           branch: crowdin/update-translations-bot
           base: develop
           delete-branch: true
+          add-paths: |
+            Vocable/**/*.xcstrings
+            Vocable/**/*.strings
           title: '[CI] Update Localizations'
-          body: 'Automated localization update from Crowdin'
+          body: |
+            Automated localization update from Crowdin.
           labels: |
             localization
             automated
+          draft: false

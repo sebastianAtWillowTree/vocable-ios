@@ -4,16 +4,43 @@ on:
     branches:
       - develop
   workflow_dispatch:
+    inputs:
+      runner:
+        description: 'Runner to use'
+        required: false
+        default: 'macos-latest'
+        type: choice
+        options:
+          - macos-latest
+          - self-hosted
 
 jobs:
   synchronize-with-crowdin:
-    runs-on: macos-14
+    runs-on: self-hosted
     steps:
+
+      - name: Debug - Show runner info
+        run: |
+          echo "=== Runner Information ==="
+          echo "Runner: ${{ runner.name }}"
+          echo "OS: ${{ runner.os }}"
+          echo "Architecture: ${{ runner.arch }}"
+          echo "Temp directory: ${{ runner.temp }}"
+          echo "Workspace: ${{ github.workspace }}"
+          echo "=========================="
+        shell: sh
+
       - name: Checkout
         uses: actions/checkout@v4
         
       - name: Install Crowdin CLI
-        run: brew install crowdin
+        run: |
+          if ! command -v crowdin &> /dev/null; then
+            echo "Installing Crowdin CLI..."
+            brew install crowdin
+          else
+            echo "Crowdin CLI already installed"
+          fi
         shell: sh
 
       - name: Set Project ID as Integer
@@ -42,12 +69,37 @@ jobs:
         run: bundle install
     
       - name: Install SwiftLint
-        run: brew install swiftlint
+        run: |
+          if ! command -v swiftlint &> /dev/null; then
+            echo "Installing SwiftLint..."
+            brew install swiftlint
+          else
+            echo "SwiftLint already installed"
+          fi
+        shell: sh
 
       - name: Import XLIFFs to project
         uses: ./.github/actions/run_lane
         with:
           lane: xliff_import
+
+      - name: Stage localization changes
+        run: |
+          echo "=== Files in CrowdinExport ==="
+          ls -R CrowdinExport/
+          echo ""
+          echo "=== Git status before staging ==="
+          git status
+          echo ""
+          echo "=== Looking for changed xcstrings/strings files ==="
+          find Vocable -name "*.xcstrings" -o -name "*.strings" | head -20
+          echo ""
+          echo "=== Staging all changes in Vocable directory ==="
+          git add Vocable/
+          echo ""
+          echo "=== Git status after staging ==="
+          git status
+        shell: sh
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v6

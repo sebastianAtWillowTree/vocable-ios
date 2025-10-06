@@ -16,7 +16,7 @@ on:
 
 jobs:
   synchronize-with-crowdin:
-    runs-on: self-hosted
+    runs-on: macos-latest
     steps:
 
       - name: Debug - Show runner info

@@ -57,6 +57,7 @@ fi
 
 # Import XLIFFs
 echo "Importing XLIFFs to project..."
+echo "Note: Using -skipPackagePluginValidation -skipMacroValidation flags to avoid SwiftLint plugin issues"
 bundle exec fastlane xliff_import
 
 if [ $? -eq 0 ]; then

@@ -198,6 +198,19 @@ Check that:
 - XLIFF files are in the correct format
 - You have the correct Ruby version (3.3.1)
 
+### SwiftLint Plugin Validation Error
+
+**Error**: `xcodebuild: error: Unable to build project for localization string extraction`
+
+**Cause**: The SwiftLint build plugin validation fails during the `xcodebuild -importLocalizations` process.
+
+**Solution**: The `xliff_import` fastlane lane now includes `-skipPackagePluginValidation -skipMacroValidation` flags to bypass this issue. This is the same approach used in other build lanes in the project.
+
+If you still encounter this error:
+1. Ensure you're using the latest version of the Fastfile
+2. Verify SwiftLint is installed: `brew install swiftlint`
+3. Check that the xcodebuild command includes the skip flags
+
 ### SwiftLint Errors
 
 ```bash

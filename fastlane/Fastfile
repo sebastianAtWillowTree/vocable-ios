@@ -114,7 +114,7 @@ platform :ios do
       text = text.gsub('original="/[willowtreeapps.vocable-ios] develop/Vocable/', 'original="Vocable/')
       text = text.gsub(/<trans-unit id=".*?" resname="(.*?)"/, '<trans-unit id="\1"')
       File.open(xliff, "w") {|file| file.puts text }
-      run_with_retries(3, "xcodebuild -importLocalizations -localizationPath '#{xliff}' -project ./../Vocable.xcodeproj")
+      run_with_retries(3, "xcodebuild -importLocalizations -localizationPath '#{xliff}' -project ./../Vocable.xcodeproj -skipPackagePluginValidation -skipMacroValidation")
     end
   end
   

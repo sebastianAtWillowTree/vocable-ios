@@ -52,22 +52,37 @@ bundle install
 
 ### Method 1: Automated Test Script (Recommended)
 
-Use the provided test script to run all workflow steps:
+**For xcstrings bundles (recommended):**
 
 ```bash
 # Set the Crowdin token
 export CROWDIN_PERSONAL_TOKEN=84079ca8898375f652f3723b83c4da9cbdefdcd551841902bafa2341fc518efb686878a66ebb3f60
 
-# Run the test script
+# Run the xcstrings test script with your bundle ID
+./test_crowdin_xcstrings_workflow.sh YOUR_BUNDLE_ID
+
+# Or use default bundle 13
+./test_crowdin_xcstrings_workflow.sh
+```
+
+**For XLIFF bundles (legacy):**
+
+```bash
+# Set the Crowdin token
+export CROWDIN_PERSONAL_TOKEN=84079ca8898375f652f3723b83c4da9cbdefdcd551841902bafa2341fc518efb686878a66ebb3f60
+
+# Run the XLIFF test script
 ./test_crowdin_workflow.sh
 ```
 
-The script will:
+The xcstrings script will:
 - ✓ Verify all required tools are installed
 - ✓ Clean previous test data
-- ✓ Download translations from Crowdin
-- ✓ Import XLIFF files into the Xcode project
-- ✓ Show git status and changes
+- ✓ Download translations from Crowdin (bundle ID as parameter)
+- ✓ Auto-detect file format (XLIFF or xcstrings)
+- ✓ Use appropriate import lane (xliff_import or xcstrings_import)
+- ✓ Show detailed analysis of downloaded files
+- ✓ Display git changes and diff summary
 
 ### Method 2: Manual Step-by-Step Testing
 

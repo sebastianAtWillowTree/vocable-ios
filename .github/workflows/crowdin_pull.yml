@@ -50,12 +50,45 @@ jobs:
           CROWDIN_PROJECT_ID: ${{ vars.CROWDIN_PROJECT_ID }}
         
       - name: Download Translations
-        run: crowdin bundle download 13 --project-id=834156 --token=84079ca8898375f652f3723b83c4da9cbdefdcd551841902bafa2341fc518efb686878a66ebb3f60
+        run: |
+          # TODO: Update bundle ID to your xcstrings bundle ID in Crowdin
+          # Current bundle 13 is configured for XLIFF export
+          # Create a new bundle in Crowdin configured for xcstrings export and update the ID below
+          crowdin bundle download 13 --project-id=834156 --token=84079ca8898375f652f3723b83c4da9cbdefdcd551841902bafa2341fc518efb686878a66ebb3f60
         shell: sh
         env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             CROWDIN_PROJECT_ID: 834156
             CROWDIN_PERSONAL_TOKEN: 84079ca8898375f652f3723b83c4da9cbdefdcd551841902bafa2341fc518efb686878a66ebb3f60
+
+      - name: Debug - Check downloaded files
+        run: |
+          echo "=== Checking if CrowdinExport directory exists ==="
+          if [ -d "CrowdinExport" ]; then
+            echo "✓ CrowdinExport directory exists"
+            echo ""
+            echo "=== Directory structure ==="
+            ls -R CrowdinExport/
+            echo ""
+            echo "=== XLIFF file count ==="
+            find CrowdinExport -name "*.xliff" | wc -l
+            echo ""
+            echo "=== xcstrings file count ==="
+            find CrowdinExport -name "*.xcstrings" | wc -l
+            echo ""
+            echo "=== Sample file content (first file found) ==="
+            first_file=$(find CrowdinExport \( -name "*.xliff" -o -name "*.xcstrings" \) -print -quit)
+            if [ -n "$first_file" ]; then
+              echo "File: $first_file"
+              head -50 "$first_file"
+            else
+              echo "No XLIFF or xcstrings files found"
+            fi
+          else
+            echo "✗ CrowdinExport directory does NOT exist"
+            echo "Bundle download may have failed or returned no files"
+          fi
+        shell: sh
 
       - name: Set up Ruby environment
         uses: ruby/setup-ruby@v1
@@ -78,10 +111,23 @@ jobs:
           fi
         shell: sh
 
-      - name: Import XLIFFs to project
+      - name: Import translations to project
         uses: ./.github/actions/run_lane
         with:
+          # Use xcstrings_import for xcstrings bundles, xliff_import for XLIFF bundles
           lane: xliff_import
+
+      - name: Debug - Check for changes after import
+        run: |
+          echo "=== Git diff summary ==="
+          git diff --stat
+          echo ""
+          echo "=== Detailed changes in xcstrings files ==="
+          git diff --name-only | grep -E '\.(xcstrings|strings)$' || echo "No xcstrings/strings files changed"
+          echo ""
+          echo "=== Full git status ==="
+          git status
+        shell: sh
 
       - name: Stage localization changes
         run: |

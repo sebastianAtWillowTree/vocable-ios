@@ -63,6 +63,14 @@ Setup local development environment (WillowTree Internal)
 
 Integrate latest XLIFF files with project
 
+### ios xcstrings_import
+
+```sh
+[bundle exec] fastlane ios xcstrings_import
+```
+
+Integrate latest xcstrings files from Crowdin
+
 ### ios xliff_export
 
 ```sh

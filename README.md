@@ -54,7 +54,7 @@ We love contributions! To get started, please see our [Contributing Guidelines](
 
 ## Device Provisioning
 
-External contributors will need to provision their device and sign Vocable to run on that device in a way that is convenient for them
+External contributors will need to provision their device and sign Vocable to run on that device in a way that is convenient for them.
 
 Internal/WillowTree contributors can follow the steps outlined in the [Technical Onboarding](https://github.com/willowtreeapps/vocable-ios/wiki/WillowTree-Technical-Onboarding) page.
 

@@ -4,3 +4,4 @@
 --artifact-server-path /tmp/artifacts
 --secret-file .secrets
 --var-file .vars
+--pull=false

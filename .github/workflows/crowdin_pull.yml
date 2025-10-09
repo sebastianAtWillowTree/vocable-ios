@@ -20,7 +20,22 @@ on:
         type: boolean
 
 jobs:
+  check-conditions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Debug - Show workflow conditions
+        run: |
+          echo "=== Workflow Trigger Debug ==="
+          echo "Repository: ${{ github.repository }}"
+          echo "Event name: ${{ github.event_name }}"
+          echo "Allow fork input: ${{ inputs.allow_fork }}"
+          echo "Is upstream: ${{ github.repository == 'willowtreeapps/vocable-ios' }}"
+          echo "Is workflow_dispatch: ${{ github.event_name == 'workflow_dispatch' }}"
+          echo "Should run: ${{ github.repository == 'willowtreeapps/vocable-ios' || (github.event_name == 'workflow_dispatch' && inputs.allow_fork == true) }}"
+          echo "=========================="
+
   synchronize-with-crowdin:
+    needs: check-conditions
     # Run on upstream repo OR when explicitly allowed on fork via workflow_dispatch
     if: |
       github.repository == 'willowtreeapps/vocable-ios' || 

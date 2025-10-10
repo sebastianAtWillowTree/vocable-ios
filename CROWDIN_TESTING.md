@@ -1,6 +1,6 @@
 # Testing Crowdin Workflow Locally
 
-This guide explains how to test the Crowdin translation workflow (`.github/workflows/crowdin_pull.yml`) locally before running it in GitHub Actions.
+This guide explains how to test the Crowdin translasdfation workflow (`.github/workflows/crowdin_pull.yml`) locally before running it in GitHub Actions.
 
 ## Overview
 

@@ -17,6 +17,7 @@ on:
 jobs:
   synchronize-with-crowdin:
     runs-on: ${{ inputs.runner || vars.RUNNER_TYPE || 'macos-latest' }}
+    environment: CrowdinAction
     steps:
 
       - name: Debug - Show runner info

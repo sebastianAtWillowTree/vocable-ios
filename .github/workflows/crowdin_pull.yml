@@ -1,8 +1,8 @@
 name: Pull Translations From Crowdin
 on:
-  schedule:
-    # Run every Monday at 9:00 AM UTC (5:00 AM EST / 2:00 AM PST)
-    - cron: '0 9 * * 1'
+  push:
+    branches:
+      - develop
   workflow_dispatch:
     inputs:
       runner:
@@ -13,18 +13,9 @@ on:
         options:
           - macos-latest
           - self-hosted
-      allow_fork:
-        description: 'Allow running on fork (for testing only)'
-        required: false
-        default: false
-        type: boolean
 
 jobs:
   synchronize-with-crowdin:
-    # Run on upstream repo OR when explicitly allowed on fork via workflow_dispatch
-    if: |
-      github.repository == 'willowtreeapps/vocable-ios' || 
-      (github.event_name == 'workflow_dispatch' && inputs.allow_fork == true)
     runs-on: ${{ inputs.runner || vars.RUNNER_TYPE || 'macos-latest' }}
     steps:
 
@@ -52,6 +43,12 @@ jobs:
           fi
         shell: sh
 
+      - name: Set Project ID as Integer
+        run: |
+          echo "CROWDIN_PROJECT_ID=$((CROWDIN_PROJECT_ID))" >> $GITHUB_ENV
+        env:
+          CROWDIN_PROJECT_ID: ${{ vars.CROWDIN_PROJECT_ID }}
+
       - name: Download Translations
         run: |
           # Now using v4.11.0 which supports bundle download
@@ -59,7 +56,8 @@ jobs:
             --project-id=$CROWDIN_PROJECT_ID \
             --token=$CROWDIN_PERSONAL_TOKEN
         env:
-          CROWDIN_PROJECT_ID: ${{ vars.CROWDIN_PROJECT_ID }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CROWDIN_PROJECT_ID: ${{ env.CROWDIN_PROJECT_ID }}
           CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
 
       - name: Debug - Check downloaded files

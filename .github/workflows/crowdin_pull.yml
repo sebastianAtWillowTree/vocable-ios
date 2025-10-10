@@ -37,6 +37,9 @@ jobs:
   synchronize-with-crowdin:
     needs: check-conditions
     # Run on upstream repo OR when explicitly allowed on fork via workflow_dispatch
+    if: |
+      github.repository == 'willowtreeapps/vocable-ios' || 
+      (github.event_name == 'workflow_dispatch' && inputs.allow_fork == true)
     runs-on: ${{ inputs.runner || vars.RUNNER_TYPE || 'macos-latest' }}
     steps:
 

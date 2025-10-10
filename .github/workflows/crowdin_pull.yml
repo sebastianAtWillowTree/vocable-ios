@@ -53,9 +53,13 @@ jobs:
       - name: Download Translations
         run: |
           # Now using v4.11.0 which supports bundle download
-          crowdin bundle download ${{ vars.CROWDIN_BUNDLE_ID }} \
+          crowdin bundle download 19 \
             --project-id=$CROWDIN_PROJECT_ID \
             --token=$CROWDIN_PERSONAL_TOKEN
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CROWDIN_PROJECT_ID: ${{ env.CROWDIN_PROJECT_ID }}
+          CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
 
       - name: Debug - Check downloaded files
         run: |

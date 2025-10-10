@@ -18,10 +18,18 @@ on:
         required: false
         default: false
         type: boolean
+      crowdin_project_id:
+        description: 'Crowdin Project ID (for fork testing only)'
+        required: false
+        default: ''
+      crowdin_token:
+        description: 'Crowdin Personal Token (for fork testing only)'
+        required: false
+        default: ''
 
 jobs:
   check-conditions:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - name: Debug - Show workflow conditions
         run: |
@@ -37,6 +45,9 @@ jobs:
   synchronize-with-crowdin:
     needs: check-conditions
     # Run on upstream repo OR when explicitly allowed on fork via workflow_dispatch
+    if: |
+      github.repository == 'willowtreeapps/vocable-ios' || 
+      (github.event_name == 'workflow_dispatch' && inputs.allow_fork == true)
     runs-on: ${{ inputs.runner || vars.RUNNER_TYPE || 'macos-latest' }}
     steps:
 
@@ -71,8 +82,9 @@ jobs:
             --project-id=$CROWDIN_PROJECT_ID \
             --token=$CROWDIN_PERSONAL_TOKEN
         env:
-          CROWDIN_PROJECT_ID: ${{ vars.CROWDIN_PROJECT_ID }}
-          CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
+          # Use workflow inputs if provided (for fork testing), otherwise use secrets/vars
+          CROWDIN_PROJECT_ID: ${{ inputs.crowdin_project_id || vars.CROWDIN_PROJECT_ID }}
+          CROWDIN_PERSONAL_TOKEN: ${{ inputs.crowdin_token || secrets.CROWDIN_PERSONAL_TOKEN }}
 
       - name: Debug - Check downloaded files
         run: |

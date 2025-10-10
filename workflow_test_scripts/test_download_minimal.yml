@@ -41,12 +41,3 @@ jobs:
           find . -name "*.xcstrings" -type f 2>/dev/null | head -10
           echo ""
           echo "=== Directory contents ==="
-          if [ -d "CrowdinExport" ]; then
-            echo "Found CrowdinExport/"
-            ls -R CrowdinExport/
-          elif [ -d "CrowdinExports" ]; then
-            echo "Found CrowdinExports/"
-            ls -R CrowdinExports/
-          else
-            echo "No export directory found"
-          fi

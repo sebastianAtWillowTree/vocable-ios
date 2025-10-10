@@ -4,7 +4,6 @@ on: workflow_dispatch
 jobs:
   test-download:
     runs-on: ubuntu-latest
-    # Using smaller image to avoid disk space issues
     steps:
       - name: Checkout
         uses: actions/checkout@v4

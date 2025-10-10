@@ -43,20 +43,13 @@ jobs:
             echo "Crowdin CLI already installed"
           fi
         shell: sh
-
-      - name: Set Project ID as Integer
-        run: |
-          echo "CROWDIN_PROJECT_ID=$((CROWDIN_PROJECT_ID))" >> $GITHUB_ENV
-        env:
-          CROWDIN_PROJECT_ID: ${{ vars.CROWDIN_PROJECT_ID }}
-
+        
       - name: Download Translations
         run: |
-          # Now using v4.11.0 which supports bundle download
           crowdin bundle download ${{ vars.CROWDIN_BUNDLE_ID }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          CROWDIN_PROJECT_ID: ${{ env.CROWDIN_PROJECT_ID }}
+          CROWDIN_PROJECT_ID: ${{ vars.CROWDIN_PROJECT_ID }}
           CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
 
       - name: Debug - Check downloaded files

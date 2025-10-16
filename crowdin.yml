@@ -2,7 +2,7 @@
 "api_token_env": "CROWDIN_PERSONAL_TOKEN"
 
 files:
-  - source: /Vocable/Supporting Files/**/*.xcstrings
-    translation: /Vocable/**/%locale%/%original_file_name%
+  - source: /Vocable/Supporting Files/*.xcstrings
+    translation: /Vocable/Supporting Files/%locale%/%original_file_name%
     ignore:
       - CrowdinExport

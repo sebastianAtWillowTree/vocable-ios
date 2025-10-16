@@ -3,8 +3,8 @@
 
 files:
   - source: /Vocable/Supporting Files/InfoPlist.xcstrings
-    translation: /Vocable/Supporting Files/InfoPlist.xcstrings
+    translation: /Vocable/Supporting Files/%locale%/InfoPlist.xcstrings
   - source: /Vocable/Supporting Files/Localizable.xcstrings
-    translation: /Vocable/Supporting Files/Localizable.xcstrings
+    translation: /Vocable/Supporting Files/%locale%/Localizable.xcstrings
   - source: /Vocable/Supporting Files/Presets.xcstrings
-    translation: /Vocable/Supporting Files/Presets.xcstrings
+    translation: /Vocable/Supporting Files/%locale%/Presets.xcstrings

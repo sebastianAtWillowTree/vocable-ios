@@ -13,6 +13,17 @@
         }
       }
     },
+    "Key1234132" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "after crowdin source update"
+          }
+        }
+      }
+    },
     "preset_0B491C3E-1A7F-4A94-A523-6DE329BF9E72" : {
       "localizations" : {
         "ar" : {

@@ -18,8 +18,8 @@
         },
         "es": {
           "stringUnit": {
-            "state": "translated",
-            "value": "Test"
+            "state": "needs_review",
+            "value": "Categories"
           }
         },
         "ar": {
@@ -101,8 +101,8 @@
         },
         "es": {
           "stringUnit": {
-            "state": "translated",
-            "value": "test"
+            "state": "needs_review",
+            "value": "Cancel"
           }
         },
         "ar": {
@@ -184,8 +184,8 @@
         },
         "es": {
           "stringUnit": {
-            "state": "translated",
-            "value": "test"
+            "state": "needs_review",
+            "value": "Remove"
           }
         },
         "ar": {

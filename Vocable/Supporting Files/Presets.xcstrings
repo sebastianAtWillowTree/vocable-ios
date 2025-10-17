@@ -18,8 +18,8 @@
         },
         "es": {
           "stringUnit": {
-            "state": "translated",
-            "value": "Me quiero acostar"
+            "state": "needs_review",
+            "value": "Cansado"
           }
         },
         "ar": {
@@ -102,7 +102,7 @@
         "es": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Holaron"
+            "value": "Pleased to meet you"
           }
         },
         "ar": {
@@ -517,7 +517,7 @@
         "es": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Hola"
+            "value": "Hello"
           }
         },
         "ar": {
@@ -1014,8 +1014,8 @@
         },
         "es": {
           "stringUnit": {
-            "state": "translated",
-            "value": "Espera"
+            "state": "needs_review",
+            "value": "Please wait"
           }
         },
         "ar": {
@@ -1097,8 +1097,8 @@
         },
         "es": {
           "stringUnit": {
-            "state": "translated",
-            "value": "Si"
+            "state": "needs_review",
+            "value": "Yes"
           }
         },
         "ar": {
@@ -3172,8 +3172,8 @@
         },
         "es": {
           "stringUnit": {
-            "state": "translated",
-            "value": "Relajate guey"
+            "state": "needs_review",
+            "value": "Please be patient"
           }
         },
         "ar": {

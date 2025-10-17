@@ -1,6 +1,17 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "other_rando_string" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "asdfasdfasdf"
+          }
+        }
+      }
+    },
     "preset_0B491C3E-1A7F-4A94-A523-6DE329BF9E72" : {
       "localizations" : {
         "ar" : {
@@ -5824,7 +5835,15 @@
       }
     },
     "RandoString" : {
-      "extractionState" : "manual"
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RandoString"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

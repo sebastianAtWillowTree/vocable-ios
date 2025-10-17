@@ -1,6 +1,20 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "noenglish" : {
+      "extractionState" : "manual"
+    },
+    "nounderscore" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "nounderscore"
+          }
+        }
+      }
+    },
     "other_rando_string" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -5841,6 +5855,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "RandoString"
+          }
+        }
+      }
+    },
+    "under_score" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "test1"
           }
         }
       }
